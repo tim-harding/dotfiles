@@ -2,6 +2,7 @@ import XMonad
 import Data.Monoid
 import System.Exit
 import XMonad.Util.SpawnOnce
+import XMonad.Hooks.EwmhDesktops
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -69,16 +70,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
 
     -- Resize viewed windows to the correct size
-    -- , ((modm,               xK_n     ), refresh)
+    , ((modm,               xK_r     ), refresh)
 
     -- Move focus to the next window
     , ((modm,               xK_Tab   ), windows W.focusDown)
-
-    -- Move focus to the master window
-    -- , ((modm,               xK_m     ), windows W.focusMaster  )
-
-    -- Swap the focused window and the master window
-    -- , ((modm,               xK_Return), windows W.swapMaster)
 
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_n     ), windows W.swapDown  )
@@ -94,18 +89,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Push window back into tiling
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
-
-    -- Increment the number of windows in the master area
-    -- , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
-
-    -- Deincrement the number of windows in the master area
-    -- , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
-
-    -- Toggle the status bar gap
-    -- Use this binding with avoidStruts from Hooks.ManageDocks.
-    -- See also the statusBar function from Hooks.DynamicLog.
-    --
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
@@ -234,11 +217,6 @@ myStartupHook = do
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
--- Run xmonad with the settings you specify. No need to modify this.
---
--- main = xmonad $ ewmhFullscreen $ ewmh $ xmobarProp $ defaults
-main = xmonad defaults
-
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
 -- use the defaults defined in xmonad/XMonad/Config.hs
@@ -267,6 +245,20 @@ defaults = def {
         logHook            = myLogHook,
         startupHook        = myStartupHook
     }
+
+-- main :: IO ()
+-- main = xmonad
+--      . ewmhFullscreen
+--      . ewmh
+--      . withEasySB (statusBarProp "xmobar" (pure def)) toggleStrutsKey
+--      $ defaults
+--   where
+--     toggleStrutsKey :: XConfig Layout -> (KeyMask, KeySym)
+--     toggleStrutsKey XConfig{ modMask = m } = (m, xK_b)
+--
+-- Run xmonad with the settings you specify. No need to modify this.
+--
+main = xmonad $ ewmhFullscreen $ ewmh $ xmobarProp $ defaults
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String
