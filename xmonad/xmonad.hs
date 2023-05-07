@@ -58,7 +58,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run")
+    , ((modm,               xK_p     ), spawn "dmenu_run -fn 'CaskaydiaCove Nerd Font-14' -nb '#2e3440' -sf '#2e3440' -sb '#88c0d0' -nf '#d8dee9'")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -76,16 +76,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_Tab   ), windows W.focusDown)
 
     -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_n     ), windows W.swapDown  )
+    , ((modm .|. shiftMask, xK_s     ), windows W.swapDown  )
 
     -- Swap the focused window with the previous window
     , ((modm .|. shiftMask, xK_e     ), windows W.swapUp    )
 
     -- Shrink the master area
-    , ((modm,               xK_h     ), sendMessage Shrink)
+    , ((modm,               xK_l     ), sendMessage Shrink)
 
     -- Expand the master area
-    , ((modm,               xK_l     ), sendMessage Expand)
+    , ((modm,               xK_h     ), sendMessage Expand)
 
     -- Push window back into tiling
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
@@ -246,19 +246,7 @@ defaults = def {
         startupHook        = myStartupHook
     }
 
--- main :: IO ()
--- main = xmonad
---      . ewmhFullscreen
---      . ewmh
---      . withEasySB (statusBarProp "xmobar" (pure def)) toggleStrutsKey
---      $ defaults
---   where
---     toggleStrutsKey :: XConfig Layout -> (KeyMask, KeySym)
---     toggleStrutsKey XConfig{ modMask = m } = (m, xK_b)
---
--- Run xmonad with the settings you specify. No need to modify this.
---
-main = xmonad $ ewmhFullscreen $ ewmh $ xmobarProp $ defaults
+main = xmonad $ ewmhFullscreen $ ewmh $ defaults
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String
