@@ -3,6 +3,8 @@ import Data.Monoid
 import System.Exit
 import XMonad.Util.SpawnOnce
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Prompt
+import XMonad.Actions.DynamicWorkspaceGroups
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -42,29 +44,37 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces    = ["0", "1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#5e81ac"
 myFocusedBorderColor = "#a3be8c"
 
+xpconfig = def { 
+  font = "xft:CaskaydiaCove Nerd Font:pixelsize=14"
+  , borderColor = "#1e2320"
+  , fgColor = "#dddddd"
+  , fgHLight = "#ffffff"
+  , bgColor = "#1e2320"
+  , bgHLight = "#5f5f5f"
+  , height = 36
+  , position = CenteredAt 0.45 0.2
+}
+
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
-    -- launch a terminal
-    [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run -fn 'CaskaydiaCove Nerd Font-14' -nb '#2e3440' -sf '#2e3440' -sb '#88c0d0' -nf '#d8dee9'")
+    [ ((modm,               xK_l     ), spawn "dmenu_run -fn 'CaskaydiaCove Nerd Font-14' -nb '#2e3440' -sf '#2e3440' -sb '#88c0d0' -nf '#d8dee9'")
 
     -- close focused window
-    , ((modm .|. shiftMask, xK_c     ), kill)
+    , ((modm,               xK_y     ), kill)
 
      -- Rotate through the available layout algorithms
-    , ((modm,               xK_space ), sendMessage NextLayout)
+    , ((modm,               xK_Return ), sendMessage NextLayout)
 
     --  Reset the layouts on the current workspace to default
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
@@ -73,7 +83,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_r     ), refresh)
 
     -- Move focus to the next window
-    , ((modm,               xK_Tab   ), windows W.focusDown)
+    , ((modm,               xK_BackSpace   ), windows W.focusDown)
 
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_s     ), windows W.swapDown  )
@@ -82,10 +92,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_e     ), windows W.swapUp    )
 
     -- Shrink the master area
-    , ((modm,               xK_l     ), sendMessage Shrink)
+    , ((modm,               xK_j     ), sendMessage Shrink)
 
     -- Expand the master area
-    , ((modm,               xK_h     ), sendMessage Expand)
+    , ((modm,               xK_m     ), sendMessage Expand)
 
     -- Push window back into tiling
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
@@ -95,6 +105,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Restart xmonad
     , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
+
+    -- Select workspace group
+    , ((modm              , xK_u     ), promptWSGroupView xpconfig "Workspace: ")
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     ]
@@ -149,7 +162,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = Full ||| tiled ||| Mirror tiled 
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -214,6 +227,15 @@ myLogHook = return ()
 myStartupHook = do 
   spawnOnce "picom"
   spawnOnce "xrandr --output DVI-I-1 --primary --mode 1920x1200 --rotate left --pos 1920x-400 --output DVI-D-0 --mode 1920x1200 --rotate normal --pos 0x0"
+  spawnOnce "xset s off"
+  spawnOnce "xset -dpms"
+  spawnOnce "xset s noblank"
+  addRawWSGroup "q" [(S 0, "0"), (S 1, "1")]
+  addRawWSGroup "w" [(S 0, "2"), (S 1, "3")]
+  addRawWSGroup "f" [(S 0, "4"), (S 1, "5")]
+  addRawWSGroup "p" [(S 0, "6"), (S 1, "7")]
+  addRawWSGroup "b" [(S 0, "8"), (S 1, "9")]
+
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
