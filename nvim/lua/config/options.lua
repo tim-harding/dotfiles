@@ -3,3 +3,4 @@
 -- Add any additional options here
 --
 vim.api.nvim_set_option("swapfile", false)
+vim.g.nord_italic = false
