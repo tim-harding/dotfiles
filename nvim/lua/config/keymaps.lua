@@ -6,4 +6,3 @@ vim.api.nvim_set_keymap("n", "<c-tab>", ":bn<cr>", { noremap = true, silent = tr
 vim.api.nvim_set_keymap("i", "<c-tab>", "<esc>:bn<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<c-s-tab>", ":bp<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<c-s-tab>", "<esc>:bp<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<c-w>", ":bd<cr>", { noremap = true, silent = true })
