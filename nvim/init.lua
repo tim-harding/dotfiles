@@ -69,12 +69,18 @@ require('lazy').setup({
     },
   },
 
+  -- {
+  --   "shaunsingh/nord.nvim",
+  --   config = function()
+  --     vim.cmd.colorscheme 'nord'
+  --   end,
+  -- },
+
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
+    "catppuccin/nvim",
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      -- latte, frappe, macchiato, mocha
+      vim.cmd.colorscheme 'catppuccin-frappe'
     end,
   },
 
@@ -146,6 +152,8 @@ require('lazy').setup({
       'leoluz/nvim-dap-go',
     }
   },
+
+  "ggandor/leap.nvim",
 }, {})
 
 vim.o.relativenumber = true
@@ -478,9 +486,9 @@ require('mason-nvim-dap').setup {
 
 -- Basic debugging keymaps, feel free to change to your liking!
 vim.keymap.set('n', '<F5>', dap.continue)
-vim.keymap.set('n', '<F1>', dap.step_into)
-vim.keymap.set('n', '<F2>', dap.step_over)
-vim.keymap.set('n', '<F3>', dap.step_out)
+vim.keymap.set('n', '<F9>', dap.step_into)
+vim.keymap.set('n', '<F6>', dap.step_over)
+vim.keymap.set('n', '<F12>', dap.step_out)
 vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint)
 vim.keymap.set('n', '<leader>B', function()
   dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
@@ -585,3 +593,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     })
   end,
 })
+
+local leap = require("leap")
+leap.add_default_mappings()
