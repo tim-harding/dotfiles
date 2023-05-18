@@ -64,17 +64,21 @@ require('lazy').setup({
       on_attach = function(bufnr)
         vim.keymap.set('n', '[c', require('gitsigns').prev_hunk, { buffer = bufnr, desc = 'Go to Previous Hunk' })
         vim.keymap.set('n', ']c', require('gitsigns').next_hunk, { buffer = bufnr, desc = 'Go to Next Hunk' })
-        vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
+        vim.keymap.set('n', '<leader>h', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[h]unk preview' })
       end,
     },
   },
 
   {
     "catppuccin/nvim",
-    config = function()
+    name = "catppuccin",
+    opts = {
       -- latte, frappe, macchiato, mocha
-      vim.cmd.colorscheme 'catppuccin-frappe'
-    end,
+      flavour = "frappe",
+      integrations = {
+        hop = true,
+      }
+    },
   },
 
   {
@@ -147,6 +151,15 @@ require('lazy').setup({
   },
 
   "ggandor/leap.nvim",
+  {
+    "phaazon/hop.nvim",
+    branch = "v2",
+    config = function()
+      require("hop").setup({
+        keys = "tnserigmfuplwybjdhcvkaoqxz",
+      })
+    end
+  },
   "simrat39/rust-tools.nvim",
 }, {})
 
@@ -165,9 +178,6 @@ vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 vim.o.scrolloff = 3
-
--- Keymaps for better default experience
--- vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -195,26 +205,31 @@ require('telescope').setup {
 pcall(require('telescope').load_extension, 'fzf')
 
 -- Arrows only :)
-vim.keymap.set('n', 'h', '<nop>')
-vim.keymap.set('n', 'j', '<nop>')
-vim.keymap.set('n', 'k', '<nop>')
-vim.keymap.set('n', 'l', '<nop>')
+vim.keymap.set('n', 'h', '')
+vim.keymap.set('n', 'j', ":WhichKey j<cr>")
+vim.keymap.set('n', 'k', '')
+vim.keymap.set('n', 'l', '')
 
-vim.keymap.set("n", "<C-v>", '"+p')
-vim.keymap.set("i", "<C-v>", '<esc>"+pi')
+vim.keymap.set("n", "<C-S-v>", '"+p')
+vim.keymap.set("i", "<C-S-v>", '<esc>"+pi')
+vim.keymap.set("n", "<C-Tab>", ":bn<cr>", { silent = true })
+vim.keymap.set("n", "<C-S-Tab>", ":bp<cr>", { silent = true })
+vim.keymap.set("n", "<leader>c", ":source ~/.config/nvim/init.lua<cr>", { silent = true, desc = "[c]onfig reload" })
+
+vim.keymap.set("n", "h", ":HopWord<cr>", { noremap = true, silent = true })
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = '[f]ind [r]ecent' })
+vim.keymap.set('n', 'jr', require('telescope.builtin').oldfiles, { desc = '[f]ind [r]ecent' })
 vim.keymap.set('n', '<leader>/', function()
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     previewer = false,
   })
 end, { desc = '[/] Search current buffer' })
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').git_files, { desc = '[f]ind [f]iles in Git' })
-vim.keymap.set('n', '<leader>fo', require('telescope.builtin').find_files, { desc = '[f]ind [o]ther files' })
-vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[f]ind [h]elp' })
-vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[f]ind current [w]ord' })
-vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[f]ind [d]iagnostics' })
+vim.keymap.set('n', 'jg', require('telescope.builtin').git_files, { desc = '[j]ump [g]it' })
+vim.keymap.set('n', 'jf', require('telescope.builtin').find_files, { desc = '[j]ump [f]iles' })
+vim.keymap.set('n', 'jh', require('telescope.builtin').help_tags, { desc = '[j]ump [h]elp' })
+vim.keymap.set('n', 'jw', require('telescope.builtin').grep_string, { desc = '[j]ump [w]ord under cursor' })
+vim.keymap.set('n', 'jd', require('telescope.builtin').diagnostics, { desc = '[j]ump [d]iagnostics' })
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
@@ -277,8 +292,10 @@ require('nvim-treesitter.configs').setup {
 }
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[[', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
-vim.keymap.set('n', ']]', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
+vim.keymap.set('n', '[q', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
+vim.keymap.set('n', ']q', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
+vim.keymap.set('n', '[b', ":bp<cr>", { desc = 'Previous diagnostic' })
+vim.keymap.set('n', ']b', ":bn<cr>", { desc = 'Next diagnostic' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
@@ -293,17 +310,17 @@ local on_attach = function(_, bufnr)
   end
 
   nmap('gd', vim.lsp.buf.definition, '[g]oto [d]efinition')
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+  nmap('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
   nmap('gr', require('telescope.builtin').lsp_references, '[g]oto [r]eferences')
   nmap('gi', vim.lsp.buf.implementation, '[g]oto [i]mplementation')
-  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>fs', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[f]ind [s]ymbols')
-  nmap('<leader>r', vim.lsp.buf.rename, '[r]ename')
-  nmap('<leader>a', vim.lsp.buf.code_action, 'Code [a]ction')
 
-  -- See `:help K` for why this keymap
+  nmap('lD', vim.lsp.buf.type_definition, 'Type [D]efinition')
+  nmap('lr', vim.lsp.buf.rename, '[r]ename')
+  nmap('la', vim.lsp.buf.code_action, 'Code [a]ction')
+  nmap('lk', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+  nmap('js', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[f]ind [s]ymbols')
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<leader>k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
@@ -418,10 +435,10 @@ vim.keymap.set('n', '<F5>', dap.continue)
 vim.keymap.set('n', '<F9>', dap.step_into)
 vim.keymap.set('n', '<F6>', dap.step_over)
 vim.keymap.set('n', '<F12>', dap.step_out)
-vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint)
+vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = "[b]reakpoint toggle" })
 vim.keymap.set('n', '<leader>B', function()
   dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-end)
+end, { desc = "[B]reakpoint condition" })
 
 -- Dap UI setup
 dapui.setup {
@@ -531,3 +548,5 @@ rt.setup({
     end,
   },
 })
+
+vim.cmd.colorscheme 'catppuccin'
