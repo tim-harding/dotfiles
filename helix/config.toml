@@ -1,0 +1,8 @@
+theme = "nord"
+
+[editor]
+line-number = "relative"
+scrolloff = 2
+
+[editor.cursor-shape]
+insert = "bar"
