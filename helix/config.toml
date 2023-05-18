@@ -3,6 +3,8 @@ theme = "nord"
 [editor]
 line-number = "relative"
 scrolloff = 2
+auto-pairs = false
+terminal.command = "alacritty"
 
 [editor.cursor-shape]
 insert = "bar"
