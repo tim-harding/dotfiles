@@ -341,15 +341,24 @@ local on_attach_shared = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
-local function on_attach_rust()
+local on_attach_rust = function(_, bufnr)
   local rt = require('rust-tools')
+  on_attach_shared(_, bufnr)
+  vim.keymap.set("n", "<leader>h", rt.hover_actions.hover_actions, { buffer = bufnr, desc = "[h]over actions" })
+
+  local ext = 'usr/lib/codelldb/'
+  local liblldb = ext .. 'lldb/lib/liblldb.so'
+  local codelldb = ext .. 'adapter/codelldb'
+
   rt.setup({
-    server = {
-      on_attach = function(_, bufnr)
-        on_attach_shared(_, bufnr)
-        vim.keymap.set("n", "<leader>h", rt.hover_actions.hover_actions, { buffer = bufnr, desc = "[h]over actions" })
-      end,
+    dap = {
+      adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb, liblldb)
     },
+    tools = {
+      hover_actions = {
+        auto_focus = true,
+      }
+    }
   })
 end
 
