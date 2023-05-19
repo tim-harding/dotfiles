@@ -150,7 +150,6 @@ require('lazy').setup({
     }
   },
 
-  "ggandor/leap.nvim",
   {
     "phaazon/hop.nvim",
     branch = "v2",
@@ -217,6 +216,7 @@ vim.keymap.set("n", "<C-S-Tab>", ":bp<cr>", { silent = true })
 vim.keymap.set("n", "<leader>c", ":source ~/.config/nvim/init.lua<cr>", { silent = true, desc = "[c]onfig reload" })
 
 vim.keymap.set("n", "h", ":HopWord<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "s", ":HopChar2<cr>", { noremap = true, silent = true })
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', 'jr', require('telescope.builtin').oldfiles, { desc = '[f]ind [r]ecent' })
@@ -535,9 +535,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     })
   end,
 })
-
-local leap = require("leap")
-leap.add_default_mappings()
 
 local rt = require("rust-tools")
 
