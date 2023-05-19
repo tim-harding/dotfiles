@@ -1,7 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -64,7 +63,7 @@ require('lazy').setup({
       on_attach = function(bufnr)
         vim.keymap.set('n', '[c', require('gitsigns').prev_hunk, { buffer = bufnr, desc = 'Go to Previous Hunk' })
         vim.keymap.set('n', ']c', require('gitsigns').next_hunk, { buffer = bufnr, desc = 'Go to Next Hunk' })
-        vim.keymap.set('n', '<leader>h', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[h]unk preview' })
+        vim.keymap.set('n', '<leader>p', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[p]review hunk' })
       end,
     },
   },
@@ -159,7 +158,15 @@ require('lazy').setup({
       })
     end
   },
+
   "simrat39/rust-tools.nvim",
+
+  {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup({})
+    end
+  },
 }, {})
 
 vim.wo.number = true -- Line numbers
@@ -177,6 +184,8 @@ vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 vim.o.scrolloff = 3
+vim.o.cmdheight = 0
+vim.opt.swapfile = false
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -215,7 +224,7 @@ vim.keymap.set("n", "<C-Tab>", ":bn<cr>", { silent = true })
 vim.keymap.set("n", "<C-S-Tab>", ":bp<cr>", { silent = true })
 vim.keymap.set("n", "<leader>c", ":source ~/.config/nvim/init.lua<cr>", { silent = true, desc = "[c]onfig reload" })
 
-vim.keymap.set("n", "h", ":HopWord<cr>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "h", ":HopWord<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "s", ":HopChar2<cr>", { noremap = true, silent = true })
 
 -- See `:help telescope.builtin`
@@ -225,11 +234,14 @@ vim.keymap.set('n', '<leader>/', function()
     previewer = false,
   })
 end, { desc = '[/] Search current buffer' })
-vim.keymap.set('n', 'jg', require('telescope.builtin').git_files, { desc = '[j]ump [g]it' })
-vim.keymap.set('n', 'jf', require('telescope.builtin').find_files, { desc = '[j]ump [f]iles' })
+vim.keymap.set('n', 'jf', require('telescope.builtin').git_files, { desc = '[j]ump [f]ile' })
 vim.keymap.set('n', 'jh', require('telescope.builtin').help_tags, { desc = '[j]ump [h]elp' })
-vim.keymap.set('n', 'jw', require('telescope.builtin').grep_string, { desc = '[j]ump [w]ord under cursor' })
 vim.keymap.set('n', 'jd', require('telescope.builtin').diagnostics, { desc = '[j]ump [d]iagnostics' })
+
+vim.keymap.set('n', '<C-Left>', '<C-w>h', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Right>', '<C-w>l', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Up>', '<C-w>k', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Down>', '<C-w>j', { noremap = true, silent = true })
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
@@ -291,11 +303,12 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
--- Diagnostic keymaps
 vim.keymap.set('n', '[q', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
 vim.keymap.set('n', ']q', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
+
 vim.keymap.set('n', '[b', ":bp<cr>", { desc = 'Previous diagnostic' })
 vim.keymap.set('n', ']b', ":bn<cr>", { desc = 'Next diagnostic' })
+
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
@@ -415,6 +428,13 @@ cmp.setup {
   },
 }
 
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
+
 -- DAP stuff
 local dap = require 'dap'
 local dapui = require 'dapui'
@@ -432,6 +452,7 @@ require('mason-nvim-dap').setup {
 
 -- Basic debugging keymaps, feel free to change to your liking!
 vim.keymap.set('n', '<F5>', dap.continue)
+vim.keymap.set('n', '<S-F5>', dap.stop)
 vim.keymap.set('n', '<F9>', dap.step_into)
 vim.keymap.set('n', '<F6>', dap.step_over)
 vim.keymap.set('n', '<F12>', dap.step_out)
