@@ -314,7 +314,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local on_attach_shared = function(_, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -341,13 +341,25 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+local function on_attach_rust()
+  local rt = require('rust-tools')
+  rt.setup({
+    server = {
+      on_attach = function(_, bufnr)
+        on_attach_shared(_, bufnr)
+        vim.keymap.set("n", "<leader>h", rt.hover_actions.hover_actions, { buffer = bufnr, desc = "[h]over actions" })
+      end,
+    },
+  })
+end
+
 -- Language servers config
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
-  -- tsserver = {},
+  clangd = {},
+  gopls = {},
+  pyright = {},
+  rust_analyzer = {},
+  tsserver = {},
 
   lua_ls = {
     Lua = {
@@ -373,12 +385,13 @@ mason_lspconfig.setup {
 
 mason_lspconfig.setup_handlers {
   function(server_name)
+    local on_attach = server_name == "rust_analyzer" and on_attach_rust or on_attach_shared
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = servers[server_name],
     }
-  end,
+  end
 }
 
 -- nvim-cmp setup
@@ -555,16 +568,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
       end,
     })
   end,
-})
-
-local rt = require("rust-tools")
-
-rt.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      vim.keymap.set("n", "<leader>h", rt.hover_actions.hover_actions, { buffer = bufnr, desc = "[h]over actions" })
-    end,
-  },
 })
 
 vim.cmd.colorscheme 'catppuccin'
