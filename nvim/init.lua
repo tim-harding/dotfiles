@@ -314,7 +314,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach_shared = function(_, bufnr)
+local on_attach = function(_, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -339,27 +339,6 @@ local on_attach_shared = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
-end
-
-local on_attach_rust = function(_, bufnr)
-  local rt = require('rust-tools')
-  on_attach_shared(_, bufnr)
-  vim.keymap.set("n", "<leader>h", rt.hover_actions.hover_actions, { buffer = bufnr, desc = "[h]over actions" })
-
-  local ext = 'usr/lib/codelldb/'
-  local liblldb = ext .. 'lldb/lib/liblldb.so'
-  local codelldb = ext .. 'adapter/codelldb'
-
-  rt.setup({
-    dap = {
-      adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb, liblldb)
-    },
-    tools = {
-      hover_actions = {
-        auto_focus = true,
-      }
-    }
-  })
 end
 
 -- Language servers config
@@ -393,14 +372,38 @@ mason_lspconfig.setup {
 }
 
 mason_lspconfig.setup_handlers {
+  -- Default
   function(server_name)
-    local on_attach = server_name == "rust_analyzer" and on_attach_rust or on_attach_shared
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = servers[server_name],
     }
-  end
+  end,
+
+  ["rust_analyzer"] = function()
+    local rt = require('rust-tools')
+    local ext = 'usr/lib/codelldb/'
+    local liblldb = ext .. 'lldb/lib/liblldb.so'
+    local codelldb = ext .. 'adapter/codelldb'
+
+    rt.setup({
+      server = {
+        on_attach = function(_, bufnr)
+          on_attach(_, bufnr)
+          vim.keymap.set("n", "<leader>h", rt.hover_actions.hover_actions, { buffer = bufnr, desc = "[h]over actions" })
+        end
+      },
+      dap = {
+        adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb, liblldb)
+      },
+      tools = {
+        hover_actions = {
+          auto_focus = true,
+        }
+      }
+    })
+  end,
 }
 
 -- nvim-cmp setup
