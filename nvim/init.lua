@@ -383,9 +383,10 @@ mason_lspconfig.setup_handlers {
 
   ["rust_analyzer"] = function()
     local rt = require('rust-tools')
-    local ext = '/usr/lib/codelldb/'
-    local liblldb = ext .. 'lldb/lib/liblldb.so'
-    local codelldb = ext .. 'adapter/codelldb'
+
+    local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.9.1/'
+    local codelldb = extension_path .. 'adapter/codelldb'
+    local liblldb = extension_path .. 'lldb/lib/liblldb.so'
 
     rt.setup({
       server = {
@@ -477,7 +478,7 @@ require('mason-nvim-dap').setup {
 
 -- Basic debugging keymaps, feel free to change to your liking!
 vim.keymap.set('n', '<F5>', dap.continue)
-vim.keymap.set('n', '<S-F5>', dap.stop)
+vim.keymap.set('n', '<F10>', dap.terminate)
 vim.keymap.set('n', '<F9>', dap.step_into)
 vim.keymap.set('n', '<F6>', dap.step_over)
 vim.keymap.set('n', '<F12>', dap.step_out)
@@ -485,6 +486,7 @@ vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = "[b]reakpoint t
 vim.keymap.set('n', '<leader>B', function()
   dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
 end, { desc = "[B]reakpoint condition" })
+vim.keymap.set("n", "<F7>", dapui.toggle)
 
 -- Dap UI setup
 dapui.setup {
@@ -502,10 +504,47 @@ dapui.setup {
       disconnect = "⏏",
     },
   },
+  layouts = {
+    {
+      elements = {
+        {
+          id = "stacks",
+          size = 0.33
+        },
+        {
+          id = "scopes",
+          size = 0.67
+        },
+      },
+      position = "top",
+      size = 15,
+    },
+    {
+      elements = {
+        {
+          id = "console",
+          size = 1
+        }
+      },
+      position = "bottom",
+      size = 4,
+    },
+    {
+      elements = {
+        {
+          id = "breakpoints",
+          size = 0.5
+        },
+        {
+          id = "watches",
+          size = 0.5
+        }
+      },
+      position = "left",
+      size = 1,
+    },
+  },
 }
-
--- toggle to see last session result. Without this ,you can't see session output in case of unhandled exception.
-vim.keymap.set("n", "<F7>", dapui.toggle)
 
 dap.listeners.after.event_initialized['dapui_config'] = dapui.open
 dap.listeners.before.event_terminated['dapui_config'] = dapui.close
