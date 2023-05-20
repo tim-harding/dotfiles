@@ -383,7 +383,7 @@ mason_lspconfig.setup_handlers {
 
   ["rust_analyzer"] = function()
     local rt = require('rust-tools')
-    local ext = 'usr/lib/codelldb/'
+    local ext = '/usr/lib/codelldb/'
     local liblldb = ext .. 'lldb/lib/liblldb.so'
     local codelldb = ext .. 'adapter/codelldb'
 
