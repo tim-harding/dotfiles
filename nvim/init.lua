@@ -395,9 +395,9 @@ mason_lspconfig.setup_handlers {
           vim.keymap.set("n", "<leader>h", rt.hover_actions.hover_actions, { buffer = bufnr, desc = "[h]over actions" })
         end
       },
-      dap = {
-        adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb, liblldb)
-      },
+      -- dap = {
+      --   adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb, liblldb)
+      -- },
       tools = {
         hover_actions = {
           auto_focus = true,
