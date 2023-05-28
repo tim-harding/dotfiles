@@ -40,12 +40,12 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   'tpope/vim-sleuth',
-  "simrat39/rust-tools.nvim",
-  "windwp/nvim-ts-autotag",
+  'simrat39/rust-tools.nvim',
+  'windwp/nvim-ts-autotag',
   'nvim-lualine/lualine.nvim',
 
   {
-    "nvim-tree/nvim-tree.lua",
+    'nvim-tree/nvim-tree.lua',
     opts = {}
   },
 
@@ -60,14 +60,14 @@ require('lazy').setup({
   },
 
   {
-    "windwp/nvim-autopairs",
+    'windwp/nvim-autopairs',
     opts = {}
   },
 
   {
-    "folke/trouble.nvim",
+    'folke/trouble.nvim',
     dependencies = {
-      "nvim-tree/nvim-web-devicons"
+      'nvim-tree/nvim-web-devicons'
     },
   },
 
@@ -112,7 +112,7 @@ require('lazy').setup({
     dependencies = {
       {
         'williamboman/mason.nvim',
-        build = ":MasonUpdate",
+        build = ':MasonUpdate',
         config = true
       },
       'williamboman/mason-lspconfig.nvim',
@@ -128,11 +128,11 @@ require('lazy').setup({
   },
 
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    'catppuccin/nvim',
+    name = 'catppuccin',
     opts = {
       -- latte, frappe, macchiato, mocha
-      flavour = "frappe",
+      flavour = 'frappe',
       integrations = {
         hop = true,
       }
@@ -188,10 +188,10 @@ require('lazy').setup({
   },
 
   {
-    "phaazon/hop.nvim",
-    branch = "v2",
+    'phaazon/hop.nvim',
+    branch = 'v2',
     opts = {
-      keys = "tnserigmfuplwybjdhcvkaoqxz",
+      keys = 'tnserigmfuplwybjdhcvkaoqxz',
     }
   },
 }, {})
@@ -215,10 +215,10 @@ pcall(require('telescope').load_extension, 'fzf')
 
 local function macro_recording_section()
   local recording_register = vim.fn.reg_recording()
-  if recording_register == "" then
-    return ""
+  if recording_register == '' then
+    return ''
   else
-    return "Recording @" .. recording_register
+    return 'Recording @' .. recording_register
   end
 end
 
@@ -243,15 +243,15 @@ lualine.setup {
 
 local refresh_lualine = function()
   lualine.refresh({
-    place = { "statusline" },
+    place = { 'statusline' },
   })
 end
 
-vim.api.nvim_create_autocmd("RecordingEnter", {
+vim.api.nvim_create_autocmd('RecordingEnter', {
   callback = refresh_lualine,
 })
 
-vim.api.nvim_create_autocmd("RecordingLeave", {
+vim.api.nvim_create_autocmd('RecordingLeave', {
   callback = function()
     -- Need to wait a short time for the recording to be purged
     local timeout_ms = 50
@@ -390,7 +390,7 @@ mason_lspconfig.setup_handlers {
     }
   end,
 
-  ["rust_analyzer"] = function()
+  ['rust_analyzer'] = function()
     local rt = require('rust-tools')
 
     local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.9.1/'
@@ -401,7 +401,7 @@ mason_lspconfig.setup_handlers {
       server = {
         on_attach = function(_, bufnr)
           on_attach(_, bufnr)
-          vim.keymap.set("n", "<leader>h", rt.hover_actions.hover_actions, { buffer = bufnr, desc = "[h]over actions" })
+          vim.keymap.set('n', '<leader>h', rt.hover_actions.hover_actions, { buffer = bufnr, desc = '[h]over actions' })
         end
       },
       -- dap = {
@@ -492,46 +492,46 @@ dapui.setup {
       step_back = 'b',
       run_last = '▶▶',
       terminate = '⏹',
-      disconnect = "⏏",
+      disconnect = '⏏',
     },
   },
   layouts = {
     {
       elements = {
         {
-          id = "stacks",
+          id = 'stacks',
           size = 0.33
         },
         {
-          id = "scopes",
+          id = 'scopes',
           size = 0.67
         },
       },
-      position = "top",
+      position = 'top',
       size = 15,
     },
     {
       elements = {
         {
-          id = "console",
+          id = 'console',
           size = 1
         }
       },
-      position = "bottom",
+      position = 'bottom',
       size = 4,
     },
     {
       elements = {
         {
-          id = "breakpoints",
+          id = 'breakpoints',
           size = 0.5
         },
         {
-          id = "watches",
+          id = 'watches',
           size = 0.5
         }
       },
-      position = "left",
+      position = 'left',
       size = 1,
     },
   },
@@ -596,16 +596,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.cmd.colorscheme 'catppuccin'
 
 vim.keymap.set('n', 'h', '')
-vim.keymap.set('n', 'j', ":WhichKey j<cr>")
+vim.keymap.set('n', 'j', ':WhichKey j<cr>')
 vim.keymap.set('n', 'k', '')
 vim.keymap.set('n', 'l', '')
 
-vim.keymap.set("n", "<C-b>", ":NvimTreeToggle<cr>", { silent = true, noremap = true })
+vim.keymap.set('n', '<C-b>', ':NvimTreeToggle<cr>', { silent = true, noremap = true })
 
-vim.keymap.set("n", "<leader>t", ":TroubleToggle<cr>", { silent = true, noremap = true })
-vim.keymap.set("n", "]q", function() require("trouble").next({ skip_groups = true, jump = true }) end,
+vim.keymap.set('n', '<leader>t', ':TroubleToggle<cr>', { silent = true, noremap = true })
+vim.keymap.set('n', ']q', function() require('trouble').next({ skip_groups = true, jump = true }) end,
   { silent = true, noremap = true })
-vim.keymap.set("n", "[q", function() require("trouble").previous({ skip_groups = true, jump = true }) end,
+vim.keymap.set('n', '[q', function() require('trouble').previous({ skip_groups = true, jump = true }) end,
   { silent = true, noremap = true })
 
 -- TODO: Try to combine these with the Trouble commands:
@@ -613,14 +613,14 @@ vim.keymap.set("n", "[q", function() require("trouble").previous({ skip_groups =
 -- vim.keymap.set('n', ']q', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
-vim.keymap.set("n", "<C-S-v>", '"+p')
-vim.keymap.set("i", "<C-S-v>", '<esc>"+pi')
-vim.keymap.set("n", "<C-Tab>", ":bn<cr>", { silent = true })
-vim.keymap.set("n", "<C-S-Tab>", ":bp<cr>", { silent = true })
-vim.keymap.set("n", "<leader>c", ":source ~/.config/nvim/init.lua<cr>", { silent = true, desc = "[c]onfig reload" })
+vim.keymap.set('n', '<C-S-v>', '"+p')
+vim.keymap.set('i', '<C-S-v>', '<esc>"+pi')
+vim.keymap.set('n', '<C-Tab>', ':bn<cr>', { silent = true })
+vim.keymap.set('n', '<C-S-Tab>', ':bp<cr>', { silent = true })
+vim.keymap.set('n', '<leader>c', ':source ~/.config/nvim/init.lua<cr>', { silent = true, desc = '[c]onfig reload' })
 
-vim.keymap.set("n", "h", ":HopWord<cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "s", ":HopChar2<cr>", { noremap = true, silent = true })
+vim.keymap.set('n', 'h', ':HopWord<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', 's', ':HopChar2<cr>', { noremap = true, silent = true })
 
 vim.keymap.set('n', 'jr', require('telescope.builtin').oldfiles, { desc = '[f]ind [r]ecent' })
 vim.keymap.set('n', 'jf', require('telescope.builtin').git_files, { desc = '[j]ump [f]ile' })
@@ -644,8 +644,8 @@ vim.keymap.set('n', '<F10>', dap.terminate)
 vim.keymap.set('n', '<F9>', dap.step_into)
 vim.keymap.set('n', '<F6>', dap.step_over)
 vim.keymap.set('n', '<F12>', dap.step_out)
-vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = "[b]reakpoint toggle" })
-vim.keymap.set("n", "<F7>", dapui.toggle)
+vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = '[b]reakpoint toggle' })
+vim.keymap.set('n', '<F7>', dapui.toggle)
 vim.keymap.set('n', '<leader>B', function()
   dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-end, { desc = "[B]reakpoint condition" })
+end, { desc = '[B]reakpoint condition' })
