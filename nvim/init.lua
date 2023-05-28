@@ -33,30 +33,39 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- If config = true, call setup without arguments
+-- If opts = {...}, call setup with the given opts
 require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
-  'lewis6991/gitsigns.nvim',
   'tpope/vim-sleuth',
-  'folke/which-key.nvim',
-  'nvim-lualine/lualine.nvim',
-  'lukas-reineke/indent-blankline.nvim',
-  'numToStr/Comment.nvim',
   "simrat39/rust-tools.nvim",
   "windwp/nvim-ts-autotag",
-  "nvim-tree/nvim-tree.lua",
-  "windwp/nvim-autopairs",
 
   {
-    'neovim/nvim-lspconfig',
+    "nvim-tree/nvim-tree.lua",
+    opts = {}
+  },
+
+  {
+    'folke/which-key.nvim',
+    opts = {}
+  },
+
+  {
+    'numToStr/Comment.nvim',
+    opts = {}
+  },
+
+  {
+    "windwp/nvim-autopairs",
+    opts = {}
+  },
+
+  {
+    "folke/trouble.nvim",
     dependencies = {
-      {
-        'williamboman/mason.nvim',
-        build = ":MasonUpdate",
-      },
-      'williamboman/mason-lspconfig.nvim',
-      'folke/neodev.nvim',
-      'j-hui/fidget.nvim',
+      "nvim-tree/nvim-web-devicons"
     },
   },
 
@@ -71,8 +80,70 @@ require('lazy').setup({
   },
 
   {
+    'nvim-lualine/lualine.nvim',
+    opts = {
+      options = {
+        icons_enabled = false,
+        theme = 'onedark',
+        component_separators = '|',
+        section_separators = '',
+      },
+    }
+  },
+
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    opts = {
+      char = '┊',
+      show_trailing_blankline_indent = false,
+    }
+  },
+
+  {
+    'lewis6991/gitsigns.nvim',
+    opts = {
+      signs = {
+        add = { text = '+' },
+        change = { text = '~' },
+        delete = { text = '_' },
+        topdelete = { text = '‾' },
+        changedelete = { text = '~' },
+      },
+      on_attach = function(bufnr)
+        vim.keymap.set('n', '[h', require('gitsigns').prev_hunk, { buffer = bufnr, desc = 'Go to Previous Hunk' })
+        vim.keymap.set('n', ']h', require('gitsigns').next_hunk, { buffer = bufnr, desc = 'Go to Next Hunk' })
+        vim.keymap.set('n', '<leader>p', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[p]review hunk' })
+      end,
+    }
+  },
+
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      {
+        'williamboman/mason.nvim',
+        build = ":MasonUpdate",
+        config = true
+      },
+      'williamboman/mason-lspconfig.nvim',
+      'folke/neodev.nvim',
+      {
+        'j-hui/fidget.nvim',
+        opts = {}
+      },
+    },
+  },
+
+  {
     "catppuccin/nvim",
     name = "catppuccin",
+    opts = {
+      -- latte, frappe, macchiato, mocha
+      flavour = "frappe",
+      integrations = {
+        hop = true,
+      }
+    }
   },
 
   {
@@ -80,6 +151,16 @@ require('lazy').setup({
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim'
+    },
+    opts = {
+      defaults = {
+        mappings = {
+          i = {
+            ['<C-u>'] = false,
+            ['<C-d>'] = false,
+          },
+        },
+      },
     }
   },
 
@@ -113,74 +194,11 @@ require('lazy').setup({
   {
     "phaazon/hop.nvim",
     branch = "v2",
-  },
-
-  {
-    "folke/trouble.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    },
+    opts = {
+      keys = "tnserigmfuplwybjdhcvkaoqxz",
+    }
   },
 }, {})
-
-require("nvim-tree").setup({})
-require('fidget').setup({})
-require('which-key').setup({})
-require('Comment').setup({})
-require("nvim-autopairs").setup({})
-require('mason').setup()
-
-require('catppuccin').setup({
-  -- latte, frappe, macchiato, mocha
-  flavour = "frappe",
-  integrations = {
-    hop = true,
-  }
-})
-
-require('indent_blankline').setup({
-  char = '┊',
-  show_trailing_blankline_indent = false,
-})
-
-require("hop").setup({
-  keys = "tnserigmfuplwybjdhcvkaoqxz",
-})
-
-require('gitsigns').setup({
-  signs = {
-    add = { text = '+' },
-    change = { text = '~' },
-    delete = { text = '_' },
-    topdelete = { text = '‾' },
-    changedelete = { text = '~' },
-  },
-  on_attach = function(bufnr)
-    vim.keymap.set('n', '[h', require('gitsigns').prev_hunk, { buffer = bufnr, desc = 'Go to Previous Hunk' })
-    vim.keymap.set('n', ']h', require('gitsigns').next_hunk, { buffer = bufnr, desc = 'Go to Next Hunk' })
-    vim.keymap.set('n', '<leader>p', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[p]review hunk' })
-  end,
-})
-
-require('lualine').setup({
-  options = {
-    icons_enabled = false,
-    theme = 'onedark',
-    component_separators = '|',
-    section_separators = '',
-  },
-})
-
-require('telescope').setup {
-  defaults = {
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
-  },
-}
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
