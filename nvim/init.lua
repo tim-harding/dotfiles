@@ -42,6 +42,7 @@ require('lazy').setup({
   'tpope/vim-sleuth',
   "simrat39/rust-tools.nvim",
   "windwp/nvim-ts-autotag",
+  'nvim-lualine/lualine.nvim',
 
   {
     "nvim-tree/nvim-tree.lua",
@@ -78,18 +79,6 @@ require('lazy').setup({
       'saadparwaiz1/cmp_luasnip',
       'rafamadriz/friendly-snippets'
     },
-  },
-
-  {
-    'nvim-lualine/lualine.nvim',
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'catppuccin',
-        component_separators = '|',
-        section_separators = '',
-      },
-    }
   },
 
   {
@@ -223,6 +212,55 @@ vim.diagnostic.config({
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+
+local function macro_recording_section()
+  local recording_register = vim.fn.reg_recording()
+  if recording_register == "" then
+    return ""
+  else
+    return "Recording @" .. recording_register
+  end
+end
+
+local lualine = require('lualine')
+lualine.setup {
+  options = {
+    icons_enabled = false,
+    theme = 'catppuccin',
+    component_separators = '|',
+    section_separators = '',
+  },
+  sections = {
+    lualine_c = {
+      'filename',
+      {
+        'macro-recording',
+        fmt = macro_recording_section,
+      }
+    }
+  }
+}
+
+local refresh_lualine = function()
+  lualine.refresh({
+    place = { "statusline" },
+  })
+end
+
+vim.api.nvim_create_autocmd("RecordingEnter", {
+  callback = refresh_lualine,
+})
+
+vim.api.nvim_create_autocmd("RecordingLeave", {
+  callback = function()
+    -- Need to wait a short time for the recording to be purged
+    local timeout_ms = 50
+    local no_repeat = 0
+    local scheduled_refresh_lualine = vim.schedule_wrap(refresh_lualine)
+    local timer = vim.loop.new_timer()
+    timer:start(timeout_ms, no_repeat, scheduled_refresh_lualine)
+  end,
+})
 
 require('nvim-treesitter.configs').setup {
   autotag = {
