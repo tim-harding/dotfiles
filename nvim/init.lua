@@ -1,6 +1,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.wo.number = true -- Line numbers
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.o.relativenumber = true
 vim.o.hlsearch = false
 vim.o.mouse = 'a'
@@ -8,7 +9,6 @@ vim.o.breakindent = true
 vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
-vim.wo.signcolumn = 'yes'
 vim.o.updatetime = 250
 vim.o.timeout = true
 vim.o.timeoutlen = 300
@@ -16,9 +16,10 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 vim.o.scrolloff = 3
 vim.o.cmdheight = 0
+vim.o.wrap = true
+vim.wo.signcolumn = 'yes'
+vim.wo.number = true
 vim.opt.swapfile = false
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -126,7 +127,10 @@ require('lazy').setup({
         config = true
       },
       'williamboman/mason-lspconfig.nvim',
-      'folke/neodev.nvim',
+      {
+        'folke/neodev.nvim',
+        config = true,
+      },
       {
         'j-hui/fidget.nvim',
         opts = {}
@@ -187,7 +191,10 @@ require('lazy').setup({
       'williamboman/mason.nvim',
       'jay-babu/mason-nvim-dap.nvim',
       -- Add language-specific debuggers here
-      'leoluz/nvim-dap-go',
+      {
+        'leoluz/nvim-dap-go',
+        config = true,
+      },
     }
   },
 
@@ -199,6 +206,20 @@ require('lazy').setup({
     }
   },
 }, {})
+
+-- Highlight on yank
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
+
+vim.diagnostic.config({
+  virtual_text = false,
+})
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
@@ -266,12 +287,7 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
-vim.diagnostic.config({
-  virtual_text = false,
-})
-
--- LSP settings.
---  This function gets run when an LSP connects to a particular buffer.
+--  Runs whenever an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
@@ -314,9 +330,6 @@ local servers = {
     },
   },
 }
-
--- Setup neovim lua configuration
-require('neodev').setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -365,7 +378,6 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
--- nvim-cmp setup
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
@@ -412,14 +424,13 @@ cmp.setup {
   },
 }
 
--- If you want insert `(` after select function or method item
+-- Insert `(` after selecting function
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on(
   'confirm_done',
   cmp_autopairs.on_confirm_done()
 )
 
--- DAP stuff
 local dap = require 'dap'
 local dapui = require 'dapui'
 
@@ -428,25 +439,9 @@ require('mason-nvim-dap').setup {
   ensure_installed = {
     'delve',
   },
-
-  -- You can provide additional configuration to the handlers,
-  -- see mason-nvim-dap README for more information
   handlers = {},
 }
 
--- Basic debugging keymaps, feel free to change to your liking!
-vim.keymap.set('n', '<F5>', dap.continue)
-vim.keymap.set('n', '<F10>', dap.terminate)
-vim.keymap.set('n', '<F9>', dap.step_into)
-vim.keymap.set('n', '<F6>', dap.step_over)
-vim.keymap.set('n', '<F12>', dap.step_out)
-vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = "[b]reakpoint toggle" })
-vim.keymap.set('n', '<leader>B', function()
-  dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-end, { desc = "[B]reakpoint condition" })
-vim.keymap.set("n", "<F7>", dapui.toggle)
-
--- Dap UI setup
 dapui.setup {
   icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
   controls = {
@@ -508,14 +503,7 @@ dap.listeners.after.event_initialized['dapui_config'] = dapui.open
 dap.listeners.before.event_terminated['dapui_config'] = dapui.close
 dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
--- Install golang specific config
-require('dap-go').setup()
-
-
--- Autoformat stuff
-
--- Switch for controlling whether you want autoformatting.
---  Use :KickstartFormatToggle to toggle autoformatting on or off
+-- :KickstartFormatToggle toggles autoformatting on or off
 local format_is_enabled = true
 vim.api.nvim_create_user_command('KickstartFormatToggle', function()
   format_is_enabled = not format_is_enabled
@@ -523,8 +511,8 @@ vim.api.nvim_create_user_command('KickstartFormatToggle', function()
 end, {})
 
 -- Create an augroup that is used for managing our formatting autocmds.
---      We need one augroup per client to make sure that multiple clients
---      can attach to the same buffer without interfering with each other.
+-- We need one augroup per client to make sure that multiple clients
+-- can attach to the same buffer without interfering with each other.
 local _augroups = {}
 local get_augroup = function(client)
   if not _augroups[client.id] then
@@ -532,34 +520,22 @@ local get_augroup = function(client)
     local id = vim.api.nvim_create_augroup(group_name, { clear = true })
     _augroups[client.id] = id
   end
-
   return _augroups[client.id]
 end
 
--- Whenever an LSP attaches to a buffer, we will run this function.
---
--- See `:help LspAttach` for more information about this autocmd event.
+-- Run whenever an LSP attaches to a buffer
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('kickstart-lsp-attach-format', { clear = true }),
-  -- This is where we attach the autoformatting for reasonable clients
   callback = function(args)
     local client_id = args.data.client_id
     local client = vim.lsp.get_client_by_id(client_id)
     local bufnr = args.buf
 
-    -- Only attach to clients that support document formatting
     if not client.server_capabilities.documentFormattingProvider then
       return
     end
 
-    -- Tsserver usually works poorly. Sorry you work with bad languages
-    -- You can remove this line if you know what you're doing :)
-    -- if client.name == 'tsserver' then
-    --   return
-    -- end
-
-    -- Create an autocmd that will run *before* we save the buffer.
-    --  Run the formatting command for the LSP that has just attached.
+    -- Autoformat autocommand
     vim.api.nvim_create_autocmd('BufWritePre', {
       group = get_augroup(client),
       buffer = bufnr,
@@ -579,19 +555,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- Highlight on yank
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
-
 vim.cmd.colorscheme 'catppuccin'
 
--- Arrows only :)
 vim.keymap.set('n', 'h', '')
 vim.keymap.set('n', 'j', ":WhichKey j<cr>")
 vim.keymap.set('n', 'k', '')
@@ -605,36 +570,44 @@ vim.keymap.set("n", "]q", function() require("trouble").next({ skip_groups = tru
 vim.keymap.set("n", "[q", function() require("trouble").previous({ skip_groups = true, jump = true }) end,
   { silent = true, noremap = true })
 
+-- TODO: Try to combine these with the Trouble commands:
+-- vim.keymap.set('n', '[q', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
+-- vim.keymap.set('n', ']q', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
 vim.keymap.set("n", "<C-S-v>", '"+p')
 vim.keymap.set("i", "<C-S-v>", '<esc>"+pi')
 vim.keymap.set("n", "<C-Tab>", ":bn<cr>", { silent = true })
 vim.keymap.set("n", "<C-S-Tab>", ":bp<cr>", { silent = true })
 vim.keymap.set("n", "<leader>c", ":source ~/.config/nvim/init.lua<cr>", { silent = true, desc = "[c]onfig reload" })
 
--- vim.keymap.set("n", "h", ":HopWord<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "h", ":HopWord<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "s", ":HopChar2<cr>", { noremap = true, silent = true })
 
--- See `:help telescope.builtin`
 vim.keymap.set('n', 'jr', require('telescope.builtin').oldfiles, { desc = '[f]ind [r]ecent' })
+vim.keymap.set('n', 'jf', require('telescope.builtin').git_files, { desc = '[j]ump [f]ile' })
+vim.keymap.set('n', 'jh', require('telescope.builtin').help_tags, { desc = '[j]ump [h]elp' })
+vim.keymap.set('n', 'jd', require('telescope.builtin').diagnostics, { desc = '[j]ump [d]iagnostics' })
 vim.keymap.set('n', '<leader>/', function()
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     previewer = false,
   })
 end, { desc = '[/] Search current buffer' })
-vim.keymap.set('n', 'jf', require('telescope.builtin').git_files, { desc = '[j]ump [f]ile' })
-vim.keymap.set('n', 'jh', require('telescope.builtin').help_tags, { desc = '[j]ump [h]elp' })
-vim.keymap.set('n', 'jd', require('telescope.builtin').diagnostics, { desc = '[j]ump [d]iagnostics' })
 
 vim.keymap.set('n', '<C-Left>', '<C-w>h', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-Right>', '<C-w>l', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-Up>', '<C-w>k', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-Down>', '<C-w>j', { noremap = true, silent = true })
 
--- vim.keymap.set('n', '[q', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
--- vim.keymap.set('n', ']q', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
-
-vim.keymap.set('n', '[b', ":bp<cr>", { desc = 'Previous buffer' })
-vim.keymap.set('n', ']b', ":bn<cr>", { desc = 'Next buffer' })
-
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+vim.keymap.set('n', '<F5>', dap.continue)
+vim.keymap.set('n', '<F10>', dap.terminate)
+vim.keymap.set('n', '<F9>', dap.step_into)
+vim.keymap.set('n', '<F6>', dap.step_over)
+vim.keymap.set('n', '<F12>', dap.step_out)
+vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = "[b]reakpoint toggle" })
+vim.keymap.set("n", "<F7>", dapui.toggle)
+vim.keymap.set('n', '<leader>B', function()
+  dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+end, { desc = "[B]reakpoint condition" })
