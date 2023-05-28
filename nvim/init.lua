@@ -1,6 +1,10 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Disable NetRW
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -61,8 +65,8 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '[c', require('gitsigns').prev_hunk, { buffer = bufnr, desc = 'Go to Previous Hunk' })
-        vim.keymap.set('n', ']c', require('gitsigns').next_hunk, { buffer = bufnr, desc = 'Go to Next Hunk' })
+        vim.keymap.set('n', '[h', require('gitsigns').prev_hunk, { buffer = bufnr, desc = 'Go to Previous Hunk' })
+        vim.keymap.set('n', ']h', require('gitsigns').next_hunk, { buffer = bufnr, desc = 'Go to Next Hunk' })
         vim.keymap.set('n', '<leader>p', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[p]review hunk' })
       end,
     },
@@ -167,6 +171,15 @@ require('lazy').setup({
       require("nvim-autopairs").setup({})
     end
   },
+
+  "nvim-tree/nvim-tree.lua",
+
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+
+  "windwp/nvim-ts-autotag",
 }, {})
 
 vim.wo.number = true -- Line numbers
@@ -212,38 +225,10 @@ require('telescope').setup {
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
--- Arrows only :)
-vim.keymap.set('n', 'h', '')
-vim.keymap.set('n', 'j', ":WhichKey j<cr>")
-vim.keymap.set('n', 'k', '')
-vim.keymap.set('n', 'l', '')
-
-vim.keymap.set("n", "<C-S-v>", '"+p')
-vim.keymap.set("i", "<C-S-v>", '<esc>"+pi')
-vim.keymap.set("n", "<C-Tab>", ":bn<cr>", { silent = true })
-vim.keymap.set("n", "<C-S-Tab>", ":bp<cr>", { silent = true })
-vim.keymap.set("n", "<leader>c", ":source ~/.config/nvim/init.lua<cr>", { silent = true, desc = "[c]onfig reload" })
-
--- vim.keymap.set("n", "h", ":HopWord<cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "s", ":HopChar2<cr>", { noremap = true, silent = true })
-
--- See `:help telescope.builtin`
-vim.keymap.set('n', 'jr', require('telescope.builtin').oldfiles, { desc = '[f]ind [r]ecent' })
-vim.keymap.set('n', '<leader>/', function()
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    previewer = false,
-  })
-end, { desc = '[/] Search current buffer' })
-vim.keymap.set('n', 'jf', require('telescope.builtin').git_files, { desc = '[j]ump [f]ile' })
-vim.keymap.set('n', 'jh', require('telescope.builtin').help_tags, { desc = '[j]ump [h]elp' })
-vim.keymap.set('n', 'jd', require('telescope.builtin').diagnostics, { desc = '[j]ump [d]iagnostics' })
-
-vim.keymap.set('n', '<C-Left>', '<C-w>h', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-Right>', '<C-w>l', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-Up>', '<C-w>k', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-Down>', '<C-w>j', { noremap = true, silent = true })
-
 require('nvim-treesitter.configs').setup {
+  autotag = {
+    enable = true,
+  },
   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
   auto_install = true,
   highlight = { enable = true },
@@ -303,14 +288,9 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
-vim.keymap.set('n', '[q', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
-vim.keymap.set('n', ']q', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
-
-vim.keymap.set('n', '[b', ":bp<cr>", { desc = 'Previous diagnostic' })
-vim.keymap.set('n', ']b', ":bn<cr>", { desc = 'Next diagnostic' })
-
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.diagnostic.config({
+  virtual_text = false,
+})
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
@@ -596,9 +576,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Tsserver usually works poorly. Sorry you work with bad languages
     -- You can remove this line if you know what you're doing :)
-    if client.name == 'tsserver' then
-      return
-    end
+    -- if client.name == 'tsserver' then
+    --   return
+    -- end
 
     -- Create an autocmd that will run *before* we save the buffer.
     --  Run the formatting command for the LSP that has just attached.
@@ -621,4 +601,54 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+require("nvim-tree").setup({})
+
 vim.cmd.colorscheme 'catppuccin'
+
+-- Arrows only :)
+vim.keymap.set('n', 'h', '')
+vim.keymap.set('n', 'j', ":WhichKey j<cr>")
+vim.keymap.set('n', 'k', '')
+vim.keymap.set('n', 'l', '')
+
+vim.keymap.set("n", "<C-b>", ":NvimTreeToggle<cr>", { silent = true, noremap = true })
+
+vim.keymap.set("n", "<leader>t", ":TroubleToggle<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "]q", function() require("trouble").next({ skip_groups = true, jump = true }) end,
+  { silent = true, noremap = true })
+vim.keymap.set("n", "[q", function() require("trouble").previous({ skip_groups = true, jump = true }) end,
+  { silent = true, noremap = true })
+
+vim.keymap.set("n", "<C-S-v>", '"+p')
+vim.keymap.set("i", "<C-S-v>", '<esc>"+pi')
+vim.keymap.set("n", "<C-Tab>", ":bn<cr>", { silent = true })
+vim.keymap.set("n", "<C-S-Tab>", ":bp<cr>", { silent = true })
+vim.keymap.set("n", "<leader>c", ":source ~/.config/nvim/init.lua<cr>", { silent = true, desc = "[c]onfig reload" })
+
+-- vim.keymap.set("n", "h", ":HopWord<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "s", ":HopChar2<cr>", { noremap = true, silent = true })
+
+-- See `:help telescope.builtin`
+vim.keymap.set('n', 'jr', require('telescope.builtin').oldfiles, { desc = '[f]ind [r]ecent' })
+vim.keymap.set('n', '<leader>/', function()
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    previewer = false,
+  })
+end, { desc = '[/] Search current buffer' })
+vim.keymap.set('n', 'jf', require('telescope.builtin').git_files, { desc = '[j]ump [f]ile' })
+vim.keymap.set('n', 'jh', require('telescope.builtin').help_tags, { desc = '[j]ump [h]elp' })
+vim.keymap.set('n', 'jd', require('telescope.builtin').diagnostics, { desc = '[j]ump [d]iagnostics' })
+
+vim.keymap.set('n', '<C-Left>', '<C-w>h', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Right>', '<C-w>l', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Up>', '<C-w>k', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Down>', '<C-w>j', { noremap = true, silent = true })
+
+-- vim.keymap.set('n', '[q', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
+-- vim.keymap.set('n', ']q', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
+
+vim.keymap.set('n', '[b', ":bp<cr>", { desc = 'Previous buffer' })
+vim.keymap.set('n', ']b', ":bn<cr>", { desc = 'Next buffer' })
+
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
