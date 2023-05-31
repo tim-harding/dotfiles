@@ -2,6 +2,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.indent_blankline_filetype_exclude = { 'dashboard' }
 vim.o.relativenumber = true
 vim.o.hlsearch = false
 vim.o.mouse = 'a'
@@ -87,6 +88,35 @@ require('lazy').setup({
       char = '┊',
       show_trailing_blankline_indent = false,
     }
+  },
+
+  {
+    'glepnir/dashboard-nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      theme = 'hyper',
+      config = {
+        week_header = {
+          enable = true,
+        },
+        shortcut = {
+          {
+            desc = 'Lazy update',
+            group = 'Main',
+            action = 'Lazy update',
+            key = 'u',
+          }
+        },
+        project = {
+          enable = false,
+        },
+        mru = {
+          limit = 20,
+        },
+        footer = {},
+      }
+    },
   },
 
   {
@@ -543,7 +573,7 @@ dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
 -- :KickstartFormatToggle toggles autoformatting on or off
 local format_is_enabled = true
-vim.api.nvim_create_user_command('KickstartFormatToggle', function()
+vim.api.nvim_create_user_command('ToggleAutoformatting', function()
   format_is_enabled = not format_is_enabled
   print('Setting autoformatting to: ' .. tostring(format_is_enabled))
 end, {})
@@ -600,7 +630,7 @@ vim.keymap.set('n', 'j', ':WhichKey j<cr>')
 vim.keymap.set('n', 'k', '')
 vim.keymap.set('n', 'l', '')
 
-vim.keymap.set('n', '<C-b>', ':NvimTreeToggle<cr>', { silent = true, noremap = true })
+vim.keymap.set('n', '<leader>f', ':NvimTreeToggle<cr>', { silent = true, noremap = true })
 
 vim.keymap.set('n', '<leader>t', ':TroubleToggle<cr>', { silent = true, noremap = true })
 vim.keymap.set('n', ']q', function() require('trouble').next({ skip_groups = true, jump = true }) end,
@@ -649,3 +679,5 @@ vim.keymap.set('n', '<F7>', dapui.toggle)
 vim.keymap.set('n', '<leader>B', function()
   dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
 end, { desc = '[B]reakpoint condition' })
+
+vim.keymap.set('n', '<leader>s', ':w<cr>', { silent = true, noremap = true })
