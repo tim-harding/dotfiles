@@ -16,7 +16,6 @@ vim.opt.timeoutlen = 300
 vim.opt.completeopt = 'menuone,noselect'
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 3
-vim.opt.cmdheight = 0
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -26,6 +25,10 @@ vim.opt.wrap = true
 vim.opt.signcolumn = 'yes'
 vim.opt.number = true
 vim.opt.cursorline = true
+vim.opt.shortmess = 'aoOstTIFcC'
+
+-- Want to enable but too many 'Press Enter to continue messages for now'
+-- vim.opt.cmdheight = 0
 
 vim.loader.enable()
 
@@ -43,12 +46,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local map = function(mode, keys, func, desc, opts)
-  local defaults = {
-    silent = true,
-    noremap = true,
-    desc = desc,
-  }
-  opts = opts and setmetatable(opts, { __index = defaults }) or defaults
+  opts = opts or {}
+  opts.silent = true
+  opts.noremap = true
+  opts.desc = desc
   vim.keymap.set(mode, keys, func, opts)
 end
 
@@ -656,7 +657,8 @@ map('n', 'kk', '<nop>')
 map('n', 'l', function() whichkey.show('l', { mode = 'n', auto = true }) end)
 map('n', 'll', '<nop>')
 
-map('n', 'hc', ':Git commit<cr>', 'commit')
+map('n', 'hc', ':Git commit --quiet<cr>', 'commit')
+map('n', 'ha', ':Git commit --quiet --amend --no-edit<cr>', 'amend')
 
 map('n', '<leader>f', ':NvimTreeToggle<cr>')
 
