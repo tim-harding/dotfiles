@@ -27,7 +27,7 @@ vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.shortmess = 'aoOstTIFcC'
 
--- Want to enable but too many 'Press Enter to continue messages for now'
+-- Want to enable but too many 'Press Enter to continue' messages for now
 -- vim.opt.cmdheight = 0
 
 vim.loader.enable()
@@ -56,6 +56,7 @@ end
 require('lazy').setup({
   'tpope/vim-sleuth',
   'tpope/vim-fugitive',
+  'simrat39/rust-tools.nvim',
   'windwp/nvim-ts-autotag',
   'nvim-lualine/lualine.nvim',
 
@@ -403,7 +404,6 @@ pcall(require('telescope').load_extension, 'fzf')
 -------------
 -- Lualine --
 -------------
-
 local function macro_recording_section()
   local recording_register = vim.fn.reg_recording()
   if recording_register == '' then
