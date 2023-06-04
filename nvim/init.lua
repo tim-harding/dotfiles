@@ -51,6 +51,7 @@ end
 
 require('lazy').setup({
   'tpope/vim-sleuth',
+  'tpope/vim-fugitive',
   'simrat39/rust-tools.nvim',
   'windwp/nvim-ts-autotag',
   'nvim-lualine/lualine.nvim',
@@ -62,7 +63,15 @@ require('lazy').setup({
 
   {
     'folke/which-key.nvim',
-    opts = {}
+    event = 'VeryLazy',
+    opts = {
+      triggers = { 'h', 'j', '<leader>', 'g', 'l' },
+      triggers_blacklist = {
+        n = {},
+        i = {},
+        v = {},
+      }
+    }
   },
 
   {
@@ -74,7 +83,6 @@ require('lazy').setup({
     'windwp/nvim-autopairs',
     opts = {}
   },
-
 
   {
     "jay-babu/mason-null-ls.nvim",
@@ -521,10 +529,10 @@ cmp.setup({
 -- Null LS --
 -------------
 local null_ls = require("null-ls")
-local formatting = null_ls.builtins.formatting
 null_ls.setup({
   sources = {
-    formatting.prettierd,
+    null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.code_actions.gitsigns,
   },
 })
 -------------
@@ -642,8 +650,9 @@ require('nvim-treesitter.configs').setup {
 -------------
 -- Keymaps --
 -------------
+local whichkey = require('which-key')
 map('n', 'h', '<nop>')
-map('n', 'j', ':WhichKey j<cr>')
+map('n', 'j', function() whichkey.show('j', { mode = 'n', auto = true }) end)
 map('n', 'k', '<nop>')
 map('n', 'l', '<nop>')
 
