@@ -65,15 +65,7 @@ require('lazy').setup({
 
   {
     'folke/which-key.nvim',
-    event = 'VeryLazy',
-    opts = {
-      triggers = { 'h', 'j', '<leader>', 'g', 'l' },
-      triggers_blacklist = {
-        n = {},
-        i = {},
-        v = {},
-      }
-    }
+    opts = {},
   },
 
   {
@@ -653,10 +645,12 @@ require('nvim-treesitter.configs').setup {
 -- Keymaps --
 -------------
 local whichkey = require('which-key')
-map('n', 'h', '<nop>')
+map('n', 'h', function() whichkey.show('h', { mode = 'n', auto = true }) end)
 map('n', 'j', function() whichkey.show('j', { mode = 'n', auto = true }) end)
 map('n', 'k', '<nop>')
-map('n', 'l', '<nop>')
+map('n', 'l', function() whichkey.show('l', { mode = 'n', auto = true }) end)
+
+map('n', 'hc', ':Git commit<cr>', { desc = 'commit' })
 
 map('n', '<leader>f', ':NvimTreeToggle<cr>')
 
