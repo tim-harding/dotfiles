@@ -70,6 +70,13 @@ require('lazy').setup({
   },
 
   {
+    'jose-elias-alvarez/null-ls.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    }
+  },
+
+  {
     'folke/trouble.nvim',
     dependencies = {
       'nvim-tree/nvim-web-devicons'
@@ -90,7 +97,12 @@ require('lazy').setup({
       'williamboman/mason-lspconfig.nvim',
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp',
-      'L3MON4D3/LuaSnip',
+      'hrsh7th/cmp-buffer',
+      'saadparwaiz1/cmp_luasnip',
+      {
+        'L3MON4D3/LuaSnip',
+        dependencies = { 'rafamadriz/friendly-snippets' }
+      },
     }
   },
 
@@ -421,9 +433,9 @@ lsp.format_on_save({
     timeout_ms = 10000,
   },
   servers = {
-    ['lua_ls'] = {'lua'},
-    ['rust_analyzer'] = {'rust'},
-    -- ['null-ls'] = {'javascript', 'typescript'},
+    ['lua_ls'] = { 'lua' },
+    ['rust_analyzer'] = { 'rust' },
+    ['null-ls'] = { 'javascript', 'typescript' },
   }
 })
 
@@ -488,13 +500,34 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 
 
+---------
+-- DAP --
+---------
 local dap = require 'dap'
 local dapui = require 'dapui'
 dap.listeners.after.event_initialized['dapui_config'] = dapui.open
 dap.listeners.before.event_terminated['dapui_config'] = dapui.close
 dap.listeners.before.event_exited['dapui_config'] = dapui.close
+---------
 
 
+
+-------------
+-- Null LS --
+-------------
+local null_ls = require("null-ls")
+
+null_ls.setup({
+  sources = {
+  },
+})
+-------------
+
+
+
+----------------
+-- Treesitter --
+----------------
 require('nvim-treesitter.configs').setup {
   autotag = {
     enable = true,
@@ -557,9 +590,13 @@ require('nvim-treesitter.configs').setup {
     },
   },
 }
+----------------
 
 
 
+-------------
+-- Keymaps --
+-------------
 vim.keymap.set('n', 'h', '')
 vim.keymap.set('n', 'j', ':WhichKey j<cr>')
 vim.keymap.set('n', 'k', '')
