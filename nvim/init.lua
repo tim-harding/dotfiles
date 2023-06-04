@@ -44,8 +44,6 @@ vim.opt.rtp:prepend(lazypath)
 -- If config = true, call setup without arguments
 -- If opts = {...}, call setup with the given opts
 require('lazy').setup({
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
   'tpope/vim-sleuth',
   'simrat39/rust-tools.nvim',
   'windwp/nvim-ts-autotag',
@@ -79,20 +77,21 @@ require('lazy').setup({
   },
 
   {
-    'hrsh7th/nvim-cmp',
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
     dependencies = {
+      'neovim/nvim-lspconfig',
+      {
+        'williamboman/mason.nvim',
+        build = function()
+          pcall(vim.cmd, 'MasonUpdate')
+        end,
+      },
+      'williamboman/mason-lspconfig.nvim',
+      'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp',
       'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-      'rafamadriz/friendly-snippets'
-    },
-  },
-
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim'
-    },
+    }
   },
 
   {
@@ -165,7 +164,12 @@ require('lazy').setup({
       'williamboman/mason-lspconfig.nvim',
       {
         'folke/neodev.nvim',
-        config = true,
+        opts = {
+          library = {
+            plugins = { "nvim-dap-ui" },
+            types = true
+          },
+        }
       },
       {
         'j-hui/fidget.nvim',
@@ -223,9 +227,76 @@ require('lazy').setup({
   {
     'mfussenegger/nvim-dap',
     dependencies = {
-      'rcarriga/nvim-dap-ui',
+      {
+        'rcarriga/nvim-dap-ui',
+        opts = {
+          icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+          controls = {
+            icons = {
+              pause = '⏸',
+              play = '▶',
+              step_into = '⏎',
+              step_over = '⏭',
+              step_out = '⏮',
+              step_back = 'b',
+              run_last = '▶▶',
+              terminate = '⏹',
+              disconnect = '⏏',
+            },
+          },
+          layouts = {
+            {
+              elements = {
+                {
+                  id = 'stacks',
+                  size = 0.33
+                },
+                {
+                  id = 'scopes',
+                  size = 0.67
+                },
+              },
+              position = 'top',
+              size = 15,
+            },
+            {
+              elements = {
+                {
+                  id = 'console',
+                  size = 1
+                }
+              },
+              position = 'bottom',
+              size = 4,
+            },
+            {
+              elements = {
+                {
+                  id = 'breakpoints',
+                  size = 0.5
+                },
+                {
+                  id = 'watches',
+                  size = 0.5
+                }
+              },
+              position = 'left',
+              size = 1,
+            },
+          },
+        },
+      },
+
       'williamboman/mason.nvim',
-      'jay-babu/mason-nvim-dap.nvim',
+
+      {
+        'jay-babu/mason-nvim-dap.nvim',
+        opts = {
+          automatic_setup = true,
+          handlers = {},
+        }
+      },
+
       -- Add language-specific debuggers here
       {
         'leoluz/nvim-dap-go',
@@ -243,34 +314,16 @@ require('lazy').setup({
   },
 }, {})
 
--- `:help event` for autocommand events
-local set_indent_group = vim.api.nvim_create_augroup('SetIndent', { clear = true })
-vim.api.nvim_create_autocmd('FileType', {
-  group = set_indent_group,
-  pattern = { 'html', 'javascript', 'lua' },
-  callback = function()
-    vim.opt_local.tabstop = 2
-    vim.opt_local.softtabstop = 2
-    vim.opt_local.shiftwidth = 2
-  end
-})
-
--- Highlight on yank
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
-
-vim.diagnostic.config({
-  virtual_text = false,
-})
+vim.cmd.colorscheme 'catppuccin'
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+
+
+
+-------------
+-- Lualine --
+-------------
 
 local function macro_recording_section()
   local recording_register = vim.fn.reg_recording()
@@ -323,6 +376,124 @@ vim.api.nvim_create_autocmd('RecordingLeave', {
     timer:start(timeout_ms, no_repeat, scheduled_refresh_lualine)
   end,
 })
+-----------------
+
+
+-----------------
+-- Completions --
+-----------------
+vim.diagnostic.config({
+  virtual_text = false,
+})
+
+local lsp = require('lsp-zero').preset({})
+
+lsp.on_attach(function(client, bufnr)
+  lsp.default_keymaps({ buffer = bufnr })
+  local map = function(m, lhs, rhs)
+    local opts = { buffer = bufnr }
+    vim.keymap.set(m, lhs, rhs, opts)
+  end
+
+  -- LSP actions
+  map('n', 'K', vim.lsp.buf.hover)
+  map('n', 'gd', vim.lsp.buf.definition)
+  map('n', 'gD', vim.lsp.buf.declaration)
+  map('n', 'gi', vim.lsp.buf.implementation)
+  map('n', 'go', vim.lsp.buf.type_definition)
+  map('n', 'gr', vim.lsp.buf.references)
+  map('n', 'gs', vim.lsp.buf.signature_help)
+  map('n', '<F2>', vim.lsp.buf.rename)
+  map({ 'n', 'x' }, '<F3>', function() vim.lsp.buf.format({ async = true }) end)
+  map('n', 'la', vim.lsp.buf.code_action)
+  map('x', 'la', function() vim.lsp.buf.range_code_action() end)
+  map('n', 'lr', vim.lsp.buf.rename)
+
+  -- -- Diagnostics
+  map('n', 'gl', vim.diagnostic.open_float)
+  map('n', '[d', vim.diagnostic.goto_prev)
+  map('n', ']d', vim.diagnostic.goto_next)
+end)
+
+lsp.format_on_save({
+  format_opts = {
+    async = false,
+    timeout_ms = 10000,
+  },
+  servers = {
+    ['lua_ls'] = {'lua'},
+    ['rust_analyzer'] = {'rust'},
+    -- ['null-ls'] = {'javascript', 'typescript'},
+  }
+})
+
+-- Angular, CSS, Flow, GraphQL, HTML, JSON, JSX, JavaScript, LESS, Markdown, SCSS, TypeScript, Vue, YAML
+
+lsp.set_sign_icons({
+  error = '✘',
+  warn = '▲',
+  hint = '⚑',
+  info = '»'
+})
+
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+lsp.setup()
+
+local cmp = require('cmp')
+local cmp_action = require('lsp-zero').cmp_action()
+
+require('luasnip.loaders.from_vscode').lazy_load()
+
+cmp.setup({
+  sources = {
+    { name = 'path' },
+    { name = 'nvim_lsp' },
+    { name = 'luasnip', keyword_length = 2 },
+    { name = 'buffer',  keyword_length = 5 },
+  },
+  mapping = {
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
+    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+  }
+})
+---------------------
+
+
+------------------
+-- Autocommands --
+------------------
+local set_indent_group = vim.api.nvim_create_augroup('SetIndent', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+  group = set_indent_group,
+  pattern = { 'html', 'javascript', 'lua' },
+  callback = function()
+    vim.opt_local.tabstop = 2
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.shiftwidth = 2
+  end
+})
+
+-- Highlight on yank
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
+------------------
+
+
+
+local dap = require 'dap'
+local dapui = require 'dapui'
+dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+dap.listeners.before.event_exited['dapui_config'] = dapui.close
+
 
 require('nvim-treesitter.configs').setup {
   autotag = {
@@ -387,287 +558,7 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
---  Runs whenever an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
-  local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-  end
 
-  nmap('gd', vim.lsp.buf.definition, '[g]oto [d]efinition')
-  nmap('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
-  nmap('gr', require('telescope.builtin').lsp_references, '[g]oto [r]eferences')
-  nmap('gi', vim.lsp.buf.implementation, '[g]oto [i]mplementation')
-
-  nmap('lD', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('lr', vim.lsp.buf.rename, '[r]ename')
-  nmap('la', vim.lsp.buf.code_action, 'Code [a]ction')
-  nmap('lk', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-  nmap('js', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[f]ind [s]ymbols')
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
-end
-
--- Language servers config
-local servers = {
-  clangd = {},
-  gopls = {},
-  pyright = {},
-  rust_analyzer = {},
-  tsserver = {},
-
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
-}
-
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
--- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
-
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
-
-mason_lspconfig.setup_handlers {
-  -- Default
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-    }
-  end,
-
-  ['rust_analyzer'] = function()
-    local rt = require('rust-tools')
-
-    local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.9.1/'
-    local codelldb = extension_path .. 'adapter/codelldb'
-    local liblldb = extension_path .. 'lldb/lib/liblldb.so'
-
-    rt.setup({
-      server = {
-        on_attach = function(_, bufnr)
-          on_attach(_, bufnr)
-          vim.keymap.set('n', '<leader>h', rt.hover_actions.hover_actions,
-            { buffer = bufnr, desc = '[h]over actions' })
-        end
-      },
-      -- dap = {
-      --   adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb, liblldb)
-      -- },
-      tools = {
-        hover_actions = {
-          auto_focus = true,
-        }
-      }
-    })
-  end,
-}
-
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-require('luasnip.loaders.from_vscode').lazy_load()
-luasnip.config.setup {}
-
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert {
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete {},
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.locally_jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  },
-}
-
--- Insert `(` after selecting function
--- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
--- cmp.event:on(
---     'confirm_done',
---     cmp_autopairs.on_confirm_done()
--- )
-
-local dap = require 'dap'
-local dapui = require 'dapui'
-
-require('mason-nvim-dap').setup {
-  automatic_setup = true,
-  ensure_installed = {
-    'delve',
-  },
-  handlers = {},
-}
-
-dapui.setup {
-  icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
-  controls = {
-    icons = {
-      pause = '⏸',
-      play = '▶',
-      step_into = '⏎',
-      step_over = '⏭',
-      step_out = '⏮',
-      step_back = 'b',
-      run_last = '▶▶',
-      terminate = '⏹',
-      disconnect = '⏏',
-    },
-  },
-  layouts = {
-    {
-      elements = {
-        {
-          id = 'stacks',
-          size = 0.33
-        },
-        {
-          id = 'scopes',
-          size = 0.67
-        },
-      },
-      position = 'top',
-      size = 15,
-    },
-    {
-      elements = {
-        {
-          id = 'console',
-          size = 1
-        }
-      },
-      position = 'bottom',
-      size = 4,
-    },
-    {
-      elements = {
-        {
-          id = 'breakpoints',
-          size = 0.5
-        },
-        {
-          id = 'watches',
-          size = 0.5
-        }
-      },
-      position = 'left',
-      size = 1,
-    },
-  },
-}
-
-dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-dap.listeners.before.event_exited['dapui_config'] = dapui.close
-
-local format_is_enabled = true
-vim.api.nvim_create_user_command('ToggleAutoformatting', function()
-  format_is_enabled = not format_is_enabled
-  print('Setting autoformatting to: ' .. tostring(format_is_enabled))
-end, {})
-
--- Create an augroup that is used for managing our formatting autocmds.
--- We need one augroup per client to make sure that multiple clients
--- can attach to the same buffer without interfering with each other.
-local _augroups = {}
-local get_augroup = function(client)
-  if not _augroups[client.id] then
-    local group_name = 'kickstart-lsp-format-' .. client.name
-    local id = vim.api.nvim_create_augroup(group_name, { clear = true })
-    _augroups[client.id] = id
-  end
-  return _augroups[client.id]
-end
-
--- Run whenever an LSP attaches to a buffer
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('kickstart-lsp-attach-format', { clear = true }),
-  callback = function(args)
-    local client_id = args.data.client_id
-    local client = vim.lsp.get_client_by_id(client_id)
-    local bufnr = args.buf
-
-    if not client.server_capabilities.documentFormattingProvider then
-      return
-    end
-
-    -- Autoformat autocommand
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      group = get_augroup(client),
-      buffer = bufnr,
-      callback = function()
-        if not format_is_enabled then
-          return
-        end
-
-        vim.lsp.buf.format {
-          async = false,
-          filter = function(c)
-            return c.id == client.id
-          end,
-        }
-      end,
-    })
-  end,
-})
-
-local null_ls = require('null-ls')
-null_ls.setup({
-  sources = {
-    -- null_ls.builtins.completion.spell,
-    null_ls.builtins.completion.luasnip,
-    -- npm install -g eslint_d
-    null_ls.builtins.code_actions.eslint_d,
-    null_ls.builtins.code_actions.gitsigns,
-    null_ls.builtins.formatting.fish_indent,
-  }
-})
-
-vim.cmd.colorscheme 'catppuccin'
 
 vim.keymap.set('n', 'h', '')
 vim.keymap.set('n', 'j', ':WhichKey j<cr>')
