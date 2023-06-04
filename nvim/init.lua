@@ -40,6 +40,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local map = function(mode, keys, func, opts)
+  local defaults = {
+    silent = true,
+    noremap = true,
+  }
+  opts = opts and setmetatable(opts, { __index = defaults }) or defaults
+  vim.keymap.set(mode, keys, func, opts)
+end
+
 require('lazy').setup({
   'tpope/vim-sleuth',
   'simrat39/rust-tools.nvim',
@@ -158,27 +167,48 @@ require('lazy').setup({
   {
     'lewis6991/gitsigns.nvim',
     opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
       on_attach = function(bufnr)
-        local gitsigns = require('gitsigns')
-        vim.keymap.set('n', '[h', gitsigns.prev_hunk, {
-          buffer = bufnr,
-          desc = 'Go to Previous Hunk'
-        })
-        vim.keymap.set('n', ']h', gitsigns.next_hunk, {
-          buffer = bufnr,
-          desc = 'Go to Next Hunk'
-        })
-        vim.keymap.set('n', '<leader>p', gitsigns.preview_hunk, {
-          buffer = bufnr,
-          desc = '[p]review hunk'
-        })
+        local gs = require('gitsigns')
+        local map = function(mode, keys, func, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          map(mode, keys, func, opts)
+        end
+
+        -- Navigation
+        map('n', ']h', function()
+          if vim.wo.diff then return ']h' end
+          vim.schedule(function() gs.next_hunk() end)
+          return '<Ignore>'
+        end, { expr = true, desc = 'next [h]unk' })
+
+        map('n', '[h', function()
+          if vim.wo.diff then return '[h' end
+          vim.schedule(function() gs.prev_hunk() end)
+          return '<Ignore>'
+        end, { expr = true, desc = 'previous [h]unk' })
+
+        -- Actions
+        map('n', 'hs', gs.stage_hunk, { desc = '[h]unk [s]tage' })
+        map('n', 'hr', gs.reset_hunk, { desc = '[h]unk [r]eset' })
+        map('v', 'hs', function()
+          gs.stage_hunk { vim.fn.line("."), vim.fn.line("v") }
+        end, { desc = '[h]unk [s]tage' })
+        map('v', 'hr', function()
+          gs.reset_hunk { vim.fn.line("."), vim.fn.line("v") }
+        end, { desc = '[h]unk [r]eset' })
+        map('n', 'hS', gs.stage_buffer, { desc = '[h]unk [S]tage buffer' })
+        map('n', 'hu', gs.undo_stage_hunk, { desc = '[h]unk [u]ndo stage' })
+        map('n', 'hR', gs.reset_buffer, { desc = '[h]unk [R]eset buffer' })
+        map('n', 'hp', gs.preview_hunk, { desc = '[h]unk [p]review' })
+        map('n', 'hb', function() gs.blame_line { full = true } end, { desc = '[h]unk [b]lame' })
+        map('n', 'htb', gs.toggle_current_line_blame, { desc = '[h]unk [t]oggle [b]lame' })
+        map('n', 'hd', gs.diffthis, { desc = '[h]unk [d]iff' })
+        map('n', 'hD', function() gs.diffthis('~') end, { desc = '[h]unk [D]iff buffer' })
+        map('n', 'htd', gs.toggle_deleted, { desc = '[h]unk [t]oggle [d]eleted' })
+
+        -- Text object
+        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = '[i]nner [h]unk' })
       end,
     }
   },
@@ -612,80 +642,62 @@ require('nvim-treesitter.configs').setup {
 -------------
 -- Keymaps --
 -------------
-local map = function(mode, keys, func, opts)
-  local defaults = {
-    silent = true,
-    noremap = true,
-  }
-  opts = opts and setmetatable(opts, { __index = defaults }) or defaults
-  vim.keymap.set(mode, keys, func, opts)
-end
+map('n', 'h', '<nop>')
+map('n', 'j', ':WhichKey j<cr>')
+map('n', 'k', '<nop>')
+map('n', 'l', '<nop>')
 
-local nmap = function(keys, func, opts)
-  map('n', keys, func, opts)
-end
-
-local imap = function(keys, func, opts)
-  map('i', keys, func, opts)
-end
-
-nmap('h', '<nop>')
-nmap('j', ':WhichKey j<cr>')
-nmap('k', '<nop>')
-nmap('l', '<nop>')
-
-nmap('<leader>f', ':NvimTreeToggle<cr>')
+map('n', '<leader>f', ':NvimTreeToggle<cr>')
 
 local trouble = require('trouble')
-nmap('<leader>t', ':TroubleToggle<cr>')
-nmap(']q', function()
+map('n', '<leader>t', ':TroubleToggle<cr>')
+map('n', ']q', function()
   trouble.next({
     skip_groups = true,
     jump = true
   })
 end)
-nmap('[q', function()
+map('n', '[q', function()
   trouble.previous({
     skip_groups = true,
     jump = true
   })
 end)
 
-nmap('<C-S-v>', '"+p')
-imap('<C-S-v>', '<esc>"+pi')
-nmap('<C-Tab>', ':bn<cr>')
-nmap('<C-S-Tab>', ':bp<cr>')
-nmap('<leader>c', ':source ~/.config/nvim/init.lua<cr>', { desc = '[c]onfig reload' })
+map('n', '<C-S-v>', '"+p')
+map('i', '<C-S-v>', '<esc>"+pi')
+map('n', '<C-Tab>', ':bn<cr>')
+map('n', '<C-S-Tab>', ':bp<cr>')
+map('n', '<leader>c', ':source ~/.config/nvim/init.lua<cr>', { desc = '[c]onfig reload' })
 
-nmap('h', ':HopWord<cr>')
-nmap('s', ':HopChar2<cr>')
+map('n', 's', ':HopChar2<cr>')
 
-nmap('jr', require('telescope.builtin').oldfiles, { desc = '[j]ump [r]ecent' })
-nmap('jf', require('telescope.builtin').git_files, { desc = '[j]ump [f]ile' })
-nmap('jh', require('telescope.builtin').help_tags, { desc = '[j]ump [h]elp' })
-nmap('jd', require('telescope.builtin').diagnostics, { desc = '[j]ump [d]iagnostics' })
-nmap('<leader>/', function()
+map('n', 'jr', require('telescope.builtin').oldfiles, { desc = '[j]ump [r]ecent' })
+map('n', 'jf', require('telescope.builtin').git_files, { desc = '[j]ump [f]ile' })
+map('n', 'jh', require('telescope.builtin').help_tags, { desc = '[j]ump [h]elp' })
+map('n', 'jd', require('telescope.builtin').diagnostics, { desc = '[j]ump [d]iagnostics' })
+map('n', '<leader>/', function()
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     previewer = false,
   })
 end, { desc = '[/] Search current buffer' })
 
-nmap('<C-Left>', '<C-w>h')
-nmap('<C-Right>', '<C-w>l')
-nmap('<C-Up>', '<C-w>k')
-nmap('<C-Down>', '<C-w>j')
+map('n', '<C-Left>', '<C-w>h')
+map('n', '<C-Right>', '<C-w>l')
+map('n', '<C-Up>', '<C-w>k')
+map('n', '<C-Down>', '<C-w>j')
 
-nmap('<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 
-nmap('<F5>', dap.continue)
-nmap('<F10>', dap.terminate)
-nmap('<F9>', dap.step_into)
-nmap('<F6>', dap.step_over)
-nmap('<F12>', dap.step_out)
-nmap('<leader>b', dap.toggle_breakpoint, { desc = '[b]reakpoint toggle' })
-nmap('<F7>', dapui.toggle)
-nmap('<leader>B', function()
+map('n', '<F5>', dap.continue)
+map('n', '<F10>', dap.terminate)
+map('n', '<F9>', dap.step_into)
+map('n', '<F6>', dap.step_over)
+map('n', '<F12>', dap.step_out)
+map('n', '<leader>b', dap.toggle_breakpoint, { desc = '[b]reakpoint toggle' })
+map('n', '<F7>', dapui.toggle)
+map('n', '<leader>B', function()
   dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
 end, { desc = '[B]reakpoint condition' })
 
-nmap('<leader>s', ':w<cr>')
+map('n', '<leader>s', ':w<cr>')
