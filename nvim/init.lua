@@ -56,7 +56,6 @@ end
 require('lazy').setup({
   'tpope/vim-sleuth',
   'tpope/vim-fugitive',
-  'simrat39/rust-tools.nvim',
   'windwp/nvim-ts-autotag',
   'nvim-lualine/lualine.nvim',
 
@@ -167,6 +166,21 @@ require('lazy').setup({
         footer = {},
       }
     },
+  },
+
+  {
+    'simrat39/rust-tools.nvim',
+    opts = {
+      server = {
+        on_attach = function(_, bufnr)
+          local rt = require('rust-tools')
+          map('n', 'lh', rt.hover_actions.hover_actions, 'hover action', { buffer = bufnr })
+        end,
+        hover_actions = {
+          auto_focus = true,
+        }
+      }
+    }
   },
 
   {
@@ -475,6 +489,8 @@ lsp.on_attach(function(client, bufnr)
   map('n', '[d', vim.diagnostic.goto_prev, 'previous diagnostic]')
   map('n', ']d', vim.diagnostic.goto_next, 'next diagnostic')
 end)
+
+lsp.skip_server_setup({ 'rust_analyzer' })
 
 lsp.format_on_save({
   format_opts = {
