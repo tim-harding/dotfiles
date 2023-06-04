@@ -42,10 +42,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local map = function(mode, keys, func, opts)
+local map = function(mode, keys, func, desc, opts)
   local defaults = {
     silent = true,
     noremap = true,
+    desc = desc,
   }
   opts = opts and setmetatable(opts, { __index = defaults }) or defaults
   vim.keymap.set(mode, keys, func, opts)
@@ -65,6 +66,7 @@ require('lazy').setup({
 
   {
     'folke/which-key.nvim',
+    event = 'VeryLazy',
     opts = {},
   },
 
@@ -171,10 +173,10 @@ require('lazy').setup({
     opts = {
       on_attach = function(bufnr)
         local gs = require('gitsigns')
-        local map = function(mode, keys, func, opts)
+        local map = function(mode, keys, func, desc, opts)
           opts = opts or {}
           opts.buffer = bufnr
-          map(mode, keys, func, opts)
+          map(mode, keys, func, desc, opts)
         end
 
         -- Navigation
@@ -182,35 +184,35 @@ require('lazy').setup({
           if vim.wo.diff then return ']h' end
           vim.schedule(function() gs.next_hunk() end)
           return '<Ignore>'
-        end, { expr = true, desc = 'next [h]unk' })
+        end, 'hunk', { expr = true })
 
         map('n', '[h', function()
           if vim.wo.diff then return '[h' end
           vim.schedule(function() gs.prev_hunk() end)
           return '<Ignore>'
-        end, { expr = true, desc = 'previous [h]unk' })
+        end, 'hunk', { expr = true })
 
         -- Actions
-        map('n', 'hs', gs.stage_hunk, { desc = '[h]unk [s]tage' })
-        map('n', 'hr', gs.reset_hunk, { desc = '[h]unk [r]eset' })
+        map('n', 'hs', gs.stage_hunk, 'stage')
+        map('n', 'hr', gs.reset_hunk, 'reset')
         map('v', 'hs', function()
           gs.stage_hunk { vim.fn.line("."), vim.fn.line("v") }
-        end, { desc = '[h]unk [s]tage' })
+        end, 'stage')
         map('v', 'hr', function()
           gs.reset_hunk { vim.fn.line("."), vim.fn.line("v") }
-        end, { desc = '[h]unk [r]eset' })
-        map('n', 'hS', gs.stage_buffer, { desc = '[h]unk [S]tage buffer' })
-        map('n', 'hu', gs.undo_stage_hunk, { desc = '[h]unk [u]ndo stage' })
-        map('n', 'hR', gs.reset_buffer, { desc = '[h]unk [R]eset buffer' })
-        map('n', 'hp', gs.preview_hunk, { desc = '[h]unk [p]review' })
-        map('n', 'hb', function() gs.blame_line { full = true } end, { desc = '[h]unk [b]lame' })
-        map('n', 'htb', gs.toggle_current_line_blame, { desc = '[h]unk [t]oggle [b]lame' })
-        map('n', 'hd', gs.diffthis, { desc = '[h]unk [d]iff' })
-        map('n', 'hD', function() gs.diffthis('~') end, { desc = '[h]unk [D]iff buffer' })
-        map('n', 'htd', gs.toggle_deleted, { desc = '[h]unk [t]oggle [d]eleted' })
+        end, 'reset')
+        map('n', 'hS', gs.stage_buffer, 'stage buffer')
+        map('n', 'hu', gs.undo_stage_hunk, 'undo stage')
+        map('n', 'hR', gs.reset_buffer, 'reset buffer')
+        map('n', 'hp', gs.preview_hunk, 'preview hunk')
+        map('n', 'hb', function() gs.blame_line { full = true } end, 'blame')
+        map('n', 'htb', gs.toggle_current_line_blame, 'toggle blame')
+        map('n', 'hd', gs.diffthis, 'diff')
+        map('n', 'hD', function() gs.diffthis('~') end, 'diff buffer')
+        map('n', 'htd', gs.toggle_deleted, 'toggle deleted')
 
         -- Text object
-        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = '[i]nner [h]unk' })
+        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'inner hunk')
       end,
     }
   },
@@ -457,20 +459,20 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set(m, keys, func, opts)
   end
 
-  map('n', 'K', vim.lsp.buf.hover, 'Hover')
-  map('n', 'gd', vim.lsp.buf.definition, '[g]o [d]efinition')
-  map('n', 'gD', vim.lsp.buf.declaration, '[g]o [D]eclaration')
-  map('n', 'gi', vim.lsp.buf.implementation, '[g]o [i]mplementation')
-  map('n', 'gt', vim.lsp.buf.type_definition, '[g]o [t]ype definition')
-  map('n', 'gr', vim.lsp.buf.references, '[g]o [r]eferences')
-  map('n', 'gs', vim.lsp.buf.signature_help, 'show [s]ignature')
-  map('n', 'la', vim.lsp.buf.code_action, '[l]sp code [a]ction')
-  map('x', 'la', function() vim.lsp.buf.range_code_action() end, '[l]sp code [a]ction')
-  map('n', 'lr', vim.lsp.buf.rename, '[l]sp [r]ename')
+  map('n', 'K', vim.lsp.buf.hover, 'hover')
+  map('n', 'gd', vim.lsp.buf.definition, 'definition')
+  map('n', 'gD', vim.lsp.buf.declaration, 'declaration')
+  map('n', 'gi', vim.lsp.buf.implementation, 'implementation')
+  map('n', 'gt', vim.lsp.buf.type_definition, 'type definition')
+  map('n', 'gr', vim.lsp.buf.references, 'references')
+  map('n', 'gs', vim.lsp.buf.signature_help, 'show signature')
+  map('n', 'la', vim.lsp.buf.code_action, 'code action')
+  map('x', 'la', function() vim.lsp.buf.range_code_action() end, 'code action')
+  map('n', 'lr', vim.lsp.buf.rename, 'rename')
 
-  map('n', 'ld', vim.diagnostic.open_float, '[l]sp [d]iagnostic float')
-  map('n', '[d', vim.diagnostic.goto_prev, 'previous [d]iagnostic]')
-  map('n', ']d', vim.diagnostic.goto_next, 'next [d]iagnostic')
+  map('n', 'ld', vim.diagnostic.open_float, 'diagnostic float')
+  map('n', '[d', vim.diagnostic.goto_prev, 'previous diagnostic]')
+  map('n', ']d', vim.diagnostic.goto_next, 'next diagnostic')
 end)
 
 lsp.format_on_save({
@@ -654,59 +656,56 @@ map('n', 'kk', '<nop>')
 map('n', 'l', function() whichkey.show('l', { mode = 'n', auto = true }) end)
 map('n', 'll', '<nop>')
 
-map('n', 'hc', ':Git commit<cr>', { desc = 'commit' })
+map('n', 'hc', ':Git commit<cr>', 'commit')
 
 map('n', '<leader>f', ':NvimTreeToggle<cr>')
 
 local trouble = require('trouble')
-map('n', '<leader>t', ':TroubleToggle<cr>')
+map('n', '<leader>t', ':TroubleToggle<cr>', 'toggle trouble')
 map('n', ']q', function()
   trouble.next({
     skip_groups = true,
     jump = true
   })
-end)
+end, 'trouble diagnostic')
 map('n', '[q', function()
   trouble.previous({
     skip_groups = true,
     jump = true
   })
-end)
+end, 'trouble diagnostic')
 
 map('n', '<C-S-v>', '"+p')
 map('i', '<C-S-v>', '<esc>"+pi')
-map('n', '<C-Tab>', ':bn<cr>')
-map('n', '<C-S-Tab>', ':bp<cr>')
-map('n', '<leader>c', ':source ~/.config/nvim/init.lua<cr>', { desc = '[c]onfig reload' })
+map('n', '<leader>c', ':source ~/.config/nvim/init.lua<cr>', 'reload config')
 
 map('n', 's', ':HopChar2<cr>')
+map('n', 'jj', ':HopWord<cr>', 'hop word')
 
-map('n', 'jr', require('telescope.builtin').oldfiles, { desc = '[j]ump [r]ecent' })
-map('n', 'jf', require('telescope.builtin').git_files, { desc = '[j]ump [f]ile' })
-map('n', 'jh', require('telescope.builtin').help_tags, { desc = '[j]ump [h]elp' })
-map('n', 'jd', require('telescope.builtin').diagnostics, { desc = '[j]ump [d]iagnostics' })
+map('n', 'jr', require('telescope.builtin').oldfiles, 'recent')
+map('n', 'jf', require('telescope.builtin').git_files, 'file')
+map('n', 'jh', require('telescope.builtin').help_tags, 'help')
+map('n', 'jd', require('telescope.builtin').diagnostics, 'diagnostics')
 map('n', '<leader>/', function()
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     previewer = false,
   })
-end, { desc = '[/] Search current buffer' })
+end, 'search buffer')
 
 map('n', '<C-Left>', '<C-w>h')
 map('n', '<C-Right>', '<C-w>l')
 map('n', '<C-Up>', '<C-w>k')
 map('n', '<C-Down>', '<C-w>j')
 
-map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-
 map('n', '<F5>', dap.continue)
-map('n', '<F10>', dap.terminate)
-map('n', '<F9>', dap.step_into)
-map('n', '<F6>', dap.step_over)
+map('n', '<F1>', dap.terminate)
+map('n', '<F10>', dap.step_over)
+map('n', '<F11>', dap.step_into)
 map('n', '<F12>', dap.step_out)
-map('n', '<leader>b', dap.toggle_breakpoint, { desc = '[b]reakpoint toggle' })
-map('n', '<F7>', dapui.toggle)
+map('n', '<leader>b', dap.toggle_breakpoint, 'toggle breakpoint')
+map('n', '<F9>', dapui.toggle)
 map('n', '<leader>B', function()
   dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-end, { desc = '[B]reakpoint condition' })
+end, 'breakpoint condition')
 
-map('n', '<leader>s', ':w<cr>')
+map('n', '<leader>s', ':w<cr>', 'save')
