@@ -402,29 +402,25 @@ local lsp = require('lsp-zero').preset({})
 
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({ buffer = bufnr })
-  local map = function(m, lhs, rhs)
-    local opts = { buffer = bufnr }
-    vim.keymap.set(m, lhs, rhs, opts)
+  local map = function(m, keys, func, desc)
+    local opts = { buffer = bufnr, desc = desc }
+    vim.keymap.set(m, keys, func, opts)
   end
 
-  -- LSP actions
-  map('n', 'K', vim.lsp.buf.hover)
-  map('n', 'gd', vim.lsp.buf.definition)
-  map('n', 'gD', vim.lsp.buf.declaration)
-  map('n', 'gi', vim.lsp.buf.implementation)
-  map('n', 'go', vim.lsp.buf.type_definition)
-  map('n', 'gr', vim.lsp.buf.references)
-  map('n', 'gs', vim.lsp.buf.signature_help)
-  map('n', '<F2>', vim.lsp.buf.rename)
-  map({ 'n', 'x' }, '<F3>', function() vim.lsp.buf.format({ async = true }) end)
-  map('n', 'la', vim.lsp.buf.code_action)
-  map('x', 'la', function() vim.lsp.buf.range_code_action() end)
-  map('n', 'lr', vim.lsp.buf.rename)
+  map('n', 'K', vim.lsp.buf.hover, 'Hover')
+  map('n', 'gd', vim.lsp.buf.definition, '[g]o [d]efinition')
+  map('n', 'gD', vim.lsp.buf.declaration, '[g]o [D]eclaration')
+  map('n', 'gi', vim.lsp.buf.implementation, '[g]o [i]mplementation')
+  map('n', 'gt', vim.lsp.buf.type_definition, '[g]o [t]ype definition')
+  map('n', 'gr', vim.lsp.buf.references, '[g]o [r]eferences')
+  map('n', 'gs', vim.lsp.buf.signature_help, 'show [s]ignature')
+  map('n', 'la', vim.lsp.buf.code_action, '[l]sp code [a]ction')
+  map('x', 'la', function() vim.lsp.buf.range_code_action() end, '[l]sp code [a]ction')
+  map('n', 'lr', vim.lsp.buf.rename, '[l]sp [r]ename')
 
-  -- -- Diagnostics
-  map('n', 'gl', vim.diagnostic.open_float)
-  map('n', '[d', vim.diagnostic.goto_prev)
-  map('n', ']d', vim.diagnostic.goto_next)
+  map('n', 'ld', vim.diagnostic.open_float, '[l]sp [d]iagnostic float')
+  map('n', '[d', vim.diagnostic.goto_prev, 'previous [d]iagnostic]')
+  map('n', ']d', vim.diagnostic.goto_next, 'next [d]iagnostic')
 end)
 
 lsp.format_on_save({
