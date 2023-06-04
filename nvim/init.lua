@@ -612,59 +612,80 @@ require('nvim-treesitter.configs').setup {
 -------------
 -- Keymaps --
 -------------
-vim.keymap.set('n', 'h', '')
-vim.keymap.set('n', 'j', ':WhichKey j<cr>')
-vim.keymap.set('n', 'k', '')
-vim.keymap.set('n', 'l', '')
+local map = function(mode, keys, func, opts)
+  local defaults = {
+    silent = true,
+    noremap = true,
+  }
+  opts = opts and setmetatable(opts, { __index = defaults }) or defaults
+  vim.keymap.set(mode, keys, func, opts)
+end
 
-vim.keymap.set('n', '<leader>f', ':NvimTreeToggle<cr>', { silent = true, noremap = true })
+local nmap = function(keys, func, opts)
+  map('n', keys, func, opts)
+end
 
-vim.keymap.set('n', '<leader>t', ':TroubleToggle<cr>', { silent = true, noremap = true })
-vim.keymap.set('n', ']q', function() require('trouble').next({ skip_groups = true, jump = true }) end,
-  { silent = true, noremap = true })
-vim.keymap.set('n', '[q', function() require('trouble').previous({ skip_groups = true, jump = true }) end,
-  { silent = true, noremap = true })
+local imap = function(keys, func, opts)
+  map('i', keys, func, opts)
+end
 
--- TODO: Try to combine these with the Trouble commands:
--- vim.keymap.set('n', '[q', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
--- vim.keymap.set('n', ']q', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
--- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+nmap('h', '<nop>')
+nmap('j', ':WhichKey j<cr>')
+nmap('k', '<nop>')
+nmap('l', '<nop>')
 
-vim.keymap.set('n', '<C-S-v>', '"+p')
-vim.keymap.set('i', '<C-S-v>', '<esc>"+pi')
-vim.keymap.set('n', '<C-Tab>', ':bn<cr>', { silent = true })
-vim.keymap.set('n', '<C-S-Tab>', ':bp<cr>', { silent = true })
-vim.keymap.set('n', '<leader>c', ':source ~/.config/nvim/init.lua<cr>', { silent = true, desc = '[c]onfig reload' })
+nmap('<leader>f', ':NvimTreeToggle<cr>')
 
-vim.keymap.set('n', 'h', ':HopWord<cr>', { noremap = true, silent = true })
-vim.keymap.set('n', 's', ':HopChar2<cr>', { noremap = true, silent = true })
+local trouble = require('trouble')
+nmap('<leader>t', ':TroubleToggle<cr>')
+nmap(']q', function()
+  trouble.next({
+    skip_groups = true,
+    jump = true
+  })
+end)
+nmap('[q', function()
+  trouble.previous({
+    skip_groups = true,
+    jump = true
+  })
+end)
 
-vim.keymap.set('n', 'jr', require('telescope.builtin').oldfiles, { desc = '[f]ind [r]ecent' })
-vim.keymap.set('n', 'jf', require('telescope.builtin').git_files, { desc = '[j]ump [f]ile' })
-vim.keymap.set('n', 'jh', require('telescope.builtin').help_tags, { desc = '[j]ump [h]elp' })
-vim.keymap.set('n', 'jd', require('telescope.builtin').diagnostics, { desc = '[j]ump [d]iagnostics' })
-vim.keymap.set('n', '<leader>/', function()
+nmap('<C-S-v>', '"+p')
+imap('<C-S-v>', '<esc>"+pi')
+nmap('<C-Tab>', ':bn<cr>')
+nmap('<C-S-Tab>', ':bp<cr>')
+nmap('<leader>c', ':source ~/.config/nvim/init.lua<cr>', { desc = '[c]onfig reload' })
+
+nmap('h', ':HopWord<cr>')
+nmap('s', ':HopChar2<cr>')
+
+nmap('jr', require('telescope.builtin').oldfiles, { desc = '[j]ump [r]ecent' })
+nmap('jf', require('telescope.builtin').git_files, { desc = '[j]ump [f]ile' })
+nmap('jh', require('telescope.builtin').help_tags, { desc = '[j]ump [h]elp' })
+nmap('jd', require('telescope.builtin').diagnostics, { desc = '[j]ump [d]iagnostics' })
+nmap('<leader>/', function()
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     previewer = false,
   })
 end, { desc = '[/] Search current buffer' })
 
-vim.keymap.set('n', '<C-Left>', '<C-w>h', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-Right>', '<C-w>l', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-Up>', '<C-w>k', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-Down>', '<C-w>j', { noremap = true, silent = true })
+nmap('<C-Left>', '<C-w>h')
+nmap('<C-Right>', '<C-w>l')
+nmap('<C-Up>', '<C-w>k')
+nmap('<C-Down>', '<C-w>j')
 
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+nmap('<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 
-vim.keymap.set('n', '<F5>', dap.continue)
-vim.keymap.set('n', '<F10>', dap.terminate)
-vim.keymap.set('n', '<F9>', dap.step_into)
-vim.keymap.set('n', '<F6>', dap.step_over)
-vim.keymap.set('n', '<F12>', dap.step_out)
-vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = '[b]reakpoint toggle' })
-vim.keymap.set('n', '<F7>', dapui.toggle)
-vim.keymap.set('n', '<leader>B', function()
+nmap('<F5>', dap.continue)
+nmap('<F10>', dap.terminate)
+nmap('<F9>', dap.step_into)
+nmap('<F6>', dap.step_over)
+nmap('<F12>', dap.step_out)
+nmap('<leader>b', dap.toggle_breakpoint, { desc = '[b]reakpoint toggle' })
+nmap('<F7>', dapui.toggle)
+nmap('<leader>B', function()
   dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
 end, { desc = '[B]reakpoint condition' })
 
-vim.keymap.set('n', '<leader>s', ':w<cr>', { silent = true, noremap = true })
+nmap('<leader>s', ':w<cr>')
