@@ -646,9 +646,13 @@ require('nvim-treesitter.configs').setup {
 -------------
 local whichkey = require('which-key')
 map('n', 'h', function() whichkey.show('h', { mode = 'n', auto = true }) end)
+map('n', 'hh', '<nop>')
 map('n', 'j', function() whichkey.show('j', { mode = 'n', auto = true }) end)
-map('n', 'k', '<nop>')
+map('n', 'jj', '<nop>')
+map('n', 'k', function() whichkey.show('k', { mode = 'n', auto = true }) end)
+map('n', 'kk', '<nop>')
 map('n', 'l', function() whichkey.show('l', { mode = 'n', auto = true }) end)
+map('n', 'll', '<nop>')
 
 map('n', 'hc', ':Git commit<cr>', { desc = 'commit' })
 
