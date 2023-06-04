@@ -1,4 +1,3 @@
--- vim.opt works like :set and generalizes vim.o, vim.bo, and vim.wo
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.loaded_netrw = 1
@@ -41,8 +40,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- If config = true, call setup without arguments
--- If opts = {...}, call setup with the given opts
 require('lazy').setup({
   'tpope/vim-sleuth',
   'simrat39/rust-tools.nvim',
@@ -69,10 +66,22 @@ require('lazy').setup({
     opts = {}
   },
 
+
   {
-    'jose-elias-alvarez/null-ls.nvim',
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      'nvim-lua/plenary.nvim'
+      "williamboman/mason.nvim",
+      {
+        'jose-elias-alvarez/null-ls.nvim',
+        dependencies = {
+          'nvim-lua/plenary.nvim'
+        }
+      },
+    },
+    opts = {
+      ensure_installed = nil,
+      automatic_installation = true,
     }
   },
 
@@ -157,10 +166,19 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '[h', require('gitsigns').prev_hunk, { buffer = bufnr, desc = 'Go to Previous Hunk' })
-        vim.keymap.set('n', ']h', require('gitsigns').next_hunk, { buffer = bufnr, desc = 'Go to Next Hunk' })
-        vim.keymap.set('n', '<leader>p', require('gitsigns').preview_hunk,
-          { buffer = bufnr, desc = '[p]review hunk' })
+        local gitsigns = require('gitsigns')
+        vim.keymap.set('n', '[h', gitsigns.prev_hunk, {
+          buffer = bufnr,
+          desc = 'Go to Previous Hunk'
+        })
+        vim.keymap.set('n', ']h', gitsigns.next_hunk, {
+          buffer = bufnr,
+          desc = 'Go to Next Hunk'
+        })
+        vim.keymap.set('n', '<leader>p', gitsigns.preview_hunk, {
+          buffer = bufnr,
+          desc = '[p]review hunk'
+        })
       end,
     }
   },
@@ -431,11 +449,10 @@ lsp.format_on_save({
   servers = {
     ['lua_ls'] = { 'lua' },
     ['rust_analyzer'] = { 'rust' },
-    ['null-ls'] = { 'javascript', 'typescript' },
+    ['typescript-language-server'] = { 'javascript', 'typescript', 'jsx' },
+    ['null-ls'] = { 'html', 'css', 'scss', 'json', 'yaml', 'markdown' },
   }
 })
-
--- Angular, CSS, Flow, GraphQL, HTML, JSON, JSX, JavaScript, LESS, Markdown, SCSS, TypeScript, Vue, YAML
 
 lsp.set_sign_icons({
   error = '✘',
@@ -458,7 +475,7 @@ cmp.setup({
     { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'luasnip', keyword_length = 2 },
-    { name = 'buffer',  keyword_length = 5 },
+    -- { name = 'buffer',  keyword_length = 5 },
   },
   mapping = {
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
@@ -467,6 +484,21 @@ cmp.setup({
   }
 })
 ---------------------
+
+
+
+-------------
+-- Null LS --
+-------------
+local null_ls = require("null-ls")
+local formatting = null_ls.builtins.formatting
+null_ls.setup({
+  sources = {
+    formatting.prettierd,
+  },
+})
+-------------
+
 
 
 ------------------
@@ -505,19 +537,6 @@ dap.listeners.after.event_initialized['dapui_config'] = dapui.open
 dap.listeners.before.event_terminated['dapui_config'] = dapui.close
 dap.listeners.before.event_exited['dapui_config'] = dapui.close
 ---------
-
-
-
--------------
--- Null LS --
--------------
-local null_ls = require("null-ls")
-
-null_ls.setup({
-  sources = {
-  },
-})
--------------
 
 
 
