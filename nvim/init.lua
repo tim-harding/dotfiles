@@ -1,7 +1,5 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 vim.g.indent_blankline_filetype_exclude = { 'dashboard' }
 vim.opt.relativenumber = true
 vim.opt.hlsearch = false
@@ -393,7 +391,20 @@ require('lazy').setup({
       keys = 'tnserigmfuplwybjdhcvkaoqxz',
     }
   },
-}, {})
+}, {
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+})
 
 vim.cmd.colorscheme 'catppuccin'
 
