@@ -286,17 +286,22 @@ require('lazy').setup({
     dependencies = {
       'nvim-lua/plenary.nvim'
     },
-    opts = {
-      defaults = {
-        layout_strategy = 'vertical',
-        mappings = {
-          i = {
-            ['<C-u>'] = false,
-            ['<C-d>'] = false,
+    config = function()
+      local telescope = require('telescope')
+      local actions = require('telescope.actions')
+      telescope.setup {
+        defaults = {
+          layout_strategy = 'vertical',
+          mappings = {
+            i = {
+              ['<C-u>'] = false,
+              ['<C-d>'] = false,
+              ['<esc>'] = actions.close,
+            },
           },
         },
-      },
-    }
+      }
+    end
   },
 
   {
