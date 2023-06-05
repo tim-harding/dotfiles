@@ -63,6 +63,11 @@ require('lazy').setup({
   'nvim-lualine/lualine.nvim',
 
   {
+    'jose-elias-alvarez/typescript.nvim',
+    opts = {},
+  },
+
+  {
     'nvim-tree/nvim-tree.lua',
     opts = {}
   },
@@ -496,6 +501,7 @@ null_ls.setup({
   sources = {
     null_ls.builtins.formatting.prettierd,
     null_ls.builtins.code_actions.gitsigns,
+    require('typescript.extensions.null-ls.code-actions'),
   },
 })
 -------------
@@ -546,8 +552,6 @@ lsp.set_server_config({
   }
 })
 
-lsp.skip_server_setup({ 'rust_analyzer' })
-
 lsp.format_on_save({
   format_opts = {
     async = false,
@@ -568,6 +572,7 @@ lsp.set_sign_icons({
   info = '»'
 })
 
+lsp.skip_server_setup({ 'rust_analyzer', 'tsserver' })
 lsp.setup()
 
 local cmp = require('cmp')
