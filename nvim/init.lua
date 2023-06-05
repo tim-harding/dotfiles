@@ -86,6 +86,11 @@ require('lazy').setup({
   },
 
   {
+    'ray-x/lsp_signature.nvim',
+    opts = {},
+  },
+
+  {
     'kevinhwang91/nvim-ufo',
     dependencies = 'kevinhwang91/promise-async',
     config = true,
