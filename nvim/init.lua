@@ -26,6 +26,13 @@ vim.opt.shortmess = 'aoOstTIFcC'
 -- Want to enable but too many 'Press Enter to continue messages for now'
 -- vim.opt.cmdheight = 0
 
+-- For UFO
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.opt.foldcolumn = '0'
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+
 vim.loader.enable()
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -76,6 +83,12 @@ require('lazy').setup({
     opts = {
       break_undo = false,
     }
+  },
+
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = 'kevinhwang91/promise-async',
+    config = true,
   },
 
   {
@@ -482,6 +495,17 @@ lsp.on_attach(function(client, bufnr)
   map('n', ']d', vim.diagnostic.goto_next, 'next diagnostic')
 end)
 
+lsp.set_server_config({
+  capabilities = {
+    textDocument = {
+      foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true
+      }
+    }
+  }
+})
+
 lsp.skip_server_setup({ 'rust_analyzer' })
 
 lsp.format_on_save({
@@ -708,3 +732,6 @@ map('n', '<leader>s', ':w<cr>', 'save')
 -- Paragraph movements without jumplist
 map('n', '}', ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>')
 map('n', '{', ':<<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
+
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
