@@ -727,3 +727,7 @@ map('n', '<leader>B', function()
 end, 'breakpoint condition')
 
 map('n', '<leader>s', ':w<cr>', 'save')
+
+-- Paragraph movements without jumplist
+map('n', '}', ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>')
+map('n', '{', ':<<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
