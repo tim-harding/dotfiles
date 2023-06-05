@@ -28,7 +28,7 @@ vim.opt.shortmess = 'aoOstTIFcC'
 
 -- For UFO
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-vim.opt.foldcolumn = '0'
+vim.opt.foldcolumn = '1'
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
@@ -93,7 +93,9 @@ require('lazy').setup({
   {
     'kevinhwang91/nvim-ufo',
     dependencies = 'kevinhwang91/promise-async',
-    config = true,
+    opts = {
+      open_fold_hl_timeout = 0,
+    }
   },
 
   {
@@ -500,6 +502,7 @@ lsp.on_attach(function(client, bufnr)
   map('n', ']d', vim.diagnostic.goto_next, 'next diagnostic')
 end)
 
+-- For UFO
 lsp.set_server_config({
   capabilities = {
     textDocument = {
