@@ -459,6 +459,21 @@ vim.api.nvim_create_autocmd('RecordingLeave', {
 -----------------
 
 
+
+-------------
+-- Null LS --
+-------------
+local null_ls = require("null-ls")
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.code_actions.gitsigns,
+  },
+})
+-------------
+
+
+
 -----------------
 -- Completions --
 -----------------
@@ -485,7 +500,6 @@ lsp.on_attach(function(client, bufnr)
   map('n', 'la', vim.lsp.buf.code_action, 'code action')
   map('x', 'la', function() vim.lsp.buf.range_code_action() end, 'code action')
   map('n', 'lr', vim.lsp.buf.rename, 'rename')
-
   map('n', 'ld', vim.diagnostic.open_float, 'diagnostic float')
   map('n', '[d', vim.diagnostic.goto_prev, 'previous diagnostic]')
   map('n', ']d', vim.diagnostic.goto_next, 'next diagnostic')
@@ -513,8 +527,6 @@ lsp.set_sign_icons({
   info = '»'
 })
 
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
 lsp.setup()
 
 local cmp = require('cmp')
@@ -536,20 +548,6 @@ cmp.setup({
   }
 })
 ---------------------
-
-
-
--------------
--- Null LS --
--------------
-local null_ls = require("null-ls")
-null_ls.setup({
-  sources = {
-    null_ls.builtins.formatting.prettierd,
-    null_ls.builtins.code_actions.gitsigns,
-  },
-})
--------------
 
 
 
