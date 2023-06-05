@@ -27,7 +27,7 @@ vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.shortmess = 'aoOstTIFcC'
 
--- Want to enable but too many 'Press Enter to continue' messages for now
+-- Want to enable but too many 'Press Enter to continue messages for now'
 -- vim.opt.cmdheight = 0
 
 vim.loader.enable()
@@ -56,7 +56,6 @@ end
 require('lazy').setup({
   'tpope/vim-sleuth',
   'tpope/vim-fugitive',
-  'simrat39/rust-tools.nvim',
   'windwp/nvim-ts-autotag',
   'nvim-lualine/lualine.nvim',
 
@@ -605,10 +604,9 @@ require('nvim-treesitter.configs').setup {
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = '<c-space>',
-      node_incremental = '<c-space>',
-      scope_incremental = '<c-s>',
-      node_decremental = '<M-space>',
+      init_selection = '<cr>',
+      node_incremental = '<cr>',
+      node_decremental = '<tab>',
     },
   },
   textobjects = {
