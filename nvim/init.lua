@@ -714,7 +714,7 @@ map('n', 'l', function() whichkey.show('l', { mode = 'n', auto = true }) end)
 map('n', 'll', '<nop>')
 
 map('n', 'hc', ':Git commit --quiet<cr>', 'commit')
-map('n', 'hp', ':Git push<cr>', 'push')
+map('n', 'hP', ':Git push<cr>', 'push')
 map('n', 'ha', ':Git commit --quiet --amend --no-edit<cr>', 'amend')
 
 map('n', '<leader>f', ':NvimTreeToggle<cr>')
