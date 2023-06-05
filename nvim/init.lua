@@ -77,7 +77,9 @@ require('lazy').setup({
 
   {
     'windwp/nvim-autopairs',
-    opts = {}
+    opts = {
+      break_undo = false,
+    }
   },
 
   {
