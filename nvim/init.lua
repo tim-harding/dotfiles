@@ -606,6 +606,7 @@ require('nvim-treesitter.configs').setup {
     keymaps = {
       init_selection = '<cr>',
       node_incremental = '<cr>',
+      scope_incremental = false,
       node_decremental = '<tab>',
     },
   },
@@ -625,22 +626,22 @@ require('nvim-treesitter.configs').setup {
     },
     move = {
       enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
+      set_jumps = true,
       goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
+        [']f'] = '@function.outer',
+        [']c'] = '@class.outer',
       },
       goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
+        [']F'] = '@function.outer',
+        [']C'] = '@class.outer',
       },
       goto_previous_start = {
-        ['[m'] = '@function.outer',
-        ['[['] = '@class.outer',
+        ['[f'] = '@function.outer',
+        ['[c'] = '@class.outer',
       },
       goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
+        ['[F'] = '@function.outer',
+        ['[C'] = '@class.outer',
       },
     },
     swap = {
