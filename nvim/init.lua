@@ -1,6 +1,4 @@
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-vim.g.indent_blankline_filetype_exclude = { 'dashboard' }
 vim.opt.relativenumber = true
 vim.opt.hlsearch = false
 vim.opt.mouse = 'a'
@@ -134,38 +132,6 @@ require('lazy').setup({
       char = '┊',
       show_trailing_blankline_indent = false,
     }
-  },
-
-  {
-    'glepnir/dashboard-nvim',
-    event = 'VimEnter',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {
-      theme = 'hyper',
-      config = {
-        week_header = {
-          enable = true,
-        },
-        shortcut = {
-          {
-            desc = 'Update',
-            group = 'Main',
-            action = function()
-              require('lazy').update()
-              require('mason.api.command').MasonUpdate()
-            end,
-            key = 'u',
-          }
-        },
-        project = {
-          enable = false,
-        },
-        mru = {
-          limit = 20,
-        },
-        footer = {},
-      }
-    },
   },
 
   {
