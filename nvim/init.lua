@@ -288,6 +288,7 @@ require('lazy').setup({
     },
     opts = {
       defaults = {
+        layout_strategy = 'vertical',
         mappings = {
           i = {
             ['<C-u>'] = false,
@@ -519,9 +520,10 @@ lsp.on_attach(function(client, bufnr)
   map('n', 'gt', vim.lsp.buf.type_definition, 'type definition')
   map('n', 'gr', vim.lsp.buf.references, 'references')
   map('n', 'gs', vim.lsp.buf.signature_help, 'show signature')
+
   map('n', 'la', vim.lsp.buf.code_action, 'code action')
   map('x', 'la', function() vim.lsp.buf.range_code_action() end, 'code action')
-  map('n', 'lr', vim.lsp.buf.rename, 'rename')
+  map('n', 'lc', vim.lsp.buf.rename, 'change name')
   map('n', 'ld', vim.diagnostic.open_float, 'diagnostic float')
   map('n', '[d', vim.diagnostic.goto_prev, 'previous diagnostic]')
   map('n', ']d', vim.diagnostic.goto_next, 'next diagnostic')
@@ -734,15 +736,27 @@ map('n', '<leader>c', ':source ~/.config/nvim/init.lua<cr>', 'reload config')
 map('n', 's', ':HopChar2<cr>')
 map('n', 'jj', ':HopWord<cr>', 'hop word')
 
-map('n', 'jr', require('telescope.builtin').oldfiles, 'recent')
-map('n', 'jf', require('telescope.builtin').git_files, 'file')
-map('n', 'jh', require('telescope.builtin').help_tags, 'help')
-map('n', 'jd', require('telescope.builtin').diagnostics, 'diagnostics')
-map('n', '<leader>/', function()
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    previewer = false,
-  })
-end, 'search buffer')
+local tb = require('telescope.builtin')
+map('n', 'jr', tb.oldfiles, 'recent')
+map('n', 'jg', tb.git_files, 'git')
+map('n', 'jf', tb.find_files, 'files')
+map('n', 'jh', tb.help_tags, 'help')
+map('n', 'jS', tb.live_grep, 'search project')
+map('n', 'js', tb.current_buffer_fuzzy_find, 'search buffer')
+map('n', 'jc', tb.commands, 'commands')
+map('n', 'jp', tb.registers, 'paste register')
+map('n', 'jm', tb.marks, 'marks')
+map('n', 'jC', tb.colorscheme, 'colorscheme')
+map('n', 'jq', tb.quickfix, 'quickfix')
+
+map('n', 'ls', tb.lsp_document_symbols, 'find document symbol')
+map('n', 'lS', tb.lsp_workspace_symbols, 'find workspace symbol')
+map('n', 'li', tb.lsp_implementations, 'find implementation')
+map('n', 'lr', tb.lsp_references, 'find reference')
+
+map('n', 'hhc', tb.git_commits, 'search commits')
+map('n', 'hhb', tb.git_branches, 'search branches')
+map('n', 'hhs', tb.git_status, 'search status')
 
 map('n', '<C-Left>', '<C-w>h')
 map('n', '<C-Right>', '<C-w>l')
