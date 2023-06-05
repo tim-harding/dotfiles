@@ -552,6 +552,13 @@ lsp.set_server_config({
   }
 })
 
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp = require('cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
+
 lsp.format_on_save({
   format_opts = {
     async = false,
