@@ -7,18 +7,6 @@ return {
   'nvim-lualine/lualine.nvim',
 
   {
-    'windwp/nvim-autopairs',
-    opts = {
-      break_undo = false,
-    }
-  },
-
-  {
-    'ray-x/lsp_signature.nvim',
-    opts = {},
-  },
-
-  {
     'kevinhwang91/nvim-ufo',
     opts = {
       open_fold_hl_timeout = 0,
