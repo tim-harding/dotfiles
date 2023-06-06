@@ -7,27 +7,6 @@ return {
   'nvim-lualine/lualine.nvim',
 
   {
-    'jose-elias-alvarez/typescript.nvim',
-    opts = {},
-  },
-
-  {
-    'Maan2003/lsp_lines.nvim',
-    config = true,
-  },
-
-  {
-    'stevearc/oil.nvim',
-    opts = {
-      skip_confirm_for_simple_edits = true,
-      keymaps = {
-        ['<leader>f'] = 'actions.parent',
-      }
-    },
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-  },
-
-  {
     'folke/which-key.nvim',
     event = 'VeryLazy',
     opts = {},
