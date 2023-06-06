@@ -19,16 +19,6 @@ return {
   },
 
   {
-    'folke/tokyonight.nvim',
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
-
-  'sainnhe/everforest',
-  'shaunsingh/nord.nvim',
-
-  {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = {
