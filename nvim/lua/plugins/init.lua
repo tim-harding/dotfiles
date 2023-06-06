@@ -7,23 +7,6 @@ return {
   'nvim-lualine/lualine.nvim',
 
   {
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      {
-        'williamboman/mason.nvim',
-        build = ':MasonUpdate',
-        config = true
-      },
-      'williamboman/mason-lspconfig.nvim',
-      'folke/neodev.nvim',
-      {
-        'j-hui/fidget.nvim',
-        opts = {}
-      },
-    },
-  },
-
-  {
     'catppuccin/nvim',
     name = 'catppuccin',
     opts = {

@@ -1,6 +1,24 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
+    'williamboman/mason-lspconfig.nvim',
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
+    'saadparwaiz1/cmp_luasnip',
+    'folke/neodev.nvim',
+    {
+      'williamboman/mason.nvim',
+      build = ':MasonUpdate',
+    },
+    {
+      'j-hui/fidget.nvim',
+      opts = {}
+    },
+    {
+      'L3MON4D3/LuaSnip',
+      dependencies = { 'rafamadriz/friendly-snippets' }
+    },
     {
       'SmiteshP/nvim-navbuddy',
       dependencies = {
@@ -8,23 +26,10 @@ return {
         'MunifTanjim/nui.nvim'
       },
       opts = {
-        lsp = { auto_attach = true }
+        lsp = {
+          auto_attach = true
+        }
       }
-    },
-    {
-      'williamboman/mason.nvim',
-      build = function()
-        pcall(function() vim.cmd('MasonUpdate') end)
-      end,
-    },
-    'williamboman/mason-lspconfig.nvim',
-    'hrsh7th/nvim-cmp',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-buffer',
-    'saadparwaiz1/cmp_luasnip',
-    {
-      'L3MON4D3/LuaSnip',
-      dependencies = { 'rafamadriz/friendly-snippets' }
     },
   },
 }
