@@ -5,14 +5,6 @@ return {
   'nvim-lualine/lualine.nvim',
 
   {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-  },
-
-  {
     'mfussenegger/nvim-dap',
     dependencies = {
       {
