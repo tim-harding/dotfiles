@@ -22,12 +22,7 @@ vim.opt.signcolumn = 'yes'
 vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.shortmess = 'aoOstTIFcC'
-
--- Want to enable but too many 'Press Enter to continue messages for now'
--- vim.opt.cmdheight = 0
-
--- For UFO
-vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.opt.foldcolumn = '1'
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
@@ -137,6 +132,34 @@ require('lazy').setup({
         end
       }
     },
+  },
+
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      lsp = {
+        signature = {
+          enabled = false,
+        },
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
+        },
+      },
+      presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = false,
+        lsp_doc_border = false,
+      },
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    }
   },
 
   {
@@ -304,6 +327,7 @@ require('lazy').setup({
   },
 
   'sainnhe/everforest',
+  'shaunsingh/nord.nvim',
 
   {
     'nvim-telescope/telescope.nvim',
