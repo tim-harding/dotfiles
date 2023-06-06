@@ -60,9 +60,8 @@ vim.cmd.colorscheme 'catppuccin'
 ------------------
 -- Autocommands --
 ------------------
-local set_indent_group = vim.api.nvim_create_augroup('SetIndent', { clear = true })
 vim.api.nvim_create_autocmd('FileType', {
-  group = set_indent_group,
+  group = vim.api.nvim_create_augroup('SetIndent', { clear = true }),
   pattern = '*',
   callback = function()
     local ft = vim.bo.filetype
@@ -84,14 +83,12 @@ vim.api.nvim_create_autocmd('FileType', {
   end
 })
 
--- Highlight on yank
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
+  group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
+  pattern = '*',
   callback = function()
     vim.highlight.on_yank()
   end,
-  group = highlight_group,
-  pattern = '*',
 })
 
 
