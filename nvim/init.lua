@@ -68,8 +68,14 @@ require('lazy').setup({
   },
 
   {
-    'nvim-tree/nvim-tree.lua',
-    opts = {}
+    'stevearc/oil.nvim',
+    opts = {
+      skip_confirm_for_simple_edits = true,
+      keymaps = {
+        ['<leader>f'] = 'actions.parent',
+      }
+    },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 
   {
@@ -729,8 +735,6 @@ map('n', 'hc', ':Git commit --quiet<cr>', 'commit')
 map('n', 'hP', ':Git push<cr>', 'push')
 map('n', 'ha', ':Git commit --quiet --amend --no-edit<cr>', 'amend')
 
-map('n', '<leader>f', ':NvimTreeToggle<cr>')
-
 local trouble = require('trouble')
 map('n', '<leader>t', ':TroubleToggle<cr>', 'toggle trouble')
 map('n', ']q', function()
@@ -801,3 +805,5 @@ map('n', 'zR', require('ufo').openAllFolds)
 map('n', 'zM', require('ufo').closeAllFolds)
 map('n', 'll', 'za', 'Toggle fold')
 map('n', 'lL', 'zA', 'Toggle all folds')
+
+map('n', '<leader>f', require('oil').open, 'File browser')
