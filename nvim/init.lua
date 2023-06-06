@@ -206,11 +206,11 @@ cmp.setup({
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<down>'] = cmp.mapping.select_next_item(),
-    ['<up>'] = cmp.mapping.select_prev_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<CR>'] = cmp.mapping.confirm {
+    ['<tab>'] = cmp.mapping.select_next_item(),
+    ['<s-tab>'] = cmp.mapping.select_prev_item(),
+    ['<c-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<c-u>'] = cmp.mapping.scroll_docs(4),
+    ['<cr>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
