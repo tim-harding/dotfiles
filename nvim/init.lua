@@ -188,10 +188,8 @@ require('lazy').setup({
   },
 
   {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
+    'neovim/nvim-lspconfig',
     dependencies = {
-      'neovim/nvim-lspconfig',
       {
         'SmiteshP/nvim-navbuddy',
         dependencies = {
@@ -217,7 +215,7 @@ require('lazy').setup({
         'L3MON4D3/LuaSnip',
         dependencies = { 'rafamadriz/friendly-snippets' }
       },
-    }
+    },
   },
 
   {
@@ -301,15 +299,7 @@ require('lazy').setup({
         config = true
       },
       'williamboman/mason-lspconfig.nvim',
-      {
-        'folke/neodev.nvim',
-        opts = {
-          library = {
-            plugins = { 'nvim-dap-ui' },
-            types = true
-          },
-        }
-      },
+      'folke/neodev.nvim',
       {
         'j-hui/fidget.nvim',
         opts = {}
@@ -570,91 +560,85 @@ vim.diagnostic.config({
   virtual_text = false,
 })
 
-local lsp = require('lsp-zero').preset({})
+require('neodev').setup()
 
--- local navbuddy = require('nvim-navbuddy')
-lsp.on_attach(function(_, bufnr)
-  -- navbuddy.attach(client, bufnr)
-  local lsp_map = function(m, keys, func, desc)
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+local on_attach = function(_, bufnr)
+  local map = function(m, keys, func, desc)
     local opts = { buffer = bufnr, desc = desc }
     vim.keymap.set(m, keys, func, opts)
   end
 
-  lsp_map('n', 'K', vim.lsp.buf.hover, 'hover')
-  lsp_map('n', 'gd', vim.lsp.buf.definition, 'definition')
-  lsp_map('n', 'gD', vim.lsp.buf.declaration, 'declaration')
-  lsp_map('n', 'gi', vim.lsp.buf.implementation, 'implementation')
-  lsp_map('n', 'gt', vim.lsp.buf.type_definition, 'type definition')
-  lsp_map('n', 'gr', vim.lsp.buf.references, 'references')
-  lsp_map('n', 'gs', vim.lsp.buf.signature_help, 'show signature')
+  map('n', 'K', vim.lsp.buf.hover, 'hover')
+  map('n', 'gd', vim.lsp.buf.definition, 'definition')
+  map('n', 'gD', vim.lsp.buf.declaration, 'declaration')
+  map('n', 'gi', vim.lsp.buf.implementation, 'implementation')
+  map('n', 'gt', vim.lsp.buf.type_definition, 'type definition')
+  map('n', 'gr', vim.lsp.buf.references, 'references')
+  map('n', 'gs', vim.lsp.buf.signature_help, 'show signature')
 
-  lsp_map('n', 'la', vim.lsp.buf.code_action, 'code action')
-  lsp_map('x', 'la', function() vim.lsp.buf.range_code_action() end, 'code action')
-  lsp_map('n', 'lc', vim.lsp.buf.rename, 'change name')
-  lsp_map('n', 'ld', vim.diagnostic.open_float, 'diagnostic float')
-  lsp_map('n', '[d', vim.diagnostic.goto_prev, 'previous diagnostic]')
-  lsp_map('n', ']d', vim.diagnostic.goto_next, 'next diagnostic')
-end)
+  map('n', 'la', vim.lsp.buf.code_action, 'code action')
+  map('x', 'la', function() vim.lsp.buf.range_code_action() end, 'code action')
+  map('n', 'lc', vim.lsp.buf.rename, 'change name')
+  map('n', 'ld', vim.diagnostic.open_float, 'diagnostic float')
+  map('n', '[d', vim.diagnostic.goto_prev, 'previous diagnostic]')
+  map('n', ']d', vim.diagnostic.goto_next, 'next diagnostic')
+end
 
--- For UFO
-lsp.set_server_config({
-  capabilities = {
-    textDocument = {
-      foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true
-      }
+local mason_lspconfig = require('mason-lspconfig')
+mason_lspconfig.setup({})
+mason_lspconfig.setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilities = capabilities,
+      settings = {
+        lua_ls = {
+          Lua = {
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+          }
+        }
+      },
+      on_attach = on_attach,
     }
-  }
+  end,
+}
+
+local cmp = require 'cmp'
+local luasnip = require 'luasnip'
+require('luasnip.loaders.from_vscode').lazy_load()
+luasnip.config.setup {}
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert {
+    ['<down>'] = cmp.mapping.select_next_item(),
+    ['<up>'] = cmp.mapping.select_prev_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
 })
 
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-local cmp = require('cmp')
 cmp.event:on(
   'confirm_done',
   cmp_autopairs.on_confirm_done()
 )
-
-lsp.format_on_save({
-  format_opts = {
-    async = false,
-    timeout_ms = 10000,
-  },
-  servers = {
-    ['lua_ls'] = { 'lua' },
-    ['rust_analyzer'] = { 'rust' },
-    ['typescript-language-server'] = { 'javascript', 'typescript', 'jsx' },
-    ['null-ls'] = { 'html', 'css', 'scss', 'json', 'yaml', 'markdown' },
-  }
-})
-
-lsp.set_sign_icons({
-  error = '✘',
-  warn = '▲',
-  hint = '⚑',
-  info = '»'
-})
-
-lsp.skip_server_setup({ 'rust_analyzer', 'tsserver' })
-lsp.setup()
-
-local cmp_action = require('lsp-zero').cmp_action()
-
-require('luasnip.loaders.from_vscode').lazy_load()
-
-cmp.setup({
-  sources = {
-    { name = 'path' },
-    { name = 'nvim_lsp' },
-    { name = 'luasnip', keyword_length = 2 },
-    -- { name = 'buffer',  keyword_length = 5 },
-  },
-  mapping = {
-    ['<CR>'] = cmp.mapping.confirm({ select = false }),
-    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-  }
-})
 ---------------------
 
 
