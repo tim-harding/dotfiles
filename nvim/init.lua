@@ -409,3 +409,5 @@ map('n', 'll', 'za', 'Toggle fold')
 map('n', 'lL', 'zA', 'Toggle all folds')
 
 map('n', '<leader>f', require('oil').open, 'File browser')
+
+map('n', '<leader>c', ':source ~/.config/nvim/init.lua<cr>', 'reload config')
