@@ -1,5 +1,3 @@
-local map = require('util').map
-
 vim.g.mapleader = ' '
 vim.opt.relativenumber = true
 vim.opt.hlsearch = false
@@ -96,6 +94,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -------------
 -- Keymaps --
 -------------
+local map = require('util').map
+
 local whichkey = require('which-key')
 map('n', 'h', function() whichkey.show('h', { mode = 'n', auto = true }) end)
 map('n', 'hh', '<nop>')
