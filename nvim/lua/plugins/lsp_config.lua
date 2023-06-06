@@ -1,16 +1,13 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
+    'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
     'saadparwaiz1/cmp_luasnip',
     'folke/neodev.nvim',
-    {
-      'williamboman/mason.nvim',
-      build = ':MasonUpdate',
-    },
     {
       'j-hui/fidget.nvim',
       opts = {}
@@ -21,15 +18,15 @@ return {
     },
     {
       'SmiteshP/nvim-navbuddy',
-      dependencies = {
-        'SmiteshP/nvim-navic',
-        'MunifTanjim/nui.nvim'
-      },
       opts = {
         lsp = {
           auto_attach = true
         }
-      }
+      },
+      dependencies = {
+        'SmiteshP/nvim-navic',
+        'MunifTanjim/nui.nvim'
+      },
     },
   },
 }

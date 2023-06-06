@@ -1,5 +1,3 @@
-local map = require('util').map
-
 return {
   'tpope/vim-sleuth',
   'tpope/vim-fugitive',
@@ -76,8 +74,6 @@ return {
           },
         },
       },
-
-      'williamboman/mason.nvim',
 
       {
         'jay-babu/mason-nvim-dap.nvim',
