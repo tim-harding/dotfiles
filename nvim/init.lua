@@ -62,9 +62,6 @@ require('lazy').setup('plugins', {
 
 vim.cmd.colorscheme 'catppuccin'
 
--- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extension, 'fzf')
-
 
 
 -------------

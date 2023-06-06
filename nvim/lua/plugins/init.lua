@@ -7,38 +7,6 @@ return {
   'nvim-lualine/lualine.nvim',
 
   {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim'
-    },
-    config = function()
-      local telescope = require('telescope')
-      local actions = require('telescope.actions')
-      telescope.setup {
-        defaults = {
-          layout_strategy = 'vertical',
-          mappings = {
-            i = {
-              ['<C-u>'] = false,
-              ['<C-d>'] = false,
-              ['<esc>'] = actions.close,
-            },
-          },
-        },
-      }
-    end
-  },
-
-  {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make',
-    cond = function()
-      return vim.fn.executable 'make' == 1
-    end,
-  },
-
-  {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     dependencies = {
