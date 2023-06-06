@@ -7,18 +7,6 @@ return {
   'nvim-lualine/lualine.nvim',
 
   {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    opts = {
-      -- latte, frappe, macchiato, mocha
-      flavour = 'frappe',
-      integrations = {
-        hop = true,
-      }
-    }
-  },
-
-  {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = {
