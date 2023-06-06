@@ -1,7 +1,11 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    'williamboman/mason.nvim',
+    {
+      'williamboman/mason.nvim',
+      build = ':MasonUpdate',
+      config = true,
+    },
     'williamboman/mason-lspconfig.nvim',
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
@@ -28,5 +32,21 @@ return {
         'MunifTanjim/nui.nvim'
       },
     },
+    {
+      'jay-babu/mason-null-ls.nvim',
+      event = { 'BufReadPre', 'BufNewFile' },
+      opts = {
+        ensure_installed = nil,
+        automatic_installation = true,
+      },
+      dependencies = {
+        {
+          'jose-elias-alvarez/null-ls.nvim',
+          dependencies = {
+            'nvim-lua/plenary.nvim'
+          }
+        },
+      },
+    }
   },
 }
