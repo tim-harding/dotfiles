@@ -24,12 +24,6 @@ vim.opt.signcolumn = 'yes'
 vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.shortmess = 'aoOstTIFcC'
-vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-vim.opt.foldcolumn = '1'
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
-
 vim.loader.enable()
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -263,11 +257,6 @@ map('n', '<leader>s', ':w<cr>', 'save')
 -- Paragraph movements without jumplist
 map('n', '}', ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>')
 map('n', '{', ':<<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
-
-map('n', 'zR', require('ufo').openAllFolds)
-map('n', 'zM', require('ufo').closeAllFolds)
-map('n', 'll', 'za', 'Toggle fold')
-map('n', 'lL', 'zA', 'Toggle all folds')
 
 map('n', '<leader>f', require('oil').open, 'File browser')
 
