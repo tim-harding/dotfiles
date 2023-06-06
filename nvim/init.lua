@@ -575,25 +575,25 @@ local lsp = require('lsp-zero').preset({})
 local navbuddy = require('nvim-navbuddy')
 lsp.on_attach(function(client, bufnr)
   navbuddy.attach(client, bufnr)
-  local map = function(m, keys, func, desc)
+  local lsp_map = function(m, keys, func, desc)
     local opts = { buffer = bufnr, desc = desc }
     vim.keymap.set(m, keys, func, opts)
   end
 
-  map('n', 'K', vim.lsp.buf.hover, 'hover')
-  map('n', 'gd', vim.lsp.buf.definition, 'definition')
-  map('n', 'gD', vim.lsp.buf.declaration, 'declaration')
-  map('n', 'gi', vim.lsp.buf.implementation, 'implementation')
-  map('n', 'gt', vim.lsp.buf.type_definition, 'type definition')
-  map('n', 'gr', vim.lsp.buf.references, 'references')
-  map('n', 'gs', vim.lsp.buf.signature_help, 'show signature')
+  lsp_map('n', 'K', vim.lsp.buf.hover, 'hover')
+  lsp_map('n', 'gd', vim.lsp.buf.definition, 'definition')
+  lsp_map('n', 'gD', vim.lsp.buf.declaration, 'declaration')
+  lsp_map('n', 'gi', vim.lsp.buf.implementation, 'implementation')
+  lsp_map('n', 'gt', vim.lsp.buf.type_definition, 'type definition')
+  lsp_map('n', 'gr', vim.lsp.buf.references, 'references')
+  lsp_map('n', 'gs', vim.lsp.buf.signature_help, 'show signature')
 
-  map('n', 'la', vim.lsp.buf.code_action, 'code action')
-  map('x', 'la', function() vim.lsp.buf.range_code_action() end, 'code action')
-  map('n', 'lc', vim.lsp.buf.rename, 'change name')
-  map('n', 'ld', vim.diagnostic.open_float, 'diagnostic float')
-  map('n', '[d', vim.diagnostic.goto_prev, 'previous diagnostic]')
-  map('n', ']d', vim.diagnostic.goto_next, 'next diagnostic')
+  lsp_map('n', 'la', vim.lsp.buf.code_action, 'code action')
+  lsp_map('x', 'la', function() vim.lsp.buf.range_code_action() end, 'code action')
+  lsp_map('n', 'lc', vim.lsp.buf.rename, 'change name')
+  lsp_map('n', 'ld', vim.diagnostic.open_float, 'diagnostic float')
+  lsp_map('n', '[d', vim.diagnostic.goto_prev, 'previous diagnostic]')
+  lsp_map('n', ']d', vim.diagnostic.goto_next, 'next diagnostic')
 end)
 
 -- For UFO
@@ -638,7 +638,6 @@ lsp.set_sign_icons({
 lsp.skip_server_setup({ 'rust_analyzer', 'tsserver' })
 lsp.setup()
 
-local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 
 require('luasnip.loaders.from_vscode').lazy_load()
