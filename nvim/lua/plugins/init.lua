@@ -7,13 +7,6 @@ return {
   'nvim-lualine/lualine.nvim',
 
   {
-    'folke/trouble.nvim',
-    dependencies = {
-      'nvim-tree/nvim-web-devicons'
-    },
-  },
-
-  {
     'neovim/nvim-lspconfig',
     dependencies = {
       {
