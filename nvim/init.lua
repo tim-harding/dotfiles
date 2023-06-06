@@ -834,7 +834,6 @@ end, 'trouble diagnostic')
 
 map('n', '<C-S-v>', '"+p')
 map('i', '<C-S-v>', '<esc>"+pi')
-map('n', '<leader>c', ':source ~/.config/nvim/init.lua<cr>', 'reload config')
 
 map('n', 's', ':HopChar2<cr>')
 map('n', 'jj', ':HopWord<cr>', 'hop word')
