@@ -394,7 +394,7 @@ map('n', '<F12>', dap.step_out)
 map('n', '<leader>b', dap.toggle_breakpoint, 'toggle breakpoint')
 map('n', '<F9>', dapui.toggle)
 map('n', '<leader>B', function()
-  dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+  dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
 end, 'breakpoint condition')
 
 map('n', '<leader>s', ':w<cr>', 'save')
