@@ -13,11 +13,7 @@ vim.opt.timeout = true
 vim.opt.timeoutlen = 300
 vim.opt.completeopt = 'menuone,noselect'
 vim.opt.termguicolors = true
-vim.opt.scrolloff = 3
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.opt.scrolloff = 2
 vim.opt.swapfile = false
 vim.opt.wrap = true
 vim.opt.signcolumn = 'yes'
@@ -67,11 +63,24 @@ vim.cmd.colorscheme 'catppuccin'
 local set_indent_group = vim.api.nvim_create_augroup('SetIndent', { clear = true })
 vim.api.nvim_create_autocmd('FileType', {
   group = set_indent_group,
-  pattern = { 'html', 'javascript', 'lua' },
+  pattern = '*',
   callback = function()
-    vim.opt_local.tabstop = 2
-    vim.opt_local.softtabstop = 2
-    vim.opt_local.shiftwidth = 2
+    local ft = vim.bo.filetype
+    local spaces = 4
+    if ft == 'html' or
+        ft == 'javascript' or
+        ft == 'jsx' or
+        ft == 'typescript' or
+        ft == 'tsx' or
+        ft == 'css' or
+        ft == 'scss'
+    then
+      spaces = 2
+    end
+    vim.opt_local.tabstop = spaces
+    vim.opt_local.softtabstop = spaces
+    vim.opt_local.shiftwidth = spaces
+    vim.opt.expandtab = true
   end
 })
 
