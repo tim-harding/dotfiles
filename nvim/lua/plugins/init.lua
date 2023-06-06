@@ -7,17 +7,6 @@ return {
   'nvim-lualine/lualine.nvim',
 
   {
-    'folke/which-key.nvim',
-    event = 'VeryLazy',
-    opts = {},
-  },
-
-  {
-    'numToStr/Comment.nvim',
-    opts = {}
-  },
-
-  {
     'windwp/nvim-autopairs',
     opts = {
       break_undo = false,
