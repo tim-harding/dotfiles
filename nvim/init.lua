@@ -68,6 +68,11 @@ require('lazy').setup({
   },
 
   {
+    'Maan2003/lsp_lines.nvim',
+    config = true,
+  },
+
+  {
     'stevearc/oil.nvim',
     opts = {
       skip_confirm_for_simple_edits = true,
