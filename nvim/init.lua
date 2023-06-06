@@ -237,17 +237,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 
 
----------
--- DAP --
----------
-local dap = require 'dap'
-local dapui = require 'dapui'
-dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-dap.listeners.before.event_exited['dapui_config'] = dapui.close
-
-
-
 -------------
 -- Keymaps --
 -------------
@@ -313,13 +302,14 @@ map('n', '<C-Right>', '<C-w>l')
 map('n', '<C-Up>', '<C-w>k')
 map('n', '<C-Down>', '<C-w>j')
 
+local dap = require('dap')
 map('n', '<F5>', dap.continue)
 map('n', '<F1>', dap.terminate)
 map('n', '<F10>', dap.step_over)
 map('n', '<F11>', dap.step_into)
 map('n', '<F12>', dap.step_out)
 map('n', '<leader>b', dap.toggle_breakpoint, 'toggle breakpoint')
-map('n', '<F9>', dapui.toggle)
+map('n', '<F9>', require('dapui').toggle)
 map('n', '<leader>B', function()
   dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
 end, 'breakpoint condition')
