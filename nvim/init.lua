@@ -572,9 +572,9 @@ vim.diagnostic.config({
 
 local lsp = require('lsp-zero').preset({})
 
-local navbuddy = require('nvim-navbuddy')
-lsp.on_attach(function(client, bufnr)
-  navbuddy.attach(client, bufnr)
+-- local navbuddy = require('nvim-navbuddy')
+lsp.on_attach(function(_, bufnr)
+  -- navbuddy.attach(client, bufnr)
   local lsp_map = function(m, keys, func, desc)
     local opts = { buffer = bufnr, desc = desc }
     vim.keymap.set(m, keys, func, opts)
