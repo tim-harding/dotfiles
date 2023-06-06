@@ -505,7 +505,9 @@ vim.api.nvim_create_autocmd('RecordingLeave', {
     local no_repeat = 0
     local scheduled_refresh_lualine = vim.schedule_wrap(refresh_lualine)
     local timer = vim.loop.new_timer()
-    timer:start(timeout_ms, no_repeat, scheduled_refresh_lualine)
+    if timer ~= nil then
+      timer:start(timeout_ms, no_repeat, scheduled_refresh_lualine)
+    end
   end,
 })
 -----------------
