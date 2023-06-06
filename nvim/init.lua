@@ -75,7 +75,7 @@ require('lazy').setup({
         ['<leader>f'] = 'actions.parent',
       }
     },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
 
   {
@@ -109,23 +109,23 @@ require('lazy').setup({
     dependencies = {
       'kevinhwang91/promise-async',
       {
-        "luukvbaal/statuscol.nvim",
+        'luukvbaal/statuscol.nvim',
         config = function()
-          local builtin = require("statuscol.builtin")
-          require("statuscol").setup({
+          local builtin = require('statuscol.builtin')
+          require('statuscol').setup({
             relculright = true,
             segments = {
               {
                 text = { builtin.foldfunc },
-                click = "v:lua.ScFa"
+                click = 'v:lua.ScFa'
               },
               {
-                text = { "%s" },
-                click = "v:lua.ScSa"
+                text = { '%s' },
+                click = 'v:lua.ScSa'
               },
               {
-                text = { builtin.lnumfunc, " " },
-                click = "v:lua.ScLa"
+                text = { builtin.lnumfunc, ' ' },
+                click = 'v:lua.ScLa'
               }
             }
           })
@@ -135,17 +135,17 @@ require('lazy').setup({
   },
 
   {
-    "folke/noice.nvim",
-    event = "VeryLazy",
+    'folke/noice.nvim',
+    event = 'VeryLazy',
     opts = {
       lsp = {
         signature = {
           enabled = false,
         },
         override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true,
+          ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+          ['vim.lsp.util.stylize_markdown'] = true,
+          ['cmp.entry.get_documentation'] = true,
         },
       },
       presets = {
@@ -157,16 +157,16 @@ require('lazy').setup({
       },
     },
     dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
+      'MunifTanjim/nui.nvim',
+      'rcarriga/nvim-notify',
     }
   },
 
   {
-    "jay-babu/mason-null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    'jay-babu/mason-null-ls.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      "williamboman/mason.nvim",
+      'williamboman/mason.nvim',
       {
         'jose-elias-alvarez/null-ls.nvim',
         dependencies = {
@@ -261,10 +261,10 @@ require('lazy').setup({
         map('n', 'hs', gs.stage_hunk, 'stage')
         map('n', 'hr', gs.reset_hunk, 'reset')
         map('v', 'hs', function()
-          gs.stage_hunk { vim.fn.line("."), vim.fn.line("v") }
+          gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') }
         end, 'stage')
         map('v', 'hr', function()
-          gs.reset_hunk { vim.fn.line("."), vim.fn.line("v") }
+          gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') }
         end, 'reset')
         map('n', 'hS', gs.stage_buffer, 'stage buffer')
         map('n', 'hu', gs.undo_stage_hunk, 'undo stage')
@@ -295,7 +295,7 @@ require('lazy').setup({
         'folke/neodev.nvim',
         opts = {
           library = {
-            plugins = { "nvim-dap-ui" },
+            plugins = { 'nvim-dap-ui' },
             types = true
           },
         }
@@ -320,7 +320,7 @@ require('lazy').setup({
   },
 
   {
-    "folke/tokyonight.nvim",
+    'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
     opts = {},
@@ -461,12 +461,12 @@ require('lazy').setup({
   performance = {
     rtp = {
       disabled_plugins = {
-        "gzip",
-        "netrwPlugin",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
+        'gzip',
+        'netrwPlugin',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
       },
     },
   },
@@ -562,6 +562,7 @@ vim.diagnostic.config({
 
 local lsp = require('lsp-zero').preset({})
 
+local navbuddy = require('nvim-navbuddy')
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({ buffer = bufnr })
   local map = function(m, keys, func, desc)
