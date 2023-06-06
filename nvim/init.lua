@@ -297,6 +297,15 @@ require('lazy').setup({
   },
 
   {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+
+  'sainnhe/everforest',
+
+  {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = {
@@ -462,7 +471,6 @@ local lualine = require('lualine')
 lualine.setup {
   options = {
     icons_enabled = false,
-    theme = 'catppuccin',
     component_separators = '|',
     section_separators = '',
   },
