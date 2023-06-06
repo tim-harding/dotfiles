@@ -193,6 +193,16 @@ require('lazy').setup({
     dependencies = {
       'neovim/nvim-lspconfig',
       {
+        'SmiteshP/nvim-navbuddy',
+        dependencies = {
+          'SmiteshP/nvim-navic',
+          'MunifTanjim/nui.nvim'
+        },
+        opts = {
+          lsp = { auto_attach = true }
+        }
+      },
+      {
         'williamboman/mason.nvim',
         build = function()
           pcall(function() vim.cmd('MasonUpdate') end)
@@ -564,7 +574,7 @@ local lsp = require('lsp-zero').preset({})
 
 local navbuddy = require('nvim-navbuddy')
 lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({ buffer = bufnr })
+  navbuddy.attach(client, bufnr)
   local map = function(m, keys, func, desc)
     local opts = { buffer = bufnr, desc = desc }
     vim.keymap.set(m, keys, func, opts)
