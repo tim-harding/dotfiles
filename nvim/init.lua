@@ -1,5 +1,5 @@
 require('options')
 require('lazy_setup')
-require('autocommands')
+require('commands')
 require('keymap')
 vim.cmd.colorscheme('catppuccin')
