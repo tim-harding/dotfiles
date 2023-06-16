@@ -6,3 +6,6 @@ if status is-interactive
     set -x TERM xterm-256color
     set -x RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc
 end
+
+# The next line updates PATH for Netlify's Git Credential Helper.
+test -f '/home/tim/.config/netlify/helper/path.fish.inc' && source '/home/tim/.config/netlify/helper/path.fish.inc'

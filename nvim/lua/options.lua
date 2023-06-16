@@ -18,4 +18,5 @@ vim.opt.signcolumn = 'yes'
 vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.shortmess = 'aoOstTIFcC'
+vim.opt.linebreak = true
 vim.loader.enable()
