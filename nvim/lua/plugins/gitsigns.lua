@@ -1,4 +1,4 @@
-local util = require('util')
+local shared = require('shared')
 
 return {
   'lewis6991/gitsigns.nvim',
@@ -8,7 +8,7 @@ return {
       local map = function(mode, keys, func, desc, opts)
         opts = opts or {}
         opts.buffer = bufnr
-        util.map(mode, keys, func, desc, opts)
+        shared.map(mode, keys, func, desc, opts)
       end
 
       map('n', ']h', function()

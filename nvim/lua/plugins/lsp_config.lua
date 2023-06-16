@@ -1,4 +1,4 @@
-local on_attach = require('util').on_attach
+local on_attach = require('shared').on_attach
 
 local set_up_autoformat = function()
   local format_is_enabled = true

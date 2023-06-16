@@ -1,4 +1,4 @@
-local on_attach = require('util').on_attach
+local on_attach = require('shared').on_attach
 
 return {
   'jose-elias-alvarez/typescript.nvim',

@@ -1,4 +1,4 @@
-local map = require('util').map
+local map = require('shared').map
 
 local whichkey = require('which-key')
 map('n', 'h', function() whichkey.show('h', { mode = 'n', auto = true }) end)
@@ -83,3 +83,6 @@ map('n', '{', ':<<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
 map('n', '<leader>f', require('oil').open, 'File browser')
 
 map('n', '<leader>c', ':source ~/.config/nvim/init.lua<cr>', 'reload config')
+
+map('n', '<leader>n', ':cnext', 'next quickfix list item')
+map('n', '<leader>p', ':cprev', 'prev quickfix list item')
