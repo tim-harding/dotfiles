@@ -57,6 +57,10 @@ return {
   config = function()
     require('neodev').setup()
 
+    vim.diagnostic.config({
+      virtual_text = false,
+    })
+
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
@@ -73,7 +77,7 @@ return {
     mason_lspconfig.setup({})
     mason_lspconfig.setup_handlers {
       function(server_name)
-        if server_name ~= 'tsserver' and server_name ~= 'rust_analyzer' then
+        if server_name ~= 'tsserver' then
           require('lspconfig')[server_name].setup {
             capabilities = capabilities,
             settings = server_settings,
@@ -165,7 +169,6 @@ return {
             null_ls.setup({
               sources = {
                 null_ls.builtins.formatting.prettierd,
-                null_ls.builtins.code_actions.gitsigns,
                 require('typescript.extensions.null-ls.code-actions'),
               },
             })
