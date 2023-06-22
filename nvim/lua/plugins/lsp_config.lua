@@ -54,6 +54,7 @@ end
 
 return {
   'neovim/nvim-lspconfig',
+  event = 'VeryLazy',
   config = function()
     require('neodev').setup()
 
@@ -178,6 +179,10 @@ return {
           }
         },
       },
+    },
+    {
+      'ray-x/lsp_signature.nvim',
+      opts = {},
     }
   },
 }
