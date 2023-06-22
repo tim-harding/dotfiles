@@ -32,9 +32,6 @@ end, 'trouble diagnostic')
 map('n', '<C-S-v>', '"+p')
 map('i', '<C-S-v>', '<esc>"+pi')
 
-map('n', 's', ':HopChar2<cr>')
-map('n', 'jj', ':HopWord<cr>', 'hop word')
-
 local tb = require('telescope.builtin')
 map('n', 'jr', tb.oldfiles, 'recent')
 map('n', 'jg', tb.git_files, 'git')
