@@ -39,6 +39,7 @@ map('n', 'jp', tb.registers, 'paste register')
 map('n', 'jm', tb.marks, 'marks')
 map('n', 'jq', tb.quickfix, 'quickfix')
 map('n', 'jn', function() tb.find_files({ cwd = '~/.config/nvim' }) end, 'neovim config')
+map('n', 'jt', ":TodoTelescope<cr>", 'todos')
 
 map('n', 'ls', tb.lsp_document_symbols, 'find document symbol')
 map('n', 'lS', tb.lsp_workspace_symbols, 'find workspace symbol')
