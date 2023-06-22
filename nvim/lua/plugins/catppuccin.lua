@@ -6,8 +6,5 @@ return {
   opts = {
     -- latte, frappe, macchiato, mocha
     flavour = 'frappe',
-    integrations = {
-      hop = true,
-    }
   }
 }

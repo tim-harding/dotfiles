@@ -1,4 +1,11 @@
 return {
   'numToStr/Comment.nvim',
-  opts = {}
+  lazy = true,
+  config = true,
+  keys = {
+    { 'gcc' },
+    { 'gbc' },
+    { 'gc', mode = 'v' },
+    { 'gb', mode = 'v' },
+  }
 }
