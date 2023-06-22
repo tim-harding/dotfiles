@@ -5,21 +5,6 @@ map({ 'n', 'v', 'o' }, 'j', '<nop>')
 map({ 'n', 'v', 'o' }, 'k', '<nop>')
 map({ 'n', 'v', 'o' }, 'l', '<nop>')
 
-local trouble = require('trouble')
-map('n', '<leader>t', ':TroubleToggle<cr>', 'toggle trouble')
-map('n', ']q', function()
-  trouble.next({
-    skip_groups = true,
-    jump = true
-  })
-end, 'trouble diagnostic')
-map('n', '[q', function()
-  trouble.previous({
-    skip_groups = true,
-    jump = true
-  })
-end, 'trouble diagnostic')
-
 map('n', '<C-S-v>', '"+p')
 map('i', '<C-S-v>', '<esc>"+pi')
 

@@ -1,9 +1,28 @@
+local map = require('shared').map
+
 return {
   'folke/trouble.nvim',
-  opts = {
-    height = 2,
-  },
+  event = 'VeryLazy',
   dependencies = {
     'nvim-tree/nvim-web-devicons'
   },
+  config = function()
+    local trouble = require('trouble')
+    trouble.setup({
+      height = 2,
+    })
+    map('n', '<leader>t', ':TroubleToggle<cr>', 'toggle trouble')
+    map('n', ']q', function()
+      trouble.next({
+        skip_groups = true,
+        jump = true
+      })
+    end, 'trouble diagnostic')
+    map('n', '[q', function()
+      trouble.previous({
+        skip_groups = true,
+        jump = true
+      })
+    end, 'trouble diagnostic')
+  end,
 }
