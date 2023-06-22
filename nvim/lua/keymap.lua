@@ -5,10 +5,6 @@ map({ 'n', 'v', 'o' }, 'j', '<nop>')
 map({ 'n', 'v', 'o' }, 'k', '<nop>')
 map({ 'n', 'v', 'o' }, 'l', '<nop>')
 
-map('n', 'hc', ':Git commit --quiet<cr>', 'commit')
-map('n', 'hP', ':Git push<cr>', 'push')
-map('n', 'ha', ':Git commit --quiet --amend --no-edit<cr>', 'amend')
-
 local trouble = require('trouble')
 map('n', '<leader>t', ':TroubleToggle<cr>', 'toggle trouble')
 map('n', ']q', function()
