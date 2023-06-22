@@ -2,6 +2,7 @@ local shared = require('shared')
 
 return {
   'simrat39/rust-tools.nvim',
+  ft = { 'rust' },
   opts = {
     server = {
       standalone = false, -- May improve startup time
