@@ -33,7 +33,5 @@ map('n', '{', ':<<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
 
 map('n', '<leader>f', require('oil').open, 'File browser')
 
-map('n', '<leader>c', ':source ~/.config/nvim/init.lua<cr>', 'reload config')
-
-map('n', '<leader>n', ':cnext', 'next quickfix list item')
-map('n', '<leader>p', ':cprev', 'prev quickfix list item')
+map('n', '<leader>q', ':cnext', 'next quickfix list item')
+map('n', '<leader>q', ':cprev', 'prev quickfix list item')
