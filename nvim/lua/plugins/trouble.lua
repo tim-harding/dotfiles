@@ -9,8 +9,11 @@ return {
   config = function()
     local trouble = require('trouble')
     trouble.setup({
-      height = 2,
+      height = 1,
+      auto_open = true,
+      auto_close = true,
     })
+
     map('n', '<leader>t', ':TroubleToggle<cr>', 'toggle trouble')
     map('n', ']]', function()
       trouble.next({
