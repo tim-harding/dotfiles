@@ -1,5 +1,11 @@
 return {
   'folke/which-key.nvim',
   event = 'VeryLazy',
-  opts = {},
+  opts = {
+    triggers_blacklist = {
+      n = {},
+      i = {},
+      v = {},
+    }
+  },
 }

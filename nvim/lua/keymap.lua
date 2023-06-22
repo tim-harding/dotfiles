@@ -1,14 +1,9 @@
 local map = require('shared').map
 
-local whichkey = require('which-key')
-map('n', 'h', function() whichkey.show('h', { mode = 'n', auto = true }) end)
-map('n', 'hh', '<nop>')
-map('n', 'j', function() whichkey.show('j', { mode = 'n', auto = true }) end)
-map('n', 'jj', '<nop>')
-map('n', 'k', function() whichkey.show('k', { mode = 'n', auto = true }) end)
-map('n', 'kk', '<nop>')
-map('n', 'l', function() whichkey.show('l', { mode = 'n', auto = true }) end)
-map('n', 'll', '<nop>')
+map({ 'n', 'v', 'o' }, 'h', '<nop>')
+map({ 'n', 'v', 'o' }, 'j', '<nop>')
+map({ 'n', 'v', 'o' }, 'k', '<nop>')
+map({ 'n', 'v', 'o' }, 'l', '<nop>')
 
 map('n', 'hc', ':Git commit --quiet<cr>', 'commit')
 map('n', 'hP', ':Git push<cr>', 'push')
