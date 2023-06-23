@@ -8,7 +8,6 @@ return {
     flavour = 'frappe',
     integrations = {
       which_key = true,
-      fidget = true,
     },
   },
 }

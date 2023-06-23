@@ -137,7 +137,7 @@ return {
     'folke/neodev.nvim',
     {
       'j-hui/fidget.nvim',
-      opts = {}
+      opts = {},
     },
     {
       'L3MON4D3/LuaSnip',
