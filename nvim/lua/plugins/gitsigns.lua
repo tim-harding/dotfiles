@@ -43,6 +43,9 @@ return {
       map('n', 'htd', gs.toggle_deleted, 'toggle deleted')
 
       map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'inner hunk')
-    end,
-  }
+
+      require('scrollbar.handlers.gitsigns').setup()
+    end
+  },
+  dependencies = { 'petertriho/nvim-scrollbar' }
 }
