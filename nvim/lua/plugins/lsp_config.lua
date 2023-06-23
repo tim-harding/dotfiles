@@ -123,6 +123,9 @@ return {
       })
     end,
     dependencies = { 'nvim-lua/plenary.nvim' }
-  }, { 'ray-x/lsp_signature.nvim', opts = {} }
+  }, {
+    'ray-x/lsp_signature.nvim',
+    opts = { hint_prefix = "", floating_window = false }
+  }
   }
 }
