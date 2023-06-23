@@ -120,8 +120,23 @@ return {
 
     {
       'SmiteshP/nvim-navbuddy',
-      opts = { lsp = { auto_attach = true } },
-      dependencies = { 'SmiteshP/nvim-navic', 'MunifTanjim/nui.nvim' }
+      config = function()
+        local navbuddy = require('nvim-navbuddy')
+        local actions = require('nvim-navbuddy.actions')
+        navbuddy.setup({
+          mappings = {
+            ['<up>'] = actions.previous_sibling(),
+            ['<down>'] = actions.next_sibling(),
+            ['<left>'] = actions.parent(),
+            ['<right>'] = actions.children(),
+            ['_'] = actions.root()
+          }
+        })
+      end,
+      dependencies = {
+        { 'SmiteshP/nvim-navic', opts = { highlight = true } },
+        'MunifTanjim/nui.nvim'
+      }
     }, {
     'jose-elias-alvarez/null-ls.nvim',
     config = function()

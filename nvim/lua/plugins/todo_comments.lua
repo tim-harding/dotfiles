@@ -1,11 +1,6 @@
 return {
   "folke/todo-comments.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
-  events = 'VeryLazy',
-  opts = {
-    highlight = {
-      keyword = "",
-      after = "",
-    }
-  }
+  lazy = false,
+  opts = { highlight = { keyword = "", after = "" } }
 }
