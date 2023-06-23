@@ -235,3 +235,4 @@ exec feh --bg-tile ~/Documents/misc/nord-solid/dark1.png
 exec xset -dpms
 exec xset s off
 exec xset r rate 200 35
+exec input-remapper-control --command autoload
