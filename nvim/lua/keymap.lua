@@ -5,8 +5,8 @@ map({ 'n', 'v', 'o' }, 'j', '<nop>')
 map({ 'n', 'v', 'o' }, 'k', '<nop>')
 map({ 'n', 'v', 'o' }, 'l', '<nop>')
 
-map('n', '<C-S-v>', '"+p')
-map('i', '<C-S-v>', '<esc>"+pi')
+map('n', '<leader>p', '"+p')
+map('n', '<leader>y', '"+y')
 
 map('n', '<C-Left>', '<C-w>h')
 map('n', '<C-Right>', '<C-w>l')
