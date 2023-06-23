@@ -9,6 +9,6 @@
 !tealdeer/
 !ra-multiplex/
 !helix/
-*rofi/
+!rofi/
 !ripgrep/
 !xautocfg.cfg
