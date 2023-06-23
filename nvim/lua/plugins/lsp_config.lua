@@ -111,7 +111,7 @@ return {
   end,
 
   dependencies = {
-    'hrsh7th/nvim-cmp', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer',
+    'hrsh7th/nvim-cmp', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-path',
     'saadparwaiz1/cmp_luasnip', 'folke/neodev.nvim',
 
     { 'j-hui/fidget.nvim', opts = {} },
