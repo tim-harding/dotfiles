@@ -42,8 +42,8 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # bindsym $mod+p exec --no-startup-id dmenu_run -fn 'CaskaydiaCove Nerd Font-14' -nb '#3b4252' -sf '#2e3440' -sb '#88c0d0' -nf '#d8dee9'
-bindsym $mod+p exec "rofi -modi drun,run -show drun"
-bindsym $mod+Shift+p exec "rofimoji"
+bindsym $mod+p exec "rofi -show drun"
+bindsym $mod+Shift+p exec "rofimoji --selector-args='-font \\"Noto Color Emoji\\"'"
 
 # change focus
 bindsym $mod+j focus left
