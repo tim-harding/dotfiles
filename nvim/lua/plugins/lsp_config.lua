@@ -6,17 +6,16 @@ return {
   config = function()
     require('neodev').setup()
 
-    vim.diagnostic.config({
-      virtual_text = false,
-    })
+    vim.diagnostic.config({ virtual_text = false })
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+    capabilities =
+        require('cmp_nvim_lsp').default_capabilities(capabilities)
 
     local lspconfig = require('lspconfig')
     lspconfig.lua_ls.setup({
-      capabilities = capabilities.lua_ls,
-      on_attach = on_attach,
+      capabilities = capabilities,
+      on_attach = on_attach
     })
 
     local cmp = require('cmp')
@@ -28,7 +27,7 @@ return {
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
-        end,
+        end
       },
       mapping = cmp.mapping.preset.insert {
         ['<tab>'] = cmp.mapping.select_next_item(),
@@ -37,19 +36,14 @@ return {
         ['<c-u>'] = cmp.mapping.scroll_docs(4),
         ['<cr>'] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-        },
+          select = true
+        }
       },
-      sources = {
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-      },
+      sources = { { name = 'nvim_lsp' }, { name = 'luasnip' } }
     })
 
-    cmp.event:on(
-      'confirm_done',
-      require('nvim-autopairs.completion.cmp').on_confirm_done()
-    )
+    cmp.event:on('confirm_done',
+      require('nvim-autopairs.completion.cmp').on_confirm_done())
 
     local format_is_enabled = true
     vim.api.nvim_create_user_command('ToggleAutoformat', function()
@@ -64,7 +58,8 @@ return {
     local get_augroup = function(client)
       if not _augroups[client.id] then
         local group_name = 'kickstart-lsp-format-' .. client.name
-        local id = vim.api.nvim_create_augroup(group_name, { clear = true })
+        local id = vim.api.nvim_create_augroup(group_name,
+          { clear = true })
         _augroups[client.id] = id
       end
 
@@ -72,7 +67,8 @@ return {
     end
 
     vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('kickstart-lsp-attach-format', { clear = true }),
+      group = vim.api.nvim_create_augroup('kickstart-lsp-attach-format',
+        { clear = true }),
       callback = function(args)
         local client_id = args.data.client_id
         local client = vim.lsp.get_client_by_id(client_id)
@@ -94,64 +90,39 @@ return {
               async = false,
               filter = function(c)
                 return c.id == client.id
-              end,
+              end
             }
-          end,
+          end
         })
-      end,
+      end
     })
   end,
 
   dependencies = {
-    'hrsh7th/nvim-cmp',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-buffer',
-    'saadparwaiz1/cmp_luasnip',
-    'folke/neodev.nvim',
+    'hrsh7th/nvim-cmp', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer',
+    'saadparwaiz1/cmp_luasnip', 'folke/neodev.nvim',
 
-    {
-      'j-hui/fidget.nvim',
-      opts = {},
-    },
+    { 'j-hui/fidget.nvim', opts = {} },
 
-    {
-      'L3MON4D3/LuaSnip',
-      dependencies = { 'rafamadriz/friendly-snippets' }
-    },
+    { 'L3MON4D3/LuaSnip',  dependencies = { 'rafamadriz/friendly-snippets' } },
 
     {
       'SmiteshP/nvim-navbuddy',
-      opts = {
-        lsp = {
-          auto_attach = true
+      opts = { lsp = { auto_attach = true } },
+      dependencies = { 'SmiteshP/nvim-navic', 'MunifTanjim/nui.nvim' }
+    }, {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      local null_ls = require('null-ls')
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.prettierd,
+          null_ls.builtins.formatting.lua_format,
+          require('typescript.extensions.null-ls.code-actions')
         }
-      },
-      dependencies = {
-        'SmiteshP/nvim-navic',
-        'MunifTanjim/nui.nvim'
-      },
-    },
-
-    {
-      'jose-elias-alvarez/null-ls.nvim',
-      config = function()
-        local null_ls = require("null-ls")
-        null_ls.setup({
-          sources = {
-            null_ls.builtins.formatting.prettierd,
-            null_ls.builtins.formatting.lua_ls,
-            require('typescript.extensions.null-ls.code-actions'),
-          },
-        })
-      end,
-      dependencies = {
-        'nvim-lua/plenary.nvim'
-      }
-    },
-
-    {
-      'ray-x/lsp_signature.nvim',
-      opts = {},
-    }
-  },
+      })
+    end,
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  }, { 'ray-x/lsp_signature.nvim', opts = {} }
+  }
 }
