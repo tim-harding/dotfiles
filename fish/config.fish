@@ -6,6 +6,7 @@ if status is-interactive
     alias vi='nvim'
     set -x TERM xterm-256color
     set -x RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc
+    set -x EDITOR nvim
 end
 
 # The next line updates PATH for Netlify's Git Credential Helper.
