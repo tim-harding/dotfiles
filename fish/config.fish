@@ -3,6 +3,7 @@ if status is-interactive
     function take_a_dub
         git add . && git commit -m $argv
     end
+    alias vi='nvim'
     set -x TERM xterm-256color
     set -x RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc
 end
