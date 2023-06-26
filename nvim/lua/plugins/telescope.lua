@@ -7,7 +7,13 @@ return {
 
   dependencies = {
     'nvim-lua/plenary.nvim',
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+    {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      build = 'make'
+    },
+    cond = function()
+      return vim.fn.executable 'make' == 1
+    end,
   },
 
   config = function()
@@ -27,7 +33,7 @@ return {
         }
       }
     }
-    telescope.load_extension('fzf')
+    pcall(telescope.load_extension, 'fzf')
 
     map('n', 'jj', tb.oldfiles, 'recent')
     map('n', 'jf', tb.find_files, 'files')
