@@ -4,6 +4,7 @@ if status is-interactive
         git add . && git commit -m $argv
     end
     alias vi='nvim'
+    alias vim='nvim'
     set fish_greeting
     set -x TERM xterm-256color
     set -x RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc
