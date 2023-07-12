@@ -6,6 +6,6 @@ return {
   opts = {
     -- latte, frappe, macchiato, mocha
     flavour = 'frappe',
-    integrations = { which_key = true, navic = { enabled = true } }
+    integrations = { which_key = true }
   }
 }
