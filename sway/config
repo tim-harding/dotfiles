@@ -53,37 +53,46 @@ mode "resize" {
 mouse_warping none
 focus_follows_mouse no
 
-# Styling
 for_window [class="^.*"] border pixel 2
 
-# Nord colors
-set $dark1 #2e3440
-set $dark2 #3b4252
-set $dark3 #434c5e
-set $dark4 #4c566a
-set $light1 #d8dee9
-set $light2 #e5e9f0
-set $light3 #eceff4
-set $frost1 #8fbcbb
-set $frost2 #88c0d0
-set $frost3 #81a1c1
-set $frost4 #5e81ac
-set $red #bf616a
-set $orange #d08770
-set $yellow #ebcb8b
-set $green #a3be8c
-set $purple #b48ead
+# Catppuccin frappe colors
+set $rosewater 	#f2d5cf
+set $flamingo 	#eebebe
+set $pink 	#f4b8e4
+set $mauve 	#ca9ee6
+set $red 	#e78284
+set $maroon 	#ea999c
+set $peach 	#ef9f76
+set $yellow 	#e5c890
+set $green 	#a6d189
+set $teal 	#81c8be
+set $sky 	#99d1db
+set $sapphire 	#85c1dc
+set $blue 	#8caaee
+set $lavender 	#babbf1
+set $text 	#c6d0f5
+set $subtext1 	#b5bfe2
+set $subtext0 	#a5adce
+set $overlay2 	#949cbb
+set $overlay1 	#838ba7
+set $overlay0 	#737994
+set $surface2 	#626880
+set $surface1 	#51576d
+set $surface0 	#414559
+set $base 	#303446
+set $mantle 	#292c3c
+set $crust 	#232634
 
-# class                 border  backgr. text    indicator child_border
-client.focused          $frost4 $frost4 $light1 $frost4   $frost4
-client.focused_inactive $dark1  $dark1  $light1 $dark1    $dark1
-client.unfocused        $dark1  $dark1  $light1 $dark1    $dark1
-client.urgent           $dark1  $dark1  $light1 $dark1    $dark1
-client.placeholder      $dark1  $dark1  $light1 $dark1    $dark1
+# class                 border    backgr.   text  indicator child_border
+client.focused          $surface2 $surface2 $text $surface2 $surface2
+client.focused_inactive $surface0 $surface0 $text $surface0 $surface0
+client.unfocused        $base     $base     $text $base     $base
+client.urgent           $base     $base     $text $base     $base
+client.placeholder      $base     $base     $text $base     $base
 
 input "type:keyboard" {
   repeat_delay 200
   repeat_rate 35
 }
 
-exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+include /etc/sway/config.d/*
