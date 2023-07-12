@@ -731,6 +731,9 @@ key_bindings:
   #- { key: F,              mods: Command|Control,            action: ToggleFullscreen      }
   #- { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
   #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
+  #
+  
+  - { key: Return,   mods: Control, action: SpawnNewInstance }
   
   # Make <C-Tab> and <C-S-Tab> work in Neovim
   - { key: Tab,    mods: Control,                 chars: "\x1b[9;5u" }
