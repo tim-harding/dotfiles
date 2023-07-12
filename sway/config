@@ -5,10 +5,10 @@ set $mod Mod4
 font pango:CaskaydiaCove Nerd Font 12
 
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioPlay exec "~/.config/i3/media_control.sh play-pause";
-bindsym XF86AudioStop exec "~/.config/i3/media_control.sh stop";
-bindsym XF86AudioPrev exec "~/.config/i3/media_control.sh previous";
-bindsym XF86AudioNext exec "~/.config/i3/media_control.sh next";
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioStop exec playerctl stop
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioNext exec playerctl next
 
 floating_modifier $mod
 bindsym $mod+Return exec alacritty
