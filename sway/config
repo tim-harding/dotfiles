@@ -2,34 +2,21 @@ include ~/.config/sway/hardware
 
 set $mod Mod4
 
-# Font for window titles. 
 font pango:CaskaydiaCove Nerd Font 12
 
-# Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioPlay exec "~/.config/i3/media_control.sh play-pause";
 bindsym XF86AudioStop exec "~/.config/i3/media_control.sh stop";
 bindsym XF86AudioPrev exec "~/.config/i3/media_control.sh previous";
 bindsym XF86AudioNext exec "~/.config/i3/media_control.sh next";
 
-# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-
-# start a terminal
 bindsym $mod+Return exec alacritty
-
-# kill focused window
 bindsym $mod+Shift+q kill
-
 bindsym $mod+l exec swaylock
 
-# start dmenu (a program launcher)
+# dmenu_path | dmenu | xargs swaymsg exec --
 bindsym $mod+p exec --no-startup-id dmenu_run -fn 'CaskaydiaCove Nerd Font-14' -nb '#3b4252' -sf '#2e3440' -sb '#88c0d0' -nf '#d8dee9'
-# A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -41,55 +28,30 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
 bindsym $mod+h split h
-
-# split in vertical orientation
 bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
 bindsym $mod+s layout toggle split
-
-# toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# focus the parent container
 bindsym $mod+u focus parent
-
-# focus the child container
 bindsym $mod+d focus child
-
-mouse_warping none
-focus_follows_mouse no
-
-# reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec swaymsg exit
 
-# resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
 mode "resize" {
-  # same bindings, but for the arrow keys
   bindsym Left resize shrink width 10 px or 10 ppt
   bindsym Down resize grow height 10 px or 10 ppt
   bindsym Up resize shrink height 10 px or 10 ppt
   bindsym Right resize grow width 10 px or 10 ppt
-
-  # back to normal
   bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
+mouse_warping none
+focus_follows_mouse no
 
 # bar {
 #   output $monitor1
@@ -114,7 +76,7 @@ bindsym $mod+r mode "resize"
 # }
 
 # Styling
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 
 # Nord colors
 set $dark1 #2e3440
