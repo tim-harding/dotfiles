@@ -4,6 +4,7 @@ return {
   opts = {
     labels = 'setnfuplgmbjcvkriwyxaoqz',
     search = {
+      enabled = false,
       multi_window = false,
     },
     jump = {
