@@ -84,7 +84,7 @@ set $mantle 	#292c3c
 set $crust 	#232634
 
 # class                 border    backgr.   text  indicator child_border
-client.focused          $surface2 $surface2 $text $surface2 $surface2
+client.focused          $blue     $blue     $base $blue     $blue
 client.focused_inactive $surface0 $surface0 $text $surface0 $surface0
 client.unfocused        $base     $base     $text $base     $base
 client.urgent           $base     $base     $text $base     $base
