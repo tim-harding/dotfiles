@@ -9,6 +9,7 @@ if status is-interactive
     set -x TERM xterm-256color
     set -x RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc
     set -x EDITOR nvim
+    fish_add_path ~/.cargo/bin
 end
 
 # The next line updates PATH for Netlify's Git Credential Helper.
