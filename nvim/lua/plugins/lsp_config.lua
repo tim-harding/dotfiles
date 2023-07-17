@@ -16,6 +16,10 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
     })
+    lspconfig.dartls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
 
     local cmp = require('cmp')
     local luasnip = require('luasnip')
