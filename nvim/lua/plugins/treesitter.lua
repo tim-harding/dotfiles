@@ -14,7 +14,7 @@ return {
       highlight = { enable = true },
       indent = {
         enable = true,
-        disable = { 'python' }
+        disable = { 'python', 'dart' }
       },
       incremental_selection = {
         enable = true,
@@ -28,6 +28,7 @@ return {
       textobjects = {
         select = {
           enable = true,
+          disable = { 'dart' },
           -- Automatically jump forward to textobj.
           -- Do not have to have cursor placed inside.
           lookahead = true,
@@ -42,6 +43,7 @@ return {
         },
         move = {
           enable = true,
+          disable = { 'dart' },
           set_jumps = true,
           goto_next_start = {
             [']f'] = '@function.outer',
@@ -58,15 +60,6 @@ return {
           goto_previous_end = {
             ['[F'] = '@function.outer',
             ['[C'] = '@class.outer',
-          },
-        },
-        swap = {
-          enable = true,
-          swap_next = {
-            ['<leader>a'] = '@parameter.inner',
-          },
-          swap_previous = {
-            ['<leader>A'] = '@parameter.inner',
           },
         },
       },
