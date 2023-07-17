@@ -11,6 +11,4 @@ if status is-interactive
     set -x EDITOR nvim
 end
 
-# The next line updates PATH for Netlify's Git Credential Helper.
-test -f '/home/tim/.config/netlify/helper/path.fish.inc' && source '/home/tim/.config/netlify/helper/path.fish.inc'
 fish_add_path ~/.cargo/bin
