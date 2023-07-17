@@ -12,3 +12,4 @@ if status is-interactive
 end
 
 fish_add_path ~/.cargo/bin
+set --universal --export MOZ_ENABLE_WAYLAND 1
