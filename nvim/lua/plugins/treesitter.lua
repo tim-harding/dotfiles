@@ -1,3 +1,4 @@
+local map = require('shared').map
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
@@ -21,7 +22,6 @@ return {
         keymaps = {
           init_selection = '<cr>',
           node_incremental = '<cr>',
-          scope_incremental = false,
           node_decremental = '<tab>',
         },
       },
@@ -48,21 +48,29 @@ return {
           goto_next_start = {
             [']f'] = '@function.outer',
             [']c'] = '@class.outer',
+            [']a'] = '@parameter.inner',
           },
           goto_next_end = {
             [']F'] = '@function.outer',
             [']C'] = '@class.outer',
+            [']A'] = '@parameter.inner',
           },
           goto_previous_start = {
             ['[f'] = '@function.outer',
             ['[c'] = '@class.outer',
+            ['[a'] = '@parameter.inner',
           },
           goto_previous_end = {
             ['[F'] = '@function.outer',
             ['[C'] = '@class.outer',
+            ['[A'] = '@parameter.inner',
           },
         },
       },
     }
+
+    local ts_move = require('nvim-treesitter.textobjects.repeatable_move')
+    map({ 'n', 'x', 'o' }, ';', ts_move.repeat_last_move_next)
+    map({ 'n', 'x', 'o' }, ',', ts_move.repeat_last_move_previous)
   end
 }
