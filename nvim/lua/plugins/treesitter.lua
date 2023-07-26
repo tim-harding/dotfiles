@@ -69,8 +69,9 @@ return {
       },
     }
 
-    local ts_move = require('nvim-treesitter.textobjects.repeatable_move')
-    map({ 'n', 'x', 'o' }, ';', ts_move.repeat_last_move_next)
-    map({ 'n', 'x', 'o' }, ',', ts_move.repeat_last_move_previous)
+    -- TODO: Need to make this so it doesn't override ftFT repeats
+    -- local ts_move = require('nvim-treesitter.textobjects.repeatable_move')
+    -- map({ 'n', 'x', 'o' }, ';', ts_move.repeat_last_move_next)
+    -- map({ 'n', 'x', 'o' }, ',', ts_move.repeat_last_move_previous)
   end
 }
