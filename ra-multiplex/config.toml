@@ -43,4 +43,8 @@ log_filters = "info"
 #
 # when enabled every connected client will attempt to discover the root of the
 # workspace it was spawned in. otherwise the client CWD is always used
-workspace_detection = true
+
+#############################################################################
+## Disabled due to errors. Maybe a version thing? Try again in the future. ##
+#############################################################################
+# workspace_detection = true

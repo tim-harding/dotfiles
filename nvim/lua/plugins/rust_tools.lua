@@ -5,7 +5,8 @@ return {
   ft = { 'rust' },
   opts = {
     server = {
-      standalone = false, -- May improve startup time
+      cmd = { 'ra-multiplex' },
+      standalone = false,
       on_attach = function(_, bufnr)
         local rt = require('rust-tools')
         shared.on_attach(_, bufnr)
