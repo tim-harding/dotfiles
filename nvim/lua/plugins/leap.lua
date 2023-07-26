@@ -6,7 +6,7 @@ return {
       function()
         require('leap').leap({ target_windows = { vim.fn.win_getid() } })
       end,
-      mode = { 'n', 'v' },
+      mode = { 'n', 'v', 'o' },
     }
   },
 }
