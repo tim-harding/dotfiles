@@ -3,7 +3,6 @@
 !.gitignore
 !alacritty/
 !fish/
-!picom/
 !nvim/
 !tealdeer/
 !ra-multiplex/
