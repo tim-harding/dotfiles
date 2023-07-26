@@ -20,6 +20,23 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
     })
+    lspconfig.omnisharp.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      handlers = {
+        ['textDocument/definition'] = require('omnisharp_extended').handler,
+      },
+      cmd = {
+        '/usr/bin/omnisharp',
+        '--languageserver',
+        '--zero-based-indices',
+        '--encoding',
+        'utf-8',
+        '--hostPID',
+        tostring(vim.fn.getpid()),
+      },
+      organize_imports_on_format = true,
+    })
 
     local cmp = require('cmp')
     local luasnip = require('luasnip')
@@ -126,6 +143,7 @@ return {
     'hrsh7th/cmp-nvim-lsp-signature-help',
     'saadparwaiz1/cmp_luasnip',
     'folke/neodev.nvim',
+    'Hoffs/omnisharp-extended-lsp.nvim',
     {
       'L3MON4D3/LuaSnip',
       dependencies = {
