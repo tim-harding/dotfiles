@@ -30,14 +30,6 @@ M.on_attach = function(client, bufnr)
   map('n', 'ld', vim.diagnostic.open_float, 'diagnostic float')
   map('n', '[d', vim.diagnostic.goto_prev, 'previous diagnostic]')
   map('n', ']d', vim.diagnostic.goto_next, 'next diagnostic')
-
-  local navbuddy = require('nvim-navbuddy')
-  navbuddy.attach(client, bufnr)
-  map('n', 'lb', navbuddy.open, 'open navbuddy')
-
-  if client.server_capabilities.documentSymbolProvider then
-    require('nvim-navic').attach(client, bufnr)
-  end
 end
 
 return M
