@@ -13,13 +13,13 @@ return {
     })
 
     map('n', '<leader>t', ':TroubleToggle<cr>', 'toggle trouble')
-    map('n', ']]', function()
+    map('n', ']t', function()
       trouble.next({
         skip_groups = true,
         jump = true
       })
     end, 'trouble diagnostic')
-    map('n', '[[', function()
+    map('n', '[t', function()
       trouble.previous({
         skip_groups = true,
         jump = true

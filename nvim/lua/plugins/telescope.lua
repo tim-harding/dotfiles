@@ -35,30 +35,24 @@ return {
     }
     pcall(telescope.load_extension, 'fzf')
 
-    map('n', 'jj', tb.oldfiles, 'recent')
-    map('n', 'jf', tb.find_files, 'files')
-    map('n', 'jh', tb.help_tags, 'help')
-    map('n', 'jrp', tb.live_grep, 'ripgrep project')
-    map('n', 'jrb', tb.current_buffer_fuzzy_find, 'ripgrep buffer')
-    map('n', 'jc', tb.commands, 'commands')
-    map('n', 'jp', tb.registers, 'paste register')
-    map('n', 'jm', tb.marks, 'marks')
-    map('n', 'jq', tb.quickfix, 'quickfix')
-    map('n', 'jn', function() tb.find_files({ cwd = '~/.config/nvim' }) end,
+    map('n', 'j', tb.find_files, 'files')
+    map('n', '<leader>jo', tb.oldfiles, 'recent')
+    map('n', '<leader>jh', tb.help_tags, 'help')
+    map('n', '<leader>jrp', tb.live_grep, 'ripgrep project')
+    map('n', '<leader>jrb', tb.current_buffer_fuzzy_find, 'ripgrep buffer')
+    map('n', '<leader>jc', tb.commands, 'commands')
+    map('n', '<leader>jp', tb.registers, 'paste register')
+    map('n', '<leader>jm', tb.marks, 'marks')
+    map('n', '<leader>jq', tb.quickfix, 'quickfix')
+    map('n', '<leader>jn', function() tb.find_files({ cwd = '~/.config/nvim' }) end,
       'neovim config')
-    map('n', 'jt', ":TodoTelescope<cr>", 'todos')
+    map('n', '<leader>jt', ":TodoTelescope<cr>", 'todos')
 
-    map('n', 'jd', tb.lsp_document_symbols, 'find document symbol')
-    map('n', 'js', tb.lsp_workspace_symbols, 'find project symbol')
-    map('n', 'ji', tb.lsp_implementations, 'find implementation')
+    map('n', '<leader>js', tb.lsp_workspace_symbols, 'find project symbol')
+    map('n', '<leader>ji', tb.lsp_implementations, 'find implementation')
 
     -- TODO: If there is only one item, select it
-    map('n', 'gr', tb.lsp_references, 'find reference')
-    map('n', 'gd', tb.lsp_definitions, 'find definition')
-
-    map('n', 'jhh', tb.git_files, 'git')
-    map('n', 'hhc', tb.git_commits, 'search commits')
-    map('n', 'hhb', tb.git_branches, 'search branches')
-    map('n', 'hhs', tb.git_status, 'search status')
+    -- map('n', 'gr', tb.lsp_references, 'find reference')
+    -- map('n', 'gd', tb.lsp_definitions, 'find definition')
   end
 }

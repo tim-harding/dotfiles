@@ -2,7 +2,7 @@ return {
   'Wansmer/treesj',
   keys = {
     {
-      '<space>j',
+      '<space>,',
       function() require('treesj').toggle() end,
       desc = 'Split toggle',
     },
