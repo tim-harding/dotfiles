@@ -18,5 +18,12 @@ return {
         auto_focus = true,
       },
     }
+    dap = {
+      adapter = {
+        type = "executable",
+        command = "lldb-vscode",
+        name = "rust_tools_lldb-vscode",
+      },
+    },
   }
 }
