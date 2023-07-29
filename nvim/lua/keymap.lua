@@ -21,3 +21,6 @@ map('n', '{', ':<<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
 
 map('n', ']q', ':cnext', 'next quickfix list item')
 map('n', '[q', ':cprev', 'prev quickfix list item')
+
+map('n', ']b', ':bnext', 'next buffer')
+map('n', '[b', ':bprev', 'prev buffer')
