@@ -19,8 +19,7 @@ map('n', '<leader>s', ':w<cr>', 'save')
 map('n', '}', ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>')
 map('n', '{', ':<<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
 
-map('n', ']q', ':cnext', 'next quickfix list item')
-map('n', '[q', ':cprev', 'prev quickfix list item')
-
-map('n', ']b', ':bnext', 'next buffer')
-map('n', '[b', ':bprev', 'prev buffer')
+map('n', ']q', ':cnext<cr>', 'next quickfix list item')
+map('n', '[q', ':cprev<cr>', 'prev quickfix list item')
+map('n', ']b', ':bnext<cr>', 'next buffer')
+map('n', '[b', ':bprev<cr>', 'prev buffer')
