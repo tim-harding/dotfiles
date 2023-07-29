@@ -52,6 +52,7 @@ return {
       mapping = cmp.mapping.preset.insert {
         ['<c-d>'] = cmp.mapping.scroll_docs(-4),
         ['<c-u>'] = cmp.mapping.scroll_docs(4),
+        ['<c-c>'] = cmp.mapping.abort(),
         ['<cr>'] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true
@@ -77,7 +78,6 @@ return {
           name = 'luasnip',
           keyword_length = 2,
         },
-        { name = 'nvim_lsp_signature_help' },
       },
     })
 
@@ -140,10 +140,18 @@ return {
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
-    'hrsh7th/cmp-nvim-lsp-signature-help',
     'saadparwaiz1/cmp_luasnip',
     'folke/neodev.nvim',
     'Hoffs/omnisharp-extended-lsp.nvim',
+    {
+      "ray-x/lsp_signature.nvim",
+      event = "VeryLazy",
+      opts = {
+        floating_window = false,
+        hint_prefix = '',
+        toggle_key = '<c-s>'
+      },
+    },
     {
       'L3MON4D3/LuaSnip',
       dependencies = {
