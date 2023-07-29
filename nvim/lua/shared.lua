@@ -15,7 +15,7 @@ M.on_attach = function(client, bufnr)
   end
 
   -- Use Telescope for these?
-  map('n', 'gr', vim.lsp.buf.references, 'references')
+  -- map('n', 'gr', vim.lsp.buf.references, 'references')
   map('n', 'gd', vim.lsp.buf.definition, 'definition')
 
   map('n', 'gh', vim.lsp.buf.hover, 'hover')

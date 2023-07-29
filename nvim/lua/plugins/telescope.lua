@@ -52,7 +52,7 @@ return {
     map('n', '<leader>ji', tb.lsp_implementations, 'find implementation')
 
     -- TODO: If there is only one item, select it
-    -- map('n', 'gr', tb.lsp_references, 'find reference')
+    map('n', 'gr', tb.lsp_references, 'find reference')
     -- map('n', 'gd', tb.lsp_definitions, 'find definition')
   end
 }
