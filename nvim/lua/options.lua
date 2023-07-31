@@ -1,3 +1,4 @@
+vim.g.did_load_filetypes = 1
 vim.g.mapleader = ' '
 vim.opt.relativenumber = true
 vim.opt.hlsearch = false
@@ -19,4 +20,5 @@ vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.shortmess = 'aoOstTIFcC'
 vim.opt.linebreak = true
+vim.opt.textwidth = 80
 vim.loader.enable()
