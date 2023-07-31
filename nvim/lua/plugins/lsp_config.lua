@@ -55,7 +55,7 @@ return {
         ['<c-c>'] = cmp.mapping.abort(),
         ['<cr>'] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Replace,
-          select = true
+          select = true,
         },
         ['<Tab>'] = cmp.mapping(function(fallback)
           if luasnip.expand_or_locally_jumpable() then
@@ -81,8 +81,7 @@ return {
       },
     })
 
-    cmp.event:on('confirm_done',
-      require('nvim-autopairs.completion.cmp').on_confirm_done())
+    -- cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done())
 
     local format_is_enabled = true
     vim.api.nvim_create_user_command('ToggleAutoformat', function()
