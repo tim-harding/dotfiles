@@ -21,4 +21,3 @@ vim.opt.cursorline = true
 vim.opt.shortmess = 'aoOstTIFcC'
 vim.opt.linebreak = true
 vim.opt.textwidth = 80
-vim.loader.enable()
