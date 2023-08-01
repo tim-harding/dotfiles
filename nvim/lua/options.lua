@@ -10,7 +10,6 @@ vim.opt.smartcase = true
 vim.opt.updatetime = 250
 vim.opt.timeout = true
 vim.opt.timeoutlen = 300
-vim.opt.completeopt = 'menuone,noselect'
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 2
 vim.opt.swapfile = false
@@ -21,3 +20,5 @@ vim.opt.cursorline = true
 vim.opt.shortmess = 'aoOstTIFcC'
 vim.opt.linebreak = true
 vim.opt.textwidth = 80
+-- For bufferline order persistence
+vim.opt.sessionoptions:append('globals')
