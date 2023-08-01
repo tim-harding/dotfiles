@@ -19,19 +19,7 @@ return {
       },
       lualine_x = { 'filetype' },
       lualine_y = { 'progress' },
-      lualine_z = { 'location' }
+      lualine_z = { 'location' },
     },
-    -- winbar = {},
-    tabline = {
-      lualine_a = {
-        {
-          'tabs',
-          mode = 2, -- Show tab number and name
-          max_length = function()
-            return vim.o.columns
-          end
-        },
-      },
-    }
   }
 }
