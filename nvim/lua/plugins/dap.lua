@@ -34,18 +34,25 @@ return {
     { '<F1>',  function() require('dap').terminate() end },
     { '<F10>', function() require('dap').step_over() end },
     { '<F11>', function() require('dap').step_into() end },
-    { '<F12>', function() require('dap').step_out() end }, {
-    '<leader>b',
-    function() require('dap').toggle_breakpoint() end,
-    desc = 'toggle breakpoint'
-  }, { '<F9>', function() require('dapui').toggle() end }, {
-    '<leader>B',
-    function()
-      require('dap').set_breakpoint(vim.fn.input(
-        'Breakpoint condition: '))
-    end,
-    desc = 'breakpoint condition'
-  }
+    { '<F12>', function() require('dap').step_out() end },
+    { '<F9>',  function() require('dapui').toggle() end },
+    {
+      '<leader>b',
+      function() require('dap').toggle_breakpoint() end,
+      desc = 'toggle breakpoint'
+    },
+    {
+      '<leader>c',
+      function() require('dap').clear_breakpoints() end,
+      desc = 'clear breakpoints'
+    },
+    {
+      '<leader>B',
+      function()
+        require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
+      end,
+      desc = 'breakpoint condition'
+    },
   },
 
   dependencies = {
