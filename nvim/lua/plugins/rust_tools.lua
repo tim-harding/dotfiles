@@ -11,7 +11,7 @@ return {
     local rt = require('rust-tools')
     rt.setup({
       server = {
-        cmd = { 'ra-multiplex' },
+        -- cmd = { 'ra-multiplex' },
         standalone = false,
         on_attach = function(_, bufnr)
           shared.on_attach(_, bufnr)
