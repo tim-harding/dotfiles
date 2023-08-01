@@ -1,4 +1,3 @@
-local map = require('shared').map
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
@@ -22,7 +21,6 @@ return {
         keymaps = {
           init_selection = '<cr>',
           node_incremental = '<cr>',
-          node_decremental = '<tab>',
         },
       },
       textobjects = {
