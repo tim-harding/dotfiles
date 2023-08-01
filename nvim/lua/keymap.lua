@@ -1,10 +1,5 @@
 local map = require('shared').map
 
-map({ 'n', 'v', 'o' }, 'h', '<nop>')
-map({ 'n', 'v', 'o' }, 'j', '<nop>')
-map({ 'n', 'v', 'o' }, 'k', '<nop>')
-map({ 'n', 'v', 'o' }, 'l', '<nop>')
-
 map({ 'n', 'v' }, '<leader>p', '"+p', 'paste from clipboard')
 map({ 'n', 'v' }, '<leader>y', '"+y', 'yank from clipboard')
 
@@ -24,12 +19,16 @@ map('n', '[q', ':cprev<cr>', 'prev quickfix list item')
 
 map('v', '<leader>@', ':normal @', 'start :normal')
 
-map('n', 't', ':tabnew<cr>', 'open tab')
-map('n', '<s-left>', ':tabprevious<cr>', 'previous tab')
-map('n', '<s-right>', ':tabnext<cr>', 'next tab')
-map('n', '<c-w>', ':tabclose<cr>', 'close tab')
+map('n', '<s-left>', ':bp<cr>', 'previous buffer')
+map('n', '<s-right>', ':bn<cr>', 'next buffer')
+map('n', '<c-w>', ':bdelete<cr>', 'close buffer')
 
-map('n', '<s-up>', function()
+map('n', 't', ':tabnew<cr>', 'open tab')
+map('n', '<a-left>', ':tabprevious<cr>', 'previous tab')
+map('n', '<a-right>', ':tabnext<cr>', 'next tab')
+map('n', '<c-s-w>', ':tabclose<cr>', 'close tab')
+
+map('n', '<a-up>', function()
   local tab = vim.api.nvim_get_current_tabpage()
   local n = vim.api.nvim_tabpage_get_number(tab)
   if n == 1 then
@@ -41,7 +40,7 @@ map('n', '<s-up>', function()
   require('lualine').refresh()
 end, 'move tab left')
 
-map('n', '<s-down>', function()
+map('n', '<a-down>', function()
   local tab = vim.api.nvim_get_current_tabpage()
   local n = vim.api.nvim_tabpage_get_number(tab)
   local tabpages = #vim.api.nvim_list_tabpages()
