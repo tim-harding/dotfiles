@@ -8,5 +8,30 @@ return {
       component_separators = '|',
       section_separators = ''
     },
+    sections = {
+      lualine_a = { 'mode' },
+      lualine_b = { 'branch', 'diff', 'diagnostics' },
+      lualine_c = {
+        {
+          'filename',
+          path = 1, -- Relative path
+        },
+      },
+      lualine_x = { 'filetype' },
+      lualine_y = { 'progress' },
+      lualine_z = { 'location' }
+    },
+    -- winbar = {},
+    tabline = {
+      lualine_a = {
+        {
+          'tabs',
+          mode = 2, -- Show tab number and name
+          max_length = function()
+            return vim.o.columns
+          end
+        },
+      },
+    }
   }
 }
