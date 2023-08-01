@@ -2,7 +2,7 @@ local map = require('shared').map
 
 return {
   'nvim-telescope/telescope.nvim',
-  branch = '0.1.x',
+  branch = '0.1.x', -- Release branch
   event = 'VeryLazy',
 
   dependencies = {
@@ -28,7 +28,8 @@ return {
           i = {
             ['<C-u>'] = false,
             ['<C-d>'] = false,
-            ['<esc>'] = actions.close
+            ['<esc>'] = actions.close,
+            ["<C-h>"] = "which_key",
           }
         }
       }
