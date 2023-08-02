@@ -8,8 +8,8 @@ return {
   config = function()
     local bufferline = require('bufferline')
     bufferline.setup({
+      highlights = require('catppuccin.groups.integrations.bufferline').get(),
       options = {
-        highlights = require('catppuccin.groups.integrations.bufferline').get(),
         show_buffer_icons = false,
         show_buffer_close_icons = false,
         show_close_icon = false,
