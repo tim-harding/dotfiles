@@ -133,9 +133,6 @@ return {
         })
       end
     })
-
-    -- Needed if buffers are opened by auto-session before LSP starts
-    -- vim.api.nvim_command('LspStart')
   end,
 
   dependencies = {
@@ -145,14 +142,6 @@ return {
     'saadparwaiz1/cmp_luasnip',
     'folke/neodev.nvim',
     'Hoffs/omnisharp-extended-lsp.nvim',
-    {
-      'SmiteshP/nvim-navic',
-      opts = {
-        lsp = {
-          auto_attach = false,
-        }
-      }
-    },
     {
       "ray-x/lsp_signature.nvim",
       event = "VeryLazy",
