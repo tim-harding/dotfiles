@@ -9,6 +9,10 @@ M.map = function(mode, keys, func, desc, opts)
 end
 
 M.on_attach = function(client, bufnr)
+  if client.server_capabilities.documentSymbolProvider then
+    require('nvim-navic').attach(client, bufnr)
+  end
+
   local map = function(m, keys, func, desc)
     local opts = { buffer = bufnr, desc = desc }
     vim.keymap.set(m, keys, func, opts)
