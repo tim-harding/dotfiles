@@ -7,6 +7,8 @@ return {
     },
     keymaps = {
       ['<leader>f'] = 'actions.close',
+      ["-"] = false,
+      ["<tab>"] = 'actions.parent',
     }
   },
   keys = {
