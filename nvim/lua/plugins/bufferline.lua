@@ -16,6 +16,8 @@ return {
       },
     })
 
+    map('n', '<s-left>', function() bufferline.cycle(-1) end, 'previous buffer')
+    map('n', '<s-right>', function() bufferline.cycle(1) end, 'next buffer')
     map('n', '<s-up>', function() bufferline.move(-1) end, 'move buffer left')
     map('n', '<s-down>', function() bufferline.move(1) end, 'move buffer right')
   end

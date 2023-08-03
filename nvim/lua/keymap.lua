@@ -19,14 +19,12 @@ map('n', '[q', ':cprev<cr>', 'prev quickfix list item')
 
 map('v', '<leader>@', ':normal @', 'start :normal')
 
-map('n', '<s-left>', ':bp<cr>', 'previous buffer')
-map('n', '<s-right>', ':bn<cr>', 'next buffer')
 map('n', '<c-w>', ':bdelete<cr>', 'close buffer')
+map('n', '<c-s-w>', ':tabclose<cr>', 'close tab')
 
 map('n', 't', ':tabnew<cr>', 'open tab')
 map('n', '<a-left>', ':tabprevious<cr>', 'previous tab')
 map('n', '<a-right>', ':tabnext<cr>', 'next tab')
-map('n', '<c-s-w>', ':tabclose<cr>', 'close tab')
 
 map('n', '<a-up>', function()
   local tab = vim.api.nvim_get_current_tabpage()
