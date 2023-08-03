@@ -19,8 +19,8 @@ M.on_attach = function(client, bufnr)
   map('n', '<leader><leader>', vim.lsp.buf.code_action, 'code action')
   map('x', '<leader><leader>', function() vim.lsp.buf.range_code_action() end, 'code action')
   map('n', '<leader>r', vim.lsp.buf.rename, 'change name')
-  map('n', '[[', vim.diagnostic.goto_prev, 'previous diagnostic')
-  map('n', ']]', vim.diagnostic.goto_next, 'next diagnostic')
+  map('n', 'k', vim.diagnostic.goto_prev, 'previous diagnostic')
+  map('n', 'K', vim.diagnostic.goto_next, 'next diagnostic')
 end
 
 return M
