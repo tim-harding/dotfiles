@@ -162,9 +162,5 @@ return {
       tag = 'legacy',
       opts = {},
     },
-    {
-      'dgagn/diagflow.nvim',
-      opts = {},
-    }
   }
 }
