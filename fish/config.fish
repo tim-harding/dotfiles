@@ -6,10 +6,8 @@ if status is-interactive
     alias vi='nvim'
     alias vim='nvim'
     set fish_greeting
-    set -x TERM xterm-256color
-    set -x RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc
-    set -x EDITOR nvim
+    set --export TERM xterm-256color
+    set --export EDITOR nvim
 end
-
+set --export RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc
 fish_add_path ~/.cargo/bin
-set --universal --export MOZ_ENABLE_WAYLAND 1
