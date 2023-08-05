@@ -19,7 +19,6 @@ map('n', '[q', ':cprev<cr>', 'prev quickfix list item')
 
 map('v', '<leader>@', ':normal @', 'start :normal')
 
-map('n', '<c-w>', ':bdelete<cr>', 'close buffer')
 map('n', '<c-s-w>', ':tabclose<cr>', 'close tab')
 
 map('n', 't', ':tabnew<cr>', 'open tab')
