@@ -34,7 +34,7 @@ return {
         }
       }
     }
-    pcall(telescope.load_extension, 'fzf')
+    telescope.load_extension('fzf')
 
     map('n', 'j', tb.find_files, 'files')
     map('n', '<leader>jo', tb.oldfiles, 'recent')
@@ -45,7 +45,6 @@ return {
     map('n', '<leader>jq', tb.quickfix, 'quickfix')
     map('n', '<leader>jn', function() tb.find_files({ cwd = '~/.config/nvim' }) end,
       'neovim config')
-    map('n', '<leader>jt', ":TodoTelescope<cr>", 'todos')
     map('n', '<leader>js', tb.lsp_dynamic_workspace_symbols, 'find project symbol')
     map('n', 'gr', tb.lsp_references, 'goto reference')
     map('n', 'gd', tb.lsp_definitions, 'goto definition')
