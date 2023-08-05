@@ -6,7 +6,12 @@ return {
   config = function()
     require('neodev').setup()
 
-    -- vim.diagnostic.config({ virtual_text = false })
+    vim.diagnostic.config({ virtual_text = false })
+
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics,
+      { underline = false }
+    )
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -44,6 +49,22 @@ return {
     luasnip.config.setup({})
 
     cmp.setup({
+      enabled = function()
+        local context = require('cmp.config.context')
+        return vim.api.nvim_get_mode().mode == 'c' or (
+          not context.in_treesitter_capture("comment")
+          and not context.in_syntax_group("Comment")
+        )
+      end,
+      performance = {
+        debounce = 100,
+        throttle = 50,
+        max_view_entries = 30,
+      },
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
@@ -73,7 +94,10 @@ return {
         end, { 'i', 's' })
       },
       sources = {
-        { name = 'nvim_lsp' },
+        {
+          name = 'nvim_lsp',
+          keyword_length = 2,
+        },
         {
           name = 'luasnip',
           keyword_length = 2,
@@ -81,7 +105,29 @@ return {
       },
     })
 
-    -- cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done())
+    cmp.setup.filetype('gitcommit', {
+      sources = cmp.config.sources({
+        { name = 'git' },
+      }, {
+        { name = 'buffer' },
+      })
+    })
+
+    cmp.setup.cmdline({ '/', '?' }, {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = 'buffer' }
+      }
+    })
+
+    cmp.setup.cmdline(':', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = 'path' }
+      }, {
+        { name = 'cmdline' }
+      })
+    })
 
     local format_is_enabled = true
     vim.api.nvim_create_user_command('ToggleAutoformat', function()
@@ -139,6 +185,9 @@ return {
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-cmdline',
+    'petertriho/cmp-git',
     'saadparwaiz1/cmp_luasnip',
     'folke/neodev.nvim',
     'Hoffs/omnisharp-extended-lsp.nvim',
