@@ -16,8 +16,7 @@ bindsym $mod+b exec firefox
 bindsym $mod+Shift+q kill
 bindsym $mod+l exec swaylock
 
-set $menu tofi-run | xargs swaymsg exec --
-bindsym $mod+p exec $menu
+bindsym $mod+p exec tofi-drun | xargs swaymsg exec --
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -91,6 +90,22 @@ client.focused_inactive $surface0 $surface0 $text $surface0 $surface0
 client.unfocused        $base     $base     $text $base     $base
 client.urgent           $base     $base     $text $base     $base
 client.placeholder      $base     $base     $text $base     $base
+
+bar {
+    position bottom
+    status_command while date +'%A %d %h %H:%M'; do sleep 1; done
+    status_padding 0
+    status_edge_padding 50
+    output DP-2
+
+    colors {
+        statusline $subtext0
+        background $mantle
+	active_workspace $overlay0 $surface0 $text
+	focused_workspace $overlay0 $surface0 $text
+        inactive_workspace #00000000 #00000000 $subtext0
+    }
+}
 
 input "type:keyboard" {
   repeat_delay 200
