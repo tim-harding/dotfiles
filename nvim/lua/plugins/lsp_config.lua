@@ -13,6 +13,11 @@ return {
       { underline = false }
     )
 
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics,
+      { update_in_insert = false }
+    )
+
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
@@ -56,15 +61,6 @@ return {
           and not context.in_syntax_group("Comment")
         )
       end,
-      performance = {
-        debounce = 100,
-        throttle = 50,
-        max_view_entries = 30,
-      },
-      window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
@@ -96,7 +92,6 @@ return {
       sources = {
         {
           name = 'nvim_lsp',
-          keyword_length = 2,
         },
         {
           name = 'luasnip',
