@@ -80,24 +80,21 @@ return {
         layouts = {
           {
             elements = {
-              { id = 'stacks', size = 0.33 },
-              { id = 'scopes', size = 0.67 }
+              { id = 'scopes', size = 1 },
             },
             position = 'top',
-            size = 15
+            size = 20,
           },
           {
-            elements = { { id = 'console', size = 1 } },
+            elements = {
+              { id = 'stacks',      size = 0.25 },
+              { id = 'breakpoints', size = 0.25 },
+              { id = 'watches',     size = 0.25 },
+              { id = 'console',     size = 0.25 },
+            },
             position = 'bottom',
-            size = 4
-          }, {
-          elements = {
-            { id = 'breakpoints', size = 0.5 },
-            { id = 'watches',     size = 0.5 }
+            size = 10,
           },
-          position = 'left',
-          size = 1
-        }
         }
       }
     }
