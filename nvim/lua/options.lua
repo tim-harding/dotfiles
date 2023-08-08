@@ -1,7 +1,7 @@
 vim.g.did_load_filetypes = 1
 vim.g.mapleader = ' '
 vim.opt.relativenumber = true
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.mouse = 'a'
 vim.opt.breakindent = true
 vim.opt.undofile = true

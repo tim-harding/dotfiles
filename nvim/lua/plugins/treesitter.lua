@@ -2,14 +2,9 @@ return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   lazy = false,
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-  },
+  dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
   config = function()
     require('nvim-treesitter.configs').setup {
-      autotag = {
-        enable = true,
-      },
       auto_install = true,
       highlight = { enable = true },
       indent = {

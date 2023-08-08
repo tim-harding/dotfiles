@@ -6,10 +6,10 @@ return {
   opts = {
     -- latte, frappe, macchiato, mocha
     flavour = 'frappe',
+    no_underline = true,
     integrations = {
       which_key = true,
       leap = true,
-      harpoon = true,
     },
   }
 }
