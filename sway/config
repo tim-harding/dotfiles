@@ -4,17 +4,17 @@ set $mod Mod4
 
 font pango:CaskaydiaCove Nerd Font 12
 
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPlay exec spt playback --toggle
 bindsym XF86AudioStop exec playerctl stop
-bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec spt playback --next
+bindsym XF86AudioNext exec spt playback --previous
+bindsym $mod+l exec spt playback --like
 
 floating_modifier $mod
 bindsym $mod+Return exec alacritty
 bindsym $mod+b exec firefox
 bindsym $mod+Shift+q kill
-bindsym $mod+l exec swaylock
+bindsym $mod+Shift+l exec swaylock
 
 bindsym $mod+p exec tofi-drun | xargs swaymsg exec --
 
