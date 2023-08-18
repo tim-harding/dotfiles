@@ -1,7 +1,5 @@
 local map = require('shared').map
 
-map('n', '<esc>', '<esc>:noh<cr>')
-
 map({ 'n', 'v' }, '<leader>p', '"+p', 'paste from clipboard')
 map({ 'n', 'v' }, '<leader>y', '"+y', 'yank from clipboard')
 

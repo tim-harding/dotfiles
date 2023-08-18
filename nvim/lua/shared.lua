@@ -2,9 +2,11 @@ local M = {}
 
 M.map = function(mode, keys, func, desc, opts)
   opts = opts or {}
-  opts.silent = true
-  opts.noremap = true
-  opts.desc = desc
+  opts = vim.tbl_extend("keep", opts, {
+    silent = true,
+    remap = false,
+    desc = desc,
+  })
   vim.keymap.set(mode, keys, func, opts)
 end
 
