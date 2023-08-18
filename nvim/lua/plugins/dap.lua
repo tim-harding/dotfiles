@@ -42,12 +42,12 @@ return {
       desc = 'toggle breakpoint'
     },
     {
-      '<leader>c',
+      '<leader>dc',
       function() require('dap').clear_breakpoints() end,
       desc = 'clear breakpoints'
     },
     {
-      '<leader>B',
+      '<leader>db',
       function()
         require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
       end,

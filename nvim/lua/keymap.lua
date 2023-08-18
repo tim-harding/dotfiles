@@ -19,39 +19,6 @@ map('n', '{', ':<<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
 map('n', ']q', ':cnext<cr>', 'next quickfix list item')
 map('n', '[q', ':cprev<cr>', 'prev quickfix list item')
 
-map('v', '<leader>@', ':normal @', 'start :normal')
-
-map('n', '<c-s-w>', ':tabclose<cr>', 'close tab')
-
-map('n', 't', ':tabnew<cr>', 'open tab')
-map('n', '<a-left>', ':tabprevious<cr>', 'previous tab')
-map('n', '<a-right>', ':tabnext<cr>', 'next tab')
-
-map('n', '<a-up>', function()
-  local tab = vim.api.nvim_get_current_tabpage()
-  local n = vim.api.nvim_tabpage_get_number(tab)
-  if n == 1 then
-    n = #vim.api.nvim_list_tabpages()
-  else
-    n = n - 2
-  end
-  vim.cmd.tabmove(n)
-  require('lualine').refresh()
-end, 'move tab left')
-
-map('n', '<a-down>', function()
-  local tab = vim.api.nvim_get_current_tabpage()
-  local n = vim.api.nvim_tabpage_get_number(tab)
-  local tabpages = #vim.api.nvim_list_tabpages()
-  if n == tabpages then
-    n = 1
-  else
-    n = n + 1
-  end
-  vim.cmd.tabmove(n)
-  require('lualine').refresh()
-end, 'move tab right')
-
 map(
   'n',
   '<leader>q',

@@ -6,8 +6,8 @@ font pango:CaskaydiaCove Nerd Font 12
 
 bindsym XF86AudioPlay exec spt playback --toggle
 bindsym XF86AudioStop exec playerctl stop
-bindsym XF86AudioPrev exec spt playback --next
-bindsym XF86AudioNext exec spt playback --previous
+bindsym XF86AudioPrev exec spt playback --previous
+bindsym XF86AudioNext exec spt playback --next
 bindsym $mod+l exec spt playback --like
 
 floating_modifier $mod
@@ -15,6 +15,9 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+b exec firefox
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+l exec swaylock
+
+exec swaync
+bindsym $mod+Shift+n exec swaync-client -t -sw
 
 set $grimfile ~/screenshots/$(date +'%s_grim.png')
 #Screenshot region
@@ -118,7 +121,5 @@ input "type:keyboard" {
   repeat_delay 200
   repeat_rate 35
 }
-
-exec spt playback --device Spotifyd@archlinux
 
 include /etc/sway/config.d/*

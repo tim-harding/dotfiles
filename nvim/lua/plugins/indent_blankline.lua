@@ -3,6 +3,6 @@ return {
   event = 'VeryLazy',
   opts = {
     -- For performance
-    -- use_treesitter = false,
+    use_treesitter = false,
   },
 }

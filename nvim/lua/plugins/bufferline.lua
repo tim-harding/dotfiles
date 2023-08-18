@@ -21,5 +21,6 @@ return {
     map('n', '<s-up>', function() bufferline.move(-1) end, 'move buffer left')
     map('n', '<s-down>', function() bufferline.move(1) end, 'move buffer right')
     map('n', '<c-w>', function() bufferline.unpin_and_close() end, 'close buffer')
+    map('n', '<leader>c', function() bufferline.close_others() end, 'close buffer')
   end
 }
