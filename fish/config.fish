@@ -9,5 +9,7 @@ if status is-interactive
     set --export TERM xterm-256color
     set --export EDITOR nvim
 end
+
+set --export BROWSER firefox
 set --export RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc
 fish_add_path ~/.cargo/bin
