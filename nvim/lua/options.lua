@@ -20,7 +20,7 @@ vim.opt.cursorline = true
 vim.opt.shortmess = 'aoOstTIFcC'
 vim.opt.linebreak = true
 vim.opt.textwidth = 80
-vim.opt.guifont = "Cascadia Code PL:h12, Symbols Nerd Font, Noto Color Emoji"
+vim.opt.guifont = "Cascadia Code PL:w11, Symbols Nerd Font, Noto Color Emoji"
 vim.opt.hlsearch = false
 -- For bufferline order persistence
 vim.opt.sessionoptions:append('globals')
