@@ -1,5 +1,19 @@
 return {
   'lukas-reineke/indent-blankline.nvim',
   event = 'VeryLazy',
-  opts = {},
+  main = "ibl",
+  config = function()
+    local ibl = require('ibl')
+    local hooks = require('ibl.hooks')
+    local colors = require('catppuccin.palettes.frappe')
+    local fg = colors.surface0
+
+    hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+      vim.api.nvim_set_hl(0, "IblIndent", { fg = fg })
+      vim.api.nvim_set_hl(0, "IblWhitespace", { fg = fg })
+      vim.api.nvim_set_hl(0, "IblScope", { fg = fg })
+    end)
+
+    ibl.setup({})
+  end
 }
