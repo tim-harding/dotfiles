@@ -14,6 +14,10 @@ return {
       vim.api.nvim_set_hl(0, "IblScope", { fg = fg })
     end)
 
-    ibl.setup({})
+    ibl.setup({
+      indent = {
+        char = "┃"
+      }
+    })
   end
 }
