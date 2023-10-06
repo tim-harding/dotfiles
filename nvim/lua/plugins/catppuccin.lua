@@ -7,6 +7,7 @@ return {
     -- latte, frappe, macchiato, mocha
     flavour = 'frappe',
     no_underline = true,
+    term_colors = true,
     integrations = {
       which_key = true,
       leap = true,
