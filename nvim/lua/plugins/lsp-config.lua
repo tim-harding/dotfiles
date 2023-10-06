@@ -30,6 +30,10 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
     })
+    lspconfig.zls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
     lspconfig.omnisharp.setup({
       capabilities = capabilities,
       on_attach = on_attach,
@@ -111,7 +115,7 @@ return {
     cmp.setup.cmdline({ '/', '?' }, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
-        { name = 'buffer' }
+        -- { name = 'buffer' }
       }
     })
 
