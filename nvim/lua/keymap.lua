@@ -17,6 +17,9 @@ map('n', '{', ':<<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
 map('n', ']q', ':cnext<cr>', 'next quickfix list item')
 map('n', '[q', ':cprev<cr>', 'prev quickfix list item')
 
+map('n', '<C-n>', 'nzz', 'Next result and center')
+map('n', '<M-n>', 'Nzz', 'Previous result and center')
+
 map(
   'n',
   '<leader>q',

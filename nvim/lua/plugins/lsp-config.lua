@@ -34,6 +34,10 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
     })
+    lspconfig.ocamllsp.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
     lspconfig.omnisharp.setup({
       capabilities = capabilities,
       on_attach = on_attach,
