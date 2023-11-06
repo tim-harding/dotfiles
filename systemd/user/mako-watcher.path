@@ -1,0 +1,5 @@
+[Path]
+PathModified=/home/tim/.config/mako/config
+
+[Install]
+WantedBy=graphical-session.target

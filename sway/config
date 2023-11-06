@@ -4,6 +4,8 @@ set $mod Mod4
 
 font pango:CaskaydiaCove Nerd Font 12
 
+exec mako
+
 bindsym XF86AudioPlay exec spt playback --toggle
 bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioPrev exec spt playback --previous
@@ -15,9 +17,6 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+b exec firefox
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+l exec swaylock
-
-exec swaync
-bindsym $mod+Shift+n exec swaync-client -t -sw
 
 set $grimfile ~/screenshots/$(date +'%s_grim.png')
 #Screenshot region
@@ -97,9 +96,9 @@ set $crust 	#232634
 # class                 border    backgr.   text  indicator child_border
 client.focused          $blue     $blue     $base $blue     $blue
 client.focused_inactive $surface0 $surface0 $text $surface0 $surface0
-client.unfocused        $base     $base     $text $base     $base
-client.urgent           $base     $base     $text $base     $base
-client.placeholder      $base     $base     $text $base     $base
+client.unfocused        $mantle   $mantle   $text $mantle   $mantle
+client.urgent           $mantle   $mantle   $text $mantle   $mantle
+client.placeholder      $mantle   $mantle   $text $mantle   $mantle
 
 bar {
     position bottom
