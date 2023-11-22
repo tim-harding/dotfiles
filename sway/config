@@ -11,12 +11,13 @@ bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioPrev exec spt playback --previous
 bindsym XF86AudioNext exec spt playback --next
 bindsym $mod+l exec spt playback --like
+bindsym $mod+Shift+l exec spt playback --dislike
 
 floating_modifier $mod
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec wezterm
 bindsym $mod+b exec firefox
-bindsym $mod+Shift+q kill
-bindsym $mod+Shift+l exec swaylock
+bindsym $mod+q kill
+bindsym $mod+Ctrl+l exec swaylock
 
 set $grimfile ~/screenshots/$(date +'%s_grim.png')
 #Screenshot region

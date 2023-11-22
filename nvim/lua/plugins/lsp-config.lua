@@ -195,24 +195,11 @@ return {
     'folke/neodev.nvim',
     'Hoffs/omnisharp-extended-lsp.nvim',
     {
-      "ray-x/lsp_signature.nvim",
-      event = "VeryLazy",
-      opts = {
-        floating_window = false,
-        hint_prefix = '',
-        toggle_key = '<c-s>'
-      },
-    },
-    {
       'L3MON4D3/LuaSnip',
+      version = 'v2.*',
       dependencies = {
         'rafamadriz/friendly-snippets',
       },
-    },
-    {
-      'j-hui/fidget.nvim',
-      tag = 'legacy',
-      opts = {},
     },
   }
 }

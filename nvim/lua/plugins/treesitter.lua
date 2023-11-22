@@ -16,6 +16,7 @@ return {
         keymaps = {
           init_selection = '<cr>',
           node_incremental = '<cr>',
+          node_decremental = '<tab>',
         },
       },
       textobjects = {
@@ -78,9 +79,14 @@ return {
       },
     }
 
-    -- TODO: Need to make this so it doesn't override ftFT repeats
-    -- local ts_move = require('nvim-treesitter.textobjects.repeatable_move')
-    -- map({ 'n', 'x', 'o' }, ';', ts_move.repeat_last_move_next)
-    -- map({ 'n', 'x', 'o' }, ',', ts_move.repeat_last_move_previous)
+    local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
+
+    vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
+    vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
+
+    vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
+    vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
+    vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
+    vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
   end
 }

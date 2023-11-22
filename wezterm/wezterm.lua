@@ -3,15 +3,19 @@ local config = wezterm.config_builder()
 
 config.color_scheme = 'Catppuccin Frappe'
 config.font = wezterm.font_with_fallback({
-  'Cascadia Code',
+  {
+    family = 'Cascadia Code PL',
+    harfbuzz_features = { 'calt', 'ss01', 'ss02' }
+  },
   'Symbols Nerd Font',
+  'Noto Color Emoji',
 })
 config.font_size = 13
 config.enable_tab_bar = false
 config.window_padding = {
-  left = 3,
-  right = 3,
-  top = 3,
+  left = 0,
+  right = 0,
+  top = 0,
   bottom = 0,
 }
 
@@ -29,7 +33,20 @@ config.keys = {
     mods = 'CTRL',
     key = 'Enter',
     action = wezterm.action_callback(new_window_from_cwd),
-  }
+  },
+  {
+    mods = 'CTRL',
+    key = 'Backspace',
+    action = wezterm.action.SendKey({
+      mods = 'CTRL',
+      key = 'w'
+    })
+  },
+  {
+    mods = 'CTRL',
+    key = 'w',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
 }
 
 return config

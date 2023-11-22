@@ -18,10 +18,38 @@ vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.shortmess = 'aoOstTIFcC'
 vim.opt.linebreak = true
--- vim.opt.textwidth = 80
+vim.opt.textwidth = 80
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.hlsearch = false
-vim.opt.guifont = "Cascadia Code PL:w10, Symbols Nerd Font, Noto Color Emoji"
 vim.opt.sessionoptions:append('globals') -- For bufferline order persistence
+-- vim.opt.guifont = "Cascadia Code PL:w10, Symbols Nerd Font, Noto Color Emoji"
+
+local neophyte = require('neophyte')
+neophyte.setup({
+  fonts = {
+    {
+      name = 'Cascadia Code PL',
+      features = {
+        'calt', 'ss01', 'ss02',
+      },
+    },
+    'Symbols Nerd Font',
+    'Noto Color Emoji'
+  },
+  font_size = {
+    kind = 'width',
+    size = 10,
+  },
+  cursor_speed = 2,
+  scroll_speed = 2,
+})
+
+vim.keymap.set('n', '<c-+>', function()
+  neophyte.set_font_width(neophyte.get_font_width() + 1)
+end, { silent = true, remap = false })
+
+vim.keymap.set('n', '<c-->', function()
+  neophyte.set_font_width(neophyte.get_font_width() - 1)
+end, { silent = true, remap = false })

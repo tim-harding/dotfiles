@@ -20,6 +20,8 @@ map('n', '[q', ':cprev<cr>', 'prev quickfix list item')
 map('n', '<C-n>', 'nzz', 'Next result and center')
 map('n', '<M-n>', 'Nzz', 'Previous result and center')
 
+map('i', '<C-BS>', '<C-w>')
+
 map(
   'n',
   '<leader>q',
@@ -39,3 +41,11 @@ map(
   end,
   'toggle quickfix list'
 )
+
+local pattern = [[\v\w+]]
+vim.keymap.set({ 'n', 'v' }, 'w', function()
+  vim.fn.search(pattern)
+end)
+vim.keymap.set({ 'n', 'v' }, 'b', function()
+  vim.fn.search(pattern, 'b')
+end)

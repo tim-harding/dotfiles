@@ -17,8 +17,17 @@ return {
           path = 1, -- Relative path
         },
       },
-      lualine_x = { 'filetype' },
-      lualine_y = { 'progress' },
+      lualine_x = {
+        function()
+          local noice = require('noice.api')
+          if noice.statusline.mode.has() then
+            return noice.statusline.mode.get()
+          else
+            return ""
+          end
+        end
+      },
+      lualine_y = { 'filetype' },
       lualine_z = { 'location' },
     },
   }
