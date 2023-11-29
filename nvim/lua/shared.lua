@@ -19,10 +19,19 @@ M.on_attach = function(client, bufnr)
   -- map('n', '<leader>r', vim.lsp.buf.rename, 'rename')
   map('n', 'gh', vim.lsp.buf.hover, 'hover')
   map('n', 'gs', vim.lsp.buf.signature_help, 'show signature')
-  map('n', '<leader><leader>', vim.lsp.buf.code_action, 'code action')
-  map('x', '<leader><leader>', function() vim.lsp.buf.range_code_action() end, 'code action')
+  map({ 'n', 'x' }, '<leader><leader>', vim.lsp.buf.code_action, 'code action')
   map('n', 'k', vim.diagnostic.goto_next, 'next diagnostic')
   map('n', 'K', vim.diagnostic.goto_prev, 'previous diagnostic')
+end
+
+M.is_quickfix_open = function()
+  local is_quickfix_open = false
+  for _, info in ipairs(vim.fn.getwininfo()) do
+    if info.quickfix == 1 then
+      is_quickfix_open = true
+    end
+  end
+  return is_quickfix_open
 end
 
 return M

@@ -1,4 +1,13 @@
-local on_attach = require('shared').on_attach
+local shared = require('shared')
+local on_attach = shared.on_attach
+
+local qf_diagnostics_title = 'Workspace Diagnostics'
+local function show_diagnostics()
+  vim.diagnostic.setqflist({
+    open = false,
+    title = qf_diagnostics_title,
+  })
+end
 
 return {
   'neovim/nvim-lspconfig',
@@ -8,15 +17,31 @@ return {
 
     vim.diagnostic.config({ virtual_text = false })
 
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-      vim.lsp.diagnostic.on_publish_diagnostics,
-      { underline = false }
-    )
+    shared.map('n', '<leader>t', function()
+      if not shared.is_quickfix_open() then
+        vim.cmd.copen()
+        -- Don't place cursor in quickfix
+        vim.cmd.wincmd('p')
+      end
 
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-      vim.lsp.diagnostic.on_publish_diagnostics,
-      { update_in_insert = false }
-    )
+      show_diagnostics()
+    end, 'Open workspace diagnostics')
+
+    vim.lsp.handlers['textDocument/publishDiagnostics'] = function(err, method, result, client_id, bufnr, config)
+      local default_handler = vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics,
+        {
+          underline = false,
+          update_in_insert = false,
+        }
+      )
+      default_handler(err, method, result, client_id, bufnr, config)
+
+      local qf_title = vim.fn.getqflist({ title = 0 }).title
+      if qf_title == qf_diagnostics_title then
+        show_diagnostics()
+      end
+    end
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -118,9 +143,7 @@ return {
 
     cmp.setup.cmdline({ '/', '?' }, {
       mapping = cmp.mapping.preset.cmdline(),
-      sources = {
-        -- { name = 'buffer' }
-      }
+      sources = {}
     })
 
     cmp.setup.cmdline(':', {
@@ -131,6 +154,8 @@ return {
         { name = 'cmdline' }
       })
     })
+
+    cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done())
 
     local format_is_enabled = true
     vim.api.nvim_create_user_command('ToggleAutoformat', function()

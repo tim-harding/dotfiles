@@ -18,13 +18,13 @@ vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.shortmess = 'aoOstTIFcC'
 vim.opt.linebreak = true
-vim.opt.textwidth = 80
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.hlsearch = false
 vim.opt.sessionoptions:append('globals') -- For bufferline order persistence
 -- vim.opt.guifont = "Cascadia Code PL:w10, Symbols Nerd Font, Noto Color Emoji"
+-- vim.opt.textwidth = 80
 
 local neophyte = require('neophyte')
 neophyte.setup({
@@ -44,6 +44,12 @@ neophyte.setup({
   },
   cursor_speed = 2,
   scroll_speed = 2,
+  bg_override = {
+    r = 48,
+    g = 52,
+    b = 70,
+    a = 128,
+  }
 })
 
 vim.keymap.set('n', '<c-+>', function()

@@ -2,6 +2,7 @@ local map = require('shared').map
 
 return {
   'folke/trouble.nvim',
+  enabled = false,
   event = 'VeryLazy',
   dependencies = {
     'nvim-tree/nvim-web-devicons'

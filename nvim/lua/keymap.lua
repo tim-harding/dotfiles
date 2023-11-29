@@ -1,4 +1,5 @@
-local map = require('shared').map
+local shared = require('shared')
+local map = shared.map
 
 map({ 'n', 'v' }, '<leader>p', '"+p', 'paste from clipboard')
 map({ 'n', 'v' }, '<leader>y', '"+y', 'yank from clipboard')
@@ -26,14 +27,7 @@ map(
   'n',
   '<leader>q',
   function()
-    local is_quickfix_open = false
-    for _, info in ipairs(vim.fn.getwininfo()) do
-      if info.quickfix == 1 then
-        is_quickfix_open = true
-      end
-    end
-
-    if is_quickfix_open then
+    if shared.is_quickfix_open() then
       vim.api.nvim_command('cclose')
     else
       vim.api.nvim_command('copen')
@@ -42,7 +36,16 @@ map(
   'toggle quickfix list'
 )
 
-local pattern = [[\v\w+]]
+local word = [[\w+]]
+-- At least one punctuation character
+local punct = '[[:punct:]]+'
+-- Line start or a non-capturing space character
+local punct_start = [[(^|\s@<=)]]
+-- Line end or a non-capturing space character
+local punct_end = [[($|\s@=)]]
+local punctuation = punct_start .. punct .. punct_end
+local very_magic = [[\v]]
+local pattern = very_magic .. word .. '|' .. punctuation
 vim.keymap.set({ 'n', 'v' }, 'w', function()
   vim.fn.search(pattern)
 end)

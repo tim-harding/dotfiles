@@ -42,9 +42,7 @@ return {
       groups.action(groups.builtin.ungrouped.name, function(buf)
         for _, e in ipairs(elements) do
           if e.id == buf.id then
-            vim.schedule(function()
-              vim.cmd.bdelete(buf.id)
-            end)
+            pcall(function() vim.cmd.bdelete(buf.id) end)
           end
         end
       end)
