@@ -6,6 +6,7 @@ local function show_diagnostics()
   vim.diagnostic.setqflist({
     open = false,
     title = qf_diagnostics_title,
+    severity = { min = vim.diagnostic.severity.WARN, },
   })
 end
 
@@ -21,7 +22,7 @@ return {
       if not shared.is_quickfix_open() then
         vim.cmd.copen()
         -- Don't place cursor in quickfix
-        vim.cmd.wincmd('p')
+        -- vim.cmd.wincmd('p')
       end
 
       show_diagnostics()
@@ -51,18 +52,32 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
     })
+
     lspconfig.dartls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
+
     lspconfig.zls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
+
     lspconfig.ocamllsp.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
+
+    lspconfig.hls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = {
+        'haskell',
+        'lhaskell',
+        'cabal',
+      },
+    })
+
     lspconfig.omnisharp.setup({
       capabilities = capabilities,
       on_attach = on_attach,
