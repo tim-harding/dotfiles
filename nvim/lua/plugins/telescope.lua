@@ -24,12 +24,13 @@ return {
     telescope.setup {
       defaults = {
         layout_strategy = 'vertical',
+        theme = 'dropdown',
         mappings = {
           i = {
             ['<C-u>'] = false,
             ['<C-d>'] = false,
             ['<esc>'] = actions.close,
-            ["<C-h>"] = "which_key",
+            ['<C-h>'] = 'which_key',
           }
         }
       }
@@ -43,8 +44,9 @@ return {
     map('n', '<leader>jp', tb.live_grep, 'ripgrep project')
     map('n', '<leader>jm', tb.marks, 'marks')
     map('n', '<leader>jq', tb.quickfix, 'quickfix')
-    map('n', '<leader>jn', function() tb.find_files({ cwd = '~/.config/nvim' }) end,
-      'neovim config')
+    map('n', '<leader>jn', function()
+      tb.find_files({ cwd = '~/.config/nvim' })
+    end, 'neovim config')
     map('n', '<leader>js', tb.lsp_dynamic_workspace_symbols, 'find project symbol')
     map('n', 'gr', tb.lsp_references, 'goto reference')
     map('n', 'gd', tb.lsp_definitions, 'goto definition')

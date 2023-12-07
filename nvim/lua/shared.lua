@@ -16,7 +16,7 @@ M.on_attach = function(client, bufnr)
     vim.keymap.set(m, keys, func, opts)
   end
 
-  -- map('n', '<leader>r', vim.lsp.buf.rename, 'rename')
+  map('n', '<leader>r', vim.lsp.buf.rename, 'rename')
   map('n', 'gh', vim.lsp.buf.hover, 'hover')
   map('n', 'gs', vim.lsp.buf.signature_help, 'show signature')
   map({ 'n', 'x' }, '<leader><leader>', vim.lsp.buf.code_action, 'code action')

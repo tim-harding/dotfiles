@@ -2,6 +2,7 @@ local map = require('shared').map
 
 return {
   'akinsho/bufferline.nvim',
+  -- enabled = false,
   event = 'VeryLazy',
   version = "*",
   dependencies = 'catppuccin',

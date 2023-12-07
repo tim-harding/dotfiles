@@ -1,6 +1,7 @@
 local wezterm = require('wezterm')
 local config = wezterm.config_builder()
 
+-- config.window_background_opacity = 0.5
 config.color_scheme = 'Catppuccin Frappe'
 config.font = wezterm.font_with_fallback({
   {

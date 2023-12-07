@@ -13,9 +13,12 @@ if status is-interactive
     set --export EDITOR nvim
 end
 
+# set --export RUSTC_WRAPPER sccache
 set --export BROWSER firefox
 set --export RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc
 fish_add_path ~/.cargo/bin
+fish_add_path ~/.ghcup/bin
+fish_add_path ~/.local/bin
 
 # opam configuration
 source /home/tim/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true

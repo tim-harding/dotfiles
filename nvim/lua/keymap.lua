@@ -46,9 +46,9 @@ local punct_end = [[($|\s@=)]]
 local punctuation = punct_start .. punct .. punct_end
 local very_magic = [[\v]]
 local pattern = very_magic .. word .. '|' .. punctuation
-vim.keymap.set({ 'n', 'v' }, 'w', function()
+map('n', '<M-w>', function()
   vim.fn.search(pattern)
 end)
-vim.keymap.set({ 'n', 'v' }, 'b', function()
+map('n', '<M-b>', function()
   vim.fn.search(pattern, 'b')
 end)

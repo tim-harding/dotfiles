@@ -1,15 +1,6 @@
 local shared = require('shared')
 local on_attach = shared.on_attach
 
-local qf_diagnostics_title = 'Workspace Diagnostics'
-local function show_diagnostics()
-  vim.diagnostic.setqflist({
-    open = false,
-    title = qf_diagnostics_title,
-    severity = { min = vim.diagnostic.severity.WARN, },
-  })
-end
-
 return {
   'neovim/nvim-lspconfig',
   event = 'VeryLazy',
@@ -18,14 +9,37 @@ return {
 
     vim.diagnostic.config({ virtual_text = false })
 
-    shared.map('n', '<leader>t', function()
-      if not shared.is_quickfix_open() then
-        vim.cmd.copen()
-        -- Don't place cursor in quickfix
-        -- vim.cmd.wincmd('p')
-      end
+    local diagnostic_level = vim.diagnostic.severity.WARN
+    local function show_diagnostics()
+      vim.diagnostic.setqflist({
+        open = false,
+        severity = { min = diagnostic_level, },
+      })
+    end
 
+    vim.api.nvim_create_user_command('SetDiagnosticLevel', function(opts)
+      local level = string.lower(opts.args)
+      if level == 'warn' then
+        diagnostic_level = vim.diagnostic.severity.WARN
+      elseif level == 'error' then
+        diagnostic_level = vim.diagnostic.severity.ERROR
+      elseif level == 'hint' then
+        diagnostic_level = vim.diagnostic.severity.HINT
+      elseif level == 'info' then
+        diagnostic_level = vim.diagnostic.severity.INFO
+      end
       show_diagnostics()
+    end, { nargs = 1 })
+
+    local are_diagnostics_open = false
+    shared.map('n', '<leader>t', function()
+      are_diagnostics_open = not are_diagnostics_open
+      if are_diagnostics_open then
+        vim.cmd.copen()
+        show_diagnostics()
+      else
+        vim.cmd.cclose()
+      end
     end, 'Open workspace diagnostics')
 
     vim.lsp.handlers['textDocument/publishDiagnostics'] = function(err, method, result, client_id, bufnr, config)
@@ -38,8 +52,7 @@ return {
       )
       default_handler(err, method, result, client_id, bufnr, config)
 
-      local qf_title = vim.fn.getqflist({ title = 0 }).title
-      if qf_title == qf_diagnostics_title then
+      if are_diagnostics_open then
         show_diagnostics()
       end
     end

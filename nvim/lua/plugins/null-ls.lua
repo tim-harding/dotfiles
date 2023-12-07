@@ -7,6 +7,8 @@ return {
       sources = {
         null_ls.builtins.formatting.prettierd,
         null_ls.builtins.formatting.ocamlformat,
+        -- null_ls.builtins.formatting.stylish_haskell,
+        null_ls.builtins.formatting.fourmolu,
       }
     })
   end,

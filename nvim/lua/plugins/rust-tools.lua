@@ -9,7 +9,17 @@ return {
   ft = { 'rust' },
   config = function()
     local rt = require('rust-tools')
+
     rt.setup({
+      tools = {
+        inlay_hints = {
+          auto = false,
+          other_hints_prefix = '-> ',
+        },
+        hover_actions = {
+          auto_focus = true,
+        },
+      },
       server = {
         -- cmd = { 'ra-multiplex' },
         standalone = false,
@@ -19,14 +29,19 @@ return {
           vim.opt.textwidth = 80
         end,
       },
-      tools = {
-        hover_actions = {
-          auto_focus = true,
-        },
-      },
       dap = {
         adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path),
       },
     })
+
+    local inlay_hints_enabled = false
+    shared.map('n', '<leader>i', function()
+      inlay_hints_enabled = not inlay_hints_enabled
+      if inlay_hints_enabled then
+        rt.inlay_hints.enable()
+      else
+        rt.inlay_hints.disable()
+      end
+    end)
   end,
 }
