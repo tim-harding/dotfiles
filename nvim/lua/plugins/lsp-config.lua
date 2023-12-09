@@ -111,6 +111,7 @@ return {
 
     local cmp = require('cmp')
     local luasnip = require('luasnip')
+    local lspkind = require('lspkind')
     require('luasnip.loaders.from_vscode').lazy_load()
     luasnip.config.setup({})
 
@@ -118,23 +119,43 @@ return {
       enabled = function()
         local context = require('cmp.config.context')
         return vim.api.nvim_get_mode().mode == 'c' or (
-          not context.in_treesitter_capture("comment")
-          and not context.in_syntax_group("Comment")
+          not context.in_treesitter_capture('comment')
+          and not context.in_syntax_group('Comment')
         )
       end,
+
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end
       },
+
+      window = {
+        completion = {
+          col_offset = -3,
+          side_padding = 0,
+        },
+      },
+
+      formatting = {
+        fields = { 'kind', 'abbr' },
+        format = function(entry, vim_item)
+          local kind = require('lspkind').cmp_format({
+            mode = 'symbol',
+          })(entry, vim_item)
+          kind.kind = ' ' .. kind.kind .. ' '
+          return kind
+        end,
+      },
+
       mapping = cmp.mapping.preset.insert {
-        ['<c-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<c-u>'] = cmp.mapping.scroll_docs(4),
-        ['<c-c>'] = cmp.mapping.abort(),
-        ['<cr>'] = cmp.mapping.confirm {
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-u>'] = cmp.mapping.scroll_docs(4),
+        ['<C-c>'] = cmp.mapping.abort(),
+        ['<Cr>'] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
-        },
+        }),
         ['<Tab>'] = cmp.mapping(function(fallback)
           if luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
@@ -150,10 +171,9 @@ return {
           end
         end, { 'i', 's' })
       },
+
       sources = {
-        {
-          name = 'nvim_lsp',
-        },
+        { name = 'nvim_lsp' },
         {
           name = 'luasnip',
           keyword_length = 2,
@@ -162,11 +182,10 @@ return {
     })
 
     cmp.setup.filetype('gitcommit', {
-      sources = cmp.config.sources({
-        { name = 'git' },
-      }, {
-        { name = 'buffer' },
-      })
+      sources = cmp.config.sources(
+        { { name = 'git' } },
+        { { name = 'buffer' } }
+      )
     })
 
     cmp.setup.cmdline({ '/', '?' }, {
@@ -247,9 +266,11 @@ return {
     'saadparwaiz1/cmp_luasnip',
     'folke/neodev.nvim',
     'Hoffs/omnisharp-extended-lsp.nvim',
+    'onsails/lspkind.nvim',
     {
       'L3MON4D3/LuaSnip',
       version = 'v2.*',
+      build = 'make install_jsregexp',
       dependencies = {
         'rafamadriz/friendly-snippets',
       },
