@@ -2,9 +2,10 @@ theme = "catppuccin_frappe"
 
 [editor]
 line-number = "relative"
-scrolloff = 2
-auto-pairs = false
-terminal.command = "alacritty"
+auto-pairs = true
+scrolloff = 0
+shell = ["fish", "-c"]
+idle-timeout = 0 # ms before autocomplete
 
 [editor.cursor-shape]
-insert = "bar"
+insert = "block"

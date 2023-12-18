@@ -1,9 +1,6 @@
 [[language]]
 name = "rust"
 
-[language.config.check]
-command = "clippy"
-
 [language.debugger]
 command = "codelldb"
 name = "codelldb"
