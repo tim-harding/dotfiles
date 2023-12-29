@@ -1,0 +1,41 @@
+import = ["/home/tim/.config/alacritty/catppuccin-frappe.toml"]
+
+[font]
+size = 13.0
+
+[font.bold]
+family = "CaskaydiaCove Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "CaskaydiaCove Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "CaskaydiaCove Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "CaskaydiaCove Nerd Font"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001B[9;5u"
+key = "Tab"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001B[9;6u"
+key = "Tab"
+mods = "Control|Shift"
+
+[shell]
+program = "/usr/bin/fish"
+
+[window]
+dynamic_padding = true
