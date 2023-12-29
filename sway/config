@@ -14,7 +14,7 @@ bindsym $mod+l exec spt playback --like
 bindsym $mod+Shift+l exec spt playback --dislike
 
 floating_modifier $mod
-bindsym $mod+Return exec wezterm
+bindsym $mod+Return exec alacritty
 bindsym $mod+b exec firefox
 bindsym $mod+q kill
 bindsym $mod+Ctrl+l exec swaylock
@@ -54,9 +54,9 @@ bindsym $mod+Shift+e exec swaymsg exit
 bindsym $mod+r mode "resize"
 mode "resize" {
   bindsym Left resize shrink width 10 px or 10 ppt
-  bindsym Down resize grow height 10 px or 10 ppt
-  bindsym Up resize shrink height 10 px or 10 ppt
   bindsym Right resize grow width 10 px or 10 ppt
+  bindsym Up resize grow height 10 px or 10 ppt
+  bindsym Down resize shrink height 10 px or 10 ppt
   bindsym $mod+r mode "default"
 }
 
