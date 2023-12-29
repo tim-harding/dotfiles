@@ -37,3 +37,11 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
     end
   end
 })
+
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  group = vim.api.nvim_create_augroup('SetWgpu', { clear = true }),
+  pattern = { '*.wgsl' },
+  callback = function()
+    vim.opt_local.filetype = 'wgsl'
+  end
+})

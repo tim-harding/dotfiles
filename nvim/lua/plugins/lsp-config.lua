@@ -61,25 +61,22 @@ return {
     capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
     local lspconfig = require('lspconfig')
-    lspconfig.lua_ls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
 
-    lspconfig.dartls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
+    local simple_servers = {
+      lspconfig.lua_ls,
+      lspconfig.dartls,
+      lspconfig.zls,
+      lspconfig.ocamllsp,
+      lspconfig.pyright,
+      lspconfig.ruff_lsp,
+    }
 
-    lspconfig.zls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    lspconfig.ocamllsp.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
+    for _, server in ipairs(simple_servers) do
+      server.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
+    end
 
     lspconfig.hls.setup({
       capabilities = capabilities,
@@ -202,7 +199,8 @@ return {
       })
     })
 
-    cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done())
+    -- TODO: Doesn't play nice with functional languages
+    -- cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done())
 
     local format_is_enabled = true
     vim.api.nvim_create_user_command('ToggleAutoformat', function()

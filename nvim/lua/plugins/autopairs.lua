@@ -6,6 +6,6 @@ return {
     autopairs.setup({
       break_undo = false,
     })
-    autopairs.get_rules("'")[1].not_filetypes = { 'ocaml', 'rust' }
+    autopairs.get_rules("'")[1].not_filetypes = { 'ocaml', 'rust', 'fsharp' }
   end
 }
