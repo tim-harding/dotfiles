@@ -44,7 +44,7 @@ local spec = {
 }
 
 local path_exists = function(path)
-  local file = io.open(path, "r")
+  local file = io.open(path, 'r')
   if file ~= nil then
     io.close(file)
     return true
@@ -53,12 +53,12 @@ local path_exists = function(path)
   end
 end
 
-local local_neophyte_path = "/home/tim/Documents/personal/23/07/neophyte"
+local local_neophyte_path = vim.env.HOME .. '/Documents/personal/23/07/neophyte'
 
 if path_exists(local_neophyte_path) then
   spec.dir = local_neophyte_path
 else
-  spec.url = "https://github.com/tim-harding/neophyte"
+  spec.url = 'https://github.com/tim-harding/neophyte'
 end
 
 return spec
