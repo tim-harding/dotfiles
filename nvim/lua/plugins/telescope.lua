@@ -35,7 +35,7 @@ return {
         }
       }
     }
-    telescope.load_extension('fzf')
+    pcall(require('telescope').load_extension, 'fzf')
 
     map('n', 'j', tb.find_files, 'files')
     map('n', '<leader>jo', tb.oldfiles, 'recent')
