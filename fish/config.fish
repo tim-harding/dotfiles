@@ -25,6 +25,10 @@ function take_a_dub
     git commit -m $argv
 end
 
+function project
+    cd $(fd $argv ~/Documents/personal --max-depth 3)
+end
+
 alias vi='nvim'
 alias vim='nvim'
 alias neophyte "/home/tim/Documents/personal/23/07/neophyte/target/release/neophyte &; disown"
