@@ -1,11 +1,13 @@
 local shared = require('shared')
-local extensions_dir = vim.env.HOME .. '/.vscode/extensions'
 
 return {
   'simrat39/rust-tools.nvim',
   ft = { 'rust' },
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
+    local extensions_dir = vim.env.HOME .. '/.vscode/extensions'
+    local this_os = vim.loop.os_uname().sysname
+
     local scan = require('plenary.scandir')
     local rt = require('rust-tools')
 
@@ -22,11 +24,21 @@ return {
         vscode_dir = entry
         break
       end
+    end
+
+    if vscode_dir == '' then
       error('Could not find vscode-lldb extension')
     end
 
     local codelldb_path = vscode_dir .. '/adapter/codelldb'
-    local liblldb_path = vscode_dir .. '/lldb/lib/liblldb.so'
+    local liblldb_path = vscode_dir .. '/lldb/lib/liblldb'
+
+    if this_os:find 'Windows' then
+      codelldb_path = extension_path .. 'adapter/codelldb.exe'
+      liblldb_path = extension_path .. 'lldb/bin/liblldb.dll'
+    else
+      liblldb_path = liblldb_path .. (this_os == 'Linux' and '.so' or '.dylib')
+    end
 
     rt.setup({
       tools = {
