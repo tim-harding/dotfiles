@@ -1,0 +1,6 @@
+{
+  "soapy_raw": {
+    "body": "<T::Slice as SoaSlice<T>>::Raw",
+    "prefix": "soapy_raw"
+  }
+}

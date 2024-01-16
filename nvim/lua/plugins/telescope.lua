@@ -21,7 +21,7 @@ return {
     local actions = require('telescope.actions')
     local tb = require('telescope.builtin')
 
-    telescope.setup {
+    telescope.setup({
       defaults = {
         layout_strategy = 'vertical',
         theme = 'dropdown',
@@ -32,12 +32,29 @@ return {
             ['<esc>'] = actions.close,
             ['<C-h>'] = 'which_key',
           }
-        }
-      }
-    }
+        },
+      },
+
+      pickers = {
+        find_files = {
+          find_command = {
+            'fd',
+            '--type',
+            'file',
+            '--no-ignore-vcs',
+            '--color=never',
+            '--hidden',
+            '--exclude',
+            '**/.git',
+          },
+        },
+      },
+    })
+
     pcall(require('telescope').load_extension, 'fzf')
 
-    map('n', 'j', tb.find_files, 'files')
+    map('n', 'j', tb.git_files, 'files')
+    map('n', '<leader>jf', tb.find_files, 'files')
     map('n', '<leader>jo', tb.oldfiles, 'recent')
     map('n', '<leader>jb', tb.buffers, 'buffers')
     map('n', '<leader>jh', tb.help_tags, 'help')
