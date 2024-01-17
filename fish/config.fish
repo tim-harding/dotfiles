@@ -30,9 +30,13 @@ function project
     cd $(fd $argv ~/Documents/personal --max-depth 3)
 end
 
+function neophyte
+    RUST_LOG="debug" RUST_BACKTRACE=1 /home/tim/Documents/personal/23/07/neophyte/target/release/neophyte $argv &> /home/tim/temp/neophyte_log.txt &
+    disown
+end
+
 alias vi='nvim'
 alias vim='nvim'
-alias neophyte "RUST_LOG=\"debug\" RUST_BACKTRACE=1 /home/tim/Documents/personal/23/07/neophyte/target/release/neophyte &> /home/tim/temp/neophyte_log.txt &; disown"
 set fish_greeting
 set --export TERM xterm-256color
 set --export EDITOR nvim
