@@ -21,6 +21,8 @@ map('n', '[q', ':cprev<cr>', 'prev quickfix list item')
 map('n', '<C-n>', 'nzz', 'Next result and center')
 map('n', '<M-n>', 'Nzz', 'Previous result and center')
 
+map('t', '<Esc>', '<C-\\><C-n>')
+
 map(
   'n',
   '<leader>q',
