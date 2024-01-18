@@ -66,6 +66,10 @@ focus_follows_mouse no
 for_window [class="^.*"] border pixel 2
 titlebar_padding 1 1
 
+# For headless outputs
+bindsym $mod+y workspace number 0
+bindsym $mod+Shift+y move container to workspace number 0
+
 # Catppuccin frappe colors
 set $rosewater 	#f2d5cf
 set $flamingo 	#eebebe
