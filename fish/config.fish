@@ -12,6 +12,10 @@ function ls
     $argv
 end
 
+function sauce
+    source ~/.config/fish/config.fish
+end
+
 function update_all
     sudo pacman -Syu --noconfirm
     yay -Syu --noconfirm
@@ -32,6 +36,28 @@ end
 function neophyte
     RUST_LOG="debug" RUST_BACKTRACE=1 /home/tim/Documents/personal/23/07/neophyte/target/release/neophyte $argv &> /home/tim/temp/neophyte_log.txt &
     disown
+end
+
+function output_current
+    swaymsg -t get_outputs | jq -r '[.[].name | select(test("HEADLESS"))][0]'
+end
+
+function output_create
+    swaymsg create_output
+    set current $(output_current)
+    swaymsg output $current position 0 0
+    swaymsg output $current resolution 1200x800
+    swaymsg output $current background \#232634 solid_color
+    swaymsg workspace 0 output $current
+end
+
+function output_show
+    wl-mirror $(output_current) &
+    disown
+end
+
+function output_delete
+    swaymsg output $(output_current) unplug
 end
 
 alias vi='nvim'
