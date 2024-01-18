@@ -7,5 +7,5 @@ ConditionEnvironment=WAYLAND_DISPLAY
 [Service]
 Type=dbus
 BusName=org.freedesktop.impl.portal.desktop.wlr
-ExecStart=@libexecdir@/xdg-desktop-portal-wlr
+ExecStart=/usr/lib/xdg-desktop-portal-wlr
 Restart=on-failure
