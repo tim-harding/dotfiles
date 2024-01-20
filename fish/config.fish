@@ -30,10 +30,10 @@ function take_a_dub
 end
 
 function project
-    cd $(fd $argv ~/Documents/personal --exact-depth 3)
+    cd $(fd $argv /home/tim/Documents/personal --exact-depth 3)
 end
 
-complete -c project -x -a '(fd . ~/Documents/personal --exact-depth 3 --exec printf "%s\n" {/})'
+complete -c project -x -a '(fd . /home/tim/Documents/personal --exact-depth 3 --exec printf "%s\n" {/})'
 
 function neophyte
     RUST_LOG="debug" RUST_BACKTRACE=1 /home/tim/Documents/personal/23/07/neophyte/target/release/neophyte $argv &> /home/tim/temp/neophyte_log.txt &
