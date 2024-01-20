@@ -28,10 +28,12 @@ bindsym $mod+Ctrl+g exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(
 
 bindsym $mod+p exec tofi-drun | xargs swaymsg exec --
 
-bindsym $mod+Left focus left
+bindsym $mod+Left exec ~/.config/sway/swap.fish left
+bindsym $mod+Right exec ~/.config/sway/swap.fish right
+# bindsym $mod+Left focus left
+# bindsym $mod+Right focus right
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
-bindsym $mod+Right focus right
 
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down

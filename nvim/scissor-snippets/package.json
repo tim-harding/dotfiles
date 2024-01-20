@@ -6,6 +6,18 @@
           "rust"
         ],
         "path": "./rust.json"
+      },
+      {
+        "language": [
+          "fish"
+        ],
+        "path": "./fish.json"
+      },
+      {
+        "language": [
+          "lua"
+        ],
+        "path": "./lua.json"
       }
     ]
   },

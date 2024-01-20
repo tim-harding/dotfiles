@@ -7,6 +7,11 @@ return {
   opts = {
     snippetDir = snippet_dir,
     jsonFormatter = 'jq',
+    editSnippetPopup = {
+      keymaps = {
+        saveChanges = '<leader>s'
+      }
+    }
   },
   keys = {
     {

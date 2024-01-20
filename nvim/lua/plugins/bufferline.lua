@@ -11,6 +11,10 @@ return {
     local groups = require('bufferline.groups')
     local commands = require('bufferline.commands')
     local state = require('bufferline.state')
+
+    -- Tab order persistence
+    vim.opt.sessionoptions:append('globals')
+
     bufferline.setup({
       highlights = require('catppuccin.groups.integrations.bufferline').get(),
       options = {

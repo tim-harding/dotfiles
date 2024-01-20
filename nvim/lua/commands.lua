@@ -45,3 +45,9 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
     vim.opt_local.filetype = 'wgsl'
   end
 })
+
+vim.api.nvim_create_autocmd('FocusGained', {
+  group = vim.api.nvim_create_augroup('ReloadChangedFile', { clear = true }),
+  pattern = '*',
+  callback = vim.cmd.checktime,
+})

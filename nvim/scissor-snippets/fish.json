@@ -1,0 +1,44 @@
+{
+  "elif": {
+    "body": [
+      "else if ${1:cond}",
+      "    $2"
+    ],
+    "prefix": "elif"
+  },
+  "else": {
+    "body": [
+      "else",
+      "    $2"
+    ],
+    "prefix": "else"
+  },
+  "fun": {
+    "body": [
+      "function ${1:name}",
+      "    $2",
+      "end"
+    ],
+    "prefix": "fun"
+  },
+  "if": {
+    "body": [
+      "if ${1:cond}",
+      "    $2",
+      "end"
+    ],
+    "prefix": "if"
+  },
+  "switch + match": {
+    "body": [
+      "switch ${1:value}",
+      "case ${2:glob}",
+      "    $3",
+      "end"
+    ],
+    "prefix": [
+      "switch",
+      "match"
+    ]
+  }
+}
