@@ -1,42 +1,6 @@
 #!/usr/bin/fish --no-config
 
-set screen_and_window $(swaymsg -t get_tree | \
-jq -r "\
-.nodes[] |
-select(.active?) |
-{
-    name,
-    workspaces: (
-        .nodes |
-        map(
-            .nodes |
-            walk(
-                if type==\"object\" then
-                    if has(\"app_id\") then
-                        .id, (.focused and .fullscreen_mode==1)
-                    elif .type?==\"monitor\" then
-                        \"hi\"
-                    else
-                        .nodes[]?
-                    end
-                else
-                    .
-                end
-            )
-        )
-    )
-} |
-{
-    name,
-    next_window: (
-        .workspaces[] |
-        [index(true), length, .] | 
-        .[2][(.[0] + 1) % .[1]]
-    )
-} |
-select(.next_window | type==\"number\") |
-.name, .next_window
-")
+set screen_and_window $(swaymsg -t get_tree | ~/.config/sway/next_fullscreen.jq)
 
 if set -q screen_and_window[1]
     set screen $screen_and_window[1]
