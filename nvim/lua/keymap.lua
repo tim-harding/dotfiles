@@ -23,6 +23,10 @@ map('n', '<M-n>', 'Nzz', 'Previous result and center')
 
 map('t', '<Esc>', '<C-\\><C-n>')
 
+map('x', '<leader>@', ':normal @q<cr>')
+map('n', '<leader>\'', ':s/"/\'/g<cr>')
+map('n', '<leader>"', ':%s/"/\'/g<cr>')
+
 map(
   'n',
   '<leader>q',

@@ -49,5 +49,7 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
 vim.api.nvim_create_autocmd('FocusGained', {
   group = vim.api.nvim_create_augroup('ReloadChangedFile', { clear = true }),
   pattern = '*',
-  callback = vim.cmd.checktime,
+  callback = function()
+    pcall(vim.cmd.checktime)
+  end
 })
