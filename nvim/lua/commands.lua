@@ -14,6 +14,14 @@ vim.api.nvim_create_user_command('SetIndent', function(opts)
   vim.bo.expandtab = true
 end, { nargs = 1 })
 
+vim.api.nvim_create_user_command('GoFast', function()
+  vim.treesitter.stop()
+  vim.cmd.syntax(false)
+  vim.cmd('IBLDisable')
+  vim.opt.cursorline = false
+  vim.opt.wrap = false
+end, {})
+
 local buf_to_close = -1
 
 vim.api.nvim_create_autocmd({ 'BufLeave' }, {

@@ -7,10 +7,12 @@ return {
     require('nvim-treesitter.configs').setup {
       auto_install = true,
       highlight = { enable = true },
+
       indent = {
         enable = true,
         disable = { 'python', 'dart' }
       },
+
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -19,6 +21,7 @@ return {
           node_decremental = '<tab>',
         },
       },
+
       textobjects = {
         select = {
           enable = true,
@@ -39,6 +42,7 @@ return {
             ['il'] = '@loop.inner',
           },
         },
+
         move = {
           enable = true,
           disable = { 'dart' },
@@ -76,6 +80,16 @@ return {
             ['[L'] = '@loop.inner',
           },
         },
+
+        lsp_interop = {
+          enable = true,
+          border = 'none',
+          floating_preview_opts = {},
+          peek_definition_code = {
+            -- ["<leader>df"] = "@function.outer",
+            -- ["<leader>dF"] = "@class.outer",
+          },
+        },
       },
     }
 
@@ -88,5 +102,13 @@ return {
     vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
     vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
     vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
+
+    vim.api.nvim_create_user_command('TSStop', function()
+      vim.treesitter.stop()
+    end, {})
+
+    vim.api.nvim_create_user_command('TSStart', function()
+      vim.treesitter.start()
+    end, {})
   end
 }

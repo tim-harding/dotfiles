@@ -10,10 +10,26 @@ M.map = function(mode, keys, func, desc, opts)
   vim.keymap.set(mode, keys, func, opts)
 end
 
+-- TODO: Does this need to be created per-client like the formatting one?
+local highlight_augroup = vim.api.nvim_create_augroup("LspDocumentHighlight", { clear = true })
+
 M.on_attach = function(client, bufnr)
   local map = function(m, keys, func, desc)
     local opts = { buffer = bufnr, desc = desc }
     vim.keymap.set(m, keys, func, opts)
+  end
+
+  if client.server_capabilities.documentHighlightProvider then
+    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+      callback = vim.lsp.buf.document_highlight,
+      buffer = bufnr,
+      group = highlight_augroup,
+    })
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      callback = vim.lsp.buf.clear_references,
+      buffer = bufnr,
+      group = highlight_augroup,
+    })
   end
 
   map('n', '<leader>r', vim.lsp.buf.rename, 'rename')

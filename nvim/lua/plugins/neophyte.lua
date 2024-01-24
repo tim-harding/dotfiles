@@ -9,7 +9,8 @@ local spec = {
         },
       },
       'Symbols Nerd Font',
-      'Noto Color Emoji'
+      'Noto Color Emoji',
+      'Noto Sans CJK JP',
     },
     font_size = {
       kind = 'width',
