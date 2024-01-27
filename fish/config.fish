@@ -12,6 +12,10 @@ function ls
     $argv
 end
 
+function mkdir
+    /usr/bin/mkdir -p $argv
+end
+
 function sauce
     source ~/.config/fish/config.fish
 end
