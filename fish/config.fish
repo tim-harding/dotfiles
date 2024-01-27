@@ -112,4 +112,7 @@ fish_add_path ~/.dotnet/tools
 # opam configuration
 source /home/tim/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 
+set -x FLYCTL_INSTALL "/home/tim/.fly"
+fish_add_path $FLYCTL_INSTALL/bin
+
 fish_ssh_agent
