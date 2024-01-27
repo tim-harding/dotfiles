@@ -41,11 +41,8 @@ return {
             'fd',
             '--type',
             'file',
-            '--no-ignore-vcs',
             '--color=never',
             '--hidden',
-            '--exclude',
-            '**/.git',
           },
         },
       },
@@ -53,8 +50,8 @@ return {
 
     pcall(require('telescope').load_extension, 'fzf')
 
-    map('n', 'j', tb.git_files, 'files')
-    map('n', '<leader>jf', tb.find_files, 'files')
+    map('n', 'j', tb.find_files, 'files')
+    map('n', '<leader>jg', tb.git_files, 'files')
     map('n', '<leader>jo', tb.oldfiles, 'recent')
     map('n', '<leader>jb', tb.buffers, 'buffers')
     map('n', '<leader>jh', tb.help_tags, 'help')
