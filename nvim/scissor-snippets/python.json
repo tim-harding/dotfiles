@@ -1,9 +1,30 @@
 {
+  "def": {
+    "body": [
+      "def ${1:func}($2) -> ${3:None}:",
+      "    ${4:pass}"
+    ],
+    "prefix": "def"
+  },
   "ifmain": {
     "body": [
       "if __name__ == \"__main__\":",
       "    ${1:pass}"
     ],
     "prefix": "ifmain"
+  },
+  "testmod": {
+    "body": [
+      "import unittest",
+      "",
+      "",
+      "class Tests(unittest.TestCase):",
+      "    pass",
+      "",
+      "",
+      "if __name__ == \"__main__\":",
+      "    unittest.main()"
+    ],
+    "prefix": "testmod"
   }
 }
