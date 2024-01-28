@@ -22,5 +22,36 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
-vim.opt.hlsearch = false
+vim.opt.textwidth = 80
+vim.opt.formatoptions = 'cqj' -- :h fo-table
 vim.opt.guicursor = "n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor"
+-- vim.opt.hlsearch = false
+
+vim.fn.sign_define(
+  "DiagnosticSignError",
+  {
+    text = " ",
+    texthl = "DiagnosticSignError",
+  }
+)
+vim.fn.sign_define(
+  "DiagnosticSignWarn",
+  {
+    text = " ",
+    texthl = "DiagnosticSignWarn",
+  }
+)
+vim.fn.sign_define(
+  "DiagnosticSignInfo",
+  {
+    text = " ",
+    texthl = "DiagnosticSignInfo",
+  }
+)
+vim.fn.sign_define(
+  "DiagnosticSignHint",
+  {
+    text = "󰌵",
+    texthl = "DiagnosticSignHint",
+  }
+)
