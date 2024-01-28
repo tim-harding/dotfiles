@@ -17,28 +17,22 @@ return {
         })
       end,
     },
+
     {
-      'gg',
+      '<leader>gg',
       function()
         require('neo-tree.command').execute({
-          toggle = true,
           source = 'git_status',
+          toggle = true,
+          reveal = true,
         })
       end,
     },
   },
 
   opts = {
+    close_if_last_window = true,
     use_default_mappings = false,
-
-    event_handlers = {
-      {
-        event = 'file_opened',
-        handler = function()
-          require('neo-tree.command').execute({ action = 'close' })
-        end,
-      },
-    },
 
     default_component_configs = {
       indent = {
@@ -62,25 +56,41 @@ return {
       },
     },
 
+    commands = {
+      git_unstage_all = function()
+        vim.cmd('Git reset')
+      end
+    },
+
     window = {
-      position = 'left',
-      width = 40,
+      position = 'current',
       mapping_options = {
         noremap = true,
         nowait = true,
       },
       mappings = {
-        ['<cr>'] = 'open',
-        ['<2-LeftMouse>'] = 'open',
+        ['<cr>']  = function(state)
+          state.commands['open'](state)
+          require('neo-tree.command').execute({ action = 'close' })
+        end,
+
         ['<tab>'] = 'close_node',
-        ['z'] = 'close_all_nodes',
-        ['a'] = 'add',
-        ['d'] = 'delete',
-        ['r'] = 'rename',
-        ['c'] = 'copy',
-        ['m'] = 'move',
-        ['q'] = 'close_window',
-        ['?'] = 'show_help',
+        ['z']     = 'close_all_nodes',
+        ['a']     = 'add',
+        ['d']     = 'delete',
+        ['r']     = 'rename',
+        ['c']     = 'copy',
+        ['m']     = 'move',
+        ['q']     = 'close_window',
+        ['?']     = 'show_help',
+
+        ['s']     = 'git_add_file',
+        ['S']     = 'git_unstage_file',
+        ['gs']    = 'git_add_all',
+        ['gS']    = 'git_unstage_all',
+        ['gr']    = 'git_revert_file',
+        ['gc']    = 'git_commit',
+        ['gp']    = 'git_push',
       },
     },
 
@@ -101,10 +111,15 @@ return {
       use_libuv_file_watcher = true,
       window = {
         mappings = {
-          ['<bs>'] = 'navigate_up',
-          ['.'] = 'set_root',
-          ['[g'] = 'prev_git_modified',
-          [']g'] = 'next_git_modified',
+          ['<c-cr>'] = function(state)
+            state.commands['open'](state)
+            require('neo-tree.command').execute({ reveal = true })
+          end,
+
+          ['<bs>']   = 'navigate_up',
+          ['.']      = 'set_root',
+          ['[g']     = 'prev_git_modified',
+          [']g']     = 'next_git_modified',
         },
       },
     },
@@ -112,12 +127,13 @@ return {
     git_status = {
       window = {
         mappings = {
-          ['S']  = 'git_add_all',
-          ['s']  = 'git_add_file',
-          ['u']  = 'git_unstage_file',
-          ['gr'] = 'git_revert_file',
-          ['gc'] = 'git_commit',
-          ['gp'] = 'git_push',
+          ['<c-cr>'] = function(state)
+            state.commands['open'](state)
+            require('neo-tree.command').execute({
+              source = 'git_status',
+              reveal = true,
+            })
+          end,
         },
       },
     },
