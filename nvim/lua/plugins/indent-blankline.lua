@@ -16,7 +16,7 @@ return {
 
     ibl.setup({
       indent = {
-        char = '┃'
+        char = '▎'
       }
     })
   end

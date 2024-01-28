@@ -35,7 +35,8 @@ return {
       which_key = true,
       leap = true,
       noice = true,
-      lsp_trouble = true,
+      fidget = true,
+      neotree = true,
     },
-  }
+  },
 }
