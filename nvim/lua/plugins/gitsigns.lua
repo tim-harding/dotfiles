@@ -13,24 +13,28 @@ return {
       end
 
       map('n', ']g', function()
-        if vim.wo.diff then return ']g' end
-        vim.schedule(function() gs.next_hunk() end)
+        if vim.wo.diff then
+          return ']g'
+        end
+        vim.schedule(gs.next_hunk)
         return '<Ignore>'
       end, 'hunk', { expr = true })
 
       map('n', '[g', function()
-        if vim.wo.diff then return '[g' end
-        vim.schedule(function() gs.prev_hunk() end)
+        if vim.wo.diff then
+          return '[g'
+        end
+        vim.schedule(gs.prev_hunk)
         return '<Ignore>'
       end, 'hunk', { expr = true })
 
       map('n', '<leader>gs', gs.stage_hunk, 'stage')
       map('n', '<leader>gr', gs.reset_hunk, 'reset')
       map('v', '<leader>gs', function()
-        gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') }
+        gs.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
       end, 'stage')
       map('v', '<leader>gr', function()
-        gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') }
+        gs.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
       end, 'reset')
       map('n', '<leader>gS', gs.stage_buffer, 'stage buffer')
       map('n', '<leader>gu', gs.undo_stage_hunk, 'undo stage')
