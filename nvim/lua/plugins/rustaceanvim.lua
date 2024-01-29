@@ -1,15 +1,18 @@
-local shared = require('shared')
-
 return {
-  'simrat39/rust-tools.nvim',
+  'mrcjkb/rustaceanvim',
   ft = { 'rust' },
   dependencies = { 'nvim-lua/plenary.nvim' },
+  version = '^4',
+
   config = function()
+    local scan = require('plenary.scandir')
+    local rustaceanvim = require('rustaceanvim')
+    local dap = require('rustaceanvim.dap')
+    local cfg = require('rustaceanvim.config')
+    local shared = require('shared')
+
     local extensions_dir = vim.env.HOME .. '/.vscode/extensions'
     local this_os = vim.loop.os_uname().sysname
-
-    local scan = require('plenary.scandir')
-    local rt = require('rust-tools')
 
     local dirs = scan.scan_dir(extensions_dir, {
       depth = 1,
@@ -34,13 +37,13 @@ return {
     local liblldb_path = vscode_dir .. '/lldb/lib/liblldb'
 
     if this_os:find 'Windows' then
-      codelldb_path = extension_path .. 'adapter/codelldb.exe'
-      liblldb_path = extension_path .. 'lldb/bin/liblldb.dll'
+      codelldb_path = vscode_dir .. 'adapter/codelldb.exe'
+      liblldb_path = vscode_dir .. 'lldb/bin/liblldb.dll'
     else
       liblldb_path = liblldb_path .. (this_os == 'Linux' and '.so' or '.dylib')
     end
 
-    rt.setup({
+    vim.g.rustaceanvim = {
       tools = {
         inlay_hints = {
           auto = false,
@@ -55,22 +58,22 @@ return {
         standalone = false,
         on_attach = function(_, bufnr)
           shared.on_attach(_, bufnr)
-          shared.map('n', 'gH', rt.hover_actions.hover_actions, 'hover action', { buffer = bufnr })
+          shared.map('n', 'gH', dap.hover_actions.hover_actions, 'hover action', { buffer = bufnr })
           vim.opt.textwidth = 80
         end,
       },
       dap = {
-        adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path),
+        adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
       },
-    })
+    }
 
     local inlay_hints_enabled = false
     shared.map('n', '<leader>i', function()
       inlay_hints_enabled = not inlay_hints_enabled
       if inlay_hints_enabled then
-        rt.inlay_hints.enable()
+        rustaceanvim.inlay_hints.enable()
       else
-        rt.inlay_hints.disable()
+        rustaceanvim.inlay_hints.disable()
       end
     end)
   end,

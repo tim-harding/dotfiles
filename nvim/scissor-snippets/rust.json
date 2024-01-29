@@ -1,6 +1,16 @@
 {
-  "soapy_raw": {
-    "body": "<T::Slice as SoaSlice<T>>::Raw",
-    "prefix": "soapy_raw"
+  "soapy_example": {
+    "body": [
+      "///",
+      "/// # Examples",
+      "///",
+      "/// ```",
+      "/// # use soapy::{Soa, Soapy, soa};",
+      "/// # #[derive(Soapy, Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord)]",
+      "/// # struct Foo(usize);",
+      "/// $1",
+      "/// ```"
+    ],
+    "prefix": "soapy_example"
   }
 }

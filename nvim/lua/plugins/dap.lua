@@ -194,7 +194,7 @@ return {
     map('n', '<F10>', dap.step_over)
     map('n', '<F11>', dap.step_into)
     map('n', '<F12>', dap.step_out)
-    map('n', '<leader>dd', dap.toggle_breakpoint, 'toggle breakpoint')
+    map('n', '<leader>b', dap.toggle_breakpoint, 'toggle breakpoint')
     map('n', '<leader>dC', dap.clear_breakpoints, 'clear breakpoints')
     map('n', '<leader>dD', set_condition_breakpoint, 'breakpoint condition')
   end
