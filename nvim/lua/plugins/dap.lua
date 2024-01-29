@@ -33,33 +33,8 @@ return {
 
   config = function()
     local dap = require('dap')
-    local scandir = require('plenary.scandir')
     local job = require('plenary.job')
     local map = require('shared').map
-
-    local extensions_dir = vim.env.HOME .. '/.vscode/extensions'
-    local dirs = scandir.scan_dir(extensions_dir, {
-      depth = 1,
-      only_dirs = true,
-    })
-
-    local vscode_pattern = 'vadimcn%.vscode%-lldb%-%d%.%d%.%d'
-    local vscode_dir = ''
-    for _, entry in ipairs(dirs) do
-      local is_vscode_lldb = string.find(entry, vscode_pattern) ~= nil
-      if is_vscode_lldb then
-        vscode_dir = entry
-        break
-      end
-    end
-
-    if vscode_dir == '' then
-      error('Could not find vscode-lldb extension')
-    end
-
-    local this_os = vim.loop.os_uname().sysname
-    local is_windows = this_os:find('Windows')
-    local codelldb_path = vscode_dir .. '/adapter/codelldb' .. (is_windows and '.exe' or '')
 
     local function pick_executable()
       local path = vim.fn.input({
@@ -111,7 +86,7 @@ return {
         type = 'server',
         port = '${port}',
         executable = {
-          command = codelldb_path,
+          command = 'codelldb',
           args = { '--port', '${port}' },
         },
       },

@@ -5,50 +5,11 @@ return {
   version = '^4',
 
   config = function()
-    local scan = require('plenary.scandir')
-    local rustaceanvim = require('rustaceanvim')
     local dap = require('rustaceanvim.dap')
-    local cfg = require('rustaceanvim.config')
     local shared = require('shared')
-
-    local extensions_dir = vim.env.HOME .. '/.vscode/extensions'
-    local this_os = vim.loop.os_uname().sysname
-
-    local dirs = scan.scan_dir(extensions_dir, {
-      depth = 1,
-      only_dirs = true,
-    })
-
-    local vscode_pattern = 'vadimcn%.vscode%-lldb%-%d%.%d%.%d'
-    local vscode_dir = ''
-    for _, entry in ipairs(dirs) do
-      local is_vscode_lldb = string.find(entry, vscode_pattern) ~= nil
-      if is_vscode_lldb then
-        vscode_dir = entry
-        break
-      end
-    end
-
-    if vscode_dir == '' then
-      error('Could not find vscode-lldb extension')
-    end
-
-    local codelldb_path = vscode_dir .. '/adapter/codelldb'
-    local liblldb_path = vscode_dir .. '/lldb/lib/liblldb'
-
-    if this_os:find 'Windows' then
-      codelldb_path = vscode_dir .. 'adapter/codelldb.exe'
-      liblldb_path = vscode_dir .. 'lldb/bin/liblldb.dll'
-    else
-      liblldb_path = liblldb_path .. (this_os == 'Linux' and '.so' or '.dylib')
-    end
 
     vim.g.rustaceanvim = {
       tools = {
-        inlay_hints = {
-          auto = false,
-          other_hints_prefix = '-> ',
-        },
         hover_actions = {
           auto_focus = true,
         },
@@ -62,19 +23,16 @@ return {
           vim.opt.textwidth = 80
         end,
       },
-      dap = {
-        adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
-      },
+      dap = {},
     }
 
-    local inlay_hints_enabled = false
-    shared.map('n', '<leader>i', function()
-      inlay_hints_enabled = not inlay_hints_enabled
-      if inlay_hints_enabled then
-        rustaceanvim.inlay_hints.enable()
-      else
-        rustaceanvim.inlay_hints.disable()
-      end
-    end)
+    local codelldb_dir = '/usr/lib/codelldb/adapter/'
+    local codelldb_path = codelldb_dir .. 'codelldb'
+    local liblldb_path = codelldb_dir .. 'libcodelldb.so'
+    local this_os = vim.loop.os_uname().sysname
+    if this_os:find('Linux') then
+      local cfg = require('rustaceanvim.config')
+      vim.g.rustaceanvim.dap.adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path)
+    end
   end,
 }
