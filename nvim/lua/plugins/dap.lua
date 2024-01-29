@@ -19,6 +19,7 @@ vim.fn.sign_define('DapLogPoint', {
 
 return {
   'mfussenegger/nvim-dap',
+  event = 'VeryLazy',
 
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -30,40 +31,11 @@ return {
     },
   },
 
-  cmd = {
-    'RustDebugBin',
-    'RustDebugTests',
-  },
-
-  keys = {
-    { '<F5>',  function() require('dap').continue() end },
-    { '<F9>',  function() require('dap').terminate() end },
-    { '<F10>', function() require('dap').step_over() end },
-    { '<F11>', function() require('dap').step_into() end },
-    { '<F12>', function() require('dap').step_out() end },
-    {
-      '<leader>dd',
-      function() require('dap').toggle_breakpoint() end,
-      desc = 'toggle breakpoint'
-    },
-    {
-      '<leader>dC',
-      function() require('dap').clear_breakpoints() end,
-      desc = 'clear breakpoints'
-    },
-    {
-      '<leader>dD',
-      function()
-        require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
-      end,
-      desc = 'breakpoint condition'
-    },
-  },
-
   config = function()
     local dap = require('dap')
     local scandir = require('plenary.scandir')
     local job = require('plenary.job')
+    local map = require('shared').map
 
     local extensions_dir = vim.env.HOME .. '/.vscode/extensions'
     local dirs = scandir.scan_dir(extensions_dir, {
@@ -105,8 +77,8 @@ return {
         type = 'codelldb',
         request = 'launch',
         cwd = '${workspaceFolder}',
-        stopOnEntry = false,
         program = pick_executable,
+        stopOnEntry = false,
       },
     }
 
@@ -116,20 +88,17 @@ return {
       request = 'launch',
       cwd = '${workspaceFolder}',
       program = pick_executable,
+      stopOnEntry = false,
     }
 
     local configs = { codelldb_launch, gdb_launch }
 
+    P(configs)
     dap.configurations = {
       c = configs,
       cpp = configs,
       rust = configs,
     }
-
-    local detached = nil
-    if is_windows then
-      detached = false
-    end
 
     dap.adapters = {
       gdb = {
@@ -144,9 +113,8 @@ return {
         executable = {
           command = codelldb_path,
           args = { '--port', '${port}' },
-          detached = detached,
-        }
-      }
+        },
+      },
     }
 
     local last_path_item = function(path)
@@ -155,11 +123,12 @@ return {
 
     local run_rust = function(program)
       dap.run({
-        name = string.format('Rust run %s', last_path_item(program)),
-        program = program,
-        type = 'gdb',
+        type = 'codelldb',
         request = 'launch',
         cwd = '${workspaceFolder}',
+        name = string.format('Rust run %s', last_path_item(program)),
+        program = program,
+        stopOnEntry = false,
       })
     end
 
@@ -211,5 +180,22 @@ return {
     vim.api.nvim_create_user_command('RustDebugTests', function()
       debug_rust({ '--tests' })
     end, {})
+
+    local function set_condition_breakpoint()
+      vim.ui.input({
+        prompt = 'Breakpoint condition: ',
+      }, function(choice)
+        dap.set_breakpoint(choice)
+      end)
+    end
+
+    map('n', '<F5>', dap.continue)
+    map('n', '<F9>', dap.terminate)
+    map('n', '<F10>', dap.step_over)
+    map('n', '<F11>', dap.step_into)
+    map('n', '<F12>', dap.step_out)
+    map('n', '<leader>dd', dap.toggle_breakpoint, 'toggle breakpoint')
+    map('n', '<leader>dC', dap.clear_breakpoints, 'clear breakpoints')
+    map('n', '<leader>dD', set_condition_breakpoint, 'breakpoint condition')
   end
 }
