@@ -1,6 +1,18 @@
 return {
   'folke/noice.nvim',
   event = 'VeryLazy',
+  dependencies = { 'MunifTanjim/nui.nvim' },
+
+  keys = {
+    {
+      '<leader>n',
+      function()
+        vim.cmd('Noice')
+      end,
+      { desc = 'Open Noice' },
+    },
+  },
+
   opts = {
     presets = {
       bottom_search = true,
@@ -25,8 +37,8 @@ return {
           { '✓ ', hl_group = 'NoiceLspProgressSpinner' },
           { '{data.progress.title} ', hl_group = 'NoiceLspProgressTitle' },
           { '{data.progress.client} ', hl_group = 'NoiceLspProgressClient' },
-        }
-      }
+        },
+      },
     },
     messages = {
       view = 'mini',
@@ -34,9 +46,6 @@ return {
     },
     cmdline = {
       view = 'cmdline',
-    }
+    },
   },
-  dependencies = {
-    'MunifTanjim/nui.nvim',
-  }
 }
