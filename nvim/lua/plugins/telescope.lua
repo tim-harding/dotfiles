@@ -14,6 +14,7 @@ return {
         return vim.fn.executable 'make' == 1
       end,
     },
+    { 'nvim-telescope/telescope-dap.nvim' },
   },
 
   config = function()
@@ -49,6 +50,7 @@ return {
     })
 
     pcall(require('telescope').load_extension, 'fzf')
+    telescope.load_extension('dap')
 
     map('n', 'j', tb.find_files, 'files')
     map('n', '<leader>jg', tb.git_files, 'files')

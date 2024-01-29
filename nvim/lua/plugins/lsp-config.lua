@@ -63,6 +63,7 @@ return {
     local lspconfig = require('lspconfig')
 
     local simple_servers = {
+      lspconfig.rust_analyzer,
       lspconfig.lua_ls,
       lspconfig.dartls,
       lspconfig.zls,
