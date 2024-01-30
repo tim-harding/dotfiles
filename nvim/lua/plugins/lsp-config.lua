@@ -201,7 +201,7 @@ return {
     -- cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done())
 
     local format_is_enabled = true
-    vim.api.nvim_create_user_command('ToggleAutoformat', function()
+    vim.api.nvim_create_user_command('AutoformatToggle', function()
       format_is_enabled = not format_is_enabled
       print('Setting autoformatting to: ' .. tostring(format_is_enabled))
     end, {})

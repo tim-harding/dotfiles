@@ -47,6 +47,7 @@ return {
       map('n', '<leader>gtd', gs.toggle_deleted, 'toggle deleted')
 
       map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'inner hunk')
+      map({ 'o', 'x' }, 'ah', 'ih', 'around hunk')
     end
   },
 }
