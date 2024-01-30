@@ -1,5 +1,15 @@
 import = ["/home/tim/.config/alacritty/catppuccin-frappe.toml"]
 
+[window]
+dynamic_padding = true
+
+[scrolling]
+history = 100000 # maximum
+multiplier = 9 # default: 3
+
+[cursor]
+thickness = 0.25 # in insert mode
+
 [font]
 size = 13.0
 
@@ -19,23 +29,37 @@ style = "Italic"
 family = "CaskaydiaCove Nerd Font"
 style = "Regular"
 
-[[keyboard.bindings]]
-action = "SpawnNewInstance"
-key = "Return"
-mods = "Control"
+# Key codes: https://docs.rs/winit/latest/winit/keyboard/enum.NamedKey.html
 
 [[keyboard.bindings]]
-chars = "\u001B[9;5u"
 key = "Tab"
 mods = "Control"
+chars = "\u001B[9;5u" # Forward <C-Tab> to Vim
 
 [[keyboard.bindings]]
-chars = "\u001B[9;6u"
 key = "Tab"
 mods = "Control|Shift"
+chars = "\u001B[9;6u" # Forward <C-S-Tab> to Vim
 
-[shell]
-program = "/usr/bin/fish"
+[[keyboard.bindings]]
+key = "Return"
+mods = "Control"
+action = "SpawnNewInstance"
 
-[window]
-dynamic_padding = true
+[[keyboard.bindings]]
+key = "+"
+mods = "Control|Shift"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "-"
+mods = "Control"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "PageUp"
+action = "ScrollPageUp"
+
+[[keyboard.bindings]]
+key = "PageDown"
+action = "ScrollPageDown"
