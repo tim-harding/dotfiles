@@ -69,28 +69,28 @@ return {
         nowait = true,
       },
       mappings = {
-        ['<cr>']  = function(state)
+        ['<c-cr>'] = function(state)
           state.commands['open'](state)
           require('neo-tree.command').execute({ action = 'close' })
         end,
 
-        ['<tab>'] = 'close_node',
-        ['z']     = 'close_all_nodes',
-        ['a']     = 'add',
-        ['d']     = 'delete',
-        ['r']     = 'rename',
-        ['c']     = 'copy',
-        ['m']     = 'move',
-        ['q']     = 'close_window',
-        ['?']     = 'show_help',
+        ['<tab>']  = 'close_node',
+        ['z']      = 'close_all_nodes',
+        ['a']      = 'add',
+        ['d']      = 'delete',
+        ['r']      = 'rename',
+        ['c']      = 'copy',
+        ['m']      = 'move',
+        ['q']      = 'close_window',
+        ['?']      = 'show_help',
 
-        ['s']     = 'git_add_file',
-        ['S']     = 'git_unstage_file',
-        ['gs']    = 'git_add_all',
-        ['gS']    = 'git_unstage_all',
-        ['gr']    = 'git_revert_file',
-        ['gc']    = 'git_commit',
-        ['gp']    = 'git_push',
+        ['s']      = 'git_add_file',
+        ['S']      = 'git_unstage_file',
+        ['gs']     = 'git_add_all',
+        ['gS']     = 'git_unstage_all',
+        ['gr']     = 'git_revert_file',
+        ['gc']     = 'git_commit',
+        ['gp']     = 'git_push',
       },
     },
 
@@ -111,15 +111,15 @@ return {
       use_libuv_file_watcher = true,
       window = {
         mappings = {
-          ['<c-cr>'] = function(state)
+          ['<cr>'] = function(state)
             state.commands['open'](state)
             require('neo-tree.command').execute({ reveal = true })
           end,
 
-          ['<bs>']   = 'navigate_up',
-          ['.']      = 'set_root',
-          ['[g']     = 'prev_git_modified',
-          [']g']     = 'next_git_modified',
+          ['<bs>'] = 'navigate_up',
+          ['.']    = 'set_root',
+          ['[g']   = 'prev_git_modified',
+          [']g']   = 'next_git_modified',
         },
       },
     },
@@ -127,7 +127,7 @@ return {
     git_status = {
       window = {
         mappings = {
-          ['<c-cr>'] = function(state)
+          ['<cr>'] = function(state)
             state.commands['open'](state)
             require('neo-tree.command').execute({
               source = 'git_status',
