@@ -178,10 +178,7 @@ return {
     })
 
     cmp.setup.filetype('gitcommit', {
-      sources = cmp.config.sources(
-        { { name = 'git' } },
-        { { name = 'buffer' } }
-      )
+      sources = cmp.config.sources({ { name = 'git' } })
     })
 
     cmp.setup.cmdline({ '/', '?' }, {
@@ -191,11 +188,7 @@ return {
 
     cmp.setup.cmdline(':', {
       mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-        { name = 'path' }
-      }, {
-        { name = 'cmdline' }
-      })
+      sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } })
     })
 
     -- TODO: Doesn't play nice with functional languages
@@ -257,7 +250,6 @@ return {
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
-    'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-cmdline',
     'petertriho/cmp-git',
     'saadparwaiz1/cmp_luasnip',
