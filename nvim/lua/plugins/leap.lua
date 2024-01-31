@@ -25,6 +25,7 @@ local labels = {
 return {
   'ggandor/leap.nvim',
   dependencies = { 'tpope/vim-repeat' },
+  enabled = false,
   -- According to the author, lazy loading...
   -- ...is all the rage now, but doing it manually or via some plugin
   -- manager is completely redundant, as Leap takes care of it itself.

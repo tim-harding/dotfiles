@@ -13,15 +13,6 @@ return {
         disable = { 'python', 'dart' }
       },
 
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = '<cr>',
-          node_incremental = '<cr>',
-          node_decremental = '<tab>',
-        },
-      },
-
       textobjects = {
         select = {
           enable = true,
