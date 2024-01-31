@@ -6,7 +6,7 @@ return {
     local flash = require('flash')
     local map = require('shared').map
 
-    function str_to_list(str)
+    local function str_to_list(str)
       local out = {}
       for c in string.gmatch(str, '.') do
         table.insert(out, c)
@@ -15,7 +15,7 @@ return {
     end
 
     local labels_str = 'setnrigmfuplwycdhxaoq'
-    local left_hand = str_to_list('strpwgdxbvfcaq')
+    local left_hand = str_to_list('strpwgdxbvfc')
     local right_hand = str_to_list('eniulymhjk')
 
     flash.setup({
@@ -42,34 +42,26 @@ return {
       }
     end
 
-    local function labeler1(matches, state)
-      local from = vim.api.nvim_win_get_cursor(state.win)
-
-      local function compare(a, b)
-        if a.win ~= b.win then
-          local aw = a.win == self.state.win and 0 or a.win
-          local bw = b.win == self.state.win and 0 or b.win
-          return aw < bw
+    local function labeler1(matches)
+      local first = left_hand
+      local second = right_hand
+      local possible_before_swap = #left_hand * #right_hand
+      for i, match in ipairs(matches) do
+        if i >= possible_before_swap then
+          i = i - possible_before_swap
+          first = right_hand
+          second = left_hand
         end
 
-        local dfrom = from[1] * vim.go.columns + from[2]
-        local da = a.pos[1] * vim.go.columns + a.pos[2]
-        local db = b.pos[1] * vim.go.columns + b.pos[2]
-        return math.abs(dfrom - da) < math.abs(dfrom - db)
-      end
-
-      table.sort(matches, compare)
-
-      for m, match in ipairs(matches) do
-        match.label1 = left_hand[math.floor((m - 1) / #right_hand) + 1]
-        match.label2 = right_hand[(m - 1) % #right_hand + 1]
+        match.label1 = first[math.floor((i - 1) / #second) + 1]
+        match.label2 = second[(i - 1) % #second + 1]
         match.label = match.label1
       end
     end
 
-    local function labeler2(matches, state)
+    local function labeler2(matches)
       for _, m in ipairs(matches) do
-        m.label = m.label2 -- use the second label
+        m.label = m.label2
       end
     end
 
