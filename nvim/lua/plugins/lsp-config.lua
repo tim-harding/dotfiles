@@ -1,11 +1,9 @@
-local shared = require('shared')
-local on_attach = shared.on_attach
-
 return {
   'neovim/nvim-lspconfig',
   event = 'VeryLazy',
   config = function()
     require('neodev').setup()
+    local shared = require('shared')
 
     vim.diagnostic.config({ virtual_text = false })
 
@@ -73,15 +71,11 @@ return {
     }
 
     for _, server in ipairs(simple_servers) do
-      server.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-      })
+      server.setup({ capabilities = capabilities })
     end
 
     lspconfig.hls.setup({
       capabilities = capabilities,
-      on_attach = on_attach,
       filetypes = {
         'haskell',
         'lhaskell',
@@ -91,7 +85,6 @@ return {
 
     lspconfig.omnisharp.setup({
       capabilities = capabilities,
-      on_attach = on_attach,
       handlers = {
         ['textDocument/definition'] = require('omnisharp_extended').handler,
       },
@@ -105,6 +98,47 @@ return {
         tostring(vim.fn.getpid()),
       },
       organize_imports_on_format = true,
+    })
+
+    local highlight_augroup = vim.api.nvim_create_augroup('LspDocumentHighlight', {})
+    vim.api.nvim_create_autocmd('LspAttach', {
+      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+      callback = function(event)
+        local bufnr = event.buf
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+        if client.server_capabilities.completionProvider then
+          vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+        end
+        if client.server_capabilities.definitionProvider then
+          vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
+        end
+
+        local map = function(m, keys, func, desc)
+          local opts = { buffer = bufnr, desc = desc }
+          vim.keymap.set(m, keys, func, opts)
+        end
+
+        if client.server_capabilities.documentHighlightProvider then
+          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            callback = vim.lsp.buf.document_highlight,
+            buffer = bufnr,
+            group = highlight_augroup,
+          })
+          vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorHoldI' }, {
+            callback = vim.lsp.buf.clear_references,
+            buffer = bufnr,
+            group = highlight_augroup,
+          })
+        end
+
+        map('n', '<leader>r', vim.lsp.buf.rename, 'rename')
+        map('n', 'gh', vim.lsp.buf.hover, 'hover')
+        map('n', 'gs', vim.lsp.buf.signature_help, 'show signature')
+        map({ 'n', 'x' }, '<leader><leader>', vim.lsp.buf.code_action, 'code action')
+        map('n', 'k', vim.diagnostic.goto_next, 'next diagnostic')
+        map('n', 'K', vim.diagnostic.goto_prev, 'previous diagnostic')
+      end
     })
 
     local cmp = require('cmp')
