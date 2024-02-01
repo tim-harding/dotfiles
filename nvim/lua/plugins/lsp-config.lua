@@ -208,6 +208,12 @@ return {
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        {
+          name = 'omni',
+          option = {
+            disable_omnifuncs = { 'v:lua.vim.lsp.omnifunc' },
+          }
+        }
       },
     })
 
@@ -285,6 +291,7 @@ return {
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
+    'hrsh7th/cmp-omni',
     'petertriho/cmp-git',
     'saadparwaiz1/cmp_luasnip',
     'folke/neodev.nvim',
