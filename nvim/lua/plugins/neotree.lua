@@ -16,6 +16,7 @@ return {
           reveal = true,
         })
       end,
+      desc = 'Neotree files',
     },
 
     {
@@ -27,6 +28,7 @@ return {
           reveal = true,
         })
       end,
+      desc = 'Neotree Git',
     },
   },
 

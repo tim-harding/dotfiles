@@ -1,6 +1,12 @@
 return {
-  "folke/persistence.nvim",
-  event = "BufReadPre",
+  'folke/persistence.nvim',
+  event = 'BufReadPre',
   opts = {},
-  keys = { { '<leader>o', function() require('persistence').load() end } }
+  keys = {
+    {
+      '<leader>o',
+      function() require('persistence').load() end,
+      desc = 'Reopen session'
+    },
+  }
 }

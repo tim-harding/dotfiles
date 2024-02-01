@@ -9,7 +9,7 @@ return {
       function()
         vim.cmd('Noice')
       end,
-      { desc = 'Open Noice' },
+      desc = 'Open Noice',
     },
   },
 
