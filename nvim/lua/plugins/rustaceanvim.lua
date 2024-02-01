@@ -10,6 +10,26 @@ local function dap_adapter()
   end
 end
 
+local augroup = vim.api.nvim_create_augroup('RustLspAttach', {})
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = augroup,
+  pattern = { '*.rs' },
+  callback = function(event)
+    vim.bo.textwidth = 80
+    vim.keymap.set(
+      'n',
+      'gH',
+      function()
+        require('rustaceanvim.dap').hover_actions.hover_actions()
+      end,
+      {
+        buffer = event.buf,
+        desc = 'hover action',
+      }
+    )
+  end
+})
+
 ---@type RustaceanOpts
 vim.g.rustaceanvim = {
   tools = {
@@ -20,18 +40,6 @@ vim.g.rustaceanvim = {
   server = {
     -- cmd = { 'ra-multiplex' },
     standalone = false,
-    on_attach = function(_, bufnr)
-      vim.notify('shared.on_attach')
-      shared.on_attach(_, bufnr)
-      shared.map(
-        'n',
-        'gH',
-        function() require('rustaceanvim.dap').hover_actions.hover_actions() end,
-        'hover action',
-        { buffer = bufnr }
-      )
-      vim.bo.textwidth = 80
-    end,
   },
   dap = {
     adapter = dap_adapter,
