@@ -19,7 +19,16 @@ return {
       })
     end
 
+    local function open()
+      dapui.open({
+        reset = true,
+        layout = 1,
+      })
+    end
+
     dapui.setup({ layouts = layouts })
+    dap.listeners.before.attach.dapui_config = open
+    dap.listeners.before.launch.dapui_config = open
     dap.listeners.before.event_terminated.dapui_config = dapui.close
     dap.listeners.before.event_exited.dapui_config = dapui.close
     dap.listeners.after.event_initialized.me = function()

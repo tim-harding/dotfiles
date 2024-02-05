@@ -25,7 +25,6 @@ function update_all
     yay -Syu --noconfirm
     rustup update
     cargo install-update -a
-    code --list-extensions | xargs -I % code --install-extension % --force
 end
 
 function take_a_dub

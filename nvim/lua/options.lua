@@ -1,4 +1,5 @@
 vim.g.mapleader = ' '
+vim.opt.hlsearch = false
 vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
 vim.opt.breakindent = true
