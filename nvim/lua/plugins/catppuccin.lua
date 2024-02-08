@@ -37,6 +37,7 @@ return {
       noice = true,
       fidget = true,
       neotree = true,
+      barbar = true,
     },
   },
 }
