@@ -1,7 +1,3 @@
-function test(things, stuff)
-
-end
-
 return {
   'neovim/nvim-lspconfig',
   event = 'VeryLazy',

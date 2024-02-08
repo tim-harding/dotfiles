@@ -68,7 +68,6 @@ return {
 
     local configs = { codelldb_launch, gdb_launch }
 
-    P(configs)
     dap.configurations = {
       c = configs,
       cpp = configs,

@@ -33,6 +33,7 @@ return {
         view = 'mini',
       },
       progress = {
+        enabled = false,
         format_done = {
           { '✓ ', hl_group = 'NoiceLspProgressSpinner' },
           { '{data.progress.title} ', hl_group = 'NoiceLspProgressTitle' },
