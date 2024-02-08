@@ -1,3 +1,7 @@
+function test(things, stuff)
+
+end
+
 return {
   'neovim/nvim-lspconfig',
   event = 'VeryLazy',
@@ -181,8 +185,8 @@ return {
       },
 
       mapping = cmp.mapping.preset.insert {
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-u>'] = cmp.mapping.scroll_docs(4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-c>'] = cmp.mapping.abort(),
         ['<Cr>'] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
@@ -207,6 +211,12 @@ return {
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        {
+          name = 'emoji',
+          option = {
+            insert = true,
+          }
+        },
         {
           name = 'omni',
           option = {
@@ -291,6 +301,7 @@ return {
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
     'hrsh7th/cmp-omni',
+    'hrsh7th/cmp-emoji',
     'petertriho/cmp-git',
     'saadparwaiz1/cmp_luasnip',
     'folke/neodev.nvim',

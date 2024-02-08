@@ -47,5 +47,8 @@ return {
     cmdline = {
       view = 'cmdline',
     },
+    popupmenu = {
+      enabled = false,
+    }
   },
 }

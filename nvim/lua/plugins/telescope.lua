@@ -24,8 +24,13 @@ return {
 
     telescope.setup({
       defaults = {
+        sorting_strategy = 'ascending',
         layout_strategy = 'vertical',
-        theme = 'dropdown',
+        layout_config = {
+          width = 0.8,
+          mirror = true,
+          prompt_position = 'top',
+        },
         mappings = {
           i = {
             ['<C-u>'] = false,
