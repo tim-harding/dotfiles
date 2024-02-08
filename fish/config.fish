@@ -88,6 +88,11 @@ complete -c output -n "not __fish_seen_subcommand_from $commands" -a show -d 'Sh
 complete -c output -n "__fish_seen_subcommand_from create" -a '-r --resolution'
 complete -c output -s r -l resolution -ra '1200x800' -d 'Sets the output resolution'
 
+function exercism_prolog_test
+    set test_dir $(basename $PWD)
+    swipl -t halt -g "[$test_dir]" -s {$test_dir}_tests.plt -g "run_tests" -- --all
+end
+
 alias vi='nvim'
 alias vim='nvim'
 set fish_greeting
