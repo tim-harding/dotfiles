@@ -6,7 +6,7 @@
       "///",
       "/// ```",
       "/// # use soapy::{Soa, Soapy, soa};",
-      "/// # #[derive(Soapy, Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord)]",
+      "/// # #[derive(Soapy, Debug, PartialEq)]",
       "/// # struct Foo(usize);",
       "/// $1",
       "/// ```"

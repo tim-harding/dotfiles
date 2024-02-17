@@ -9,20 +9,37 @@ return {
 
     lsp_progress.setup({})
 
-    local group = vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
-    vim.api.nvim_create_autocmd("User", {
+    local group = vim.api.nvim_create_augroup('lualine_augroup', { clear = true })
+    vim.api.nvim_create_autocmd('User', {
       group = group,
-      pattern = "LspProgressStatusUpdated",
+      pattern = 'LspProgressStatusUpdated',
       callback = lualine.refresh,
     })
 
-    local function macro_record_state()
-      if noice_api.statusline.mode.has() then
-        return noice_api.statusline.mode.get()
-      else
-        return ""
-      end
-    end
+    local macro_string = ''
+
+    vim.api.nvim_create_autocmd('RecordingEnter', {
+      group = group,
+      pattern = '*',
+      callback = function()
+        local reg = vim.fn.reg_recording()
+        macro_string = string.format('Recording @%s', reg)
+        lualine.refresh({
+          trigger = 'autocmd',
+        })
+      end,
+    })
+
+    vim.api.nvim_create_autocmd('RecordingLeave', {
+      group = group,
+      pattern = '*',
+      callback = function()
+        macro_string = ''
+        lualine.refresh({
+          trigger = 'autocmd',
+        })
+      end,
+    })
 
     local RELATIVE = 1
 
@@ -35,10 +52,16 @@ return {
       },
 
       sections = {
-        lualine_a = { { 'filename', path = RELATIVE } },
-        lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = { lsp_progress.progress },
-        lualine_x = { macro_record_state },
+        lualine_a = { 'branch' },
+        lualine_b = { 'diff', 'diagnostics' },
+        lualine_c = {
+          {
+            'filename',
+            path = RELATIVE,
+          },
+          lsp_progress.progress,
+        },
+        lualine_x = { function() return macro_string end },
         lualine_y = { 'filetype' },
         lualine_z = { 'progress', 'location' },
       },
