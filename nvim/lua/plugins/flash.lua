@@ -99,6 +99,6 @@ return {
     end
 
     map({ 'n', 'x', 'o' }, 'S', flash.treesitter)
-    map({ 'n', 'x', 'o' }, 's', jump_word)
+    -- map({ 'n', 'x', 'o' }, 's', jump_word)
   end,
 }
