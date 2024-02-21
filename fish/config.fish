@@ -14,7 +14,7 @@ end
 
 function mkdir
     # Make intermediate directories automatically
-    /usr/bin/mkdir -p $argv
+    /usr/bin/env mkdir -p $argv
 end
 
 function sauce
