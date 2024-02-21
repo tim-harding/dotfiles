@@ -1,3 +1,9 @@
+local scroll_speed = 2
+local this_os = vim.loop.os_uname().sysname
+if this_os:find('Darwin') then
+  scroll_speed = 1
+end
+
 local spec = {
   lazy = false,
   opts = {
@@ -17,7 +23,7 @@ local spec = {
       size = 10,
     },
     cursor_speed = 2,
-    scroll_speed = 2,
+    scroll_speed = scroll_speed,
     bg_override = {
       r = 48,
       g = 52,
