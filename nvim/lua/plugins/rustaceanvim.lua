@@ -48,7 +48,7 @@ return {
         standalone = false,
       },
       dap = {
-        adapter = dap_adapter,
+        adapter = dap_adapter(),
       },
     }
   end
