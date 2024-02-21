@@ -18,6 +18,7 @@ return {
       j = 'Jump (Telescope)',
       k = 'Scissors',
       l = 'Leetcode',
+      x = 'Xbase',
     }
 
     local leaders_mapped = {}
