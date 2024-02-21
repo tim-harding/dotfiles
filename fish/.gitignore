@@ -2,4 +2,3 @@
 !.gitignore
 !config.fish
 !conf.d
-!completions
