@@ -13,6 +13,7 @@ function ls
 end
 
 function mkdir
+    # Make intermediate directories automatically
     /usr/bin/mkdir -p $argv
 end
 
@@ -21,8 +22,14 @@ function sauce
 end
 
 function update_all
-    sudo pacman -Syu --noconfirm
-    yay -Syu --noconfirm
+    switch (uname)
+    case Linux
+        sudo pacman -Syu --noconfirm
+        yay -Syu --noconfirm
+    case Darwin
+        brew update
+        brew upgrade
+    end
     rustup update
     cargo install-update -a
 end
@@ -33,13 +40,13 @@ function take_a_dub
 end
 
 function project
-    cd $(fd $argv /home/tim/Documents/personal --exact-depth 3)
+    cd $(fd $argv ~/Documents/personal --exact-depth 3)
 end
 
-complete -c project -x -a '(fd . /home/tim/Documents/personal --exact-depth 3 --exec printf "%s\n" {/})'
+complete -c project -x -a "(fd . ~/Documents/personal --exact-depth 3 --exec printf '%s\n' {/})"
 
 function neophyte
-    RUST_LOG="debug" RUST_BACKTRACE=1 /home/tim/Documents/personal/23/07/neophyte/target/release/neophyte $argv &> /home/tim/temp/neophyte_log.txt &
+    RUST_LOG="debug" RUST_BACKTRACE=1 ~/Documents/personal/23/07/neophyte/target/release/neophyte $argv &> ~/temp/neophyte_log.txt &
     disown
 end
 
@@ -99,13 +106,6 @@ set fish_greeting
 set --export TERM xterm-256color
 set --export EDITOR nvim
 
-# Set default browser:
-# xdg-settings set default-web-browser firefox.desktop
-# Set the app to open a filetype example:
-# xdg-mime default firefox.desktop application/pdf
-# This line is a also helpful:
-set --export BROWSER firefox
-
 # set --export RUSTC_WRAPPER sccache
 set --export RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc
 fish_add_path ~/.cargo/bin
@@ -114,9 +114,19 @@ fish_add_path ~/.local/bin
 fish_add_path ~/.dotnet/tools
 
 # opam configuration
-source /home/tim/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 
-set -x FLYCTL_INSTALL "/home/tim/.fly"
+set -x FLYCTL_INSTALL ~/.fly
 fish_add_path $FLYCTL_INSTALL/bin
 
-fish_ssh_agent
+switch (uname)
+case Linux
+    fish_ssh_agent
+
+    # Set default browser:
+    # xdg-settings set default-web-browser firefox.desktop
+    # Set the app to open a filetype example:
+    # xdg-mime default firefox.desktop application/pdf
+    # This line is a also helpful:
+    set --export BROWSER firefox
+end
