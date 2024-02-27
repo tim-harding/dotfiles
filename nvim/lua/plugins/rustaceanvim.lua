@@ -1,6 +1,7 @@
 return {
   'mrcjkb/rustaceanvim',
   ft = { 'rust' },
+  enabled = false,
   dependencies = { 'nvim-lua/plenary.nvim' },
   init = function()
     ---@return DapServerConfig | nil
@@ -20,19 +21,7 @@ return {
       group = augroup,
       pattern = { '*.rs' },
       callback = function(event)
-        local bufnr = event.buf
-        vim.bo[bufnr].textwidth = 80
-        vim.keymap.set(
-          'n',
-          'gH',
-          function()
-            require('rustaceanvim.dap').hover_actions.hover_actions()
-          end,
-          {
-            buffer = bufnr,
-            desc = 'hover action',
-          }
-        )
+        vim.bo[event.buf].textwidth = 80
       end
     })
 
@@ -48,7 +37,8 @@ return {
         standalone = false,
       },
       dap = {
-        adapter = dap_adapter(),
+        -- Not working with latest codelldb update
+        -- adapter = dap_adapter,
       },
     }
   end
