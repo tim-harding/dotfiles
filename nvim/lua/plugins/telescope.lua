@@ -7,14 +7,15 @@ return {
 
   dependencies = {
     'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope-dap.nvim',
     {
       'nvim-telescope/telescope-fzf-native.nvim',
-      build = 'make',
       cond = function()
         return vim.fn.executable 'make' == 1
       end,
-    },
-    { 'nvim-telescope/telescope-dap.nvim' },
+      build =
+      'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+    }
   },
 
   config = function()
@@ -39,6 +40,14 @@ return {
             ['<C-h>'] = 'which_key',
           }
         },
+      },
+
+      extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+        }
       },
 
       pickers = {

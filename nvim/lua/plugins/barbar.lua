@@ -60,7 +60,7 @@ return {
       api.move_current_buffer(1)
     end)
     vim.keymap.set('n', '<leader>c', function()
-      api.close_all_but_pinned()
+      api.close_all_but_current_or_pinned()
     end)
     vim.keymap.set('n', '<c-p>', function()
       api.toggle_pin()

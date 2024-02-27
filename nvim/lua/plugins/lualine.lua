@@ -1,13 +1,8 @@
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies = { 'linrongbin16/lsp-progress.nvim' },
   lazy = false,
   config = function()
     local lualine = require('lualine')
-    local noice_api = require('noice.api')
-    local lsp_progress = require('lsp-progress')
-
-    lsp_progress.setup({})
 
     local group = vim.api.nvim_create_augroup('lualine_augroup', { clear = true })
     vim.api.nvim_create_autocmd('User', {
@@ -59,7 +54,6 @@ return {
             'filename',
             path = RELATIVE,
           },
-          lsp_progress.progress,
         },
         lualine_x = { function() return macro_string end },
         lualine_y = { 'filetype' },
