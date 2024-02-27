@@ -26,6 +26,7 @@ function update_all
     case Linux
         sudo pacman -Syu --noconfirm
         yay -Syu --noconfirm
+        bob update --all
     case Darwin
         brew update
         brew upgrade
