@@ -42,19 +42,3 @@ map(
   'toggle quickfix list'
 )
 
-local word = [[\w+]]
--- At least one punctuation character
-local punct = '[[:punct:]]+'
--- Line start or a non-capturing space character
-local punct_start = [[(^|\s@<=)]]
--- Line end or a non-capturing space character
-local punct_end = [[($|\s@=)]]
-local punctuation = punct_start .. punct .. punct_end
-local very_magic = [[\v]]
-local pattern = very_magic .. word .. '|' .. punctuation
-map('n', '<M-w>', function()
-  vim.fn.search(pattern)
-end)
-map('n', '<M-b>', function()
-  vim.fn.search(pattern, 'b')
-end)
