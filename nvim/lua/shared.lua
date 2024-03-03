@@ -20,4 +20,11 @@ M.is_quickfix_open = function()
   return is_quickfix_open
 end
 
+M.input_unmapped = function(keys)
+  local termcodes = vim.api.nvim_replace_termcodes(keys, true, true, true)
+  return function()
+    vim.api.nvim_feedkeys(termcodes, 'n', false)
+  end
+end
+
 return M

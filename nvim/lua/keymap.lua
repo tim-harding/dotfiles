@@ -1,34 +1,24 @@
 local shared = require('shared')
 local map = shared.map
 
-local down_key = vim.api.nvim_replace_termcodes('<down>', true, true, true)
-local down_key_visual = vim.api.nvim_replace_termcodes('g<down>', true, true, true)
-
-local function choose_down_key()
-  if vim.v.count == 0 then
-    return down_key_visual
-  else
-    return down_key
-  end
-end
-
+local down_keys = shared.input_unmapped('<down>')
+local down_visual_keys = shared.input_unmapped('g<down>')
 local function down()
-  vim.api.nvim_feedkeys(choose_down_key(), 'n', false)
-end
-
-local up_key = vim.api.nvim_replace_termcodes('<up>', true, true, true)
-local up_key_visual = vim.api.nvim_replace_termcodes('g<up>', true, true, true)
-
-local function choose_up_key()
   if vim.v.count == 0 then
-    return up_key_visual
+    down_visual_keys()
   else
-    return up_key
+    down_keys()
   end
 end
 
+local up_keys = shared.input_unmapped('<up>')
+local up_visual_keys = shared.input_unmapped('g<up>')
 local function up()
-  vim.api.nvim_feedkeys(choose_up_key(), 'n', false)
+  if vim.v.count == 0 then
+    up_visual_keys()
+  else
+    up_keys()
+  end
 end
 
 map('n', '<Down>', down)
@@ -83,8 +73,8 @@ map(
   'toggle quickfix list'
 )
 
-local cr_braces = vim.api.nvim_replace_termcodes('<cr><up><end><cr>', true, true, true)
-local cr = vim.api.nvim_replace_termcodes('<cr>', true, true, true)
+local cr_braces = shared.input_unmapped('<cr><up><end><cr>')
+local cr = shared.input_unmapped('<cr>')
 local function smart_enter()
   local _, col = unpack(vim.api.nvim_win_get_cursor(0))
   local line_content = vim.api.nvim_get_current_line()
@@ -94,9 +84,9 @@ local function smart_enter()
       (prev_char == '(' and next_char == ')') or
       (prev_char == '[' and next_char == ']') or
       (prev_char == '{' and next_char == '}') then
-    vim.api.nvim_feedkeys(cr_braces, 'n', false)
+    cr_braces()
   else
-    vim.api.nvim_feedkeys(cr, 'n', false)
+    cr()
   end
 end
 
