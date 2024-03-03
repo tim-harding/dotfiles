@@ -21,7 +21,8 @@ return {
       animation = false,
       focus_on_close = 'right',
       insert_at_end = true,
-      clickable = false, -- Weird behavior when tested
+      clickable = true,
+      exclude_ft = { 'qf' },
       icons = {
         diagnostics = {
           [vim.diagnostic.severity.ERROR] = { enabled = false },
