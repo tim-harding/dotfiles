@@ -35,12 +35,12 @@ map('n', '<Down>', down)
 map('n', '<Up>', up)
 
 -- Window movements
-map('n', '<C-Left>', '<C-w>h')
-map('n', '<C-Right>', '<C-w>l')
-map('n', '<C-Up>', '<C-w>k')
-map('n', '<C-Down>', '<C-w>j')
+map('n', '<C-Left>', function() vim.cmd.wincmd('h') end)
+map('n', '<C-Right>', function() vim.cmd.wincmd('l') end)
+map('n', '<C-Up>', function() vim.cmd.wincmd('k') end)
+map('n', '<C-Down>', function() vim.cmd.wincmd('j') end)
 
-map('n', '<leader>s', '<cmd>w<cr>', 'save')
+map('n', '<leader>s', vim.cmd.write, 'save')
 
 local function paragraph_no_jumplist(direction)
   vim.cmd('keepjumps norm! ' .. vim.v.count1 .. direction)
@@ -57,16 +57,16 @@ end
 map('n', '}', paragraph_next)
 map('n', '{', paragraph_prev)
 
-map('n', ']q', ':cnext<cr>', 'next quickfix list item')
-map('n', '[q', ':cprev<cr>', 'prev quickfix list item')
+map('n', ']q', vim.cmd.cnext, 'next quickfix list item')
+map('n', '[q', vim.cmd.cprevious, 'prev quickfix list item')
 
-map('n', '<C-n>', 'nzz', 'Next result and center')
-map('n', '<M-n>', 'Nzz', 'Previous result and center')
+map('n', '<C-n>', 'nzz', 'next result and center')
+map('n', '<M-n>', 'Nzz', 'previous result and center')
 
 map('t', '<Esc>', '<C-\\><C-n>')
 map('n', '<Esc>', '<Esc><cmd>noh<Cr>')
 
-map('x', '<leader>@', '<cmd>normal @q<cr>')
+map('x', '<leader>@', function() vim.cmd.normal('@q') end)
 map('n', '<leader>\'', '<cmd>s/"/\'/g<cr>')
 map('n', '<leader>"', '<cmd>%s/"/\'/g<cr>')
 
@@ -75,29 +75,28 @@ map(
   '<leader>q',
   function()
     if shared.is_quickfix_open() then
-      vim.api.nvim_command('cclose')
+      vim.cmd.cclose()
     else
-      vim.api.nvim_command('copen')
+      vim.cmd.copen()
     end
   end,
   'toggle quickfix list'
 )
 
+local cr_braces = vim.api.nvim_replace_termcodes('<cr><up><end><cr>', true, true, true)
+local cr = vim.api.nvim_replace_termcodes('<cr>', true, true, true)
 local function smart_enter()
   local _, col = unpack(vim.api.nvim_win_get_cursor(0))
   local line_content = vim.api.nvim_get_current_line()
   local next_char = string.sub(line_content, col + 1, col + 1)
   local prev_char = string.sub(line_content, col, col)
-
   if
       (prev_char == '(' and next_char == ')') or
       (prev_char == '[' and next_char == ']') or
       (prev_char == '{' and next_char == '}') then
-    local keys = vim.api.nvim_replace_termcodes('<cr><up><end><cr>', true, true, true)
-    vim.api.nvim_feedkeys(keys, 'n', false)
+    vim.api.nvim_feedkeys(cr_braces, 'n', false)
   else
-    local keys = vim.api.nvim_replace_termcodes('<cr>', true, true, true)
-    vim.api.nvim_feedkeys(keys, 'n', false)
+    vim.api.nvim_feedkeys(cr, 'n', false)
   end
 end
 
