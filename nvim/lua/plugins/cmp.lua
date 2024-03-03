@@ -121,7 +121,7 @@ return {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {},
       view = {
-        entries = 'wildmenu',
+        entries = 'custom',
       }
     })
 
@@ -132,7 +132,7 @@ return {
         { { name = 'cmdline' } }
       ),
       view = {
-        entries = 'wildmenu',
+        entries = 'custom',
       }
     })
   end
