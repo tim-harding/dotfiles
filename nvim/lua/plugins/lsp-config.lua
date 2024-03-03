@@ -1,7 +1,6 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    'folke/neodev.nvim',
     'Hoffs/omnisharp-extended-lsp.nvim',
     'onsails/lspkind.nvim',
     'hrsh7th/cmp-nvim-lsp',
@@ -10,11 +9,14 @@ return {
   config = function()
     local lspconfig = require('lspconfig')
     local cmp_nvim_lsp = require('cmp_nvim_lsp')
-    local capabilities = cmp_nvim_lsp.default_capabilities()
-    require('neodev').setup()
+
+    local capabilities = vim.tbl_deep_extend(
+      'force',
+      vim.lsp.protocol.make_client_capabilities(),
+      cmp_nvim_lsp.default_capabilities()
+    )
 
     local simple_servers = {
-      lspconfig.lua_ls,
       lspconfig.dartls,
       lspconfig.zls,
       lspconfig.ocamllsp,
@@ -26,6 +28,28 @@ return {
     for _, server in ipairs(simple_servers) do
       server.setup({ capabilities = capabilities })
     end
+
+    lspconfig.lua_ls.setup({
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          runtime = { version = 'LuaJIT' },
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              '${3rd}/luv/library',
+              unpack(vim.api.nvim_get_runtime_file('', true)),
+            },
+          },
+          completion = {
+            callSnippet = 'Replace',
+          },
+          diagnostics = {
+            disable = { 'missing-fields' },
+          },
+        },
+      },
+    })
 
     lspconfig.hls.setup({
       capabilities = capabilities,
@@ -81,9 +105,8 @@ return {
         map('n', '<leader>r', vim.lsp.buf.rename, 'rename')
         map('n', 'gh', vim.lsp.buf.hover, 'hover')
         map('n', 'gs', vim.lsp.buf.signature_help, 'show signature')
+        map('n', 'gD', vim.lsp.buf.declaration, 'declaration')
         map({ 'n', 'x' }, '<leader><leader>', vim.lsp.buf.code_action, 'code action')
-        map('n', 'k', vim.diagnostic.goto_next, 'next diagnostic')
-        map('n', 'K', vim.diagnostic.goto_prev, 'previous diagnostic')
       end
     })
 

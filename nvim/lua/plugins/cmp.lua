@@ -1,6 +1,6 @@
 return {
   'hrsh7th/nvim-cmp',
-  event = 'VeryLazy',
+  event = 'InsertEnter',
   dependencies = {
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
@@ -61,7 +61,6 @@ return {
             mode = 'symbol',
             menu = {}, -- For Rust's ultrawide pum
           })(entry, vim_item)
-          -- kind.kind = ' ' .. kind.kind .. ' '
           return kind
         end,
       },
@@ -93,7 +92,7 @@ return {
       sources = {
         {
           name = 'nvim_lsp',
-          entry_filter = function(entry, ctx)
+          entry_filter = function(entry, _)
             return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
           end,
         },

@@ -1,3 +1,5 @@
+local map = require('shared').map
+
 vim.diagnostic.config({
   virtual_text = false,
   underline = false,
@@ -37,5 +39,9 @@ local function on_publish_diagnostics(err, method, result, client_id, bufnr, con
     show_diagnostics()
   end
 end
+
+
+map('n', 'k', vim.diagnostic.goto_next, 'next diagnostic')
+map('n', 'K', vim.diagnostic.goto_prev, 'previous diagnostic')
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = on_publish_diagnostics

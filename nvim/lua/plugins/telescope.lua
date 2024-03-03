@@ -86,6 +86,7 @@ return {
     map('n', '<leader>js', tb.lsp_dynamic_workspace_symbols, 'find project symbol')
     map('n', 'gr', tb.lsp_references, 'goto reference')
     map('n', 'gd', tb.lsp_definitions, 'goto definition')
+    map('n', 'gt', tb.lsp_type_definitions, 'goto type definition')
     map('n', 'gi', tb.lsp_implementations, 'goto implementation')
   end
 }
