@@ -60,13 +60,6 @@ return {
         local bufnr = event.buf
         local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-        if client.server_capabilities.completionProvider then
-          vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-        end
-        if client.server_capabilities.definitionProvider then
-          vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
-        end
-
         local map = function(m, keys, func, desc)
           local opts = { buffer = bufnr, desc = desc }
           vim.keymap.set(m, keys, func, opts)
