@@ -50,11 +50,13 @@ map('n', '{', paragraph_prev)
 map('n', ']q', vim.cmd.cnext, 'next quickfix list item')
 map('n', '[q', vim.cmd.cprevious, 'prev quickfix list item')
 
-map('n', '<C-n>', 'nzz', 'next result and center')
-map('n', '<M-n>', 'Nzz', 'previous result and center')
+map('n', '<C-n>', 'nzz')
+map('n', '<M-n>', 'Nzz')
 
-map('t', '<Esc>', '<C-\\><C-n>')
-map('n', '<Esc>', '<Esc><cmd>noh<Cr>')
+-- Exit terminal
+map('t', '<Esc><Esc>', '<C-\\><C-n>')
+
+map('n', '<Esc>', vim.cmd.nohlsearch)
 
 map('x', '<leader>@', function() vim.cmd.normal('@q') end)
 map('n', '<leader>\'', '<cmd>s/"/\'/g<cr>')
