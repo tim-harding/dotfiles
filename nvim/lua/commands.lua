@@ -40,8 +40,8 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = vim.api.nvim_create_augroup('CloseMarked', { clear = true }),
   pattern = { '*' },
   callback = function()
-    if buf_to_close > 0 then
-      pcall(vim.api.nvim_buf_delete, buf_to_close, { unload = true })
+    if buf_to_close > 0 and vim.api.nvim_buf_is_valid(buf_to_close) then
+      vim.api.nvim_buf_delete(buf_to_close, {})
     end
   end
 })
