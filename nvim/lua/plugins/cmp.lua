@@ -37,19 +37,19 @@ return {
         )
       end,
 
-      view = {
-        entries = 'native',
-      },
-
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end
       },
 
+      view = {
+        entries = 'native',
+      },
+
       window = {
         completion = {
-          col_offset = -3,
+          col_offset = 0,
           side_padding = 0,
         },
       },
@@ -59,8 +59,9 @@ return {
         format = function(entry, vim_item)
           local kind = require('lspkind').cmp_format({
             mode = 'symbol',
+            menu = {}, -- For Rust's ultrawide pum
           })(entry, vim_item)
-          kind.kind = ' ' .. kind.kind .. ' '
+          -- kind.kind = ' ' .. kind.kind .. ' '
           return kind
         end,
       },
@@ -118,12 +119,21 @@ return {
 
     cmp.setup.cmdline({ '/', '?' }, {
       mapping = cmp.mapping.preset.cmdline(),
-      sources = {}
+      sources = {},
+      view = {
+        entries = 'wildmenu',
+      }
     })
 
     cmp.setup.cmdline(':', {
       mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } })
+      sources = cmp.config.sources(
+        { { name = 'path' } },
+        { { name = 'cmdline' } }
+      ),
+      view = {
+        entries = 'wildmenu',
+      }
     })
   end
 }
