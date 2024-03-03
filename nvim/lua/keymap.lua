@@ -1,9 +1,6 @@
 local shared = require('shared')
 local map = shared.map
 
-map({ 'n', 'v' }, '<leader>p', '"+p', 'paste from clipboard')
-map({ 'n', 'v' }, '<leader>y', '"+y', 'yank from clipboard')
-
 map('n', '<Down>', "v:count == 0 ? 'gj' : 'j'", "Down", { expr = true })
 map('n', '<Up>', "v:count == 0 ? 'gk' : 'k'", "Up", { expr = true })
 
