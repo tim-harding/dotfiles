@@ -42,3 +42,22 @@ map(
   'toggle quickfix list'
 )
 
+local function smart_enter()
+  local _, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local line_content = vim.api.nvim_get_current_line()
+  local next_char = string.sub(line_content, col + 1, col + 1)
+  local prev_char = string.sub(line_content, col, col)
+
+  if
+      (prev_char == '(' and next_char == ')') or
+      (prev_char == '[' and next_char == ']') or
+      (prev_char == '{' and next_char == '}') then
+    local keys = vim.api.nvim_replace_termcodes('<cr><up><end><cr>', true, true, true)
+    vim.api.nvim_feedkeys(keys, 'n', false)
+  else
+    local keys = vim.api.nvim_replace_termcodes('<cr>', true, true, true)
+    vim.api.nvim_feedkeys(keys, 'n', false)
+  end
+end
+
+map('i', '<CR>', smart_enter)
