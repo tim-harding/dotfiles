@@ -1,8 +1,38 @@
 local shared = require('shared')
 local map = shared.map
 
-map('n', '<Down>', "v:count == 0 ? 'gj' : 'j'", "Down", { expr = true })
-map('n', '<Up>', "v:count == 0 ? 'gk' : 'k'", "Up", { expr = true })
+local down_key = vim.api.nvim_replace_termcodes('<down>', true, true, true)
+local down_key_visual = vim.api.nvim_replace_termcodes('g<down>', true, true, true)
+
+local function choose_down_key()
+  if vim.v.count == 0 then
+    return down_key_visual
+  else
+    return down_key
+  end
+end
+
+local function down()
+  vim.api.nvim_feedkeys(choose_down_key(), 'n', false)
+end
+
+local up_key = vim.api.nvim_replace_termcodes('<up>', true, true, true)
+local up_key_visual = vim.api.nvim_replace_termcodes('g<up>', true, true, true)
+
+local function choose_up_key()
+  if vim.v.count == 0 then
+    return up_key_visual
+  else
+    return up_key
+  end
+end
+
+local function up()
+  vim.api.nvim_feedkeys(choose_up_key(), 'n', false)
+end
+
+map('n', '<Down>', down)
+map('n', '<Up>', up)
 
 -- Window movements
 map('n', '<C-Left>', '<C-w>h')
