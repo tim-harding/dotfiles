@@ -42,9 +42,20 @@ map('n', '<C-Down>', '<C-w>j')
 
 map('n', '<leader>s', '<cmd>w<cr>', 'save')
 
--- Paragraph movements without jumplist
-map('n', '}', ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>')
-map('n', '{', ':<<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
+local function paragraph_no_jumplist(direction)
+  vim.cmd('keepjumps norm! ' .. vim.v.count1 .. direction)
+end
+
+local function paragraph_prev()
+  paragraph_no_jumplist('{')
+end
+
+local function paragraph_next()
+  paragraph_no_jumplist('}')
+end
+
+map('n', '}', paragraph_next)
+map('n', '{', paragraph_prev)
 
 map('n', ']q', ':cnext<cr>', 'next quickfix list item')
 map('n', '[q', ':cprev<cr>', 'prev quickfix list item')
