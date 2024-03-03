@@ -8,6 +8,7 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope-dap.nvim',
+    'nvim-telescope/telescope-ui-select.nvim',
     {
       'nvim-telescope/telescope-fzf-native.nvim',
       cond = function()
@@ -22,6 +23,7 @@ return {
     local telescope = require('telescope')
     local actions = require('telescope.actions')
     local tb = require('telescope.builtin')
+    local themes = require('telescope.themes')
 
     telescope.setup({
       defaults = {
@@ -47,7 +49,10 @@ return {
           fuzzy = true,
           override_generic_sorter = true,
           override_file_sorter = true,
-        }
+        },
+        ['ui-select'] = {
+          themes.get_dropdown(),
+        },
       },
 
       pickers = {
@@ -65,6 +70,7 @@ return {
 
     pcall(require('telescope').load_extension, 'fzf')
     telescope.load_extension('dap')
+    telescope.load_extension('ui-select')
 
     map('n', 'j', tb.find_files, 'files')
     map('n', '<leader>jg', tb.git_files, 'files')
