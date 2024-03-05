@@ -131,3 +131,6 @@ case Linux
     # This line is a also helpful:
     set --export BROWSER firefox
 end
+
+set --export BAT_PAGER
+set --export FZF_DEFAULT_OPTS --reverse --inline-info
