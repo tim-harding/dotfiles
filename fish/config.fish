@@ -114,6 +114,7 @@ fish_add_path ~/.ghcup/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/.dotnet/tools
 
+
 # opam configuration
 source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 
@@ -130,6 +131,9 @@ case Linux
     # xdg-mime default firefox.desktop application/pdf
     # This line is a also helpful:
     set --export BROWSER firefox
+
+case Darwin
+    fish_add_path /opt/homebrew/opt/llvm/bin
 end
 
 set --export BAT_PAGER
