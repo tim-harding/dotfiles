@@ -46,15 +46,22 @@ return {
       return path
     end
 
+    local lldb_launch = {
+      name = 'LLDB Launch',
+      type = 'lldb',
+      request = 'launch',
+      cwd = '${workspaceFolder}',
+      program = pick_executable,
+      stopOnEntry = false,
+    }
+
     local codelldb_launch = {
-      {
-        name = 'CodeLLDB Launch',
-        type = 'codelldb',
-        request = 'launch',
-        cwd = '${workspaceFolder}',
-        program = pick_executable,
-        stopOnEntry = false,
-      },
+      name = 'CodeLLDB Launch',
+      type = 'codelldb',
+      request = 'launch',
+      cwd = '${workspaceFolder}',
+      program = pick_executable,
+      stopOnEntry = false,
     }
 
     local gdb_launch = {
@@ -66,13 +73,19 @@ return {
       stopOnEntry = false,
     }
 
-    local configs = { codelldb_launch, gdb_launch }
+    local configs = { codelldb_launch, lldb_launch, gdb_launch }
 
     dap.configurations = {
       c = configs,
       cpp = configs,
       rust = configs,
     }
+
+    local codelldb_path = 'codelldb'
+    local this_os = vim.loop.os_uname().sysname
+    if this_os:find('Darwin') then
+      codelldb_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/adapter/codelldb'
+    end
 
     dap.adapters = {
       gdb = {
@@ -81,11 +94,17 @@ return {
         args = { '-i', 'dap' },
       },
 
+      lldb = {
+        type = 'executable',
+        -- This is being renamed to lldb-dap
+        command = 'lldb-vscode',
+      },
+
       codelldb = {
         type = 'server',
         port = '${port}',
         executable = {
-          command = 'codelldb',
+          command = codelldb_path,
           args = { '--port', '${port}' },
         },
       },

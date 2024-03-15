@@ -22,7 +22,7 @@ return {
       lspconfig.ocamllsp,
       lspconfig.pyright,
       lspconfig.ruff_lsp,
-      lspconfig.rust_analyzer,
+      -- lspconfig.rust_analyzer,
     }
 
     for _, server in ipairs(simple_servers) do

@@ -26,7 +26,7 @@ local spec = {
         size = 10,
       },
       cursor_speed = 2,
-      scroll_speed = 2,
+      scroll_speed = scroll_speed,
       bg_override = {
         r = 48,
         g = 52,
