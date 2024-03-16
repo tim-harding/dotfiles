@@ -8,6 +8,10 @@ local spec = {
   lazy = false,
   priority = 2000,
   init = function()
+    if vim.g.shadowvim then
+      return
+    end
+
     local neophyte = require('neophyte')
     neophyte.setup({
       fonts = {
