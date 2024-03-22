@@ -42,9 +42,16 @@ local spec = {
     vim.keymap.set('n', '<C-+>', function()
       neophyte.set_font_width(neophyte.get_font_width() + 1)
     end)
+
     vim.keymap.set('n', '<C-->', function()
       neophyte.set_font_width(neophyte.get_font_width() - 1)
     end)
+
+    if this_os:find('Darwin') then
+      vim.keymap.set('n', '<DC-f>', function()
+        neophyte.set_fullscreen(not neophyte.get_fullscreen())
+      end)
+    end
   end,
 }
 
