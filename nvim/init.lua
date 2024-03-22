@@ -1,9 +1,14 @@
-vim.loader.enable()
 require('options')
-require('lazy_setup')
-require('commands')
 require('keymap')
-require('diagnostics')
+
+if vim.g.shadowvim then
+    require('shadowvim_setup')
+else
+    vim.loader.enable()
+    require('commands')
+    require('diagnostics')
+    require('lazy_setup')
+end
 
 P = function(...)
     vim.print(...)

@@ -8,8 +8,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins', {
-  defaults = { lazy = true },
-  change_detection = { notify = false },
+  defaults = {
+    lazy = true,
+  },
+  change_detection = {
+    notify = false,
+  },
   install = { colorscheme = { 'catppuccin' } },
   performance = {
     rtp = {
