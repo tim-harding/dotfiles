@@ -4,6 +4,10 @@ return {
     'Hoffs/omnisharp-extended-lsp.nvim',
     'onsails/lspkind.nvim',
     'hrsh7th/cmp-nvim-lsp',
+    {
+      'folke/neodev.nvim',
+      opts = {},
+    },
   },
   event = 'VeryLazy',
   config = function()
@@ -22,7 +26,7 @@ return {
       lspconfig.ocamllsp,
       lspconfig.pyright,
       lspconfig.ruff_lsp,
-      -- lspconfig.rust_analyzer,
+      lspconfig.sourcekit,
     }
 
     for _, server in ipairs(simple_servers) do
@@ -33,14 +37,6 @@ return {
       capabilities = capabilities,
       settings = {
         Lua = {
-          runtime = { version = 'LuaJIT' },
-          workspace = {
-            checkThirdParty = false,
-            library = {
-              '${3rd}/luv/library',
-              unpack(vim.api.nvim_get_runtime_file('', true)),
-            },
-          },
           completion = {
             callSnippet = 'Replace',
           },
