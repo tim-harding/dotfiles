@@ -1,14 +1,9 @@
 return {
   'xbase-lab/xbase',
-  event = 'VeryLazy',
-  enabled = function()
-    local this_os = vim.loop.os_uname().sysname
-    return this_os:find('Darwin')
-  end,
+  ft = { 'swift' },
+  enabled = false,
   build = 'make install',
-  requires = {
-    'neovim/nvim-lspconfig',
-  },
+  requires = { 'neovim/nvim-lspconfig' },
   config = function()
     local xbase = require('xbase')
     local pickers = require('xbase.pickers.builtin')

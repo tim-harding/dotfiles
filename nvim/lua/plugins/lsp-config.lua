@@ -33,6 +33,14 @@ return {
       server.setup({ capabilities = capabilities })
     end
 
+    lspconfig.sourcekit.setup({
+      capabilities = capabilities,
+      cmd = {
+        'xcrun',
+        'sourcekit-lsp',
+      },
+    })
+
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
       settings = {
