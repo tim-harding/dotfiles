@@ -2,7 +2,6 @@ return {
   'mrcjkb/rustaceanvim',
   version = '^4',
   ft = { 'rust' },
-  enabled = true,
   dependencies = { 'nvim-lua/plenary.nvim' },
   init = function()
     ---@return DapServerConfig | nil
@@ -40,7 +39,7 @@ return {
           },
         },
         server = {
-          -- cmd = { 'ra-multiplex' },
+          cmd = { 'ra-multiplex' },
           standalone = false,
         },
         dap = {
