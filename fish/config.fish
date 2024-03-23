@@ -47,6 +47,16 @@ function project
     cd $(fd $argv ~/Documents/personal --exact-depth 3)
 end
 
+function reset-hard
+    git add .
+    git reset --hard
+end
+
+function amend
+    git add .
+    git commit --amend --no-edit
+end
+
 complete -c project -x -a "(fd . ~/Documents/personal --exact-depth 3 --exec printf '%s\n' {/})"
 
 function neophyte

@@ -13,13 +13,13 @@
     ],
     "prefix": "else"
   },
-  "fun": {
+  "function": {
     "body": [
       "function ${1:name}",
       "    $2",
       "end"
     ],
-    "prefix": "fun"
+    "prefix": "function"
   },
   "if": {
     "body": [
