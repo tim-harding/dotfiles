@@ -1,5 +1,3 @@
-local namespace = vim.api.nvim_create_namespace('statuscol_config')
-
 -- Also see these:
 -- https://neovim.io/doc/user/options.html#'statuscolumn'
 -- https://neovim.io/doc/user/options.html#'statusline'
@@ -30,6 +28,8 @@ return {
         relative_motion = 0
       end
     end
+
+    local namespace = vim.api.nvim_create_namespace('statuscol_config')
 
     -- Tried to get relative line motion highlighting to work, but we don't get
     -- another render or even print statements until the motion completes. Can't

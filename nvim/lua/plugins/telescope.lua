@@ -1,5 +1,3 @@
-local map = require('shared').map
-
 return {
   'nvim-telescope/telescope.nvim',
   branch = '0.1.x', -- Release branch
@@ -24,6 +22,7 @@ return {
     local actions = require('telescope.actions')
     local tb = require('telescope.builtin')
     local themes = require('telescope.themes')
+    local map = require('shared').map
 
     telescope.setup({
       defaults = {

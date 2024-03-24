@@ -1,16 +1,16 @@
-local shared = require('shared')
-
-local scroll_speed = 2
-if shared.is_darwin() then
-  scroll_speed = 1
-end
-
 local spec = {
   lazy = false,
   priority = 2000,
   init = function()
     if vim.g.shadowvim then
       return
+    end
+
+    local shared = require('shared')
+
+    local scroll_speed = 2
+    if shared.is_darwin() then
+      scroll_speed = 1
     end
 
     local neophyte = require('neophyte')

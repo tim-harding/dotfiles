@@ -1,9 +1,9 @@
-local on_attach = require('shared').on_attach
-
 return {
   'ionide/Ionide-vim',
   ft = 'fsharp',
   config = function()
+    local on_attach = require('shared').on_attach
+
     vim.g['fsharp#lsp_codelens'] = 0
     vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
       group = vim.api.nvim_create_augroup('IonideCodelensUpdate', { clear = true }),

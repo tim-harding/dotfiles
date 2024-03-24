@@ -1,11 +1,11 @@
-local shared = require('shared')
-
 return {
   'lewis6991/gitsigns.nvim',
   event = 'VeryLazy',
   opts = {
     on_attach = function(bufnr)
       local gs = require('gitsigns')
+      local shared = require('shared')
+
       local map = function(mode, keys, func, desc, opts)
         opts = opts or {}
         opts.buffer = bufnr

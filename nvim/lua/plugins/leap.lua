@@ -6,11 +6,6 @@ return {
   -- manager is completely redundant, as Leap takes care of it itself.
   -- Nothing unnecessary is loaded until you actually trigger a motion.
   lazy = false,
-  opts = {
-    labels = labels,
-    safe_labels = labels,
-  },
-
   init = function()
     local leap = require('leap')
 
