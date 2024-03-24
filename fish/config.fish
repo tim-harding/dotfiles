@@ -57,6 +57,10 @@ function amend
     git commit --amend --no-edit
 end
 
+function remove_orphan_packages
+    sudo pacman -Rs --noconfirm $(pacman -Qtdq)
+end
+
 complete -c project -x -a "(fd . ~/Documents/personal --exact-depth 3 --exec printf '%s\n' {/})"
 
 function neophyte
