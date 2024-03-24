@@ -1,5 +1,6 @@
 return {
   'neovim/nvim-lspconfig',
+  event = 'VeryLazy',
   dependencies = {
     'Hoffs/omnisharp-extended-lsp.nvim',
     'onsails/lspkind.nvim',
@@ -9,10 +10,11 @@ return {
       opts = {},
     },
   },
-  event = 'VeryLazy',
+
   config = function()
     local lspconfig = require('lspconfig')
     local cmp_nvim_lsp = require('cmp_nvim_lsp')
+    local shared = require('shared')
 
     local capabilities = vim.tbl_deep_extend(
       'force',
@@ -34,12 +36,17 @@ return {
       server.setup({ capabilities = capabilities })
     end
 
-    lspconfig.sourcekit.setup({
-      capabilities = capabilities,
-      cmd = {
+    local sourcekit_cmd = { 'sourcekit-lsp' }
+    if shared.is_darwin() then
+      sourcekit_cmd = {
         'xcrun',
         'sourcekit-lsp',
-      },
+      }
+    end
+
+    lspconfig.sourcekit.setup({
+      capabilities = capabilities,
+      cmd = sourcekit_cmd,
     })
 
     lspconfig.lua_ls.setup({
