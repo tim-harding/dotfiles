@@ -31,6 +31,27 @@ return {
     },
   },
 
+  init = function()
+    vim.fn.sign_define('DapBreakpoint', {
+      text = '●',
+      texthl = 'DapBreakpoint',
+      linehl = '',
+      numhl = '',
+    })
+    vim.fn.sign_define('DapBreakpointCondition', {
+      text = '●',
+      texthl = 'DapBreakpointCondition',
+      linehl = '',
+      numhl = '',
+    })
+    vim.fn.sign_define('DapLogPoint', {
+      text = '◆',
+      texthl = 'DapLogPoint',
+      linehl = '',
+      numhl = '',
+    })
+  end,
+
   config = function()
     local dap = require('dap')
     local job = require('plenary.job')
