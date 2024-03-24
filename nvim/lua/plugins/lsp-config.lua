@@ -27,6 +27,7 @@ return {
       lspconfig.pyright,
       lspconfig.ruff_lsp,
       lspconfig.sourcekit,
+      lspconfig.ruby_ls,
     }
 
     for _, server in ipairs(simple_servers) do
