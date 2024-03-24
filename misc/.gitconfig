@@ -17,8 +17,7 @@
 
 [delta]
     navigate = true
-    dark = true
-    # line-numbers = true
+    line-numbers = true
     syntax-theme = base16
     minus-style = syntax italic normal
     minus-emph-style = red italic reverse normal

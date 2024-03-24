@@ -130,21 +130,21 @@ fish_add_path ~/.dotnet/tools
 # opam configuration
 source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 
-set -x FLYCTL_INSTALL ~/.fly
+set --export FLYCTL_INSTALL ~/.fly
 fish_add_path $FLYCTL_INSTALL/bin
 
 set --export BAT_PAGER
 set --export FZF_DEFAULT_OPTS --reverse --inline-info
 
+cp ~/.config/misc/.gitconfig ~/.gitconfig
+
+set FIREFOX_DIR ~/.mozilla/firefox
+set FIREFOX_USER $(exa $FIREFOX_DIR | rg ".default\$")
+ln -sf ~/.config/misc/user.js "$FIREFOX_DIR/$FIREFOX_USER/user.js"
+
 switch (uname)
 case Linux
     fish_ssh_agent
-
-    # Set default browser:
-    # xdg-settings set default-web-browser firefox.desktop
-    # Set the app to open a filetype example:
-    # xdg-mime default firefox.desktop application/pdf
-    # This line is a also helpful:
     set --export BROWSER firefox
 
 case Darwin
@@ -156,4 +156,13 @@ case Darwin
     mkdir $TEALDEER_CONFIG_DIR 
     rm $TEALDEER_CONFIG 
     ln -s ~/.config/tealdeer/config.toml $TEALDEER_CONFIG
+end
+
+function initial-install
+    switch (uname)
+    case Linux
+        xdg-settings set default-web-browser firefox.desktop
+        xdg-mime default firefox.desktop application/pdf
+
+    end
 end
