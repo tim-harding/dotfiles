@@ -120,7 +120,6 @@ set fish_greeting
 set --export TERM xterm-256color
 set --export EDITOR nvim
 
-# set --export RUSTC_WRAPPER sccache
 set --export RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.ghcup/bin
@@ -133,6 +132,9 @@ source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 
 set -x FLYCTL_INSTALL ~/.fly
 fish_add_path $FLYCTL_INSTALL/bin
+
+set --export BAT_PAGER
+set --export FZF_DEFAULT_OPTS --reverse --inline-info
 
 switch (uname)
 case Linux
@@ -148,7 +150,10 @@ case Linux
 case Darwin
     fish_add_path /opt/homebrew/opt/llvm/bin
     fish_add_path "$(gem environment | rg "EXECUTABLE DIRECTORY" | sd '.*: (.*)' '$1')"
-end
 
-set --export BAT_PAGER
-set --export FZF_DEFAULT_OPTS --reverse --inline-info
+    set TEALDEER_CONFIG_DIR ~/Library/Application\ Support/tealdeer
+    set TEALDEER_CONFIG "$TEALDEER_CONFIG_DIR/config.toml"
+    mkdir $TEALDEER_CONFIG_DIR 
+    rm $TEALDEER_CONFIG 
+    ln -s ~/.config/tealdeer/config.toml $TEALDEER_CONFIG
+end
