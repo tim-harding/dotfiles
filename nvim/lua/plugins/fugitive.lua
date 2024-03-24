@@ -1,11 +1,39 @@
-local map = require('shared').map
-
 return {
   'tpope/vim-fugitive',
   event = 'VeryLazy',
   config = function()
-    map('n', '<leader>gc', ':Git commit --quiet<cr>', 'commit')
-    map('n', '<leader>gP', ':Git push<cr>', 'push')
-    map('n', '<leader>ga', ':Git commit --amend --no-edit<cr>', 'amend')
+    local map = require('shared').map
+
+    local function commit()
+      vim.cmd {
+        cmd = 'Git',
+        args = {
+          'commit',
+          '--quiet',
+        },
+      }
+    end
+
+    local function amend()
+      vim.cmd {
+        cmd = 'Git',
+        args = {
+          'commit',
+          '--amend',
+          '--no-edit',
+        },
+      }
+    end
+
+    local function push()
+      vim.cmd {
+        cmd = 'Git',
+        args = { 'push' },
+      }
+    end
+
+    map('n', '<leader>gc', commit, 'commit')
+    map('n', '<leader>gP', push, 'push')
+    map('n', '<leader>ga', amend, 'amend')
   end
 }
