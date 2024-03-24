@@ -4,16 +4,17 @@ return {
   ft = { 'rust' },
   dependencies = { 'nvim-lua/plenary.nvim' },
   init = function()
+    local shared = require('shared')
+
     ---@return DapServerConfig | nil
     local function dap_adapter()
       local cfg = require('rustaceanvim.config')
-      local this_os = vim.loop.os_uname().sysname
-      if this_os:find('Linux') then
+      if shared.is_linux() then
         local codelldb_dir = '/usr/lib/codelldb/adapter/'
         local codelldb_path = codelldb_dir .. 'codelldb'
         local liblldb_path = codelldb_dir .. 'libcodelldb.so'
         return cfg.get_codelldb_adapter(codelldb_path, liblldb_path)
-      elseif this_os:find('Darwin') then
+      elseif shared.is_darwin() then
         local codelldb_dir = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/'
         local codelldb_path = codelldb_dir .. 'adapter/codelldb'
         local liblldb_path = codelldb_dir .. 'lldb/lib/liblldb.dylib'

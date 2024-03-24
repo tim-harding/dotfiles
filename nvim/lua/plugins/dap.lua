@@ -34,7 +34,7 @@ return {
   config = function()
     local dap = require('dap')
     local job = require('plenary.job')
-    local map = require('shared').map
+    local shared = require('shared')
 
     local function pick_executable()
       local path = vim.fn.input({
@@ -82,8 +82,7 @@ return {
     }
 
     local codelldb_path = 'codelldb'
-    local this_os = vim.loop.os_uname().sysname
-    if this_os:find('Darwin') then
+    if shared.is_darwin() then
       codelldb_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/adapter/codelldb'
     end
 
@@ -182,13 +181,13 @@ return {
       end)
     end
 
-    map('n', '<F5>', dap.continue)
-    map('n', '<F9>', dap.terminate)
-    map('n', '<F10>', dap.step_over)
-    map('n', '<F11>', dap.step_into)
-    map('n', '<F12>', dap.step_out)
-    map('n', '<leader>b', dap.toggle_breakpoint, 'toggle breakpoint')
-    map('n', '<leader>dC', dap.clear_breakpoints, 'clear breakpoints')
-    map('n', '<leader>dD', set_condition_breakpoint, 'breakpoint condition')
+    shared.map('n', '<F5>', dap.continue)
+    shared.map('n', '<F9>', dap.terminate)
+    shared.map('n', '<F10>', dap.step_over)
+    shared.map('n', '<F11>', dap.step_into)
+    shared.map('n', '<F12>', dap.step_out)
+    shared.map('n', '<leader>b', dap.toggle_breakpoint, 'toggle breakpoint')
+    shared.map('n', '<leader>dC', dap.clear_breakpoints, 'clear breakpoints')
+    shared.map('n', '<leader>dD', set_condition_breakpoint, 'breakpoint condition')
   end
 }

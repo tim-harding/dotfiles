@@ -1,6 +1,7 @@
+local shared = require('shared')
+
 local scroll_speed = 2
-local this_os = vim.loop.os_uname().sysname
-if this_os:find('Darwin') then
+if shared.is_darwin() then
   scroll_speed = 1
 end
 
@@ -47,7 +48,7 @@ local spec = {
       neophyte.set_font_width(neophyte.get_font_width() - 1)
     end)
 
-    if this_os:find('Darwin') then
+    if shared.is_darwin() then
       vim.keymap.set('n', '<DC-f>', function()
         neophyte.set_fullscreen(not neophyte.get_fullscreen())
       end)
