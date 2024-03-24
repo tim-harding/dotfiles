@@ -147,6 +147,7 @@ case Linux
 
 case Darwin
     fish_add_path /opt/homebrew/opt/llvm/bin
+    fish_add_path "$(gem environment | rg "EXECUTABLE DIRECTORY" | sd '.*: (.*)' '$1')"
 end
 
 set --export BAT_PAGER
