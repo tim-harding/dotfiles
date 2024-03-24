@@ -40,7 +40,7 @@ return {
           },
         },
         server = {
-          cmd = { 'ra-multiplex' },
+          -- cmd = { 'ra-multiplex' },
           standalone = false,
         },
         dap = {
