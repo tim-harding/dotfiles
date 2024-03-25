@@ -5,31 +5,15 @@ return {
     local map = require('shared').map
 
     local function commit()
-      vim.cmd {
-        cmd = 'Git',
-        args = {
-          'commit',
-          '--quiet',
-        },
-      }
+      vim.cmd('Git commit')
     end
 
     local function amend()
-      vim.cmd {
-        cmd = 'Git',
-        args = {
-          'commit',
-          '--amend',
-          '--no-edit',
-        },
-      }
+      vim.cmd('Git commit --amend --no-edit')
     end
 
     local function push()
-      vim.cmd {
-        cmd = 'Git',
-        args = { 'push' },
-      }
+      vim.cmd('Git push')
     end
 
     map('n', '<leader>gc', commit, 'commit')
