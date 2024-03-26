@@ -14,3 +14,9 @@ P = function(...)
     vim.print(...)
     return ...
 end
+
+local function video_lab_1()
+    require 'video-lab-1'
+end
+
+vim.api.nvim_create_user_command('VideoLab1', video_lab_1, {})

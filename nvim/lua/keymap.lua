@@ -32,6 +32,8 @@ map('n', '<C-Down>', function() vim.cmd.wincmd('j') end)
 
 map('n', '<leader>s', vim.cmd.write, 'save')
 
+map('n', '<leader>m', vim.cmd.messages, 'open messages')
+
 local function paragraph_no_jumplist(direction)
   vim.cmd('keepjumps norm! ' .. vim.v.count1 .. direction)
 end
