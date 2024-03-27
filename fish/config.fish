@@ -142,13 +142,13 @@ set --export FZF_DEFAULT_OPTS --reverse --inline-info
 
 cp ~/.config/misc/.gitconfig ~/.gitconfig
 
-set FIREFOX_DIR ~/.mozilla/firefox
-set FIREFOX_USER $(exa $FIREFOX_DIR | rg ".default\$")
-ln -sf ~/.config/misc/user.js "$FIREFOX_DIR/$FIREFOX_USER/user.js"
-
 switch (uname)
 case Linux
     fish_ssh_agent
+
+    set FIREFOX_DIR ~/.mozilla/firefox
+    set FIREFOX_USER $(exa $FIREFOX_DIR | rg ".default\$")
+    ln -sf ~/.config/misc/user.js "$FIREFOX_DIR/$FIREFOX_USER/user.js"
     set --export BROWSER firefox
 
 case Darwin
