@@ -1,5 +1,6 @@
 local neophyte = require 'neophyte'
 local map = require 'shared'.map
+local anvimator = require 'anvimator'
 
 local ns = vim.api.nvim_create_namespace('video')
 

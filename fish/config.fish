@@ -63,7 +63,7 @@ end
 
 complete -c project -x -a "(fd . ~/Documents/personal --exact-depth 3 --exec printf '%s\n' {/})"
 
-function neophyte
+function neo
     RUST_LOG="debug" RUST_BACKTRACE=1 ~/Documents/personal/23/07/neophyte/target/release/neophyte $argv &> ~/temp/neophyte_log.txt &
     disown
 end

@@ -1,3 +1,5 @@
+local shared = require 'shared'
+
 local spec = {
   lazy = false,
   priority = 2000,
@@ -5,8 +7,6 @@ local spec = {
     if vim.g.shadowvim then
       return
     end
-
-    local shared = require('shared')
 
     local scroll_speed = 2
     if shared.is_darwin() then
@@ -56,20 +56,10 @@ local spec = {
   end,
 }
 
-local path_exists = function(path)
-  local file = io.open(path, 'r')
-  if file ~= nil then
-    io.close(file)
-    return true
-  else
-    return false
-  end
-end
+local local_path = vim.env.HOME .. '/Documents/personal/23/07/neophyte'
 
-local local_neophyte_path = vim.env.HOME .. '/Documents/personal/23/07/neophyte'
-
-if path_exists(local_neophyte_path) then
-  spec.dir = local_neophyte_path
+if shared.path_exists(local_path) then
+  spec.dir = local_path
 else
   spec.url = 'https://github.com/tim-harding/neophyte'
 end
