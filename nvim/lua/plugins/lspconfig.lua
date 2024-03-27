@@ -6,6 +6,10 @@ return {
     'onsails/lspkind.nvim',
     'hrsh7th/cmp-nvim-lsp',
     {
+      'folke/neoconf.nvim',
+      opts = {}
+    },
+    {
       'folke/neodev.nvim',
       opts = {},
     },

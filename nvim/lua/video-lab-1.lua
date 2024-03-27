@@ -1,5 +1,5 @@
-local map = require 'shared'.map
 local anvimator = require 'anvimator'
+local neophyte = require 'neophyte'
 
 local function hide_statusline()
   vim.o.laststatus = 0
@@ -16,12 +16,11 @@ end
 
 local function main()
   hide_statusline()
+  vim.cmd.terminal()
+  vim.cmd('!mkdir video-lab-1')
+  neophyte.start_render('./')
   anvimator.input('iHello, world. It is I.<esc><left><left>iarst<esc>')
-  anvimator.input()
 end
-
-map({ 'n', 'x', 'i' }, '<f8>', anvimator.pause)
-map({ 'n', 'x', 'i' }, '<f7>', anvimator.resume)
 
 return function()
   anvimator.execute_async(main)
