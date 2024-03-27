@@ -5,17 +5,21 @@ local function execute_async(callback)
   coroutine.resume(ctx)
 end
 
-local function sleep()
+local function sleep(ms)
   local timer = vim.uv.new_timer()
-  timer:start(1000, 0, function()
+  timer:start(ms, 0, function()
     coroutine.resume(ctx)
   end)
   coroutine.yield()
 end
 
-execute_async(function()
-  for i = 1, 20 do
-    print(i)
-    sleep()
+local function input(keys)
+  for c in keys:gmatch('.') do
+    sleep(100)
+    vim.api.nvim_input(c)
   end
+end
+
+execute_async(function()
+  input('iHello, world')
 end)
