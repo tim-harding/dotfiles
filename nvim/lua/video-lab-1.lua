@@ -43,8 +43,10 @@ local function collect_input()
   end, ns)
   coroutine.yield()
   neophyte.handle_raw_input(nil, ns)
-  vim.print(keys)
-  error('Exit coroutine')
+  table.remove(keys) -- Remove resume key press
+  local s = table.concat(keys)
+  vim.print(s)
+  vim.fn.setreg('+', s)
 end
 
 local function input(keys)
@@ -55,7 +57,7 @@ local function input(keys)
 
   local chars = vim.api.nvim_replace_termcodes(keys, true, true, true)
   for c in chars:gmatch('.') do
-    sleep(math.random() * 300)
+    sleep(math.random() * 50)
     await_playing()
     vim.api.nvim_input(c)
   end

@@ -64,6 +64,9 @@ map('v', '<leader>@', ':normal @q<cr>')
 map('n', '<leader>\'', '<cmd>s/"/\'/g<cr>')
 map('n', '<leader>"', '<cmd>%s/"/\'/g<cr>')
 
+map('n', '<leader>p', '"+p')
+map('n', '<leader>y', '"+y')
+
 map(
   'n',
   '<leader>q',
