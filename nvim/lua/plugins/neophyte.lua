@@ -1,8 +1,16 @@
 local shared = require 'shared'
 
-local spec = {
-  lazy = false,
+local dir = nil
+local local_path = vim.env.HOME .. '/Documents/personal/23/07/neophyte'
+if shared.path_exists(local_path) then
+  dir = local_path
+end
+
+return {
+  'tim-harding/neophyte',
+  dir = dir,
   priority = 2000,
+  lazy = false,
   init = function()
     if vim.g.shadowvim then
       return
@@ -55,13 +63,3 @@ local spec = {
     end
   end,
 }
-
-local local_path = vim.env.HOME .. '/Documents/personal/23/07/neophyte'
-
-if shared.path_exists(local_path) then
-  spec.dir = local_path
-else
-  spec.url = 'https://github.com/tim-harding/neophyte'
-end
-
-return spec
