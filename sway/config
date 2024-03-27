@@ -19,19 +19,14 @@ bindsym $mod+b exec firefox
 bindsym $mod+q kill
 bindsym $mod+Ctrl+l exec swaylock
 
-set $grimfile ~/screenshots/$(date +'%s_grim.png')
-#Screenshot region
-bindsym $mod+g exec slurp | grim -g - $grimfile
-# Screenshot focused window
-bindsym $mod+Shift+g exec swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"' | grim -g - $grimfile
-bindsym $mod+Ctrl+g exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') $grimfile
+bindsym $mod+g exec ~/.config/sway/screenshot_region.fish
+bindsym $mod+Shift+g exec ~/.config/sway/screenshot_focused_window.fish
+bindsym $mod+Ctrl+g exec ~/.config/sway/screenshot_focused_monitor.fish
 
 bindsym $mod+p exec tofi-drun | xargs swaymsg exec --
 
 bindsym $mod+Left exec ~/.config/sway/swap.fish left
 bindsym $mod+Right exec ~/.config/sway/swap.fish right
-# bindsym $mod+Left focus left
-# bindsym $mod+Right focus right
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 
@@ -39,6 +34,8 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+workspace_layout tabbed
 
 bindsym $mod+h split h
 bindsym $mod+v split v
@@ -50,8 +47,8 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec swaymsg exit
-# bindsym $mod+u focus parent
-# bindsym $mod+d focus child
+bindsym $mod+u focus parent
+bindsym $mod+d focus child
 
 bindsym $mod+r mode "resize"
 mode "resize" {
