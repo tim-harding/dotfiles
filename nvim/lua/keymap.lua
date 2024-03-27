@@ -67,6 +67,12 @@ map('n', '<leader>"', '<cmd>%s/"/\'/g<cr>')
 map('n', '<leader>p', '"+p')
 map('n', '<leader>y', '"+y')
 
+local function exit()
+  vim.cmd.quit { bang = true }
+end
+
+map('n', '<f4>', exit)
+
 map(
   'n',
   '<leader>q',
