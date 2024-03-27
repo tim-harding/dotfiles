@@ -1,19 +1,21 @@
----@param keys string
-local function input(keys)
-  local iter = keys:gmatch('.')
-  local timer = vim.uv.new_timer()
+local ctx
 
-  local function on_timeout()
-    local c = iter()
-    if c == nil then
-      return
-    end
-
-    vim.api.nvim_input(c)
-    vim.uv.timer_start(timer, 100, 0, on_timeout)
-  end
-
-  vim.uv.timer_start(timer, 100, 0, on_timeout)
+local function execute_async(callback)
+  ctx = coroutine.create(callback)
+  coroutine.resume(ctx)
 end
 
-input('iHello world, testing testing')
+local function sleep()
+  local timer = vim.uv.new_timer()
+  timer:start(1000, 0, function()
+    coroutine.resume(ctx)
+  end)
+  coroutine.yield()
+end
+
+execute_async(function()
+  for i = 1, 20 do
+    print(i)
+    sleep()
+  end
+end)
