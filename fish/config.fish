@@ -39,28 +39,55 @@ function update_all
 end
 
 function git_root
-    cd $(git rev-parse --show-toplevel)
+    git rev-parse --show-toplevel
 end
 
 function take_a_dub
-    git_root
-    git add . 
-    git commit -m $argv
-    prevd
+    function inner
+        git add . 
+        git commit -m $argv
+    end
+
+    git_root | read root
+    if [ "$root" = "$pwd" ]
+        inner $argv
+    else
+        cd $root
+        inner $argv
+        prevd
+    end
 end
 
 function reset-hard
-    git_root
-    git add .
-    git reset --hard
-    prevd
+    function inner
+        git add .
+        git reset --hard
+    end
+
+    git_root | read root
+    if [ "$root" = "$pwd" ]
+        inner
+    else
+        cd $root
+        inner
+        prevd
+    end
 end
 
 function amend
-    git_root
-    git add .
-    git commit --amend --no-edit
-    prevd
+    function inner
+        git add .
+        git commit --amend --no-edit
+    end
+
+    git_root | read root
+    if [ "$root" = "$pwd" ]
+        inner
+    else
+        cd $root
+        inner
+        prevd
+    end
 end
 
 function remove_orphan_packages
