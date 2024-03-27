@@ -35,7 +35,8 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-workspace_layout tabbed
+# Default to tabs
+# workspace_layout tabbed
 
 bindsym $mod+h split h
 bindsym $mod+v split v

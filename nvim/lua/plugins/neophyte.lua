@@ -1,14 +1,6 @@
 local shared = require 'shared'
 
-local dir = nil
-local local_path = vim.env.HOME .. '/Documents/personal/23/07/neophyte'
-if shared.path_exists(local_path) then
-  dir = local_path
-end
-
-return {
-  'tim-harding/neophyte',
-  dir = dir,
+local spec = {
   priority = 2000,
   lazy = false,
   init = function()
@@ -63,3 +55,12 @@ return {
     end
   end,
 }
+
+local local_path = vim.env.HOME .. '/Documents/personal/23/07/neophyte'
+if shared.path_exists(local_path) then
+  spec.dir = local_path
+else
+  spec[1] = 'tim-harding/neophyte'
+end
+
+return spec
