@@ -14,7 +14,8 @@ local function sleep(ms)
 end
 
 local function input(keys)
-  for c in keys:gmatch('.') do
+  local chars = vim.api.nvim_replace_termcodes(keys, true, true, true)
+  for c in chars:gmatch('.') do
     sleep(math.random() * 100 + 20)
     vim.api.nvim_input(c)
   end
@@ -35,7 +36,7 @@ end
 
 local function main()
   hide_statusline()
-  input('iHello, world. It is I.')
+  input('iHello, world. It is I.<esc><left><left>iarst<esc>')
 end
 
 return function()
