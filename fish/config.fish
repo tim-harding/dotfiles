@@ -38,27 +38,37 @@ function update_all
     prevd
 end
 
-function take_a_dub
-    git add . 
-    git commit -m $argv
+function git_root
+    cd $(git rev-parse --show-toplevel)
 end
 
-function project
-    cd $(fd $argv ~/Documents/personal --exact-depth 3)
+function take_a_dub
+    git_root
+    git add . 
+    git commit -m $argv
+    prevd
 end
 
 function reset-hard
+    git_root
     git add .
     git reset --hard
+    prevd
 end
 
 function amend
+    git_root
     git add .
     git commit --amend --no-edit
+    prevd
 end
 
 function remove_orphan_packages
     sudo pacman -Rs --noconfirm $(pacman -Qtdq)
+end
+
+function project
+    cd $(fd $argv ~/Documents/personal --exact-depth 3)
 end
 
 complete -c project -x -a "(fd . ~/Documents/personal --exact-depth 3 --exec printf '%s\n' {/})"
