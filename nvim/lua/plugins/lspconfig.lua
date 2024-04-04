@@ -93,9 +93,14 @@ return {
       organize_imports_on_format = true,
     })
 
-    local highlight_augroup = vim.api.nvim_create_augroup('LspDocumentHighlight', {})
+    ---@param bufnr integer
+    local function hl_augroup_name(bufnr)
+      return 'LspDocumentHighlight-' .. bufnr
+    end
+
+    local lsp_augroup = vim.api.nvim_create_augroup('UserLspConfig', {})
     vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+      group = lsp_augroup,
       callback = function(event)
         local bufnr = event.buf
         local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -105,6 +110,7 @@ return {
           vim.keymap.set(m, keys, func, opts)
         end
 
+        local highlight_augroup = vim.api.nvim_create_augroup(hl_augroup_name(bufnr), {})
         if client.server_capabilities.documentHighlightProvider then
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
             callback = vim.lsp.buf.document_highlight,
@@ -123,6 +129,23 @@ return {
         map('n', 'gs', vim.lsp.buf.signature_help, 'show signature')
         map('n', 'gD', vim.lsp.buf.declaration, 'declaration')
         map({ 'n', 'x' }, '<leader><leader>', vim.lsp.buf.code_action, 'code action')
+      end
+    })
+
+    vim.api.nvim_create_autocmd('LspDetach', {
+      group = lsp_augroup,
+      callback = function(event)
+        vim.api.nvim_del_augroup_by_name(hl_augroup_name(event.buf))
+
+        local unmap = function(m, keys)
+          vim.keymap.del(m, keys, { buffer = event.buf })
+        end
+
+        unmap('n', '<leader>r')
+        unmap('n', 'gh')
+        unmap('n', 'gs')
+        unmap('n', 'gD')
+        unmap({ 'n', 'x' }, '<leader><leader>')
       end
     })
   end,

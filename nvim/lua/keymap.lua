@@ -64,8 +64,8 @@ map('v', '<leader>@', ':normal @q<cr>')
 map('n', '<leader>\'', '<cmd>s/"/\'/g<cr>')
 map('n', '<leader>"', '<cmd>%s/"/\'/g<cr>')
 
-map('n', '<leader>p', '"+p')
-map('n', '<leader>y', '"+y')
+map({ 'n', 'x' }, '<leader>p', '"+p', 'paste from clipboard')
+map({ 'n', 'x' }, '<leader>y', '"+y', 'yank from clipboard')
 
 local function exit()
   vim.cmd.quit { bang = true }
