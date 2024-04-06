@@ -4,6 +4,7 @@
 return {
   'luukvbaal/statuscol.nvim',
   lazy = false,
+  enabled = false,
 
   config = function()
     local statuscol = require('statuscol')
@@ -59,6 +60,7 @@ return {
         {
           text = { '%C' },
           click = 'v:lua.ScFa',
+          condition = {},
         },
 
         -- Sign
