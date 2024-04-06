@@ -71,7 +71,7 @@ local function exit()
   vim.cmd.quit { bang = true }
 end
 
-map('n', '<f4>', exit)
+map({ 'n', 't' }, '<f4>', exit)
 
 map(
   'n',
