@@ -6,7 +6,7 @@ local spec = {
   config = function()
     local anvimator = require 'anvimator'
     local map = shared.map
-    map({ 'n', 'x', 'i', 't' }, '<f8>', anvimator.pause)
+    map({ 'n', 'x', 'i', 't' }, '<f8>', anvimator.signal_pause)
     map({ 'n', 'x', 'i', 't' }, '<f7>', anvimator.play)
   end
 }
