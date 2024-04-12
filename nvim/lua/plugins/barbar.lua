@@ -15,6 +15,7 @@ return {
     local barbar = require('barbar')
     local bbye = require('barbar.bbye')
     local api = require('barbar.api')
+    local map = require('shared').map
 
     barbar.setup({
       auto_hide = true,
@@ -45,26 +46,12 @@ return {
       }
     })
 
-    vim.keymap.set('n', '<c-c>', function()
-      bbye.bdelete(false)
-    end)
-    vim.keymap.set('n', '<s-left>', function()
-      api.goto_buffer_relative(-1)
-    end)
-    vim.keymap.set('n', '<s-right>', function()
-      api.goto_buffer_relative(1)
-    end)
-    vim.keymap.set('n', '<s-up>', function()
-      api.move_current_buffer(-1)
-    end)
-    vim.keymap.set('n', '<s-down>', function()
-      api.move_current_buffer(1)
-    end)
-    vim.keymap.set('n', '<leader>c', function()
-      api.close_all_but_current_or_pinned()
-    end)
-    vim.keymap.set('n', '<c-p>', function()
-      api.toggle_pin()
-    end)
+    map('n', '<c-c>', function() bbye.bdelete(false) end)
+    map('n', '<s-left>', function() api.goto_buffer_relative(-1) end)
+    map('n', '<s-right>', function() api.goto_buffer_relative(1) end)
+    map('n', '<s-up>', function() api.move_current_buffer(-1) end)
+    map('n', '<s-down>', function() api.move_current_buffer(1) end)
+    map('n', '<leader>c', api.close_all_but_current_or_pinned, 'close all')
+    map('n', '<c-p>', api.toggle_pin)
   end
 }

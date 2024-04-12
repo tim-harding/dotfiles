@@ -6,28 +6,6 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
-local function show_diagnostics()
-  vim.diagnostic.setqflist({
-    open = false,
-    severity = { min = vim.diagnostic.severity.WARN, },
-    severity_sort = true,
-  })
-end
-
-local are_diagnostics_open = false
-
-local function toggle_diagnostics()
-  are_diagnostics_open = not are_diagnostics_open
-  if are_diagnostics_open then
-    vim.cmd.copen()
-    show_diagnostics()
-  else
-    vim.cmd.cclose()
-  end
-end
-
-vim.keymap.set('n', '<leader>t', toggle_diagnostics, { desc = 'Open workspace diagnostics' })
-
 local default_handler = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics,
   {}
@@ -39,7 +17,6 @@ local function on_publish_diagnostics(err, method, result, client_id, bufnr, con
     show_diagnostics()
   end
 end
-
 
 map('n', 'k', vim.diagnostic.goto_next, 'next diagnostic')
 map('n', 'K', vim.diagnostic.goto_prev, 'previous diagnostic')

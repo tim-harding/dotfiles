@@ -8,7 +8,8 @@ return {
       '<leader>S',
       function()
         require('spectre').toggle()
-      end
+      end,
+      desc = 'toggle spectre',
     }
   }
 }

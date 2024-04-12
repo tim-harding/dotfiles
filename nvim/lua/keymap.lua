@@ -73,19 +73,6 @@ end
 
 map({ 'n', 't' }, '<f4>', exit)
 
-map(
-  'n',
-  '<leader>q',
-  function()
-    if shared.is_quickfix_open() then
-      vim.cmd.cclose()
-    else
-      vim.cmd.copen()
-    end
-  end,
-  'toggle quickfix list'
-)
-
 local cr_braces = shared.input_unmapped('<cr><up><end><cr>')
 local cr = shared.input_unmapped('<cr>')
 local function smart_enter()
