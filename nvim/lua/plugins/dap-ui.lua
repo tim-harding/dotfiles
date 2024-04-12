@@ -18,7 +18,7 @@ return {
       table.insert(layouts, {
         position = 'bottom',
         size = 12,
-        elements = { element }
+        elements = { string.lower(element) }
       })
     end
 
