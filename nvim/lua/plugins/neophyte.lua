@@ -28,7 +28,7 @@ local spec = {
       },
       font_size = {
         kind = 'width',
-        size = 10,
+        size = 11,
       },
       cursor_speed = 2,
       scroll_speed = scroll_speed,

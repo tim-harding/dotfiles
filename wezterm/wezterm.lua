@@ -11,7 +11,7 @@ config.font = wezterm.font_with_fallback({
   'Symbols Nerd Font',
   'Noto Color Emoji',
 })
-config.font_size = 13
+config.font_size = 14
 config.enable_tab_bar = false
 config.window_padding = {
   left = 0,
