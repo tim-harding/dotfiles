@@ -74,7 +74,7 @@ return {
     telescope.load_extension('dap')
     telescope.load_extension('ui-select')
 
-    map('n', 'j', tb.find_files, 'files')
+    map('n', '<leader>jj', tb.find_files, 'files')
     map('n', '<leader>jg', tb.git_files, 'files')
     map('n', '<leader>jo', tb.oldfiles, 'recent')
     map('n', '<leader>jb', tb.buffers, 'buffers')

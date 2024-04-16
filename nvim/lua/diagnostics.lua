@@ -18,7 +18,8 @@ local function on_publish_diagnostics(err, method, result, client_id, bufnr, con
   end
 end
 
-map('n', 'k', vim.diagnostic.goto_next, 'next diagnostic')
-map('n', 'K', vim.diagnostic.goto_prev, 'previous diagnostic')
+
+map('n', '<cr>', vim.diagnostic.goto_next, 'next diagnostic')
+map('n', '<s-cr>', vim.diagnostic.goto_prev, 'previous diagnostic')
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = on_publish_diagnostics
