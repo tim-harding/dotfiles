@@ -33,7 +33,7 @@ return {
       lspconfig.pyright,
       lspconfig.ruff_lsp,
       lspconfig.sourcekit,
-      lspconfig.ruby_ls,
+      lspconfig.ruby_lsp,
       lspconfig.gopls,
       lspconfig.marksman,
     }
