@@ -33,9 +33,6 @@ function update_all
     end
     rustup update
     cargo install-update -a
-    cd ~/.config
-    git pull
-    prevd
 end
 
 function git_root
