@@ -36,6 +36,7 @@ return {
       lspconfig.ruby_lsp,
       lspconfig.gopls,
       lspconfig.marksman,
+      lspconfig.typst_lsp,
     }
 
     for _, server in ipairs(simple_servers) do
