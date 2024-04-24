@@ -31,7 +31,6 @@ return {
       lspconfig.zls,
       lspconfig.ocamllsp,
       lspconfig.pyright,
-      lspconfig.ruff_lsp,
       lspconfig.sourcekit,
       lspconfig.ruby_lsp,
       lspconfig.gopls,
