@@ -33,7 +33,7 @@ function update_all
     end
     rustup update
     cargo install-update -a
-    nvim +"lua require('lazy').restore({wait=true})" +qa
+    nvim --headless '+Lazy! sync' +qa
 end
 
 function git_root
