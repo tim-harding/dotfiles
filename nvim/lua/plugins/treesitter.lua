@@ -34,6 +34,8 @@ return {
             ['ii'] = '@conditional.inner',
             ['al'] = '@loop.outer',
             ['il'] = '@loop.inner',
+            ['ae'] = '@statement.outer',
+            ['ie'] = '@statement.outer', -- No inner variant
           },
         },
 
@@ -48,6 +50,7 @@ return {
             [']c'] = '@comment.inner',
             [']i'] = '@conditional.inner',
             [']l'] = '@loop.inner',
+            [']e'] = '@statement.outer',
           },
           goto_next_end = {
             [']F'] = '@function.outer',
@@ -56,6 +59,7 @@ return {
             [']C'] = '@comment.inner',
             [']I'] = '@conditional.inner',
             [']L'] = '@loop.inner',
+            [']E'] = '@statement.outer',
           },
           goto_previous_start = {
             ['[f'] = '@function.outer',
@@ -64,6 +68,7 @@ return {
             ['[c'] = '@comment.inner',
             ['[i'] = '@conditional.inner',
             ['[l'] = '@loop.inner',
+            ['[e'] = '@statement.outer',
           },
           goto_previous_end = {
             ['[F'] = '@function.outer',
@@ -72,6 +77,7 @@ return {
             ['[C'] = '@comment.inner',
             ['[I'] = '@conditional.inner',
             ['[L'] = '@loop.inner',
+            ['[E'] = '@statement.outer',
           },
         },
 
@@ -79,10 +85,6 @@ return {
           enable = true,
           border = 'none',
           floating_preview_opts = {},
-          peek_definition_code = {
-            -- ['<leader>df'] = '@function.outer',
-            -- ['<leader>dF'] = '@class.outer',
-          },
         },
       },
     }
