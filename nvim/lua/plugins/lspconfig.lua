@@ -16,9 +16,10 @@ return {
   },
 
   config = function()
-    local lspconfig = require('lspconfig')
-    local cmp_nvim_lsp = require('cmp_nvim_lsp')
-    local shared = require('shared')
+    local lspconfig = require 'lspconfig'
+    local configs = require 'lspconfig.configs'
+    local cmp_nvim_lsp = require 'cmp_nvim_lsp'
+    local shared = require 'shared'
 
     local capabilities = vim.tbl_deep_extend(
       'force',
@@ -42,20 +43,24 @@ return {
       server.setup({ capabilities = capabilities })
     end
 
-    local sourcekit_cmd = { 'sourcekit-lsp' }
-    if shared.is_darwin() then
-      sourcekit_cmd = {
-        'xcrun',
-        'sourcekit-lsp',
-      }
+
+    local function sourcekit_command()
+      if shared.is_linux() then
+        return { 'sourcekit-lsp' }
+      elseif shared.is_darwin() then
+        return {
+          'xcrun',
+          'sourcekit-lsp',
+        }
+      end
     end
 
-    lspconfig.sourcekit.setup({
+    lspconfig.sourcekit.setup {
       capabilities = capabilities,
-      cmd = sourcekit_cmd,
-    })
+      cmd = sourcekit_command(),
+    }
 
-    lspconfig.lua_ls.setup({
+    lspconfig.lua_ls.setup {
       capabilities = capabilities,
       settings = {
         Lua = {
@@ -67,24 +72,24 @@ return {
           },
         },
       },
-    })
+    }
 
-    lspconfig.hls.setup({
+    lspconfig.hls.setup {
       capabilities = capabilities,
       filetypes = {
         'haskell',
         'lhaskell',
         'cabal',
       },
-    })
+    }
 
-    lspconfig.omnisharp.setup({
+    lspconfig.omnisharp.setup {
       capabilities = capabilities,
       handlers = {
-        ["textDocument/definition"] = require('omnisharp_extended').definition_handler,
-        ["textDocument/typeDefinition"] = require('omnisharp_extended').type_definition_handler,
-        ["textDocument/references"] = require('omnisharp_extended').references_handler,
-        ["textDocument/implementation"] = require('omnisharp_extended').implementation_handler,
+        ['textDocument/definition'] = require('omnisharp_extended').definition_handler,
+        ['textDocument/typeDefinition'] = require('omnisharp_extended').type_definition_handler,
+        ['textDocument/references'] = require('omnisharp_extended').references_handler,
+        ['textDocument/implementation'] = require('omnisharp_extended').implementation_handler,
       },
       cmd = {
         '/usr/bin/omnisharp',
@@ -96,7 +101,19 @@ return {
         tostring(vim.fn.getpid()),
       },
       organize_imports_on_format = true,
-    })
+    }
+
+    configs.cls = {
+      default_config = {
+        cmd = { 'chpl-language-server' },
+        filetypes = { 'chpl' },
+        autostart = true,
+        single_file_support = true,
+        root_dir = lspconfig.util.find_git_ancestor,
+        settings = {},
+      },
+    }
+    lspconfig.cls.setup {}
 
     ---@param bufnr integer
     local function hl_augroup_name(bufnr)
