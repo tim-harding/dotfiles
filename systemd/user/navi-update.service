@@ -1,0 +1,6 @@
+[Unit]
+Description=Update Navi repos
+
+[Service]
+Type=oneshot
+ExecStart=/home/tim/.config/systemd/user/navi-update.fish

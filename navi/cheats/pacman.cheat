@@ -2,3 +2,6 @@
 
 # Install package
 sudo pacman -Syu --noconfirm <pkg_name>
+
+# Package associated services
+pacman -Qql <pkg_name> | grep -Fe .service -e .socket
