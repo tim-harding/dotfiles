@@ -19,6 +19,7 @@ return {
       k = 'Scissors',
       l = 'Leetcode',
       x = 'Xbase',
+      n = 'Neotest',
     }
 
     local leaders_mapped = {}
