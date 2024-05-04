@@ -1,12 +1,11 @@
 return {
   'mrcjkb/rustaceanvim',
+  lazy = false,
   version = '^4',
-  ft = { 'rust' },
   dependencies = { 'nvim-lua/plenary.nvim' },
   init = function()
     local shared = require('shared')
 
-    ---@return DapServerConfig | nil
     local function dap_adapter()
       local cfg = require('rustaceanvim.config')
       if shared.is_linux() then
@@ -32,16 +31,11 @@ return {
     })
 
     vim.g.rustaceanvim = function()
-      ---@type RustaceanOpts
       return {
         tools = {
           hover_actions = {
             auto_focus = true,
           },
-        },
-        server = {
-          -- cmd = { 'ra-multiplex' },
-          standalone = false,
         },
         dap = {
           adapter = dap_adapter(),
