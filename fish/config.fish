@@ -26,13 +26,15 @@ function update_all
     case Linux
         sudo pacman -Syu --noconfirm
         yay -Syu --noconfirm
-        bob update --all
     case Darwin
         brew update
         brew upgrade
     end
     rustup update
     cargo install-update -a
+    pyenv install $(pyenv latest 3) --skip-existing
+    pipx upgrade-all
+    bob update --all
     nvim --headless '+Lazy! sync' +qa
 end
 
@@ -149,6 +151,8 @@ fish_add_path ~/.ghcup/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/.dotnet/tools
 
+# pipx completions
+register-python-argcomplete --shell fish pipx | source
 
 # opam configuration
 source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
@@ -187,6 +191,5 @@ function initial-install
     case Linux
         xdg-settings set default-web-browser firefox.desktop
         xdg-mime default firefox.desktop application/pdf
-
     end
 end

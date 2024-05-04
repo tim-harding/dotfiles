@@ -24,6 +24,7 @@ bindsym $mod+Shift+g exec ~/.config/sway/screenshot_focused_window.fish
 bindsym $mod+Ctrl+g exec ~/.config/sway/screenshot_focused_monitor.fish
 
 bindsym $mod+p exec tofi-drun | xargs swaymsg exec --
+bindsym $mod+k exec ~/.config/sway/rofimoji.fish
 bindsym $mod+Shift+r exec ~/.config/sway/rotate.fish
 
 bindsym $mod+Left exec ~/.config/sway/swap.fish left
