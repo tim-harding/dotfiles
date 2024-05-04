@@ -11,7 +11,14 @@ return {
     },
     {
       'folke/neodev.nvim',
-      opts = {},
+      opts = {
+        library = {
+          plugins = {
+            'neotest',
+          },
+          types = true,
+        }
+      },
     },
   },
 
@@ -42,7 +49,6 @@ return {
     for _, server in ipairs(simple_servers) do
       server.setup({ capabilities = capabilities })
     end
-
 
     local function sourcekit_command()
       if shared.is_linux() then

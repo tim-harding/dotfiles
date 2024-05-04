@@ -5,7 +5,7 @@ return {
 
   keys = {
     {
-      '<leader>n',
+      '<leader>M',
       function()
         vim.cmd('Noice')
       end,

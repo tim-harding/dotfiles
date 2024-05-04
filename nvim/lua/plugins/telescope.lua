@@ -14,7 +14,12 @@ return {
       end,
       build =
       'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
-    }
+    },
+    {
+      'ahmedkhalf/project.nvim',
+      name = 'project_nvim',
+      opts = {},
+    },
   },
 
   config = function()
@@ -73,6 +78,7 @@ return {
     pcall(require('telescope').load_extension, 'fzf')
     telescope.load_extension('dap')
     telescope.load_extension('ui-select')
+    telescope.load_extension('projects')
 
     map('n', '<leader>jj', tb.find_files, 'files')
     map('n', '<leader>jg', tb.git_files, 'files')
@@ -83,6 +89,7 @@ return {
     map('n', '<leader>jm', tb.marks, 'marks')
     map('n', '<leader>jq', tb.quickfix, 'quickfix')
     map('n', '<leader>js', tb.lsp_dynamic_workspace_symbols, 'find project symbol')
+    map('n', '<leader>jP', telescope.extensions.projects.projects, 'projects')
     map('n', 'gr', tb.lsp_references, 'goto reference')
     map('n', 'gd', tb.lsp_definitions, 'goto definition')
     map('n', 'gt', tb.lsp_type_definitions, 'goto type definition')
