@@ -1,0 +1,4 @@
+% pacman, package
+
+# Install package
+sudo pacman -Syu --noconfirm <pkg_name>

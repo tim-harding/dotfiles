@@ -1,0 +1,13 @@
+finder:
+  command: fzf
+
+cheats:
+  paths:
+    - /home/tim/.config/navi/cheats/
+
+client:
+  tealdeer: true
+
+shell:
+  command: fish
+  finder_command: fish
