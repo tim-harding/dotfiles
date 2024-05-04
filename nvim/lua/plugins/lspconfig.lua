@@ -109,16 +109,23 @@ return {
       organize_imports_on_format = true,
     }
 
+    vim.filetype.add {
+      extension = {
+        chpl = 'chapel',
+      }
+    }
+
     configs.cls = {
       default_config = {
         cmd = { 'chpl-language-server' },
-        filetypes = { 'chpl' },
+        filetypes = { 'chapel' },
         autostart = true,
         single_file_support = true,
         root_dir = lspconfig.util.find_git_ancestor,
         settings = {},
       },
     }
+
     lspconfig.cls.setup {}
 
     ---@param bufnr integer
