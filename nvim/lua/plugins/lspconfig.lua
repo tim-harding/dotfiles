@@ -89,13 +89,20 @@ return {
       },
     }
 
+    local omnisharp_extended = require 'omnisharp_extended'
     lspconfig.omnisharp.setup {
-      capabilities = capabilities,
+      capabilities = vim.tbl_deep_extend('force', capabilities, {
+        workspace = {
+          didChangeWatchedFiles = {
+            dynamicRegistration = true,
+          },
+        },
+      }),
       handlers = {
-        ['textDocument/definition'] = require('omnisharp_extended').definition_handler,
-        ['textDocument/typeDefinition'] = require('omnisharp_extended').type_definition_handler,
-        ['textDocument/references'] = require('omnisharp_extended').references_handler,
-        ['textDocument/implementation'] = require('omnisharp_extended').implementation_handler,
+        ['textDocument/definition'] = omnisharp_extended.definition_handler,
+        ['textDocument/typeDefinition'] = omnisharp_extended.type_definition_handler,
+        ['textDocument/references'] = omnisharp_extended.references_handler,
+        ['textDocument/implementation'] = omnisharp_extended.implementation_handler,
       },
       cmd = {
         '/usr/bin/omnisharp',
