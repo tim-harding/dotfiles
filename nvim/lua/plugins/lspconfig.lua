@@ -89,6 +89,14 @@ return {
       },
     }
 
+    local function omnisharp_path()
+      if shared.is_linux() then
+        return '/usr/bin/omnisharp'
+      elseif shared.is_darwin() then
+        return '/opt/homebrew/bin/omnisharp'
+      end
+    end
+
     local omnisharp_extended = require 'omnisharp_extended'
     lspconfig.omnisharp.setup {
       capabilities = vim.tbl_deep_extend('force', capabilities, {
@@ -105,7 +113,7 @@ return {
         ['textDocument/implementation'] = omnisharp_extended.implementation_handler,
       },
       cmd = {
-        '/usr/bin/omnisharp',
+        omnisharp_path(),
         '--languageserver',
         '--zero-based-indices',
         '--encoding',
