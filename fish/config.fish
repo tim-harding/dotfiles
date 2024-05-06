@@ -35,6 +35,7 @@ function update_all
     pyenv install $(pyenv latest 3) --skip-existing
     pipx upgrade-all
     bob update --all
+    fisher update
     nvim --headless '+Lazy! sync' +qa
 end
 
