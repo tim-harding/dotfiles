@@ -151,9 +151,6 @@ fish_add_path ~/.ghcup/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/.dotnet/tools
 
-# pipx completions
-register-python-argcomplete --shell fish pipx | source
-
 # opam configuration
 source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 
