@@ -25,7 +25,7 @@ return {
     neotest.setup {
       adapters = {
         require 'rustaceanvim.neotest',
-        -- require 'neotest-zig', -- Currently only on nightly
+        require 'neotest-zig',
         require 'neotest-haskell',
         require 'neotest-python',
         require 'neotest-plenary',
