@@ -33,7 +33,6 @@ function update_all
     rustup update
     cargo install-update -a
     pyenv install $(pyenv latest 3) --skip-existing
-    pipx upgrade-all
     bob update --all
     fisher update
     nvim --headless '+Lazy! sync' +qa
