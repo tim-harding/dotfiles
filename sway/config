@@ -65,6 +65,7 @@ mode "resize" {
 mouse_warping none
 focus_follows_mouse no
 
+for_window [class="Unity"] floating enable
 for_window [class="^.*"] border pixel 2
 titlebar_padding 1 1
 
