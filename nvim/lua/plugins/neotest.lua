@@ -7,8 +7,6 @@ return {
     'antoinemadec/FixCursorHold.nvim',
     'nvim-treesitter/nvim-treesitter',
 
-    -- Adapters
-    'mrcjkb/rustaceanvim',
     'lawrence-laz/neotest-zig',
     'mrcjkb/neotest-haskell',
     'nvim-neotest/neotest-python',
