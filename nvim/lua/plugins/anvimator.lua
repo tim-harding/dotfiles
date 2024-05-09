@@ -11,7 +11,7 @@ local spec = {
   end
 }
 
-local local_path = vim.env.HOME .. '/Documents/personal/anvimator'
+local local_path = vim.env.HOME .. '/personal/anvimator'
 if shared.path_exists(local_path) then
   spec.dir = local_path
 else
