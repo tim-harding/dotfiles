@@ -1,6 +1,5 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  build = ':TSUpdate',
   lazy = false,
   dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
   config = function()
@@ -107,5 +106,6 @@ return {
     vim.o.foldmethod = 'expr'
     vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
     vim.o.foldenable = false
+    vim.cmd('TSUpdate')
   end
 }
