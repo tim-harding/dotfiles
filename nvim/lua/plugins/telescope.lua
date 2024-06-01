@@ -70,6 +70,8 @@ return {
             'file',
             '--color=never',
             '--hidden',
+            '--exclude',
+            '.git',
           },
         },
       },
