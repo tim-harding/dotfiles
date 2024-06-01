@@ -24,6 +24,7 @@ return {
         haskell = { 'fourmolu' },
         ocaml = { 'ocamlformat' },
         python = { 'black' },
+        swift = { 'swiftformat' },
       },
       format_on_save = function()
         if is_format_enabled then

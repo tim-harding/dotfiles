@@ -39,10 +39,8 @@ return {
       lspconfig.zls,
       lspconfig.ocamllsp,
       lspconfig.pyright,
-      lspconfig.sourcekit,
       lspconfig.ruby_lsp,
       lspconfig.gopls,
-      lspconfig.marksman,
       lspconfig.typst_lsp,
     }
 
@@ -154,6 +152,9 @@ return {
       callback = function(event)
         local bufnr = event.buf
         local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client == nil then
+          return
+        end
 
         local map = function(m, keys, func, desc)
           local opts = { buffer = bufnr, desc = desc }
@@ -162,12 +163,18 @@ return {
 
         local highlight_augroup = vim.api.nvim_create_augroup(hl_augroup_name(bufnr), {})
         if client.server_capabilities.documentHighlightProvider then
-          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+          vim.api.nvim_create_autocmd({
+            'CursorHold',
+            -- 'CursorHoldI',
+          }, {
             callback = vim.lsp.buf.document_highlight,
             buffer = bufnr,
             group = highlight_augroup,
           })
-          vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorHoldI' }, {
+          vim.api.nvim_create_autocmd({
+            'CursorMoved',
+            'CursorMovedI',
+          }, {
             callback = vim.lsp.buf.clear_references,
             buffer = bufnr,
             group = highlight_augroup,

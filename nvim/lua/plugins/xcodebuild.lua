@@ -1,0 +1,19 @@
+return {
+  'wojciech-kulik/xcodebuild.nvim',
+  event = 'VeryLazy',
+  dependencies = {
+    'nvim-telescope/telescope.nvim',
+    'MunifTanjim/nui.nvim',
+    'stevearc/oil.nvim',
+    'nvim-treesitter/nvim-treesitter',
+  },
+  config = function()
+    require('xcodebuild').setup({
+      integrations = {
+        xcode_build_server = {
+          enabled = true,
+        },
+      }
+    })
+  end,
+}
