@@ -12,7 +12,11 @@ return {
 
       indent = {
         enable = true,
-        disable = { 'python', 'dart' }
+        disable = {
+          'python',
+          'dart',
+          'swift', -- Causes the LSP to crash on completions
+        }
       },
 
       textobjects = {
