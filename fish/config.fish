@@ -183,6 +183,7 @@ case Linux
 case Darwin
     fish_add_path /opt/homebrew/opt/llvm/bin
     fish_add_path /Applications/Sublime\ Merge.app/Contents/SharedSupport/bin
+    fish_add_path /Users/tim/.local/share/bob/nvim-bin
     fish_add_path "$(gem environment | rg "EXECUTABLE DIRECTORY" | sd '.*: (.*)' '$1')"
 
     set TEALDEER_CONFIG_DIR ~/Library/Application\ Support/tealdeer
