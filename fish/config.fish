@@ -179,6 +179,7 @@ case Linux
     set FIREFOX_USER $(exa $FIREFOX_DIR | rg ".default\$")
     ln -sf ~/.config/misc/user.js "$FIREFOX_DIR/$FIREFOX_USER/user.js"
     set --export BROWSER firefox
+    set --export PYTHONPATH /usr/share/blender/4.1/scripts/modules/
 
 case Darwin
     fish_add_path /opt/homebrew/opt/llvm/bin
