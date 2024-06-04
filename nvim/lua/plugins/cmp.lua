@@ -92,6 +92,7 @@ return {
       },
 
       sources = {
+        { name = 'lazydev' },
         {
           name = 'nvim_lsp',
           entry_filter = function(entry, _)
@@ -111,7 +112,7 @@ return {
           option = {
             disable_omnifuncs = { 'v:lua.vim.lsp.omnifunc' },
           }
-        }
+        },
       },
     })
 
