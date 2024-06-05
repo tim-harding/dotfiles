@@ -60,7 +60,6 @@ map('t', '<Esc><Esc>', '<C-\\><C-n>')
 
 map('n', '<Esc>', vim.cmd.nohlsearch)
 
-map('v', '<leader>@', ':normal @q<cr>')
 map('n', '<leader>\'', '<cmd>s/"/\'/g<cr>')
 map('n', '<leader>"', '<cmd>%s/"/\'/g<cr>')
 
