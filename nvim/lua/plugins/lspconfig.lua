@@ -164,7 +164,7 @@ return {
         end
 
         local highlight_augroup = vim.api.nvim_create_augroup(hl_augroup_name(bufnr), {})
-        if client.server_capabilities.documentHighlightProvider then
+        if client.supports_method('documentHighlightProvider') then
           vim.api.nvim_create_autocmd({
             'CursorHold',
             -- 'CursorHoldI',
