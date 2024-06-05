@@ -31,8 +31,9 @@ function update_all
         brew upgrade
     end
     rustup update
-    cargo install-update -a
+    cargo install-update --all
     pyenv install $(pyenv latest 3) --skip-existing
+    npm update --global
     bob update --all
     fisher update
     nvim --headless '+Lazy! sync' +qa
@@ -170,6 +171,11 @@ set --export FZF_DEFAULT_OPTS \
     --color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284
 
 cp ~/.config/misc/.gitconfig ~/.gitconfig
+
+set --export NPM_PACKAGES ~/.npm-global
+set --export NODE_PATH "$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+set --export MANPATH "$NPM_PACKAGES/share/man"
+fish_add_path "$NPM_PACKAGES/bin"
 
 switch (uname)
 case Linux
