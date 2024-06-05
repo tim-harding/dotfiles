@@ -142,6 +142,11 @@ return {
       return 'LspDocumentHighlight-' .. bufnr
     end
 
+    local function toggle_inlay_hints()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    end
+    shared.map('n', '<leader>i', toggle_inlay_hints, 'toggle inlay hints')
+
     local lsp_augroup = vim.api.nvim_create_augroup('UserLspConfig', {})
     vim.api.nvim_create_autocmd('LspAttach', {
       group = lsp_augroup,
