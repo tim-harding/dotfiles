@@ -44,6 +44,8 @@ return {
       lspconfig.ruby_lsp,
       lspconfig.gopls,
       lspconfig.typst_lsp,
+      lspconfig.biome,
+      lspconfig.tsserver,
     }
 
     for _, server in ipairs(simple_servers) do
