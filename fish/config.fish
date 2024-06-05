@@ -173,9 +173,9 @@ set --export FZF_DEFAULT_OPTS \
 cp ~/.config/misc/.gitconfig ~/.gitconfig
 
 set --export NPM_PACKAGES ~/.npm-global
-set --export NODE_PATH "$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
-set --export MANPATH "$NPM_PACKAGES/share/man"
+set --export --append MANPATH "$NPM_PACKAGES/share/man"
 fish_add_path "$NPM_PACKAGES/bin"
+npm config set prefix $NPM_PACKAGES
 
 switch (uname)
 case Linux
