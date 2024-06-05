@@ -20,7 +20,7 @@ return {
 
     conform.setup({
       formatters_by_ft = {
-        javascript = { 'prettierd' },
+        javascript = { { 'prettierd', 'prettier' } },
         haskell = { 'fourmolu' },
         ocaml = { 'ocamlformat' },
         python = { 'black' },
