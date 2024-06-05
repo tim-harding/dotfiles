@@ -161,7 +161,6 @@ return {
         if client.supports_method('documentHighlightProvider') then
           vim.api.nvim_create_autocmd({
             'CursorHold',
-            -- 'CursorHoldI',
           }, {
             callback = vim.lsp.buf.document_highlight,
             buffer = bufnr,
@@ -178,8 +177,6 @@ return {
         end
 
         map('n', '<leader>r', vim.lsp.buf.rename, 'rename')
-        map('n', 'gh', vim.lsp.buf.hover, 'hover')
-        map('n', 'gs', vim.lsp.buf.signature_help, 'show signature')
         map('n', 'gD', vim.lsp.buf.declaration, 'declaration')
         map({ 'n', 'x' }, '<leader><leader>', vim.lsp.buf.code_action, 'code action')
       end
@@ -195,8 +192,6 @@ return {
         end
 
         unmap('n', '<leader>r')
-        unmap('n', 'gh')
-        unmap('n', 'gs')
         unmap('n', 'gD')
         unmap({ 'n', 'x' }, '<leader><leader>')
       end
