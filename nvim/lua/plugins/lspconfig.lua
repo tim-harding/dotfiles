@@ -124,12 +124,6 @@ return {
       organize_imports_on_format = true,
     }
 
-    vim.filetype.add {
-      extension = {
-        chpl = 'chapel',
-      }
-    }
-
     configs.cls = {
       default_config = {
         cmd = { 'chpl-language-server' },
