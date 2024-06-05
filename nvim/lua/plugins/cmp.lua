@@ -11,24 +11,17 @@ return {
     'petertriho/cmp-git',
     'saadparwaiz1/cmp_luasnip',
     {
-      'L3MON4D3/LuaSnip',
-      version = 'v2.*',
-      cond = function()
-        return vim.fn.executable 'make' == 1
-      end,
-      build = 'make install_jsregexp',
-      config = function()
-        require('luasnip.loaders.from_vscode').lazy_load({
-          paths = { vim.fn.stdpath('config') .. '/scissor-snippets/' },
-        })
-        require('luasnip').config.setup({})
-      end
+      'garymjr/nvim-snippets',
+      opts = {
+        search_paths = {
+          vim.fn.stdpath('config') .. '/scissor-snippets/',
+        },
+      },
     },
   },
 
   config = function()
     local cmp = require('cmp')
-    local luasnip = require('luasnip')
 
     cmp.setup({
       enabled = function()
@@ -41,7 +34,7 @@ return {
 
       snippet = {
         expand = function(args)
-          luasnip.lsp_expand(args.body)
+          vim.snippet.expand(args.body)
         end
       },
 
@@ -76,15 +69,15 @@ return {
           select = true,
         }),
         ['<Tab>'] = cmp.mapping(function(fallback)
-          if luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
+          if vim.snippet.active({ direction = 1 }) then
+            vim.snippet.jump(1)
           else
             fallback()
           end
         end, { 'i', 's' }),
         ['<S-Tab>'] = cmp.mapping(function(fallback)
-          if luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
+          if vim.snippet.active({ direction = -1 }) then
+            vim.snippet.jump(-1)
           else
             fallback()
           end
@@ -99,7 +92,7 @@ return {
             return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
           end,
         },
-        { name = 'luasnip' },
+        { name = 'snippets' },
         { name = 'nvim_lsp_signature_help' },
         {
           name = 'emoji',
