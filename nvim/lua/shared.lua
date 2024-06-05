@@ -1,5 +1,7 @@
 local M = {}
 
+M.snippet_path = vim.fs.joinpath(vim.fn.stdpath('config'), '/scissor-snippets/')
+
 M.map = function(mode, keys, func, desc, opts)
   opts = opts or {}
   opts = vim.tbl_extend('keep', opts, {

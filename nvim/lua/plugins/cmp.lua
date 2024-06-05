@@ -13,9 +13,7 @@ return {
     {
       'garymjr/nvim-snippets',
       opts = {
-        search_paths = {
-          vim.fn.stdpath('config') .. '/scissor-snippets/',
-        },
+        search_paths = { require('shared').snippet_path },
       },
     },
   },

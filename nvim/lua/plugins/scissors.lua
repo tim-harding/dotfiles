@@ -1,5 +1,4 @@
-local config_dir = vim.fn.stdpath('config')
-local snippet_dir = config_dir .. '/scissor-snippets/'
+local snippet_dir = require('shared').snippet_path
 
 return {
   'chrisgrieser/nvim-scissors',
