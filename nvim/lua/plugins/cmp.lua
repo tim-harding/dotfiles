@@ -83,6 +83,7 @@ return {
       },
 
       sources = {
+        { name = 'snippets' },
         { name = 'lazydev' },
         {
           name = 'nvim_lsp',
@@ -90,7 +91,6 @@ return {
             return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
           end,
         },
-        { name = 'snippets' },
         { name = 'nvim_lsp_signature_help' },
         {
           name = 'emoji',

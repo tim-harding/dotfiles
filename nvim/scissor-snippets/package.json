@@ -24,6 +24,12 @@
           "python"
         ],
         "path": "./python.json"
+      },
+      {
+        "language": [
+          "javascriptreact"
+        ],
+        "path": "./javascriptreact.json"
       }
     ]
   },

@@ -1,0 +1,16 @@
+{
+  "component": {
+    "body": [
+      "import styles from \"./index.module.css\";",
+      "",
+      "const ${1:name} = () => (",
+      "  <>",
+      "    $2",
+      "  </>",
+      ");",
+      "",
+      "export default ${1:name};"
+    ],
+    "prefix": "component"
+  }
+}

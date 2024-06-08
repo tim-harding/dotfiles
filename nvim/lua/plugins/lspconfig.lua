@@ -44,17 +44,11 @@ return {
       lspconfig.ruby_lsp,
       lspconfig.gopls,
       lspconfig.typst_lsp,
-
-      -- lspconfig.biome,
-      -- lspconfig.tsserver,
-
-      ---------------------------------------
-      -- From vscode-langservers-extracted --
-      ---------------------------------------
+      lspconfig.biome,
       lspconfig.cssls,
-      lspconfig.html,
       lspconfig.jsonls,
-      -- lspconfig.eslint,
+      lspconfig.html,
+      lspconfig.cssmodules_ls,
     }
 
     for _, server in ipairs(simple_servers) do
