@@ -147,6 +147,11 @@ return {
       return 'LspDocumentHighlight-' .. bufnr
     end
 
+    ---@param bufnr integer
+    local function hl_augroup(bufnr)
+      return vim.api.nvim_create_augroup(hl_augroup_name(bufnr), { clear = false })
+    end
+
     local function toggle_inlay_hints()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
     end
@@ -162,32 +167,35 @@ return {
           return
         end
 
-        local map = function(m, keys, func, desc)
+        local function map(m, keys, func, desc)
           local opts = { buffer = bufnr, desc = desc }
           vim.keymap.set(m, keys, func, opts)
         end
 
-        local highlight_augroup = vim.api.nvim_create_augroup(hl_augroup_name(bufnr), {})
-        if client.supports_method('documentHighlightProvider') then
+        if client.supports_method('textDocument/documentHighlight', { bufnr = bufnr }) then
+          local group = hl_augroup(bufnr)
+
           vim.api.nvim_create_autocmd({
             'CursorHold',
           }, {
             callback = vim.lsp.buf.document_highlight,
             buffer = bufnr,
-            group = highlight_augroup,
+            group = group,
           })
+
           vim.api.nvim_create_autocmd({
             'CursorMoved',
             'CursorMovedI',
           }, {
             callback = vim.lsp.buf.clear_references,
             buffer = bufnr,
-            group = highlight_augroup,
+            group = group,
           })
         end
 
         map('n', '<leader>r', vim.lsp.buf.rename, 'rename')
         map('n', 'gD', vim.lsp.buf.declaration, 'declaration')
+        map('n', 'gh', vim.lsp.buf.hover, 'hover')
         map({ 'n', 'x' }, '<leader><leader>', vim.lsp.buf.code_action, 'code action')
       end
     })
@@ -197,7 +205,7 @@ return {
       callback = function(event)
         vim.api.nvim_del_augroup_by_name(hl_augroup_name(event.buf))
 
-        local unmap = function(m, keys)
+        local function unmap(m, keys)
           vim.keymap.del(m, keys, { buffer = event.buf })
         end
 
