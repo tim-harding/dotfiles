@@ -24,6 +24,13 @@ return {
         javascriptreact = { 'prettierd' },
         typescript = { 'prettierd' },
         typescriptreact = { 'prettierd' },
+        css = { 'prettierd' },
+        json = { 'prettierd' },
+        html = { 'prettierd' },
+        scss = { 'prettierd' },
+        markdown = { 'prettierd' },
+        yaml = { 'prettierd' },
+
         haskell = { 'fourmolu' },
         ocaml = { 'ocamlformat' },
         python = { 'black' },

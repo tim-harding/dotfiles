@@ -2,6 +2,7 @@ local on_attach = require('shared').on_attach
 
 return {
   'pmizio/typescript-tools.nvim',
+  enabled = false,
   ft = {
     'typescript',
     'typescriptreact',
