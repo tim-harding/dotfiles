@@ -48,7 +48,7 @@ return {
       lspconfig.cssls,
       lspconfig.jsonls,
       lspconfig.html,
-      lspconfig.cssmodules_ls,
+      lspconfig.tsserver,
     }
 
     for _, server in ipairs(simple_servers) do

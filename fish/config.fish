@@ -177,6 +177,9 @@ set --export --append MANPATH "$NPM_PACKAGES/share/man"
 fish_add_path "$NPM_PACKAGES/bin"
 npm config set prefix $NPM_PACKAGES
 
+set --export VDPAU_DRIVER radeonsi
+set --export LIBVA_DRIVER_NAME radeonsi
+
 switch (uname)
 case Linux
     fish_ssh_agent
