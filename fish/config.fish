@@ -185,7 +185,7 @@ case Linux
     set FIREFOX_DIR ~/.mozilla/firefox
     set FIREFOX_USER $(exa $FIREFOX_DIR | rg ".default\$")
     ln -sf ~/.config/misc/user.js "$FIREFOX_DIR/$FIREFOX_USER/user.js"
-    set --export BROWSER firefox-beta
+    set --export BROWSER firefox
     set --export PYTHONPATH /usr/share/blender/4.1/scripts/modules/
     set --export VDPAU_DRIVER radeonsi
     set --export LIBVA_DRIVER_NAME radeonsi
@@ -201,11 +201,4 @@ case Darwin
     mkdir $TEALDEER_CONFIG_DIR 
     rm $TEALDEER_CONFIG 
     ln -s ~/.config/tealdeer/config.toml $TEALDEER_CONFIG
-end
-
-function initial-install
-    switch (uname)
-    case Linux
-        xdg-settings set default-web-browser firefox.desktop
-    end
 end
