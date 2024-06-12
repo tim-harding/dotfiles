@@ -55,8 +55,8 @@ map('n', '[q', vim.cmd.cprevious, 'prev quickfix list item')
 map('n', '<C-n>', 'nzz')
 map('n', '<M-n>', 'Nzz')
 
--- Exit terminal
-map('t', '<Esc><Esc>', '<C-\\><C-n>')
+-- Exit terminal input
+map('t', '<c-Esc>', '<C-\\><C-n>')
 
 map('n', '<Esc>', vim.cmd.nohlsearch)
 
@@ -90,3 +90,7 @@ local function smart_enter()
 end
 
 map('i', '<CR>', smart_enter)
+
+map('n', '<leader>gg', function()
+  vim.cmd.terminal('lazygit')
+end)

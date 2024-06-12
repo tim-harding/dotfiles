@@ -1,5 +1,7 @@
+local augroup = vim.api.nvim_create_augroup('Commands', {})
+
 vim.api.nvim_create_autocmd('TextYankPost', {
-  group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
+  group = augroup,
   pattern = '*',
   callback = function()
     vim.highlight.on_yank()
@@ -24,9 +26,9 @@ end, {})
 
 local buf_to_close = -1
 
-vim.api.nvim_create_autocmd({ 'BufLeave' }, {
-  group = vim.api.nvim_create_augroup('MarkForClose', { clear = true }),
-  pattern = { '*' },
+vim.api.nvim_create_autocmd('BufLeave', {
+  group = augroup,
+  pattern = '*',
   callback = function()
     local buf = vim.api.nvim_get_current_buf()
     buf_to_close = -1
@@ -36,9 +38,9 @@ vim.api.nvim_create_autocmd({ 'BufLeave' }, {
   end
 })
 
-vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-  group = vim.api.nvim_create_augroup('CloseMarked', { clear = true }),
-  pattern = { '*' },
+vim.api.nvim_create_autocmd('BufEnter', {
+  group = augroup,
+  pattern = '*',
   callback = function()
     if buf_to_close > 0 and vim.api.nvim_buf_is_valid(buf_to_close) then
       vim.api.nvim_buf_delete(buf_to_close, {})
@@ -46,18 +48,26 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   end
 })
 
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-  group = vim.api.nvim_create_augroup('SetWgpu', { clear = true }),
-  pattern = { '*.wgsl' },
-  callback = function()
-    vim.opt_local.filetype = 'wgsl'
-  end
-})
-
 vim.api.nvim_create_autocmd('FocusGained', {
-  group = vim.api.nvim_create_augroup('ReloadChangedFile', { clear = true }),
+  group = augroup,
   pattern = '*',
   callback = function()
     pcall(vim.cmd.checktime)
+  end
+})
+
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = augroup,
+  pattern = '*',
+  callback = function()
+    vim.cmd.startinsert()
+  end
+})
+
+vim.api.nvim_create_autocmd('TermClose', {
+  group = augroup,
+  pattern = '*',
+  callback = function()
+    vim.api.nvim_buf_delete(vim.api.nvim_get_current_buf(), {})
   end
 })

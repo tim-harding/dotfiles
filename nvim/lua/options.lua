@@ -61,5 +61,6 @@ vim.filetype.add {
   extension = {
     chpl = 'chapel',
     metal = 'cpp',
+    wgsl = 'wgsl',
   }
 }
