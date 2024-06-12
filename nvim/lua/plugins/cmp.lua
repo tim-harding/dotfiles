@@ -9,7 +9,6 @@ return {
     'hrsh7th/cmp-emoji',
     'hrsh7th/cmp-nvim-lsp-signature-help',
     'petertriho/cmp-git',
-    'saadparwaiz1/cmp_luasnip',
     {
       'garymjr/nvim-snippets',
       opts = {
