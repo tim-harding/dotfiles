@@ -3,6 +3,7 @@ return {
   opts = {
     open_cmd = 'new',
   },
+  cmd = 'Spectre',
   keys = {
     {
       '<leader>S',
