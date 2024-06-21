@@ -168,8 +168,7 @@ return {
         end
 
         local function map(m, keys, func, desc)
-          local opts = { buffer = bufnr, desc = desc }
-          vim.keymap.set(m, keys, func, opts)
+          vim.keymap.set(m, keys, func, { buffer = bufnr, desc = desc })
         end
 
         if client.supports_method('textDocument/documentHighlight', { bufnr = bufnr }) then
@@ -185,7 +184,7 @@ return {
 
           vim.api.nvim_create_autocmd({
             'CursorMoved',
-            'CursorMovedI',
+            'InsertEnter',
           }, {
             callback = vim.lsp.buf.clear_references,
             buffer = bufnr,
@@ -203,14 +202,15 @@ return {
     vim.api.nvim_create_autocmd('LspDetach', {
       group = lsp_augroup,
       callback = function(event)
-        vim.api.nvim_del_augroup_by_name(hl_augroup_name(event.buf))
+        pcall(vim.api.nvim_del_augroup_by_name, hl_augroup_name(event.buf))
 
         local function unmap(m, keys)
-          vim.keymap.del(m, keys, { buffer = event.buf })
+          pcall(vim.keymap.del, m, keys, { buffer = event.buf })
         end
 
         unmap('n', '<leader>r')
         unmap('n', 'gD')
+        unmap('n', 'gh')
         unmap({ 'n', 'x' }, '<leader><leader>')
       end
     })
