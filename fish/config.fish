@@ -31,12 +31,12 @@ function update_all
         brew upgrade
     end
     rustup update
-    cargo install-update --all
-    pyenv install $(pyenv latest 3) --skip-existing
-    npm update --global
     bob update --all
-    fisher update
+    pyenv install $(pyenv latest 3) --skip-existing
     nvim --headless '+Lazy! sync' +qa
+    fisher update
+    cargo install-update --all
+    #npm update --global
 end
 
 function git_root
