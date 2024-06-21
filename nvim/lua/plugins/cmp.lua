@@ -6,7 +6,6 @@ return {
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
     'hrsh7th/cmp-omni',
-    'hrsh7th/cmp-emoji',
     'hrsh7th/cmp-nvim-lsp-signature-help',
     'petertriho/cmp-git',
     {
@@ -91,12 +90,6 @@ return {
           end,
         },
         { name = 'nvim_lsp_signature_help' },
-        {
-          name = 'emoji',
-          option = {
-            insert = true,
-          }
-        },
         {
           name = 'omni',
           option = {
