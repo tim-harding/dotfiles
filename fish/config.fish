@@ -182,6 +182,11 @@ case Linux
     xdg-mime default firefox.desktop application/pdf
     fish_ssh_agent
 
+    set IS_SSH_ADDED $(ps -ef | rg 'ssh-agent' | rg -v 'rg' | wc -l)
+    if test $IS_SSH_ADDED -eq 0
+        ssh-add
+    end
+
     set FIREFOX_DIR ~/.mozilla/firefox
     set FIREFOX_USER $(exa $FIREFOX_DIR | rg ".default\$")
     ln -sf ~/.config/misc/user.js "$FIREFOX_DIR/$FIREFOX_USER/user.js"
