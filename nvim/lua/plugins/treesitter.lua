@@ -10,6 +10,9 @@ return {
       auto_install = true,
       highlight = { enable = true },
 
+      -- Recco from Obsidian.nvim
+      ensure_installed = { 'markdown', 'markdown_inline' },
+
       indent = {
         enable = true,
         disable = {
