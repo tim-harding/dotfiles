@@ -37,11 +37,9 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# Default to tabs
-# workspace_layout tabbed
+bindsym $mod+h scratchpad show
+bindsym $mod+Shift+h move window to scratchpad
 
-bindsym $mod+h split h
-bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 bindsym $mod+t layout tabbed
 bindsym $mod+s layout toggle split
