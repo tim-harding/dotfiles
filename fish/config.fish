@@ -36,7 +36,7 @@ function update_all
     nvim --headless '+Lazy! sync' +qa
     fisher update
     cargo install-update --all
-    #npm update --global
+    npm update --global --verbose
 end
 
 function git_root
@@ -172,7 +172,7 @@ set --export FZF_DEFAULT_OPTS \
 
 cp ~/.config/misc/.gitconfig ~/.gitconfig
 
-set --export NPM_PACKAGES ~/.npm-global
+set NPM_PACKAGES ~/.npm-global
 set --export --append MANPATH "$NPM_PACKAGES/share/man"
 fish_add_path "$NPM_PACKAGES/bin"
 npm config set prefix $NPM_PACKAGES
