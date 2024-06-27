@@ -187,6 +187,8 @@ case Linux
         ssh-add
     end
 
+    systemctl --user start opentabletdriver.service
+
     set FIREFOX_DIR ~/.mozilla/firefox
     set FIREFOX_USER $(exa $FIREFOX_DIR | rg ".default\$")
     ln -sf ~/.config/misc/user.js "$FIREFOX_DIR/$FIREFOX_USER/user.js"
