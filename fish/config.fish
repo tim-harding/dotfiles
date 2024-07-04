@@ -36,7 +36,8 @@ function update_all
     nvim --headless '+Lazy! sync' +qa
     fisher update
     cargo install-update --all
-    npm update --global --verbose
+    npm update --global
+    bun update --global
 end
 
 function git_root
