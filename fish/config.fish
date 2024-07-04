@@ -177,6 +177,8 @@ set --export --append MANPATH "$NPM_PACKAGES/share/man"
 fish_add_path "$NPM_PACKAGES/bin"
 npm config set prefix $NPM_PACKAGES
 
+fish_add_path ~/.bun/bin
+
 switch (uname)
 case Linux
     xdg-mime default firefox.desktop application/pdf
