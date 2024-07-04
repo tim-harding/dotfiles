@@ -173,11 +173,6 @@ set --export FZF_DEFAULT_OPTS \
 
 cp ~/.config/misc/.gitconfig ~/.gitconfig
 
-set NPM_PACKAGES ~/.npm-global
-set --export --append MANPATH "$NPM_PACKAGES/share/man"
-fish_add_path "$NPM_PACKAGES/bin"
-npm config set prefix $NPM_PACKAGES
-
 fish_add_path ~/.bun/bin
 
 switch (uname)
