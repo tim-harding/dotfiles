@@ -47,6 +47,10 @@ return {
     })
 
     map('n', '<c-c>', function() bbye.bdelete(false) end)
+    map('n', '<s-h>', function() api.goto_buffer_relative(-1) end)
+    map('n', '<s-l>', function() api.goto_buffer_relative(1) end)
+    map('n', '<s-j>', function() api.move_current_buffer(-1) end)
+    map('n', '<s-k>', function() api.move_current_buffer(1) end)
     map('n', '<s-left>', function() api.goto_buffer_relative(-1) end)
     map('n', '<s-right>', function() api.goto_buffer_relative(1) end)
     map('n', '<s-up>', function() api.move_current_buffer(-1) end)
