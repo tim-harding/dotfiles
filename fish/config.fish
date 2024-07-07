@@ -87,7 +87,7 @@ function remove_orphan_packages
 end
 
 function neo
-    RUST_LOG="debug" RUST_BACKTRACE=1 ~/Documents/personal/neophyte/target/release/neophyte $argv &> ~/temp/neophyte_log.txt &
+    RUST_LOG="debug" RUST_BACKTRACE=1 ~/Documents/personal/neophyte/target/release/neophyte $argv &> ~/Documents/temp/neophyte_log.txt &
     disown
 end
 
