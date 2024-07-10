@@ -39,6 +39,7 @@ return {
         },
         dap = {
           adapter = dap_adapter(),
+          autoload_configurations = true,
         },
       }
     end
