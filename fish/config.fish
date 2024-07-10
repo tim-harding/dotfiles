@@ -9,6 +9,8 @@ function ls
     --time-style=long-iso \
     --group-directories-first \
     --level=2 \
+    --sort=modified \
+    --reverse \
     $argv
 end
 
