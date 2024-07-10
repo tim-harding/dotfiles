@@ -1,13 +1,15 @@
 return {
-  'hrsh7th/cmp-nvim-lsp',
-  'hrsh7th/cmp-path',
-  'hrsh7th/cmp-cmdline',
-  'hrsh7th/cmp-omni',
-  'hrsh7th/cmp-nvim-lsp-signature-help',
-  'petertriho/cmp-git',
   {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-omni',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
+      'petertriho/cmp-git',
+    },
     config = function()
       local cmp = require('cmp')
 
@@ -75,7 +77,7 @@ return {
           end, { 'i', 's' })
         },
 
-        sources = {
+        sources = cmp.config.sources({
           { name = 'snippets' },
           { name = 'supermaven' },
           { name = 'lazydev' },
@@ -92,7 +94,7 @@ return {
               disable_omnifuncs = { 'v:lua.vim.lsp.omnifunc' },
             }
           },
-        },
+        }),
       })
 
       cmp.setup.filetype('gitcommit', {
@@ -102,9 +104,7 @@ return {
       cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {},
-        view = {
-          entries = 'custom',
-        }
+        view = { entries = 'custom' }
       })
 
       cmp.setup.cmdline(':', {
@@ -115,7 +115,8 @@ return {
         ),
         view = {
           entries = 'custom',
-        }
+        },
+        matching = { disallow_symbol_nonprefix_matching = false }
       })
     end
   },
