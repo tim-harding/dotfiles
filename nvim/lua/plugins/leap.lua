@@ -1,5 +1,6 @@
 return {
   'ggandor/leap.nvim',
+  -- Needs to be a dependency because it isn't Lua
   dependencies = { 'tpope/vim-repeat' },
   -- According to the author, lazy loading...
   -- ...is all the rage now, but doing it manually or via some plugin

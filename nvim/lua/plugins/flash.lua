@@ -9,16 +9,19 @@ return {
     local labels_str = 'setnrigmfuplwycdhxaoq'
 
     flash.setup({
-      labels = labels_str,
+      labels = labels_str:upper(),
+      search = {
+        multi_window = false,
+      },
       modes = {
         search = {
-          labels = labels_str:upper(),
+          enabled = true,
         },
         char = {
           enabled = false,
         },
         treesitter = {
-          labels = "STRGPWBAVDXFC",
+          -- labels = "STRGPWBAVDXFC",
         }
       },
     })

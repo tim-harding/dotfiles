@@ -2,7 +2,6 @@ local shared = require 'shared'
 
 local spec = {
   event = 'VeryLazy',
-  dependencies = { 'tim-harding/neophyte' },
   config = function()
     local anvimator = require 'anvimator'
     local map = shared.map
@@ -18,4 +17,4 @@ else
   spec[1] = 'tim-harding/anvimator'
 end
 
-return spec
+return { 'tim-harding/neophyte', spec }
