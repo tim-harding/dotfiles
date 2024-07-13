@@ -176,6 +176,7 @@ set --export FZF_DEFAULT_OPTS \
 cp ~/.config/misc/.gitconfig ~/.gitconfig
 
 fish_add_path ~/.bun/bin
+fish_add_path ~/.local/share/gem/ruby/3.0.0/bin
 
 switch (uname)
 case Linux
