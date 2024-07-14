@@ -40,6 +40,7 @@ function update_all
     cargo install-update --all
     npm update --global
     bun update --global
+    sudo gem update --system
 end
 
 function git_root
