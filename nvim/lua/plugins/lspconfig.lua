@@ -30,6 +30,7 @@ return {
         lspconfig.jsonls,
         lspconfig.html,
         lspconfig.tsserver,
+        lspconfig.shopify_theme_ls,
       }
 
       for _, server in ipairs(simple_servers) do
