@@ -3,14 +3,7 @@ return {
   event = 'VeryLazy',
   config = function()
     local wk = require('which-key')
-
-    wk.setup({
-      triggers_blacklist = {
-        n = {},
-        i = {},
-        v = {},
-      }
-    })
+    wk.setup({})
 
     local leaders = {
       g = 'Git',

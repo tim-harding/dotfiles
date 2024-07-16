@@ -59,11 +59,8 @@ return {
             select = true,
           }),
           ['<Tab>'] = cmp.mapping(function(fallback)
-            local suggestion = require('supermaven-nvim.completion_preview')
             if vim.snippet.active({ direction = 1 }) then
               vim.snippet.jump(1)
-            elseif suggestion.has_suggestion() then
-              suggestion.on_accept_suggestion()
             else
               fallback()
             end
@@ -79,7 +76,6 @@ return {
 
         sources = cmp.config.sources({
           { name = 'snippets' },
-          { name = 'supermaven' },
           { name = 'lazydev' },
           {
             name = 'nvim_lsp',
