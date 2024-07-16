@@ -98,10 +98,10 @@ return {
 
       vim.keymap.set({ 'n', 'x' }, ';', ts_repeat_move.repeat_last_move)
       vim.keymap.set({ 'n', 'x' }, ',', ts_repeat_move.repeat_last_move_opposite)
-      vim.keymap.set({ 'n', 'x' }, 'f', ts_repeat_move.builtin_f)
-      vim.keymap.set({ 'n', 'x' }, 'F', ts_repeat_move.builtin_F)
-      vim.keymap.set({ 'n', 'x' }, 't', ts_repeat_move.builtin_t)
-      vim.keymap.set({ 'n', 'x' }, 'T', ts_repeat_move.builtin_T)
+      vim.keymap.set({ 'n', 'x' }, 'f', ts_repeat_move.builtin_f_expr, { expr = true })
+      vim.keymap.set({ 'n', 'x' }, 'F', ts_repeat_move.builtin_F_expr, { expr = true })
+      vim.keymap.set({ 'n', 'x' }, 't', ts_repeat_move.builtin_t_expr, { expr = true })
+      vim.keymap.set({ 'n', 'x' }, 'T', ts_repeat_move.builtin_T_expr, { expr = true })
 
       vim.api.nvim_create_user_command('TSStop', function()
         vim.treesitter.stop()
