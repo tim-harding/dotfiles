@@ -25,12 +25,12 @@ return {
     local leaders_mapped = {}
     for key, value in pairs(leaders) do
       local map = string.format('<leader>%s', key)
-      leaders_mapped[map] = {
-        name = value,
-        _ = 'which_key_ignore',
-      }
+      table.insert(leaders_mapped, {
+        map,
+        group = value,
+      })
     end
 
-    wk.register(leaders_mapped)
+    wk.add(leaders_mapped)
   end
 }
