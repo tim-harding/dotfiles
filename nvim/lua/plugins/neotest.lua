@@ -4,7 +4,7 @@ return {
   'antoinemadec/FixCursorHold.nvim',
 
   'lawrence-laz/neotest-zig',
-  'mrcjkb/neotest-haskell',
+  -- 'mrcjkb/neotest-haskell',
   'nvim-neotest/neotest-python',
   'nvim-neotest/neotest-plenary',
   'nvim-neotest/neotest-go',
@@ -22,7 +22,7 @@ return {
         adapters = {
           require 'rustaceanvim.neotest',
           require 'neotest-zig',
-          require 'neotest-haskell',
+          -- require 'neotest-haskell',
           require 'neotest-python',
           require 'neotest-plenary',
           require 'neotest-go',
