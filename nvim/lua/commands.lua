@@ -71,3 +71,25 @@ vim.api.nvim_create_autocmd('TermClose', {
     vim.api.nvim_buf_delete(vim.api.nvim_get_current_buf(), {})
   end
 })
+
+local bufviews = {}
+
+vim.api.nvim_create_autocmd('BufLeave', {
+  group = augroup,
+  pattern = '*',
+  callback = function()
+    bufviews[vim.api.nvim_get_current_buf()] = vim.fn.winsaveview()
+  end
+})
+
+vim.api.nvim_create_autocmd('BufEnter', {
+  group = augroup,
+  pattern = '*',
+  callback = function()
+    local saved = bufviews[vim.api.nvim_get_current_buf()]
+    if saved == nil then
+      return
+    end
+    vim.fn.winrestview(saved)
+  end
+})
