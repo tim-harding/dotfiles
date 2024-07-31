@@ -30,6 +30,12 @@
           "javascriptreact"
         ],
         "path": "./javascriptreact.json"
+      },
+      {
+        "language": [
+          "javascript"
+        ],
+        "path": "./javascript.json"
       }
     ]
   },

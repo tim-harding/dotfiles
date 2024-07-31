@@ -94,3 +94,6 @@ map('i', '<CR>', smart_enter)
 map('n', '<leader>gg', function()
   vim.cmd.terminal('lazygit')
 end)
+
+map('n', '<m-t>', vim.cmd.terminal)
+map('n', '<m-c>', ':<cr>')

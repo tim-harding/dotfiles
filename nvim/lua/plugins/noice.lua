@@ -2,6 +2,7 @@ return {
   'MunifTanjim/nui.nvim',
   {
     'folke/noice.nvim',
+    enabled = false,
     event = 'VeryLazy',
 
     keys = {

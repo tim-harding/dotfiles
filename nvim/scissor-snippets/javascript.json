@@ -1,0 +1,21 @@
+{
+  "web_component": {
+    "body": [
+      "class $1 extends HTMLElement {",
+      "  static observedAttributes = [];",
+      "",
+      "  constructor() {",
+      "    super();",
+      "  }",
+      "",
+      "  connectedCallback() {}",
+      "  disconnectedCallback() {}",
+      "  adoptedCallback() {}",
+      "  attributeChangedCallback(name, oldValue, newValue) {}",
+      "}",
+      "",
+      "customElements.define(\"$2\", $1);"
+    ],
+    "prefix": "web_component"
+  }
+}
