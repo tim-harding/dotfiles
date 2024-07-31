@@ -1,7 +1,6 @@
 local wezterm = require('wezterm')
 local config = wezterm.config_builder()
 
--- config.window_background_opacity = 0.5
 config.color_scheme = 'Catppuccin Frappe'
 config.font = wezterm.font_with_fallback({
   {
@@ -12,7 +11,7 @@ config.font = wezterm.font_with_fallback({
   'Noto Color Emoji',
 })
 config.font_size = 14
-config.enable_tab_bar = false
+-- config.enable_tab_bar = false
 config.window_padding = {
   left = 0,
   right = 0,
@@ -20,13 +19,23 @@ config.window_padding = {
   bottom = 0,
 }
 
-local new_window_from_cwd = function(_, pane)
+local function cwd(pane)
   local prefix = 'file://archlinux'
   local dir = pane:get_current_working_dir()
   if string.find(dir, prefix) then
     dir = string.sub(dir, string.len(prefix) + 1)
   end
-  wezterm.mux.spawn_window({ cwd = dir })
+  return dir
+end
+
+local function new_window_from_cwd(_, pane)
+  wezterm.log_info('Spawning window')
+  wezterm.mux.spawn_window({ cwd = cwd(pane) })
+end
+
+local function new_tab(win, pane)
+  wezterm.log_info('Spawning tab')
+  win:spawn_tab { cwd = pane:get_current_working_directory() }
 end
 
 config.keys = {
@@ -47,6 +56,11 @@ config.keys = {
     mods = 'CTRL',
     key = 'w',
     action = wezterm.action.DisableDefaultAssignment,
+  },
+  {
+    mods = 'CTRL',
+    key = 'i',
+    action = wezterm.action_callback(function() wezterm.log_info('hi') end),
   },
 }
 
