@@ -20,9 +20,6 @@ return {
         char = {
           enabled = false,
         },
-        treesitter = {
-          -- labels = "STRGPWBAVDXFC",
-        }
       },
     })
 
