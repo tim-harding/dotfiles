@@ -12,17 +12,6 @@ M.map = function(mode, keys, func, desc, opts)
   vim.keymap.set(mode, keys, func, opts)
 end
 
----@return boolean
-M.is_quickfix_open = function()
-  local is_quickfix_open = false
-  for _, info in ipairs(vim.fn.getwininfo()) do
-    if info.quickfix == 1 then
-      is_quickfix_open = true
-    end
-  end
-  return is_quickfix_open
-end
-
 ---Returns a function that sends the given keys as input without remapping
 ---@param keys string
 ---@return function()

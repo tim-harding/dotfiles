@@ -1,5 +1,8 @@
+-- NOTE: Remember to delete stuff from Telescope after removing this
+
 return {
   'folke/trouble.nvim',
+  enabled = false,
   keys = {
     {
       '<leader>t',
