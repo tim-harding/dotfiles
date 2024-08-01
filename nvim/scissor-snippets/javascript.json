@@ -1,4 +1,28 @@
 {
+  "/*": {
+    "body": [
+      "/**",
+      " * $1",
+      " */"
+    ],
+    "prefix": "/*"
+  },
+  "@param": {
+    "body": "@param {${1:type}} ${2:name}",
+    "prefix": "@param"
+  },
+  "@return": {
+    "body": "@return {${1:type}}",
+    "prefix": "@return"
+  },
+  "test": {
+    "body": "things and stuff",
+    "prefix": "test"
+  },
+  "test2": {
+    "body": "arst",
+    "prefix": "test2"
+  },
   "web_component": {
     "body": [
       "class $1 extends HTMLElement {",

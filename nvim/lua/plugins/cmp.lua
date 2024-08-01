@@ -13,13 +13,13 @@ return {
     config = function()
       local cmp = require('cmp')
 
-      cmp.setup({
+      cmp.setup {
         enabled = function()
-          local context = require('cmp.config.context')
-          return vim.api.nvim_get_mode().mode == 'c' or (
-            not context.in_treesitter_capture('comment')
-            and not context.in_syntax_group('Comment')
-          )
+          local context = require 'cmp.config.context'
+          return
+              vim.bo.filetype == 'javascript' or
+              not context.in_treesitter_capture('comment') and
+              not context.in_syntax_group('Comment')
         end,
 
         snippet = {
@@ -91,7 +91,7 @@ return {
             }
           },
         }),
-      })
+      }
 
       cmp.setup.filetype('gitcommit', {
         sources = cmp.config.sources({ { name = 'git' } })

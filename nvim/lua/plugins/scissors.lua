@@ -1,27 +1,33 @@
-local snippet_dir = require('shared').snippet_path
-
 return {
   'chrisgrieser/nvim-scissors',
-  opts = {
-    snippetDir = snippet_dir,
-    jsonFormatter = 'jq',
-    editSnippetPopup = {
-      keymaps = {
-        saveChanges = '<leader>s'
+  event = 'VeryLazy',
+  config = function()
+    local shared = require 'shared'
+    local scissors = require 'scissors'
+
+    scissors.setup {
+      snippetDir = shared.snippet_path,
+      jsonFormatter = 'jq',
+      editSnippetPopup = {
+        keymaps = {
+          saveChanges = '<leader>s'
+        }
       }
     }
-  },
-  keys = {
-    {
+
+    shared.map(
+      'n',
       '<leader>ke', -- sKissors :)
-      function() require('scissors').editSnippet() end,
-    },
-    {
+      scissors.editSnippet,
+      'edit snippet'
+    )
+    shared.map(
+      { 'x', 'n' },
       '<leader>ka',
-      function() require('scissors').addNewSnippet() end,
-      mode = { 'x', 'n' },
-    }
-  }
+      scissors.addNewSnippet,
+      'edit snippet'
+    )
+  end,
 }
 
 -- Keymap defaults:      |
