@@ -23,3 +23,12 @@ return {
     }
   }
 }
+
+-- Keymap defaults:      |
+---------------------------------
+-- cancel                | q
+-- goBackToSearch        | <BS>
+-- deleteSnippet         | <C-BS>
+-- duplicateSnippet      | <C-d>
+-- openInFile            | <C-o>
+-- insertNextPlaceholder | <C-p>
