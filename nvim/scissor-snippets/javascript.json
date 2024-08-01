@@ -7,21 +7,43 @@
     ],
     "prefix": "/*"
   },
-  "@param": {
-    "body": "@param {${1:type}} ${2:name}",
-    "prefix": "@param"
+  "callback_doc": {
+    "body": [
+      "/**",
+      " * ${1:Description} ",
+      " * @callback ${2:Name}",
+      " */"
+    ],
+    "prefix": "callback_doc"
   },
-  "@return": {
-    "body": "@return {${1:type}}",
-    "prefix": "@return"
+  "param_doc": {
+    "body": "@param {${1:Type}} ${2:name} ${3:Description} ",
+    "prefix": "param_doc"
   },
-  "test": {
-    "body": "things and stuff",
-    "prefix": "test"
+  "property_doc": {
+    "body": "@property {${1:Type}} ${2:name} ${3:Description} ",
+    "prefix": "property_doc"
   },
-  "test2": {
-    "body": "arst",
-    "prefix": "test2"
+  "return_doc": {
+    "body": "@return {${1:Type}} ${2:Description} ",
+    "prefix": "return_doc"
+  },
+  "throws_doc": {
+    "body": "@throws {${1:Type}} ${2:Description} ",
+    "prefix": "throws_doc"
+  },
+  "type_doc": {
+    "body": "/** @type {${1:Type}} */",
+    "prefix": "type_doc"
+  },
+  "typedef_doc": {
+    "body": [
+      "/**",
+      " * ${1:Description} ",
+      " * @typedef {${2:Type}} ${3:Name}",
+      " */"
+    ],
+    "prefix": "typedef_doc"
   },
   "web_component": {
     "body": [
