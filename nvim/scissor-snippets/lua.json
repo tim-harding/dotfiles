@@ -4,7 +4,7 @@
       "vim.api.nvim_create_autocmd(${1:event}, {",
       "  group = vim.api.nvim_create_augroup(${2:name}, {}),",
       "  pattern = '*',",
-      "  callback = function() end",
+      "  callback = function() $3 end",
       "})"
     ],
     "prefix": "autocmd"

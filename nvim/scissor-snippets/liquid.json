@@ -1,0 +1,68 @@
+{
+  "capture_tag": {
+    "body": [
+      "{%- capture ${1:name} -%}",
+      "  $2",
+      "{%- endcapture -%}"
+    ],
+    "prefix": "capture_tag"
+  },
+  "case_tag": {
+    "body": [
+      "{%- case ${1:var} -%}",
+      "  {%- when ${2:value} -%}",
+      "    $3",
+      "{%- endcase -%}"
+    ],
+    "prefix": "case_tag"
+  },
+  "else_tag": {
+    "body": [
+      "{%- else -%}",
+      "  $1"
+    ],
+    "prefix": "else_tag"
+  },
+  "elsif_tag": {
+    "body": [
+      "{%- elsif ${1:cond} -%}",
+      "  $2"
+    ],
+    "prefix": "elsif_tag"
+  },
+  "if_tag": {
+    "body": [
+      "{%- if ${1:cond} -%}",
+      "  $2",
+      "{%- endif -%}"
+    ],
+    "prefix": "if_tag"
+  },
+  "liquid_tag": {
+    "body": [
+      "{% liquid",
+      "  $1",
+      "%}"
+    ],
+    "prefix": "liquid_tag"
+  },
+  "unless_tag": {
+    "body": [
+      "{%- unless ${1:cond} -%}",
+      "  $2",
+      "{%- endunless -%}"
+    ],
+    "prefix": "unless_tag"
+  },
+  "when_tag": {
+    "body": [
+      "{%- when ${1:value} -%}",
+      "  $2"
+    ],
+    "prefix": "when_tag"
+  },
+  "{{": {
+    "body": "{{- $1 -}}",
+    "prefix": "{{"
+  }
+}

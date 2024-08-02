@@ -36,6 +36,12 @@
           "javascript"
         ],
         "path": "./javascript.json"
+      },
+      {
+        "language": [
+          "liquid"
+        ],
+        "path": "./liquid.json"
       }
     ]
   },
