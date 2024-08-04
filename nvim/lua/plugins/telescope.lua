@@ -20,7 +20,6 @@ return {
       local actions = require('telescope.actions')
       local tb = require('telescope.builtin')
       local themes = require('telescope.themes')
-      -- local trouble_source = require('trouble.sources.telescope')
       local map = require('shared').map
 
       telescope.setup({
@@ -38,8 +37,6 @@ return {
               ['<C-d>'] = false,
               ['<esc>'] = actions.close,
               ['<C-h>'] = 'which_key',
-              -- ['<c-t>'] = trouble_source.open,
-              -- ['<c-T>'] = trouble_source.add,
             }
           },
         },
