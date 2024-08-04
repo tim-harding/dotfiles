@@ -5,9 +5,9 @@ P = function(...)
     return ...
 end
 
+require('options')
 require('commands')
 require('diagnostics')
-require('options')
 require('keymap')
 
 if vim.g.shadowvim then
