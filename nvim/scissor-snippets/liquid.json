@@ -40,11 +40,27 @@
   },
   "liquid_tag": {
     "body": [
-      "{% liquid",
+      "{%- liquid",
       "  $1",
-      "%}"
+      "-%}"
     ],
     "prefix": "liquid_tag"
+  },
+  "mustache": {
+    "body": "{{- $1 -}}",
+    "prefix": "mustache"
+  },
+  "render_tag": {
+    "body": "{%- render '${1:snippet}'$2 -%}",
+    "prefix": "render_tag"
+  },
+  "tag": {
+    "body": [
+      "{%- ${1:tag} -%}",
+      "  $2",
+      "{%- end$1 -%}"
+    ],
+    "prefix": "tag"
   },
   "unless_tag": {
     "body": [
@@ -60,9 +76,5 @@
       "  $2"
     ],
     "prefix": "when_tag"
-  },
-  "{{": {
-    "body": "{{- $1 -}}",
-    "prefix": "{{"
   }
 }

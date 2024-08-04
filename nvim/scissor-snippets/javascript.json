@@ -17,19 +17,19 @@
     "prefix": "callback_doc"
   },
   "param_doc": {
-    "body": "@param {${1:Type}} ${2:name} ${3:Description} ",
+    "body": "@param {${1:Type}} ${2:name} $3",
     "prefix": "param_doc"
   },
   "property_doc": {
-    "body": "@property {${1:Type}} ${2:name} ${3:Description} ",
+    "body": "@property {${1:Type}} ${2:name} $3",
     "prefix": "property_doc"
   },
   "return_doc": {
-    "body": "@return {${1:Type}} ${2:Description} ",
+    "body": "@return {${1:Type}} $2",
     "prefix": "return_doc"
   },
   "throws_doc": {
-    "body": "@throws {${1:Type}} ${2:Description} ",
+    "body": "@throws {${1:Type}} $2",
     "prefix": "throws_doc"
   },
   "type_doc": {
