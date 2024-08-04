@@ -7,11 +7,4 @@ return {
       vim.api.nvim_exec_autocmds('User', { pattern = 'SessionSavePre' })
     end,
   },
-  keys = {
-    {
-      '<leader>o',
-      function() require('persistence').load() end,
-      desc = 'Reopen session'
-    },
-  }
 }
