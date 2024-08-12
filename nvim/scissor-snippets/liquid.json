@@ -1,4 +1,8 @@
 {
+  "assign_tag": {
+    "body": "{%- assign ${1:name} = $2 -%}",
+    "prefix": "assign_tag"
+  },
   "capture_tag": {
     "body": [
       "{%- capture ${1:name} -%}",
