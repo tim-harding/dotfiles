@@ -20,6 +20,7 @@ return {
           disable = {
             'python',
             'dart',
+            'liquid',
             'swift', -- Causes the LSP to crash on completions
           }
         },

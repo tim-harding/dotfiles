@@ -20,6 +20,18 @@
     ],
     "prefix": "case_tag"
   },
+  "collapse_tag": {
+    "body": "{%- comment -%} Collapse {%- endcomment -%}",
+    "prefix": "collapse_tag"
+  },
+  "comment_tag": {
+    "body": [
+      "{%- comment -%}",
+      "  $1",
+      "{%- endcomment -%}"
+    ],
+    "prefix": "comment_tag"
+  },
   "else_tag": {
     "body": [
       "{%- else -%}",
@@ -50,6 +62,14 @@
     ],
     "prefix": "liquid_tag"
   },
+  "logic_tag": {
+    "body": [
+      "{%- ${1:tag} -%}",
+      "  $2",
+      "{%- end$1 -%}"
+    ],
+    "prefix": "logic_tag"
+  },
   "mustache": {
     "body": "{{- $1 -}}",
     "prefix": "mustache"
@@ -59,11 +79,7 @@
     "prefix": "render_tag"
   },
   "tag": {
-    "body": [
-      "{%- ${1:tag} -%}",
-      "  $2",
-      "{%- end$1 -%}"
-    ],
+    "body": "<${1:tag}>$2</${1:tag}>",
     "prefix": "tag"
   },
   "unless_tag": {
