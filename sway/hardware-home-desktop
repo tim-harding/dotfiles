@@ -57,12 +57,12 @@ output $monitor1 {
   # adaptive_sync on | off
   # render_bit_depth 8 | 10
   position 0 0 
-  transform 270 
+  transform 0
   background #232634 solid_color
 }
 
 output $monitor2 {
-  position 1200 0 
+  position 1920 0 
   transform 270 
   background #232634 solid_color
 }
