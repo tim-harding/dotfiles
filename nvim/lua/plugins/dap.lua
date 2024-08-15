@@ -1,9 +1,11 @@
 return {
   'nvim-lua/plenary.nvim',
+
   {
     "microsoft/vscode-js-debug",
     build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
   },
+
   {
     'mxsdev/nvim-dap-vscode-js',
     event = 'VeryLazy',
@@ -14,6 +16,7 @@ return {
       })
     end
   },
+
   {
     'mfussenegger/nvim-dap-python',
     event = 'VeryLazy',
@@ -21,11 +24,13 @@ return {
       require('dap-python').setup('python3')
     end
   },
+
   {
     'leoluz/nvim-dap-go',
     event = 'VeryLazy',
     opts = {},
   },
+
   {
     'mfussenegger/nvim-dap',
     event = 'VeryLazy',
