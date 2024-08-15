@@ -4,11 +4,7 @@ return {
     'mfussenegger/nvim-dap',
     event = 'VeryLazy',
 
-    config = function()
-      local dap = require('dap')
-      local job = require('plenary.job')
-      local shared = require('shared')
-
+    init = function()
       vim.fn.sign_define('DapBreakpoint', {
         text = '●',
         texthl = 'DapBreakpoint',
@@ -27,6 +23,11 @@ return {
         linehl = '',
         numhl = '',
       })
+    end,
+
+    config = function()
+      local dap = require('dap')
+      local shared = require('shared')
 
       local function pick_executable()
         local path = vim.fn.input({
@@ -65,12 +66,30 @@ return {
         stopOnEntry = false,
       }
 
-      local configs = { codelldb_launch, lldb_launch, gdb_launch }
+      local node_launch = {
+        type = "pwa-node",
+        request = "launch",
+        name = "Launch file",
+        program = "${file}",
+        cwd = "${workspaceFolder}",
+      }
+
+      local node_attach = {
+        type = "pwa-node",
+        request = "attach",
+        name = "Attach",
+        processId = require 'dap.utils'.pick_process,
+        cwd = "${workspaceFolder}",
+      }
+
+      local configs_js = { node_launch, node_attach }
+      local configs_c = { codelldb_launch, lldb_launch, gdb_launch }
 
       dap.configurations = {
-        c = configs,
-        cpp = configs,
-        rust = configs,
+        c = configs_c,
+        cpp = configs_c,
+        javascript = configs_js,
+        typescript = configs_js,
       }
 
       local codelldb_path = 'codelldb'
