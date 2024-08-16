@@ -57,106 +57,105 @@ return {
     end,
 
     config = function()
-      local dap = require('dap')
-      local shared = require('shared')
+      local dap = require 'dap'
+      local shared = require 'shared'
 
       local function pick_executable()
-        local path = vim.fn.input({
+        local path = vim.fn.input {
           prompt = 'Path to executable: ',
           default = vim.fn.getcwd() .. '/',
           completion = 'file',
-        })
+        }
         vim.notify(path)
         return path
       end
 
-      local lldb_launch = {
-        name = 'LLDB Launch',
-        type = 'lldb',
-        request = 'launch',
-        cwd = '${workspaceFolder}',
-        program = pick_executable,
-        stopOnEntry = false,
-      }
-
-      local codelldb_launch = {
-        name = 'CodeLLDB Launch',
-        type = 'codelldb',
-        request = 'launch',
-        cwd = '${workspaceFolder}',
-        program = pick_executable,
-        stopOnEntry = false,
-      }
-
-      local gdb_launch = {
-        name = 'GDB Launch',
-        type = 'gdb',
-        request = 'launch',
-        cwd = '${workspaceFolder}',
-        program = pick_executable,
-        stopOnEntry = false,
-      }
-
-      local node_launch = {
-        type = "pwa-node",
-        request = "launch",
-        name = "Launch file",
-        program = "${file}",
-        cwd = "${workspaceFolder}",
-      }
-
-      local node_attach = {
-        type = "pwa-node",
-        request = "attach",
-        name = "Attach",
-        processId = require 'dap.utils'.pick_process,
-        cwd = "${workspaceFolder}",
-      }
-
-      local configs_js = { node_launch, node_attach }
-      local configs_c = { codelldb_launch, lldb_launch, gdb_launch }
-
-      dap.configurations = {
-        c = configs_c,
-        cpp = configs_c,
-        javascript = configs_js,
-        typescript = configs_js,
-      }
-
-      local codelldb_path = 'codelldb'
-      if shared.is_darwin() then
-        codelldb_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/adapter/codelldb'
+      local function codelldb_path()
+        if shared.is_darwin() then
+          return vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/adapter/codelldb'
+        else
+          return 'codelldb'
+        end
       end
 
-      dap.adapters = {
-        gdb = {
-          type = 'executable',
-          command = 'gdb',
-          args = { '-i', 'dap' },
+      local configs_c = {
+        {
+          name = 'CodeLLDB Launch',
+          type = 'codelldb',
+          request = 'launch',
+          cwd = '${workspaceFolder}',
+          program = pick_executable,
+          stopOnEntry = false,
         },
-
-        lldb = {
-          type = 'executable',
-          -- This is being renamed to lldb-dap
-          command = 'lldb-vscode',
+        {
+          name = 'LLDB Launch',
+          type = 'lldb',
+          request = 'launch',
+          cwd = '${workspaceFolder}',
+          program = pick_executable,
+          stopOnEntry = false,
         },
-
-        codelldb = {
-          type = 'server',
-          port = '${port}',
-          executable = {
-            command = codelldb_path,
-            args = { '--port', '${port}' },
-          },
+        {
+          name = 'GDB Launch',
+          type = 'gdb',
+          request = 'launch',
+          cwd = '${workspaceFolder}',
+          program = pick_executable,
+          stopOnEntry = false,
         },
       }
 
+      dap.configurations['c'] = configs_c
+      dap.configurations['cpp'] = configs_c
+
+      dap.adapters['gdb'] = {
+        type = 'executable',
+        command = 'gdb',
+        args = { '-i', 'dap' },
+      }
+      dap.adapters['lldb'] = {
+        type = 'executable',
+        -- This is being renamed to lldb-dap
+        command = 'lldb-vscode',
+      }
+      dap.adapters['codelldb'] = {
+        type = 'server',
+        port = '${port}',
+        executable = {
+          command = codelldb_path(),
+          args = { '--port', '${port}' },
+        },
+      }
+
+      -- Options: https://github.com/microsoft/vscode-js-debug/blob/main/OPTIONS.md
+      local configs_js = {
+        {
+          type = "pwa-node",
+          request = "launch",
+          name = "Launch file",
+          program = "${file}",
+          cwd = "${workspaceFolder}",
+          stopOnEntry = false,
+        },
+        {
+          type = "pwa-node",
+          request = "attach",
+          name = "Attach",
+          processId = require 'dap.utils'.pick_process,
+          cwd = "${workspaceFolder}",
+        },
+      }
+
+      dap.configurations['javascript'] = configs_js
+      dap.configurations['typescript'] = configs_js
+
       local function set_condition_breakpoint()
-        vim.ui.input({
-          prompt = 'Breakpoint condition: ',
-        }, function(choice)
-          dap.set_breakpoint(choice)
-        end)
+        vim.ui.input(
+          { prompt = 'Breakpoint condition: ' },
+          function(choice)
+            dap.set_breakpoint(choice)
+          end
+        )
       end
 
       shared.map('n', '<F5>', dap.continue)
