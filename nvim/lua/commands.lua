@@ -68,7 +68,9 @@ vim.api.nvim_create_autocmd('TermClose', {
   group = augroup,
   pattern = '*',
   callback = function()
-    vim.api.nvim_buf_delete(vim.api.nvim_get_current_buf(), {})
+    if vim.bo.buftype == 'terminal' then
+      vim.cmd.bd { bang = true }
+    end
   end
 })
 
