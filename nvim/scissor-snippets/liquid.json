@@ -76,30 +76,31 @@
       "  $2",
       "{%- end$1 -%}"
     ],
-    "prefix": "logic_tag"
+    "prefix": "tag"
   },
   "mustache": {
-    "body": "{{- $1 -}}",
-    "prefix": "mustache"
+    "body": [
+      "",
+      "{{- $1 -}}"
+    ],
+    "prefix": [
+      "mustache",
+      "handlebars"
+    ]
   },
   "render_tag": {
     "body": "{%- render '${1:snippet}'$2 -%}",
     "prefix": "render_tag"
   },
-  "svg": {
+  "schema_tag": {
     "body": [
-      "<svg",
-      "  xmlns=\"http://www.w3.org/2000/svg\"",
-      "  viewBox=\"0 0 32 32\"",
-      "  width=\"32\"",
-      "  height=\"32\"",
-      "></svg>"
+      "{%- schema -%}",
+      "{",
+      "  $1",
+      "}",
+      "{%- endschema -%}"
     ],
-    "prefix": "svg"
-  },
-  "tag": {
-    "body": "<${1:tag}>$2</${1:tag}>",
-    "prefix": "tag"
+    "prefix": "schema_tag"
   },
   "unless_tag": {
     "body": [
