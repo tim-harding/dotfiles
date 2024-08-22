@@ -197,9 +197,6 @@ case Linux
 
     systemctl --user start opentabletdriver.service
 
-    set FIREFOX_DIR ~/.mozilla/firefox
-    set FIREFOX_USER $(exa $FIREFOX_DIR | rg ".default\$")
-    ln -sf ~/.config/misc/user.js "$FIREFOX_DIR/$FIREFOX_USER/user.js"
     set --export BROWSER firefox
     set --export PYTHONPATH /usr/share/blender/4.1/scripts/modules/
     set --export VDPAU_DRIVER radeonsi
