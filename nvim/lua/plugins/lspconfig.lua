@@ -31,6 +31,7 @@ return {
         lspconfig.html,
         lspconfig.tsserver,
         lspconfig.shopify_theme_ls,
+        lspconfig.glsl_analyzer,
       }
 
       for _, server in ipairs(simple_servers) do

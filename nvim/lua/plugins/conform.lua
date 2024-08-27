@@ -5,9 +5,7 @@ return {
   init = function()
     vim.o.formatexpr = 'v:lua.require"conform".formatexpr()'
   end,
-  config = function()
-    local conform = require('conform')
-
+  opts = function()
     local is_format_enabled = true
     vim.api.nvim_create_user_command('AutoformatToggle', function()
       is_format_enabled = not is_format_enabled
@@ -18,19 +16,19 @@ return {
       end
     end, {})
 
-    conform.setup({
+    return {
       formatters_by_ft = {
-        javascript = { 'prettierd' },
-        javascriptreact = { 'prettierd' },
-        typescript = { 'prettierd' },
-        typescriptreact = { 'prettierd' },
-        liquid = { 'prettierd' },
-        css = { 'prettierd' },
-        json = { 'prettierd' },
-        html = { 'prettierd' },
-        scss = { 'prettierd' },
-        markdown = { 'prettierd' },
-        yaml = { 'prettierd' },
+        javascript = { 'prettierd', 'prettier', },
+        javascriptreact = { 'prettierd', 'prettier', },
+        typescript = { 'prettierd', 'prettier', },
+        typescriptreact = { 'prettierd', 'prettier', },
+        liquid = { 'prettierd', 'prettier', },
+        css = { 'prettierd', 'prettier' },
+        json = { 'prettierd', 'prettier', },
+        html = { 'prettierd', 'prettier', },
+        scss = { 'prettierd', 'prettier', },
+        markdown = { 'prettierd', 'prettier', },
+        yaml = { 'prettierd', 'prettier', },
 
         haskell = { 'fourmolu' },
         ocaml = { 'ocamlformat' },
@@ -39,9 +37,12 @@ return {
       },
       format_on_save = function()
         if is_format_enabled then
-          return { lsp_fallback = true }
+          return {
+            lsp_format = "fallback",
+            stop_after_first = true,
+          }
         end
-      end
-    })
+      end,
+    }
   end,
 }

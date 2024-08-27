@@ -42,6 +42,12 @@
           "liquid"
         ],
         "path": "./liquid.json"
+      },
+      {
+        "language": [
+          "html"
+        ],
+        "path": "./html.json"
       }
     ]
   },
