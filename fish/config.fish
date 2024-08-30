@@ -188,14 +188,11 @@ fish_add_path ~/.local/share/gem/ruby/3.0.0/bin
 switch (uname)
 case Linux
     xdg-mime default firefox.desktop application/pdf
-    fish_ssh_agent
 
     set IS_SSH_ADDED $(ps -ef | rg 'ssh-agent' | rg -v 'rg' | wc -l)
     if test $IS_SSH_ADDED -eq 0
         ssh-add
     end
-
-    systemctl --user start opentabletdriver.service
 
     set --export BROWSER firefox
     set --export PYTHONPATH /usr/share/blender/4.1/scripts/modules/

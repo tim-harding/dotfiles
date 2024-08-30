@@ -7,6 +7,8 @@ function start_sway
     set --export XDG_CURRENT_DESKTOP sway
     set --export XDG_SESSION_DESKTOP sway
     set --export XDG_SESSION_TYPE wayland
+    fish_ssh_agent
+    systemctl --user start opentabletdriver.service
     sway
 end
 
