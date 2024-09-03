@@ -16,6 +16,10 @@
     ],
     "prefix": "callback_doc"
   },
+  "link_doc": {
+    "body": "{@link ${1:type}}",
+    "prefix": "link_doc"
+  },
   "param_doc": {
     "body": "@param {${1:Type}} ${2:name} $3",
     "prefix": "param_doc"
@@ -37,12 +41,7 @@
     "prefix": "type_doc"
   },
   "typedef_doc": {
-    "body": [
-      "/**",
-      " * ${1:Description} ",
-      " * @typedef {${2:Type}} ${3:Name}",
-      " */"
-    ],
+    "body": "@typedef {${2:Type}} ${3:Name}",
     "prefix": "typedef_doc"
   },
   "web_component": {
