@@ -29,6 +29,7 @@ return {
         lspconfig.cssls,
         lspconfig.jsonls,
         lspconfig.html,
+        lspconfig.ts_ls,
         lspconfig.shopify_theme_ls,
         lspconfig.glsl_analyzer,
         lspconfig.clangd,
