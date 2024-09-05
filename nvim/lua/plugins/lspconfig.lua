@@ -29,9 +29,9 @@ return {
         lspconfig.cssls,
         lspconfig.jsonls,
         lspconfig.html,
-        lspconfig.tsserver,
         lspconfig.shopify_theme_ls,
         lspconfig.glsl_analyzer,
+        lspconfig.clangd,
       }
 
       for _, server in ipairs(simple_servers) do
@@ -49,10 +49,14 @@ return {
         end
       end
 
-      lspconfig.sourcekit.setup {
-        capabilities = capabilities,
-        cmd = sourcekit_command(),
-      }
+      -- Disabling for now. I only want sourcekit for Swift but it is
+      -- conflicting with clandg for cpp files.
+      if shared.is_darwin() then
+        lspconfig.sourcekit.setup {
+          capabilities = capabilities,
+          cmd = sourcekit_command(),
+        }
+      end
 
       lspconfig.lua_ls.setup {
         capabilities = capabilities,
