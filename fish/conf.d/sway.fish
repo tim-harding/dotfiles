@@ -2,13 +2,9 @@
 # Much of this is about fixing xdg-desktop-portal-wlr starting correctly
 
 function start_sway
-    set --export MOZ_ENABLE_WAYLAND 1
-    set --export MOZ_WEBRENDER 1
     set --export XDG_CURRENT_DESKTOP sway
     set --export XDG_SESSION_DESKTOP sway
     set --export XDG_SESSION_TYPE wayland
-    fish_ssh_agent
-    systemctl --user start opentabletdriver.service
     sway
 end
 
