@@ -29,6 +29,8 @@ return {
         scss = { 'prettierd', 'prettier', },
         markdown = { 'prettierd', 'prettier', },
         yaml = { 'prettierd', 'prettier', },
+        cpp = { 'clang-format' },
+        c = { 'clang-format' },
 
         haskell = { 'fourmolu' },
         ocaml = { 'ocamlformat' },
