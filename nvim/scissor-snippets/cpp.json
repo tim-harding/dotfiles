@@ -1,0 +1,13 @@
+{
+  "doxygen_comment + /**": {
+    "body": [
+      "/**",
+      " * $1",
+      " */"
+    ],
+    "prefix": [
+      "doxygen_comment",
+      "/**"
+    ]
+  }
+}

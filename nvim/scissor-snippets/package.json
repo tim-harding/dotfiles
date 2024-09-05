@@ -48,6 +48,12 @@
           "html"
         ],
         "path": "./html.json"
+      },
+      {
+        "language": [
+          "cpp"
+        ],
+        "path": "./cpp.json"
       }
     ]
   },
