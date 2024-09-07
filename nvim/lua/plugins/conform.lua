@@ -1,20 +1,33 @@
 return {
   'stevearc/conform.nvim',
-  event = 'BufWritePre',
+  event = 'VeryLazy',
   cmd = { 'ConformInfo' },
   init = function()
     vim.o.formatexpr = 'v:lua.require"conform".formatexpr()'
   end,
+
   opts = function()
     local is_format_enabled = true
-    vim.api.nvim_create_user_command('AutoformatToggle', function()
-      is_format_enabled = not is_format_enabled
-      if is_format_enabled then
-        vim.notify('Autoformat enabled')
-      else
-        vim.notify('Autoformat disabled')
+    vim.api.nvim_create_user_command('Autoformat', function(opts)
+      local arg = opts.fargs[1]
+      if arg == "on" then
+        is_format_enabled = true
+      elseif arg == "off" then
+        is_format_enabled = false
+      elseif arg == "toggle" then
+        is_format_enabled = not is_format_enabled
+        if is_format_enabled then
+          vim.notify('Autoformat enabled')
+        else
+          vim.notify('Autoformat disabled')
+        end
       end
-    end, {})
+    end, {
+      nargs = 1,
+      complete = function(arg_lead, cmd_line, cursor_pos)
+        return { "on", "off", "toggle" }
+      end
+    })
 
     return {
       formatters_by_ft = {
