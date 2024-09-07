@@ -144,7 +144,7 @@ function houdini
     # Maybe the Git mesa drivers have fixes?
 
     # Set up Vulkan. Based on vk_pro script.
-    # set ICD_DIR "/usr/share/vulkan/icd.d"
+    set ICD_DIR "/usr/share/vulkan/icd.d"
     # radv/radeonsi/mesa (seems to crash)
     # set --export VK_DRIVER_FILES "$ICD_DIR/radeon_icd.i686.json" "$ICD_DIR/radeon_icd.x86_64.json"
     # amdgpu-pro (Vulkan could not be initialized)
