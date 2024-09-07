@@ -54,6 +54,12 @@
           "cpp"
         ],
         "path": "./cpp.json"
+      },
+      {
+        "language": [
+          "css"
+        ],
+        "path": "./css.json"
       }
     ]
   },
