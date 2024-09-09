@@ -8,12 +8,7 @@
     "prefix": "/*"
   },
   "callback_doc": {
-    "body": [
-      "/**",
-      " * ${1:Description} ",
-      " * @callback ${2:Name}",
-      " */"
-    ],
+    "body": "@callback ${1:Name}",
     "prefix": "callback_doc"
   },
   "link_doc": {
@@ -21,19 +16,19 @@
     "prefix": "link_doc"
   },
   "param_doc": {
-    "body": "@param {${1:Type}} ${2:name} $3",
+    "body": "@param {${1:Type}} ${2:name}",
     "prefix": "param_doc"
   },
   "property_doc": {
-    "body": "@property {${1:Type}} ${2:name} $3",
+    "body": "@property {${1:Type}} ${2:name}",
     "prefix": "property_doc"
   },
   "return_doc": {
-    "body": "@return {${1:Type}} $2",
+    "body": "@return {${1:Type}}",
     "prefix": "return_doc"
   },
   "throws_doc": {
-    "body": "@throws {${1:Type}} $2",
+    "body": "@throws {${1:Type}}",
     "prefix": "throws_doc"
   },
   "type_doc": {
@@ -41,7 +36,7 @@
     "prefix": "type_doc"
   },
   "typedef_doc": {
-    "body": "@typedef {${2:Type}} ${3:Name}",
+    "body": "@typedef {${1:Type}} ${2:Name}",
     "prefix": "typedef_doc"
   },
   "web_component": {
