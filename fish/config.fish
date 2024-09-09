@@ -218,6 +218,10 @@ cp ~/.config/misc/.gitconfig ~/.gitconfig
 fish_add_path ~/.bun/bin
 fish_add_path ~/.local/share/gem/ruby/3.0.0/bin
 
+if not test -e ~/.gemrc
+    ln -s ~/.config/ruby/.gemrc ~/.gemrc
+end
+
 switch (uname)
 case Linux
     xdg-mime default firefox.desktop application/pdf
