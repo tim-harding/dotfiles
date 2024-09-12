@@ -135,6 +135,11 @@ function output
     end
 end
 
+function houdini_license_restart
+    sudo launchctl unload /Library/LaunchDaemons/com.sidefx.sesinetd.plist
+    sudo launchctl load -w /Library/LaunchDaemons/com.sidefx.sesinetd.plist
+end
+
 function houdini
     # Note to self:
     #
@@ -218,9 +223,9 @@ cp ~/.config/misc/.gitconfig ~/.gitconfig
 fish_add_path ~/.bun/bin
 fish_add_path ~/.local/share/gem/ruby/3.0.0/bin
 
-if not test -e ~/.gemrc
-    ln -s ~/.config/ruby/.gemrc ~/.gemrc
-end
+# if not test -e ~/.gemrc
+#     ln -s ~/.config/ruby/.gemrc ~/.gemrc
+# end
 
 switch (uname)
 case Linux
