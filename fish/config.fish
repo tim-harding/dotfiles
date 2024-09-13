@@ -53,6 +53,7 @@ function exercism_prolog_test
 end
 
 set --export RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc
+
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.ghcup/bin
 fish_add_path ~/.local/bin
@@ -80,10 +81,6 @@ cp ~/.config/misc/.gitconfig ~/.gitconfig
 
 fish_add_path ~/.bun/bin
 fish_add_path ~/.local/share/gem/ruby/3.0.0/bin
-
-# if not test -e ~/.gemrc
-#     ln -s ~/.config/ruby/.gemrc ~/.gemrc
-# end
 
 function path_latest
     string join0 $argv | sort -z -V | tail -z -n 1
