@@ -47,27 +47,10 @@ function remove_orphan_packages
     sudo pacman -Rs --noconfirm $(pacman -Qtdq)
 end
 
-function neo
-    set -x RUST_LOG debug
-    set -x RUST_BACKTRACE 1
-    set neophyte ~/Documents/personal/neophyte/target/release/neophyte
-    set logfile ~/Documents/temp/neophyte_log.txt
-    $neophyte --messages $argv &> $logfile &
-    disown
-    set -e RUST_LOG
-    set -e RUST_BACKTRACE
-end
-
 function exercism_prolog_test
     set test_dir $(basename $PWD)
     swipl -t halt -g "[$test_dir]" -s {$test_dir}_tests.plt -g "run_tests" -- --all
 end
-
-alias vi='nvim'
-alias vim='nvim'
-set fish_greeting
-set --export TERM xterm-256color
-set --export EDITOR nvim
 
 set --export RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc
 fish_add_path ~/.cargo/bin
