@@ -1,2 +1,2 @@
-set --export FLYCTL_INSTALL ~/.fly
-fish_add_path $FLYCTL_INSTALL/bin
+set FLYCTL_INSTALL ~/.fly
+fish_add_path --global $FLYCTL_INSTALL/bin

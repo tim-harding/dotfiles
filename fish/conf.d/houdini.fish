@@ -42,8 +42,8 @@ function houdini
     # Fix for Wayland
     set --export QT_QPA_PLATFORM xcb
 
-    #fish_add_path /home/tim/Documents/installs/cycles/install
-    #set --export PXR_PLUGINPATH_NAME /home/tim/Documents/installs/cycles/install/houdini/dso/usd_plugins
+    fish_add_path /home/tim/Documents/installs/cycles/install
+    set --export PXR_PLUGINPATH_NAME /home/tim/Documents/installs/cycles/install/houdini/dso/usd_plugins
     /opt/hfs20.5/bin/hindie
 end
 
