@@ -1,23 +1,3 @@
-function update_all
-    switch (uname)
-    case Linux
-        sudo pacman -Syu --noconfirm
-        yay -Syu --noconfirm
-    case Darwin
-        brew update
-        brew upgrade
-    end
-    rustup update
-    bob update --all
-    pyenv install $(pyenv latest 3) --skip-existing
-    nvim --headless '+Lazy! sync' +qa
-    fisher update
-    cargo install-update --all
-    npm update --global
-    bun update --global
-    gem update
-end
-
 function ls
     exa \
     --long \
