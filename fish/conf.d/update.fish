@@ -1,5 +1,5 @@
 function update_all
-    fish --command "update_platform" &
+    update_platform
     fish --command "update_rust" &
     fish --command "update_neovim" &
     pyenv install $(pyenv latest 3) --skip-existing &
