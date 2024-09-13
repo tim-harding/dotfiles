@@ -172,8 +172,8 @@ function houdini
     # Fix for Wayland
     set --export QT_QPA_PLATFORM xcb
 
-    fish_add_path /home/tim/Documents/installs/cycles/install
-    set --export PXR_PLUGINPATH_NAME /home/tim/Documents/installs/cycles/install/houdini/dso/usd_plugins
+    #fish_add_path /home/tim/Documents/installs/cycles/install
+    #set --export PXR_PLUGINPATH_NAME /home/tim/Documents/installs/cycles/install/houdini/dso/usd_plugins
     /opt/hfs20.5/bin/hindie
 end
 
@@ -231,6 +231,10 @@ fish_add_path ~/.local/share/gem/ruby/3.0.0/bin
 #     ln -s ~/.config/ruby/.gemrc ~/.gemrc
 # end
 
+function path_latest
+    string join0 $argv | sort -z -V | tail -z -n 1
+end
+
 switch (uname)
 case Linux
     xdg-mime default firefox.desktop application/pdf
@@ -241,9 +245,20 @@ case Linux
     end
 
     set --export BROWSER firefox
-    set --export PYTHONPATH /usr/share/blender/4.1/scripts/modules/
     set --export VDPAU_DRIVER radeonsi
     set --export LIBVA_DRIVER_NAME radeonsi
+
+    set --erase --global PYTHONPATH
+
+    path_latest /usr/share/blender/*/scripts/modules/ | read PYTHONPATH_BLENDER 
+    if not contains -- $PYTHONPATH_BLENDER $PYTHONPATH
+        set --export --global --append PYTHONPATH $PYTHONPATH_BLENDER
+    end
+
+    path_latest /opt/hfs*/houdini/python*libs | read PYTHONPATH_HOUDINI
+    if not contains -- $PYTHONPATH_HOUDINI $PYTHONPATH
+        set --export --global --append PYTHONPATH $PYTHONPATH_HOUDINI
+    end
 
 case Darwin
     fish_add_path /opt/homebrew/opt/llvm/bin
