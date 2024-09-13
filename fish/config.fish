@@ -42,3 +42,5 @@ function update_all
     bun update --global
     gem update
 end
+
+set fish_greeting

@@ -1,3 +1,6 @@
+switch (uname)
+case Darwin
+
 function houdini_license_restart
     # Note:
     # To prevent license issues due to computer name changing when switching networks:
@@ -6,6 +9,10 @@ function houdini_license_restart
     sudo launchctl unload /Library/LaunchDaemons/com.sidefx.sesinetd.plist
     sudo launchctl load -w /Library/LaunchDaemons/com.sidefx.sesinetd.plist
 end
+
+
+
+case Linux
 
 function houdini
     # Note to self:
@@ -38,4 +45,6 @@ function houdini
     #fish_add_path /home/tim/Documents/installs/cycles/install
     #set --export PXR_PLUGINPATH_NAME /home/tim/Documents/installs/cycles/install/houdini/dso/usd_plugins
     /opt/hfs20.5/bin/hindie
+end
+
 end

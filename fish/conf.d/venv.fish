@@ -7,6 +7,8 @@
 # * Update syntax to work with new versions of fish.
 # * Handle virtualenvs that are not located in the root of a git directory.
 
+set VIRTUAL_ENV_DISABLE_PROMPT true
+
 function __auto_source_venv --on-variable PWD --description "Activate/Deactivate virtualenv on directory change"
   status --is-command-substitution; and return
 
@@ -25,6 +27,7 @@ function __auto_source_venv --on-variable PWD --description "Activate/Deactivate
       end
     end
   end
+
   # If virtualenv activated but we are not in a git directory, deactivate.
   if test -n "$VIRTUAL_ENV"
     deactivate

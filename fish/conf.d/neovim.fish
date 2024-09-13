@@ -9,8 +9,9 @@ function neo
     set -e RUST_BACKTRACE
 end
 
+bob complete fish | source
+
 alias vi='nvim'
 alias vim='nvim'
-set fish_greeting
 set --export TERM xterm-256color
 set --export EDITOR nvim
