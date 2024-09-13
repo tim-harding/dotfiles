@@ -1,3 +1,11 @@
+switch (uname)
+case Linux
+    fish_ssh_agent
+    systemctl --user start opentabletdriver.service --now
+    set --export MOZ_ENABLE_WAYLAND 1
+    set --export MOZ_WEBRENDER 1
+end
+
 set --export RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc
 
 fish_add_path ~/.cargo/bin

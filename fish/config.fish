@@ -42,12 +42,3 @@ function update_all
     bun update --global
     gem update
 end
-
-function remove_orphan_packages
-    sudo pacman -Rs --noconfirm $(pacman -Qtdq)
-end
-
-function exercism_prolog_test
-    set test_dir $(basename $PWD)
-    swipl -t halt -g "[$test_dir]" -s {$test_dir}_tests.plt -g "run_tests" -- --all
-end
