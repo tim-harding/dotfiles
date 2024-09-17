@@ -33,6 +33,7 @@ return {
         lspconfig.shopify_theme_ls,
         lspconfig.glsl_analyzer,
         lspconfig.clangd,
+        lspconfig.tinymist,
       }
 
       for _, server in ipairs(simple_servers) do
