@@ -1,6 +1,8 @@
 switch (uname)
 case Darwin
 
+fish_add_path --global /Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources/bin
+
 function houdini_license_restart
     # Note:
     # To prevent license issues due to computer name changing when switching networks:
