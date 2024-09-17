@@ -24,7 +24,6 @@ return {
         lspconfig.pyright,
         lspconfig.ruby_lsp,
         lspconfig.gopls,
-        lspconfig.typst_lsp,
         lspconfig.biome,
         lspconfig.cssls,
         lspconfig.jsonls,
