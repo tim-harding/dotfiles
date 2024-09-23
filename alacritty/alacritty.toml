@@ -3,6 +3,9 @@ import = [
     "~/.config/alacritty/platform.toml"
 ]
 
+[selection]
+save_to_clipboard = true
+
 [window]
 dynamic_padding = true
 
@@ -64,3 +67,13 @@ action = "ScrollPageUp"
 [[keyboard.bindings]]
 key = "PageDown"
 action = "ScrollPageDown"
+
+[[keyboard.bindings]]
+key = "Tab"
+mods = "Control"
+action = "SelectNextTab"
+
+[[keyboard.bindings]]
+key = "Tab"
+mods = "Control|Shift"
+action = "SelectPreviousTab"
