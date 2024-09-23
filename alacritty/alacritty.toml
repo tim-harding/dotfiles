@@ -1,4 +1,7 @@
-import = ["~/.config/alacritty/catppuccin-frappe.toml"]
+import = [
+    "~/.config/alacritty/catppuccin-frappe.toml",
+    "~/.config/alacritty/platform.toml"
+]
 
 [window]
 dynamic_padding = true
@@ -10,9 +13,6 @@ multiplier = 9 # default: 3
 [cursor]
 thickness = 0.25 # in insert mode
 unfocused_hollow = false
-
-[font]
-size = 14.0
 
 [font.bold]
 family = "CaskaydiaCove Nerd Font"
