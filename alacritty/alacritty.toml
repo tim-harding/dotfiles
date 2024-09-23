@@ -1,4 +1,4 @@
-import = ["/home/tim/.config/alacritty/catppuccin-frappe.toml"]
+import = ["~/.config/alacritty/catppuccin-frappe.toml"]
 
 [window]
 dynamic_padding = true
