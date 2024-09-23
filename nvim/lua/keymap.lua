@@ -23,6 +23,8 @@ end
 
 map('n', '<Down>', down)
 map('n', '<Up>', up)
+map('n', 'j', down)
+map('n', 'k', up)
 
 -- Window movements
 map('n', '<C-Left>', function() vim.cmd.wincmd('h') end)
