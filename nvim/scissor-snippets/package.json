@@ -60,6 +60,12 @@
           "css"
         ],
         "path": "./css.json"
+      },
+      {
+        "language": [
+          "typst"
+        ],
+        "path": "./typst.json"
       }
     ]
   },

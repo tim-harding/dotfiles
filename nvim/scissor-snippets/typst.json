@@ -1,0 +1,11 @@
+{
+  "canvas": {
+    "body": [
+      "#cetz.canvas({",
+      "  import cetz.draw: *",
+      "  $1",
+      "})"
+    ],
+    "prefix": "canvas"
+  }
+}
