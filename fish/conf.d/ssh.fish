@@ -6,9 +6,12 @@ case Linux
     end
 end
 
-switch (uname)
-case Linux
-    ssh-add
-case Darwin
-    ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+ssh-add -l | count | read COUNT
+if test $COUNT -eq 0
+    switch (uname)
+    case Linux
+        ssh-add
+    case Darwin
+        ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+    end
 end
