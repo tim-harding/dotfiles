@@ -40,5 +40,12 @@
       "switch",
       "match"
     ]
+  },
+  "while": {
+    "body": [
+      "while $1",
+      "end"
+    ],
+    "prefix": "while"
   }
 }
