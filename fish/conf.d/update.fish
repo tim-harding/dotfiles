@@ -1,4 +1,19 @@
 function update_all
+    pushd ~/.config
+    while not git pull
+        gum choose --header "Uncommited config changes" "lazygit" "continue" "exit" | read CHOICE
+        switch $CHOICE
+        case "lazygit"
+            lazygit
+        case "continue"
+            break
+        case "exit"
+            popd
+            return
+        end
+    end
+    popd
+
     update_platform
     fish --command "update_rust" &
     fish --command "update_neovim" &
