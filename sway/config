@@ -1,3 +1,4 @@
+include /etc/sway/config.d/*
 include ~/.config/sway/hardware
 
 set $mod Mod4
@@ -68,6 +69,8 @@ for_window [app_id="blender"] floating enable
 for_window [class="^.*"] border pixel 2
 titlebar_padding 1 1
 
+for_window [shell="xwayland"] title_format "[XWayland] %title"
+
 # For headless outputs
 bindsym $mod+y workspace number 0
 bindsym $mod+Shift+y move container to workspace number 0
@@ -128,4 +131,6 @@ input "type:keyboard" {
   repeat_rate 35
 }
 
-include /etc/sway/config.d/*
+input "10429:2324:UGTABLET_6_inch_PenTablet" {
+  
+}
