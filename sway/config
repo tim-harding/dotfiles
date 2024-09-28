@@ -6,6 +6,7 @@ set $mod Mod4
 font pango:CaskaydiaCove Nerd Font 12
 
 exec mako
+exec polkit-kde-agent
 
 bindsym XF86AudioPlay exec spt playback --toggle
 bindsym XF86AudioStop exec playerctl stop
