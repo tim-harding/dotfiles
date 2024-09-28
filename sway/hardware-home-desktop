@@ -63,6 +63,6 @@ output $monitor1 {
 
 output $monitor2 {
   position 1920 0 
-  transform 270 
+  transform 90
   background #232634 solid_color
 }
