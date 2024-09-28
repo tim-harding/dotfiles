@@ -8,6 +8,6 @@ function sway_start
     sway
 end
 
-# If running from tty1 start sway
-# set TTY1 (tty)
-# [ "$TTY1" = "/dev/tty1" ] && start_sway
+if test (tty) = /dev/tty1
+    sway_start
+end
