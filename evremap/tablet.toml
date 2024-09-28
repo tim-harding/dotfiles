@@ -1,0 +1,15 @@
+# Useful references:
+# https://gitlab.freedesktop.org/libinput/libinput/-/blob/main/include/linux/freebsd/input-event-codes.h
+# https://wiki.archlinux.org/title/Map_scancodes_to_keycodes
+# https://www.reddit.com/r/linux_gaming/comments/nypsi1/updated_guide_to_remapping_keys_on_linux_using/
+# https://wiki.archlinux.org/title/Input_remap_utilities
+
+device_name = "UGTABLET 6 inch PenTablet"
+
+[[remap]]
+input  = ["BTN_TOOL_PEN", "BTN_STYLUS"]
+output = ["BTN_TOOL_PEN", "BTN_STYLUS2"]
+
+[[remap]]
+input  = ["BTN_TOOL_RUBBER", "BTN_TOUCH"]
+output = ["BTN_TOOL_PEN", "BTN_STYLUS"]
