@@ -6,7 +6,7 @@ case Linux
     end
 end
 
-if test $(ssh-add -l) = "The agent has no identities."
+if test (tty) != /dev/tty1; and test $(ssh-add -l) = "The agent has no identities."
     switch (uname)
     case Linux
         ssh-add
