@@ -1,0 +1,7 @@
+[Service]
+WorkingDirectory=/
+ExecStart=fish -c "~/Documents/installs/evremap/target/release/evremap remap ~/.config/evremap/tablet.toml --delay 0"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
