@@ -1,4 +1,30 @@
-# Useful references:
+######################
+### One-time setup ###
+######################
+#
+# Load uinput on startup
+# (see https://github.com/wez/evremap/issues/21)
+# $ echo 'uinput' > /etc/modules-load.d/uinput.conf
+#
+#
+# Set up input group access to evdev and uinput.
+# Add this to /etc/udev/rules.d/input.rules:
+#
+# KERNEL=="event*", NAME="input/%k", MODE="660", GROUP="input"
+# KERNEL=="uinput", GROUP="input"
+#
+#
+# Add user to input group:
+# sudo gpasswd -a YOUR_USER input
+#
+#
+# Also see systemd/user/evremap.service for running at startup
+#
+#
+#########################
+### Useful references ###
+#########################
+#
 # https://gitlab.freedesktop.org/libinput/libinput/-/blob/main/include/linux/freebsd/input-event-codes.h
 # https://wiki.archlinux.org/title/Map_scancodes_to_keycodes
 # https://www.reddit.com/r/linux_gaming/comments/nypsi1/updated_guide_to_remapping_keys_on_linux_using/
@@ -6,10 +32,12 @@
 
 device_name = "UGTABLET 6 inch PenTablet"
 
+# Small button right click
 [[remap]]
 input  = ["BTN_TOOL_PEN", "BTN_STYLUS"]
 output = ["BTN_TOOL_PEN", "BTN_STYLUS2"]
 
+# Large button middle click
 [[remap]]
 input  = ["BTN_TOOL_RUBBER", "BTN_TOUCH"]
 output = ["BTN_TOOL_PEN", "BTN_STYLUS"]
