@@ -59,7 +59,7 @@ return {
             {
               name = "@vue/typescript-plugin",
               location = latest('~/.bun/install/cache/@vue/typescript-plugin'),
-              languages = { 'vue' },
+              languages = { 'vue', 'markdown' },
             },
           },
         },
@@ -68,12 +68,13 @@ return {
       local ts_dir = latest('~/.bun/install/cache/typescript')
       local tsdk_dir = vim.fs.joinpath(ts_dir, 'lib')
 
-      local vue_languages = lspconfig.volar.config_def.default_config.filetypes
-      table.insert(vue_languages, 'markdown')
+      local ts_languages = lspconfig.ts_ls.config_def.default_config.filetypes
+      table.insert(ts_languages, 'vue')
+      table.insert(ts_languages, 'markdown')
 
       lspconfig.volar.setup {
         init_options = {
-          filetypes = vue_languages,
+          filetypes = ts_languages,
           typescript = {
             tsdk = tsdk_dir,
           },
