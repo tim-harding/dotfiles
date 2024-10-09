@@ -28,7 +28,6 @@ return {
         lspconfig.cssls,
         lspconfig.jsonls,
         lspconfig.html,
-        lspconfig.ts_ls,
         lspconfig.shopify_theme_ls,
         lspconfig.glsl_analyzer,
         lspconfig.clangd,
@@ -38,6 +37,51 @@ return {
       for _, server in ipairs(simple_servers) do
         server.setup({ capabilities = capabilities })
       end
+
+      local ts_languages = lspconfig.ts_ls.config_def.default_config.filetypes
+      table.insert(ts_languages, 'vue')
+
+      local function latest(path)
+        local expanded = vim.fn.expand(path)
+        local entries = {}
+        for name, type in vim.fs.dir(expanded) do
+          if type == 'link' or type == 'directory' then
+            table.insert(entries, name)
+          end
+        end
+        table.sort(entries)
+        return vim.fn.resolve(vim.fs.joinpath(expanded, entries[#entries]))
+      end
+
+      lspconfig.ts_ls.setup {
+        init_options = {
+          plugins = {
+            {
+              name = "@vue/typescript-plugin",
+              location = latest('~/.bun/install/cache/@vue/typescript-plugin'),
+              languages = ts_languages,
+            },
+          },
+        },
+        filetypes = ts_languages,
+      }
+
+      local ts_dir = latest('~/.bun/install/cache/typescript')
+      local tsdk_dir = vim.fs.joinpath(ts_dir, 'lib')
+      vim.print(tsdk_dir)
+
+      local vue_languages = ts_languages
+      table.insert(vue_languages, 'markdown')
+      table.insert(vue_languages, 'json')
+
+      lspconfig.volar.setup {
+        init_options = {
+          filetypes = vue_languages,
+          typescript = {
+            tsdk = tsdk_dir,
+          }
+        }
+      }
 
       local function sourcekit_command()
         if shared.is_linux() then

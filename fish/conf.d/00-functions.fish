@@ -23,7 +23,7 @@ function sauce
     source ~/.config/fish/config.fish
 end
 
-function path_latest
+function latest
     string join0 $argv | sort -z -V | tail -z -n 1
 end
 
