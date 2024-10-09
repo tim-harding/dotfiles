@@ -71,6 +71,7 @@ return {
         scss = { 'prettierd', 'prettier', },
         markdown = { 'prettierd', 'prettier', },
         yaml = { 'prettierd', 'prettier', },
+        vue = { 'prettierd', 'prettier', },
         cpp = { 'clang-format' },
         c = { 'clang-format' },
 
