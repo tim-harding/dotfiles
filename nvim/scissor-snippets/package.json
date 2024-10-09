@@ -66,6 +66,12 @@
           "typst"
         ],
         "path": "./typst.json"
+      },
+      {
+        "language": [
+          "vue"
+        ],
+        "path": "./vue.json"
       }
     ]
   },

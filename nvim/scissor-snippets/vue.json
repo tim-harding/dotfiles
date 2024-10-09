@@ -1,0 +1,18 @@
+{
+  "component": {
+    "body": [
+      "<script setup>",
+      "$1",
+      "</script>",
+      "",
+      "<template>",
+      "$2",
+      "</template>",
+      "",
+      "<style module>",
+      "$3",
+      "</style>"
+    ],
+    "prefix": "component"
+  }
+}
