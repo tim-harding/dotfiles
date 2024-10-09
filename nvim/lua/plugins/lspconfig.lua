@@ -38,6 +38,9 @@ return {
         server.setup({ capabilities = capabilities })
       end
 
+      -- Vue setup info:
+      -- https://github.com/vuejs/language-tools?tab=readme-ov-file#community-integration
+
       local function latest(path)
         local expanded = vim.fn.expand(path)
         local entries = {}
