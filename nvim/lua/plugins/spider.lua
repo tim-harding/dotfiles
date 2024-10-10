@@ -2,7 +2,7 @@ return {
   'chrisgrieser/nvim-spider',
   keys = {
     {
-      'w',
+      '<a-w>',
       function()
         require('spider').motion('w')
       end,
@@ -10,7 +10,7 @@ return {
     },
 
     {
-      'e',
+      '<a-e>',
       function()
         require('spider').motion('e')
       end,
@@ -18,7 +18,7 @@ return {
     },
 
     {
-      'b',
+      '<a-b>',
       function()
         require('spider').motion('b')
       end,
