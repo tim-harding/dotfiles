@@ -31,11 +31,11 @@ return {
         log_level = vim.log.levels.INFO,
       }
 
-      map('n', '<leader>nn', function() run.run { strategy = 'dap' } end, 'debug test')
-      map('n', '<leader>nr', run.run, 'run test')
-      map('n', '<leader>nf', function() run.run(vim.fn.expand('%')) end, 'test file')
-      map('n', '<leader>nr', run.stop, 'stop test')
-      map('n', '<leader>na', run.attach, 'attach test')
+      map('n', '<leader>tn', function() run.run { strategy = 'dap' } end, 'debug test')
+      map('n', '<leader>tr', run.run, 'run test')
+      map('n', '<leader>tf', function() run.run(vim.fn.expand('%')) end, 'test file')
+      map('n', '<leader>tr', run.stop, 'stop test')
+      map('n', '<leader>ta', run.attach, 'attach test')
     end,
   }
 }

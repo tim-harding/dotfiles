@@ -1,6 +1,6 @@
 -- MacOS note:
 -- The treesitter plugin did not compile without this
--- set --export CC=gcc-14
+-- set --export CC=gcc-14 && nvim -c "TSInstallSync norg"
 return {
   "nvim-neorg/neorg",
   lazy = false,
@@ -25,6 +25,8 @@ return {
             default_workspace = "notes",
           },
         },
+        -- Future option: LaTeX rendering with ghostty
+        -- https://github.com/nvim-neorg/neorg/wiki/Cookbook#latex-rendering
       },
     }
 
