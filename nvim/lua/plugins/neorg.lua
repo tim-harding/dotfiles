@@ -30,17 +30,17 @@ return {
       },
     }
 
-    local map = require('shared').map
-    map('n', '<Leader>nn', '<Cmd>Neorg workspace notes<Cr>', 'Neorg notes')
+    local map_shared = require('shared').map
+    map_shared('n', '<Leader>nn', '<Cmd>Neorg workspace notes<Cr>', 'Neorg notes')
 
-    vim.api.nvim_create_autocmd('Filetype', {
+    vim.api.nvim_create_autocmd('FileType', {
       group = vim.api.nvim_create_augroup('neorg', {}),
       pattern = 'norg',
       callback = function()
         -- Available bindings:
         -- https://github.com/nvim-neorg/neorg/wiki/Default-Keybinds
         local function map(keys, func, desc)
-          map(n, keys, func, desc, { buffer = true })
+          map_shared('n', keys, func, desc, { buffer = true })
         end
 
         map('<Leader>nn', '<Plug>(neorg.dirman.new-note)', 'New note')
