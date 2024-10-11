@@ -72,6 +72,12 @@
           "vue"
         ],
         "path": "./vue.json"
+      },
+      {
+        "language": [
+          "norg"
+        ],
+        "path": "./norg.json"
       }
     ]
   },
