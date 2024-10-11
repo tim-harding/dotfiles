@@ -33,6 +33,7 @@ function update_platform
     case Darwin
         brew update
         brew upgrade
+        softwareupdate --install --all
     end
 end
 
