@@ -77,6 +77,7 @@ return {
         sources = cmp.config.sources({
           { name = 'snippets' },
           { name = 'lazydev' },
+          { name = "neorg" },
           {
             name = 'nvim_lsp',
             entry_filter = function(entry, _)
