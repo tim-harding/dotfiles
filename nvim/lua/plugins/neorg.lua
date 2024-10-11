@@ -30,6 +30,19 @@ return {
       },
     }
 
+    local map = require('shared').map
+    map('n', '<Leader>nn', '<Cmd>Neorg workspace notes<Cr>', 'Neorg notes')
+
+    vim.api.nvim_create_autocmd('Filetype', {
+      group = vim.api.nvim_create_augroup('neorg', {}),
+      pattern = 'norg',
+      callback = function()
+        -- Available bindings:
+        -- https://github.com/nvim-neorg/neorg/wiki/Default-Keybinds
+        map('n', '<Leader>nn', '<Plug>(neorg.dirman.new-note)', 'New note', { buffer = true })
+      end,
+    })
+
     vim.wo.foldlevel = 99
     vim.wo.conceallevel = 2
   end
