@@ -39,7 +39,12 @@ return {
       callback = function()
         -- Available bindings:
         -- https://github.com/nvim-neorg/neorg/wiki/Default-Keybinds
-        map('n', '<Leader>nn', '<Plug>(neorg.dirman.new-note)', 'New note', { buffer = true })
+        local function map(keys, func, desc)
+          map(n, keys, func, desc, { buffer = true })
+        end
+
+        map('<Leader>nn', '<Plug>(neorg.dirman.new-note)', 'New note')
+        map('<Cr>', '<Plug>(neorg.esupports.hop.hop-link)', 'Hop link')
       end,
     })
 
