@@ -36,16 +36,6 @@ style = "Regular"
 # Key codes: https://docs.rs/winit/latest/winit/keyboard/enum.NamedKey.html
 
 [[keyboard.bindings]]
-key = "Tab"
-mods = "Control"
-chars = "\u001B[9;5u" # Forward <C-Tab> to Vim
-
-[[keyboard.bindings]]
-key = "Tab"
-mods = "Control|Shift"
-chars = "\u001B[9;6u" # Forward <C-S-Tab> to Vim
-
-[[keyboard.bindings]]
 key = "Return"
 mods = "Control"
 action = "SpawnNewInstance"
