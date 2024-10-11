@@ -9,6 +9,7 @@ require('options')
 require('commands')
 require('diagnostics')
 require('keymap')
+require('indentation')
 
 if vim.g.shadowvim then
     require('shadowvim_setup')
