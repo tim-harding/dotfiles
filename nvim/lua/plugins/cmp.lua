@@ -75,7 +75,10 @@ return {
         },
 
         sources = cmp.config.sources({
-          { name = 'snippets' },
+          {
+            name = 'snippets',
+            keyword_length = 1,
+          },
           { name = 'lazydev' },
           { name = "neorg" },
           {
