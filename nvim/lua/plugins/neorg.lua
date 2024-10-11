@@ -1,3 +1,6 @@
+-- MacOS note:
+-- The treesitter plugin did not compile without this
+-- set --export CC=gcc-14
 return {
   "nvim-neorg/neorg",
   lazy = false,
