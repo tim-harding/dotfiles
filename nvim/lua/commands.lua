@@ -1,5 +1,20 @@
 local augroup = vim.api.nvim_create_augroup('Commands', {})
 
+-- Registering this autocommand stops
+-- 'file no longer available'
+-- errors after deleting a file in Oil
+vim.api.nvim_create_autocmd('FileChangedShell', {
+  group = augroup,
+  pattern = '*',
+  callback = function()
+    if vim.v.fcs_reason == 'deleted' then
+      -- TODO: Ask whether to close file?
+    else
+      vim.v.fcs_choice = 'edit'
+    end
+  end
+})
+
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = augroup,
   pattern = '*',
