@@ -93,6 +93,12 @@ return {
       map('n', '<leader>jc', function()
         tb.find_files({ cwd = '~/.config' })
       end, 'config')
+      map('n', '<leader>jn', function()
+        tb.find_files({ cwd = '~/notes' })
+      end, 'Neorg files')
+      map('n', '<leader>jN', function()
+        tb.live_grep({ cwd = '~/notes' })
+      end, 'Neorg ripgrep')
     end
   }
 }
