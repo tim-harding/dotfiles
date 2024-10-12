@@ -39,7 +39,7 @@ function notes_git_sync_install
         set service_target "$domain_target/$service_name"
         set agent_dir ~/Library/LaunchAgents
         set plist "$service_name.plist"
-        cp "~/.config/misc/$plist" $agent_dir
+        cp ~/.config/misc/$plist $agent_dir
         launchctl bootout $service_target
         launchctl bootstrap $domain_target "$agent_dir/$plist"
     end
