@@ -10,6 +10,11 @@ return {
     neorg.setup {
       load = {
         ["core.defaults"] = {},
+        ["core.qol.toc"] = {
+          config = {
+            close_after_use = true,
+          }
+        },
         ["core.completion"] = {
           config = {
             engine = "nvim-cmp",
@@ -25,6 +30,7 @@ return {
             default_workspace = "notes",
           },
         },
+        ["core.summary"] = {},
         -- Future option: LaTeX rendering with ghostty
         -- https://github.com/nvim-neorg/neorg/wiki/Cookbook#latex-rendering
       },
@@ -44,7 +50,11 @@ return {
         end
 
         map('<Leader>nn', '<Plug>(neorg.dirman.new-note)', 'New note')
+        map('<Leader>nr', '<Cmd>Neorg return<Cr>', 'Return')
+        map('<Leader>nt', '<Cmd>Neorg toc<Cr>', 'Table of contents')
         map('<Cr>', '<Plug>(neorg.esupports.hop.hop-link)', 'Hop link')
+        vim.keymap.set('i', '<S-Cr>', require('neorg.modules.core.itero.module').public.next_iteration_cr,
+          { buffer = true })
       end,
     })
 

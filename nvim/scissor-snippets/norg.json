@@ -1,4 +1,12 @@
 {
+  "code": {
+    "body": [
+      "@code $1",
+      "$2",
+      "@end"
+    ],
+    "prefix": "code"
+  },
   "link": {
     "body": "{:$1:}",
     "prefix": "link"
