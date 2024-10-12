@@ -21,7 +21,9 @@ end
 
 function sauce
     source ~/.config/fish/config.fish
-    source ~/.config/fish/conf.d/*.fish
+    for f in ~/.config/fish/conf.d/*.fish
+        source $f
+    end
 end
 
 function latest
