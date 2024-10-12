@@ -1,0 +1,10 @@
+[Unit]
+Description=Synchronizes notes
+
+[Service]
+Type=simple
+ExecStart=fish -c "notes_git_sync"
+Restart=always
+
+[Install]
+WantedBy=default.target
