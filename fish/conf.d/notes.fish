@@ -5,6 +5,8 @@ function notes_git_sync
     realpath ~/notes | read notes_dir
     cd $notes_dir
 
+    fish -c "while true; git pull; sleep 60; end;" &
+
     set is_dirty 0
     fswatch \
     --recursive \
