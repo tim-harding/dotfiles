@@ -6,7 +6,13 @@ function notes_git_sync
     cd $notes_dir
 
     set is_dirty 0
-    fswatch --recursive --batch-marker --event "Updated" $notes_dir | while read f
+    fswatch \
+    --recursive \
+    --batch-marker \
+    --event "Created" \
+    --event "Removed" \
+    --event "Updated" \
+    $notes_dir | while read f
         if test $f = "NoOp"; and test $is_dirty = 1
             date
             git commit -m.
