@@ -5,11 +5,9 @@ Personal dotfiles and configuration. Most of these are for my Arch Linux setup, 
 ## Setup
 
 ```sh
-pacman -S stow
-# or
-brew install stow
-
-stow --no-folding
+cd ~
+gh clone tim-harding/dotfiles
+stow . --no-folding
 ```
 
 ## Manual steps
