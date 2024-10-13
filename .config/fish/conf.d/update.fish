@@ -1,5 +1,5 @@
 function update_all
-    pushd ~/.config
+    pushd ~/Documents/personal/dotfiles
     while not git pull
         gum choose --header "Uncommited config changes" "lazygit" "continue" "exit" | read CHOICE
         switch $CHOICE
