@@ -9,7 +9,7 @@ pacman -S stow
 # or
 brew install stow
 
-./stow.fish
+stow --no-folding
 ```
 
 ## Manual steps
