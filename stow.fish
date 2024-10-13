@@ -1,2 +1,2 @@
 #!/usr/bin/env fish
-stow . --target ~ --no-folding --restow
+stow . --target ~ --no-folding --adopt
