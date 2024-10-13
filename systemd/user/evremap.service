@@ -4,4 +4,4 @@ ExecStart=fish -c "~/Documents/installs/evremap/target/release/evremap remap ~/.
 Restart=always
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
