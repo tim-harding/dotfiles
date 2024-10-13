@@ -29,10 +29,12 @@ function update_all
     cargo install-update --all
 
     bob update --all
-    nvim --headless '+Lazy! sync' +qa
+    echo "Updating lazy.nvim"
+    nvim --headless '+Lazy! sync' +qa &> /dev/null
 
     pyenv install $(pyenv latest 3) --skip-existing
-    fisher update
+    echo "Updating fisher"
+    fisher update &> /dev/null
     bun update --global
     gem update
 end
