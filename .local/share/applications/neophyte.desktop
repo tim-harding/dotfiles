@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Neophyte
+Comment=Neovim frontend rendered with wgpu-rs
+Path=/home/tim/
+Exec=/home/tim/Documents/personal/neophyte/target/release/neophyte --messages
+Icon=Neophyte
+Terminal=false
+Categories=Education;Languages;Java;
