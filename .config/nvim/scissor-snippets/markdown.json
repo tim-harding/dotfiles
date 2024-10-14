@@ -1,0 +1,18 @@
+{
+  "comment": {
+    "body": [
+      "<!--",
+      "$1",
+      "-->"
+    ],
+    "prefix": "comment"
+  },
+  "todo": {
+    "body": [
+      "<!--",
+      "TODO",
+      "-->"
+    ],
+    "prefix": "todo"
+  }
+}
