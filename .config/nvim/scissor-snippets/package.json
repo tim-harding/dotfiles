@@ -78,6 +78,12 @@
           "norg"
         ],
         "path": "./norg.json"
+      },
+      {
+        "language": [
+          "markdown"
+        ],
+        "path": "./markdown.json"
       }
     ]
   },
