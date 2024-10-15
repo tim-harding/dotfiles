@@ -25,7 +25,7 @@ return {
       workspaces = {
         {
           name = "personal",
-          path = vim.fn.expand('$HOME') .. "/Documents/obsidian",
+          path = vim.fn.expand('$HOME') .. "/obsidian",
         },
       },
 
