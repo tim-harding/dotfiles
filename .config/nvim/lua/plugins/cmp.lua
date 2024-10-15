@@ -54,19 +54,32 @@ return {
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
           ['<C-u>'] = cmp.mapping.scroll_docs(-4),
           ['<C-c>'] = cmp.mapping.abort(),
+          ['<C-j>'] = cmp.mapping.select_next_item(),
+          ['<C-k>'] = cmp.mapping.select_prev_item(),
           ['<Cr>'] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           }),
           ['<Tab>'] = cmp.mapping(function(fallback)
-            if vim.snippet.active({ direction = 1 }) then
+            if cmp.visible() then
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({
+                  behavior = cmp.ConfirmBehavior.Replace,
+                  select = true,
+                })
+              else
+                cmp.select_next_item()
+              end
+            elseif vim.snippet.active({ direction = 1 }) then
               vim.snippet.jump(1)
             else
               fallback()
             end
           end, { 'i', 's' }),
           ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if vim.snippet.active({ direction = -1 }) then
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif vim.snippet.active({ direction = -1 }) then
               vim.snippet.jump(-1)
             else
               fallback()
