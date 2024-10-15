@@ -14,15 +14,6 @@ function ls
     $argv
 end
 
-function mkdir
-    # Make intermediate directories automatically
-    /usr/bin/env mkdir -p $argv
-end
-
-function rg
-    /usr/bin/env rg --hidden $argv
-end
-
 function sauce
     source ~/.config/fish/config.fish
     for f in ~/.config/fish/conf.d/*.fish

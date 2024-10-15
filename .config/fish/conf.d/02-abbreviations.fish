@@ -1,2 +1,4 @@
-abbr --add copy fish_clipboard_copy
-abbr --add paste fish_clipboard_paste
+abbr copy fish_clipboard_copy
+abbr paste fish_clipboard_paste
+abbr mkdir mkdir -p
+abbr rg rg --hidden
