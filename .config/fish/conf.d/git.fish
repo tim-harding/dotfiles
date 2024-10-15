@@ -39,5 +39,3 @@ function amend
     set --prepend argv inner
     with_git_root $argv
 end
-
-cp ~/.config/misc/.gitconfig ~/.gitconfig
