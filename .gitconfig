@@ -1,8 +1,10 @@
 [user]
     name = Tim Harding
     email = Tim@TimHarding.co
+
 [init]
     defaultBranch = main
+
 [filter "lfs"]
     required = true
     clean = git-lfs clean -- %f
@@ -26,6 +28,9 @@
     line-numbers-minus-style = red italic auto
     line-numbers-plus-style = green bold auto
     true-color = always
+
+[pull]
+    rebase = true
 
 [merge]
     conflictstyle = diff3
