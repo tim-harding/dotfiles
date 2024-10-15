@@ -33,9 +33,8 @@ return {
           },
           mappings = {
             i = {
-              ['<C-u>'] = false,
-              ['<C-d>'] = false,
-              ['<esc>'] = actions.close,
+              ['<C-j>'] = actions.move_selection_next,
+              ['<C-k>'] = actions.move_selection_previous,
               ['<C-h>'] = 'which_key',
             }
           },
@@ -73,25 +72,20 @@ return {
       telescope.load_extension('projects')
 
       map('n', '<leader>jj', tb.find_files, 'files')
-      map('n', '<leader>jg', tb.git_files, 'files')
-      map('n', '<leader>jo', tb.oldfiles, 'recent')
-      map('n', '<leader>jb', tb.buffers, 'buffers')
       map('n', '<leader>jh', tb.help_tags, 'help')
-      map('n', '<leader>jp', tb.live_grep, 'ripgrep project')
-      map('n', '<leader>jm', tb.marks, 'marks')
+      map('n', '<leader>jr', tb.live_grep, 'ripgrep project')
       map('n', '<leader>jq', tb.quickfix, 'quickfix')
       map('n', '<leader>js', tb.lsp_dynamic_workspace_symbols, 'find project symbol')
-      map('n', '<leader>jP', telescope.extensions.projects.projects, 'projects')
-      map('n', '<leader>jk', tb.keymaps, 'files')
+      map('n', '<leader>jp', telescope.extensions.projects.projects, 'projects')
       map('n', '<leader>jd', function()
         tb.find_files({ cwd = '~/dotfiles' })
       end, 'Dotfiles')
       map('n', '<leader>jn', function()
-        tb.find_files({ cwd = '~/notes' })
-      end, 'Neorg files')
+        tb.find_files({ cwd = '~/obsidian' })
+      end, 'Obsidian files')
       map('n', '<leader>jN', function()
-        tb.live_grep({ cwd = '~/notes' })
-      end, 'Neorg ripgrep')
+        tb.live_grep({ cwd = '~/obsidian' })
+      end, 'Obsidian ripgrep')
     end
   }
 }
