@@ -80,12 +80,6 @@ return {
       map('n', '<leader>jd', function()
         tb.find_files({ cwd = '~/dotfiles' })
       end, 'Dotfiles')
-      map('n', '<leader>jn', function()
-        tb.find_files({ cwd = '~/obsidian' })
-      end, 'Obsidian files')
-      map('n', '<leader>jN', function()
-        tb.live_grep({ cwd = '~/obsidian' })
-      end, 'Obsidian ripgrep')
     end
   }
 }

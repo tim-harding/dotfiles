@@ -54,8 +54,12 @@ return {
 
     keys = {
       {
-        '<leader>nn',
+        '<leader>jo',
         '<Cmd>ObsidianQuickSwitch<Cr>',
+      },
+      {
+        '<leader>jO',
+        '<Cmd>ObsidianSearch<Cr>',
       },
     },
   },
