@@ -2,8 +2,8 @@
   "doc_comment + /**": {
     "body": [
       "/**",
-      "* $1",
-      "*/"
+      " * $1",
+      " */"
     ],
     "prefix": [
       "doc_comment",

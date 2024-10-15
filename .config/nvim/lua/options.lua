@@ -23,10 +23,19 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.textwidth = 80
-vim.opt.formatoptions = 'qj' -- :h fo-table
 vim.opt.guicursor = "n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor"
 vim.opt.completeopt = 'menuone,noselect'
 vim.opt.inccommand = 'split'
+vim.opt.formatoptions = 'qj' -- :h fo-table
+
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('markdown-bullets', {}),
+  pattern = 'markdown',
+  callback = function()
+    vim.opt_local.formatoptions:append('r')
+    vim.opt_local.comments = 'b:*,b:+,b:- [ ],b:-,n:>'
+  end
+})
 
 vim.fn.sign_define(
   "DiagnosticSignError",
