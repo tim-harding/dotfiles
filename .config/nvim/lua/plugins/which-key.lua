@@ -13,7 +13,7 @@ return {
       l = 'Leetcode',
       x = 'Xbase',
       t = 'Neotest',
-      n = 'Neorg',
+      n = 'Obsidian',
     }
 
     local leaders_mapped = {}

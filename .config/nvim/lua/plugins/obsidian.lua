@@ -3,6 +3,14 @@
 -- - <C-x>: new note from query
 -- - <C-l>: Insert a link to selected note
 
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('Obsidian', {}),
+  pattern = 'markdown',
+  callback = function()
+    vim.opt_local.conceallevel = 2
+  end,
+})
+
 return {
   "nvim-lua/plenary.nvim",
   {
@@ -12,6 +20,7 @@ return {
     init = function()
       vim.g.vim_markdown_frontmatter = 1
     end,
+
     opts = {
       workspaces = {
         {
@@ -19,10 +28,13 @@ return {
           path = vim.fn.expand('$HOME') .. "/Documents/obsidian",
         },
       },
+
+      new_notes_location = "current_dir",
+      wiki_link_func = 'prepend_note_id',
+      markdown_link_func = 'prepend_note_id',
       notes_subdir = 'notes',
-      daily_notes = {
-        folder = 'dailies',
-      },
+      daily_notes = { folder = 'dailies' },
+
       mappings = {
         ["gf"] = {
           action = function()
@@ -30,6 +42,7 @@ return {
           end,
           opts = { noremap = false, expr = true, buffer = true },
         },
+
         ["<cr>"] = {
           action = function()
             return require("obsidian").util.smart_action()
@@ -37,10 +50,13 @@ return {
           opts = { buffer = true, expr = true },
         },
       },
-
-      new_notes_location = "current_dir",
-      wiki_link_func = 'prepend_note_id',
-      markdown_link_func = 'prepend_note_id',
     },
-  }
+
+    keys = {
+      {
+        '<leader>nn',
+        '<Cmd>ObsidianQuickSwitch<Cr>',
+      },
+    },
+  },
 }

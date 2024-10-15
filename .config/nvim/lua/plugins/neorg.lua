@@ -5,6 +5,7 @@ return {
   "nvim-neorg/neorg",
   lazy = false,
   version = "*",
+  enabled = false,
   config = function()
     local neorg = require 'neorg'
     neorg.setup {
