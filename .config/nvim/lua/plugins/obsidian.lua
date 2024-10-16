@@ -61,6 +61,10 @@ return {
         '<leader>jO',
         '<Cmd>ObsidianSearch<Cr>',
       },
+      {
+        '<C-space>',
+        '<Cmd>ObsidianToggleCheckbox<Cr>',
+      },
     },
   },
 }
