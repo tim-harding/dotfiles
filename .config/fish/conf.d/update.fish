@@ -29,8 +29,8 @@ function update_all
     cargo install-update --all
 
     bob update --all
-    echo "Updating lazy.nvim"
-    nvim --headless '+Lazy! sync' +qa &> /dev/null
+    # echo "Updating lazy.nvim"
+    # nvim --headless '+Lazy! update' +qa &> /dev/null
 
     echo "Updating fisher"
     fisher update &> /dev/null
