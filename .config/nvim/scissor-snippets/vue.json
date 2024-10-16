@@ -5,7 +5,7 @@
       "",
       "<template>$2</template>",
       "",
-      "<style lang=\"scss\" scoped>$3</style>"
+      "<style module=\"s\">$3</style>"
     ],
     "prefix": "component"
   }
