@@ -116,7 +116,7 @@ return {
       dap.adapters['lldb'] = {
         type = 'executable',
         -- This is being renamed to lldb-dap
-        command = 'lldb-vscode',
+        command = 'codelldb',
       }
       dap.adapters['codelldb'] = {
         type = 'server',
