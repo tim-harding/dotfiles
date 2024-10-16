@@ -25,7 +25,7 @@ function update_all
         brew upgrade
     end
 
-    rustup update
+    rustup update stable
     cargo install-update --all
 
     bob update --all
