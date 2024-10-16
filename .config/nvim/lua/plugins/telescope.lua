@@ -52,6 +52,13 @@ return {
         },
 
         pickers = {
+          live_grep = {
+            additional_args = {
+              '--hidden',
+              '--glob',
+              '!.git'
+            },
+          },
           find_files = {
             find_command = {
               'fd',
