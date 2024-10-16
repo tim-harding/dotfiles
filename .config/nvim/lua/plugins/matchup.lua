@@ -1,6 +1,5 @@
 return {
   'andymass/vim-matchup',
-  enabled=false,
   lazy = false,
   init = function()
     -- ds% and cs%
