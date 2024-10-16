@@ -32,7 +32,6 @@ function update_all
     echo "Updating lazy.nvim"
     nvim --headless '+Lazy! sync' +qa &> /dev/null
 
-    pyenv install $(pyenv latest 3) --skip-existing
     echo "Updating fisher"
     fisher update &> /dev/null
     bun update --global
