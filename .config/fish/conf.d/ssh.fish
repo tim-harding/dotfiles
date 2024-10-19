@@ -7,7 +7,6 @@ case Linux
         gpg-connect-agent updatestartuptty /bye >/dev/null
     end
 case Darwin
-    fish_ssh_agent # Investigate. Seems problematic on Arch.
     if not ssh-add -l > /dev/null
         ssh-add --apple-use-keychain ~/.ssh/id_ed25519
     end
