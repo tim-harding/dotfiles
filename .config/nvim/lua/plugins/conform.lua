@@ -69,7 +69,6 @@ return {
         json = { 'prettierd', 'prettier' },
         html = { 'prettierd', 'prettier' },
         scss = { 'prettierd', 'prettier' },
-        markdown = { 'prettierd', 'prettier' },
         yaml = { 'prettierd', 'prettier' },
         vue = { 'prettierd', 'prettier' },
         cpp = { 'clang-format' },
