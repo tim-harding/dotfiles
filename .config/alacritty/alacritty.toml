@@ -1,7 +1,3 @@
-import = [
-    "~/.config/alacritty/catppuccin-frappe.toml",
-    "~/.config/alacritty/platform.toml"
-]
 
 [selection]
 save_to_clipboard = true
@@ -67,3 +63,9 @@ action = "SelectNextTab"
 key = "Tab"
 mods = "Control|Shift"
 action = "SelectPreviousTab"
+
+[general]
+import = [
+    "~/.config/alacritty/catppuccin-frappe.toml",
+    "~/.config/alacritty/platform.toml"
+]
