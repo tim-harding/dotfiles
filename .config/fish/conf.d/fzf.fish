@@ -1,3 +1,5 @@
+fzf --fish | source
+
 # Colors from https://github.com/catppuccin/fzf
 set --export FZF_DEFAULT_OPTS \
     --reverse \
