@@ -12,7 +12,7 @@ return {
     vim.api.nvim_create_user_command('Autoformat', function(opts)
       local is_global = true
       local mode = 'toggle'
-      for i, arg in ipairs(opts.fargs) do
+      for _, arg in ipairs(opts.fargs) do
         if arg == "on" or arg == "off" or arg == "toggle" then
           mode = arg
         elseif arg == 'local' then
@@ -53,11 +53,12 @@ return {
       end
     end, {
       nargs = '*',
-      complete = function(arg_lead, cmd_line, cursor_pos)
+      complete = function(_, _, _)
         return { "on", "off", "toggle", 'local', 'global' }
       end
     })
 
+    ---@type conform.setupOpts
     return {
       formatters_by_ft = {
         javascript = { 'prettierd', 'prettier' },
@@ -71,6 +72,7 @@ return {
         scss = { 'prettierd', 'prettier' },
         yaml = { 'prettierd', 'prettier' },
         vue = { 'prettierd', 'prettier' },
+
         cpp = { 'clang-format' },
         c = { 'clang-format' },
 
@@ -87,10 +89,7 @@ return {
         end
 
         if is_format_enabled then
-          return {
-            lsp_format = "fallback",
-            stop_after_first = true,
-          }
+          return { stop_after_first = true }
         end
       end,
     }
