@@ -71,11 +71,12 @@ return {
         html = { 'prettierd', 'prettier' },
         scss = { 'prettierd', 'prettier' },
         yaml = { 'prettierd', 'prettier' },
-        vue = { 'prettierd', 'prettier' },
+        vue = { 'prettierd', 'prettier', lsp_format = 'first' },
 
         cpp = { 'clang-format' },
         c = { 'clang-format' },
 
+        rust = { 'rustfmt', lsp_format = 'fallback' },
         haskell = { 'fourmolu' },
         ocaml = { 'ocamlformat' },
         python = { 'black' },
