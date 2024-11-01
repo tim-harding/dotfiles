@@ -5,7 +5,7 @@ function neo
     set logfile ~/Documents/temp/neophyte_log.txt
     set --export RUST_LOG neophyte
     set --export RUST_BACKTRACE 1
-    $neophyte --messages $argv &> $logfile &
+    $neophyte --messages $argv &>$logfile &
     disown
 end
 

@@ -72,6 +72,7 @@ return {
         scss = { 'prettierd', 'prettier' },
         yaml = { 'prettierd', 'prettier' },
         vue = { 'prettierd', 'prettier', lsp_format = 'first' },
+        fish = { 'fish_indent' },
 
         cpp = { 'clang-format' },
         c = { 'clang-format' },

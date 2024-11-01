@@ -1,17 +1,17 @@
 function ls
     exa \
-    --long \
-    --all \
-    --git \
-    --icons \
-    --header \
-    --no-user \
-    --time-style=long-iso \
-    --group-directories-first \
-    --level=2 \
-    --sort=modified \
-    --reverse \
-    $argv
+        --long \
+        --all \
+        --git \
+        --icons \
+        --header \
+        --no-user \
+        --time-style=long-iso \
+        --group-directories-first \
+        --level=2 \
+        --sort=modified \
+        --reverse \
+        $argv
 end
 
 function sauce
@@ -24,4 +24,3 @@ end
 function latest
     string join0 $argv | sort -z -V | tail -z -n 1
 end
-

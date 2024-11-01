@@ -15,7 +15,7 @@ end
 
 function take_a_dub
     function inner
-        git add . 
+        git add .
         git commit -m $argv
     end
     set --prepend argv inner
