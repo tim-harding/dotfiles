@@ -13,14 +13,3 @@ function ls
         --reverse \
         $argv
 end
-
-function sauce
-    source ~/.config/fish/config.fish
-    for f in ~/.config/fish/conf.d/*.fish
-        source $f
-    end
-end
-
-function latest
-    string join0 $argv | sort -z -V | tail -z -n 1
-end
