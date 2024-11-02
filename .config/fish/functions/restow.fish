@@ -3,7 +3,14 @@ function restow
     stow . --no-folding --restow --adopt
     popd
 
+    for dir in ~/{.cargo,.config,.local,.ssh,Library}
+        pushd $dir
+        # Remove broken links
+        fd --type symlink --follow --exec rm {}
+        popd
+    end
+
     pushd ~
-    fd --type symlink --follow --exec rm {}
+    fd --max-depth 1 --type symlink --follow --exec rm {}
     popd
 end
