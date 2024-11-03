@@ -1,5 +1,5 @@
 function houdini
-    switch (uname)
+    switch $platform
         case Linux
             # Note to self:
             #

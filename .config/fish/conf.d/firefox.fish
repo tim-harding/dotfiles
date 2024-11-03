@@ -1,4 +1,4 @@
-switch (uname)
+switch $platform
     case Linux
         set --export BROWSER firefox
         set --export MOZ_ENABLE_WAYLAND 1

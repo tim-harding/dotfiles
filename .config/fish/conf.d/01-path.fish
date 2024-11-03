@@ -6,7 +6,7 @@ fish_add_path --global ~/.dotnet/tools
 fish_add_path --global ~/.bun/bin
 fish_add_path --global ~/Documents/installs/glsl_analyzer/zig-out/bin
 
-switch (uname)
+switch $platform
     case Darwin
         fish_add_path --global /opt/homebrew/opt/llvm/bin
         fish_add_path --global /Applications/Sublime\ Merge.app/Contents/SharedSupport/bin

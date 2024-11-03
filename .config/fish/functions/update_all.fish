@@ -15,7 +15,7 @@ function update_all
     stow . --no-folding
     popd
 
-    switch (uname)
+    switch $platform
         case Linux
             sudo pacman -Syu --noconfirm
             yay -Syu --noconfirm

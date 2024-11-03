@@ -5,7 +5,7 @@ pyenv init - | source
 
 set --erase PYTHONPATH
 
-switch (uname)
+switch $platform
     case Linux
 
         latest /usr/share/blender/*/scripts/modules/ | read PYTHONPATH_BLENDER
