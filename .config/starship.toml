@@ -56,7 +56,11 @@ tag_symbol = "#"
 style = "purple"
 
 [git_status]
+format = '([$ahead_behind$all_status]($style) )'
 style = "purple"
+ahead = "⇡$count"
+behind = "⇣$count"
+diverged = "⇡$count⇣$count"
 
 [git_metrics]
 disabled = false
@@ -73,7 +77,7 @@ format = "[$status( $signal_name)]($style) "
 style = "black"
 
 [memory_usage]
-disabled = false
+disabled = true
 format = "[${ram_pct}]($style) "
 style = "fg:black"
 threshold = 0
