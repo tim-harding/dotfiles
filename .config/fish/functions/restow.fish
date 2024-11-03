@@ -3,6 +3,10 @@ function restow
     stow . --no-folding --restow --adopt
     popd
 
+    if test args[1] != clean
+        return
+    end
+
     for dir in ~/{.cargo,.config,.local,.ssh,Library}
         pushd $dir
         # Remove broken links
