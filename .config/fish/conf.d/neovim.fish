@@ -1,4 +1,3 @@
-bob complete fish | source
 alias vi='nvim'
 alias vim='nvim'
 set --export TERM xterm-256color
