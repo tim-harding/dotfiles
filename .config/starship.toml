@@ -2,8 +2,6 @@
 # https://starship.rs/config/#style-strings
 # https://starship.rs/advanced-config/#style-strings
 
-# TODO: Couldn't get shlvl working, but looks interesting
-
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = true
@@ -13,7 +11,6 @@ $username\
 $hostname\
 $directory\
 $jobs\
-$shlvl\
 $git_branch\
 $git_commit\
 $git_status\
@@ -25,6 +22,7 @@ $status\
 $cmd_duration\
 $time\
 $line_break\
+$shlvl\
 $character
 """
 
@@ -42,8 +40,12 @@ truncate_to_repo = false
 
 [shlvl]
 disabled = false
-symbol = "❯"
-style = "blue"
+format = '[$symbol]($style)'
+repeat = true
+symbol = '❯'
+repeat_offset = 1
+threshold = 0
+style = "black bold"
 
 [git_branch]
 format = "[$branch(:$remote_branch)]($style) "
@@ -67,7 +69,7 @@ symbol = " "
 
 [status]
 disabled = false
-format = "[$status $signal_name]($style) "
+format = "[$status( $signal_name)]($style) "
 style = "black"
 
 [memory_usage]
