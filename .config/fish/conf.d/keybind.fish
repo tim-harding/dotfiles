@@ -1,4 +1,4 @@
-fish_default_key_bindings
+set --global fish_key_bindings fish_default_key_bindings
 bind \cl accept-autosuggestion or nextd-or-forward-word
 bind \ch prevd-or-backward-word
 bind \cj history-prefix-search-forward
