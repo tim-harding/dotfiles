@@ -1,0 +1,93 @@
+# Style strings:
+# https://starship.rs/config/#style-strings
+# https://starship.rs/advanced-config/#style-strings
+
+# TODO: Couldn't get shlvl working, but looks interesting
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+
+format = """
+$username\
+$hostname\
+$directory\
+$jobs\
+$shlvl\
+$git_branch\
+$git_commit\
+$git_status\
+$git_metrics\
+$git_state\
+$fill\
+$memory_usage\
+$status\
+$cmd_duration\
+$time\
+$line_break\
+$character
+"""
+
+[username]
+format = "[$user]($style)@"
+
+[hostname]
+ssh_symbol = ""
+
+[directory]
+truncation_length = 0
+truncate_to_repo = false
+
+[jobs]
+
+[shlvl]
+disabled = false
+symbol = "❯"
+style = "blue"
+
+[git_branch]
+format = "[$branch(:$remote_branch)]($style) "
+style = "purple"
+
+[git_commit]
+tag_symbol = "#"
+style = "purple"
+
+[git_status]
+style = "purple"
+
+[git_metrics]
+disabled = false
+
+[git_state]
+style = "yellow"
+
+[fill]
+symbol = " "
+
+[status]
+disabled = false
+format = "[$status $signal_name]($style) "
+style = "black"
+
+[memory_usage]
+disabled = false
+format = "[${ram_pct}]($style) "
+style = "fg:black"
+threshold = 0
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "fg:black"
+min_time = 0
+show_milliseconds = true
+
+[time]
+disabled = false
+format = "[$time]($style)"
+style = "fg:black"
+
+[line_break]
+disabled = false
+
+[character]
