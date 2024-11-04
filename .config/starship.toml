@@ -14,7 +14,6 @@ $jobs\
 $git_branch\
 $git_commit\
 $git_status\
-$git_metrics\
 $git_state\
 $fill\
 $memory_usage\
@@ -61,9 +60,6 @@ style = "purple"
 ahead = "⇡$count"
 behind = "⇣$count"
 diverged = "⇡$count⇣$count"
-
-[git_metrics]
-disabled = false
 
 [git_state]
 style = "yellow"
