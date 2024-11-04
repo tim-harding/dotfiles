@@ -204,7 +204,7 @@ return {
             vim.keymap.set(m, keys, func, { buffer = bufnr, desc = desc })
           end
 
-          if client.supports_method('textDocument/documentHighlight', { bufnr = bufnr }) then
+          if false and client.supports_method('textDocument/documentHighlight', { bufnr = bufnr }) then
             local group = hl_augroup(bufnr)
 
             vim.api.nvim_create_autocmd({
