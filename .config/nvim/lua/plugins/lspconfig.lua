@@ -32,7 +32,6 @@ return {
         lspconfig.glsl_analyzer,
         lspconfig.clangd,
         lspconfig.tinymist,
-        lspconfig.fish_lsp,
       }
 
       for _, server in ipairs(simple_servers) do
@@ -204,7 +203,7 @@ return {
             vim.keymap.set(m, keys, func, { buffer = bufnr, desc = desc })
           end
 
-          if false and client.supports_method('textDocument/documentHighlight', { bufnr = bufnr }) then
+          if client.supports_method('textDocument/documentHighlight', { bufnr = bufnr }) then
             local group = hl_augroup(bufnr)
 
             vim.api.nvim_create_autocmd({
