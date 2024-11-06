@@ -48,15 +48,15 @@ style = "black bold"
 
 [git_branch]
 format = "[$branch(:$remote_branch)]($style) "
-style = "purple"
+style = "green"
 
 [git_commit]
 tag_symbol = "#"
-style = "purple"
+style = "green"
 
 [git_status]
 format = '([$ahead_behind$all_status]($style) )'
-style = "purple"
+style = "green"
 ahead = "⇡$count"
 behind = "⇣$count"
 diverged = "⇡$count⇣$count"
