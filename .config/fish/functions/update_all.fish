@@ -28,12 +28,10 @@ function update_all
     rustup update stable
     cargo install-update --all
 
-    bob update --all
-    # echo "Updating lazy.nvim"
-    # nvim --headless '+Lazy! update' +qa &> /dev/null
-
-    echo "Updating fisher"
-    fisher update &>/dev/null
+    fisher update
     bun update --global
     gem update
+
+    bob update --all
+    nvim '+Lazy update' +qa &>/dev/null
 end
