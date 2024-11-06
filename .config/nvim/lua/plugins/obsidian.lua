@@ -62,7 +62,7 @@ return {
         '<Cmd>ObsidianSearch<Cr>',
       },
       {
-        '<C-space>',
+        '<localleader><space>',
         '<Cmd>ObsidianToggleCheckbox<Cr>',
       },
     },

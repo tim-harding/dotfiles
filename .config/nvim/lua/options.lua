@@ -23,8 +23,8 @@ vim.opt.softtabstop = 4
 vim.opt.scrolloff = 0
 vim.opt.textwidth = 80
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
+vim.g.mapleader = vim.keycode '<Space>'
+vim.g.maplocalleader = vim.keycode '<C-Space>'
 vim.opt.mouse = 'a'
 vim.opt.signcolumn = 'yes'
 vim.opt.completeopt = 'menuone,noselect'
