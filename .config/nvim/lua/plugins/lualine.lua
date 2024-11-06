@@ -55,7 +55,16 @@ return {
             path = RELATIVE,
           },
         },
-        lualine_x = { function() return macro_string end },
+        lualine_x = {
+          function()
+            return macro_string
+          end,
+          {
+            require("lazy.status").updates,
+            cond = require("lazy.status").has_updates,
+            color = { fg = "#ff9e64" },
+          },
+        },
         lualine_y = { 'filetype' },
         lualine_z = { 'progress', 'location' },
       },
