@@ -3,7 +3,10 @@ function restow
     stow . --no-folding --restow --adopt
     popd
 
-    if test args[1] != clean
+    argparse c/clean -- $argv
+    or return
+
+    if not set -q _flag_clean
         return
     end
 
