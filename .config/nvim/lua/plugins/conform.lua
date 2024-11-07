@@ -73,6 +73,7 @@ return {
         yaml = { 'prettierd', 'prettier' },
         vue = { 'prettierd', 'prettier', lsp_format = 'first' },
         fish = { 'fish_indent' },
+        nix = { 'nixfmt' },
 
         cpp = { 'clang-format' },
         c = { 'clang-format' },
