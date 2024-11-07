@@ -25,6 +25,8 @@ function update_all
             brew upgrade
     end
 
+    nix profile upgrade --all
+
     rustup update stable
     cargo install-update --all
 
