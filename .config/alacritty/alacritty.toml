@@ -1,9 +1,9 @@
-
 [selection]
 save_to_clipboard = true
 
 [window]
 dynamic_padding = true
+option_as_alt = "Both"
 
 [scrolling]
 history = 100000 # maximum
