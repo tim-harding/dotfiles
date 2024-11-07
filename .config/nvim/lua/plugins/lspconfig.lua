@@ -32,6 +32,7 @@ return {
         lspconfig.glsl_analyzer,
         lspconfig.clangd,
         lspconfig.tinymist,
+        lspconfig.nixd,
       }
 
       for _, server in ipairs(simple_servers) do
