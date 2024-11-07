@@ -13,6 +13,14 @@
     ],
     "prefix": "else"
   },
+  "for": {
+    "body": [
+      "for $1 in $2",
+      "    $3",
+      "end"
+    ],
+    "prefix": "for"
+  },
   "function": {
     "body": [
       "function ${1:name}",
