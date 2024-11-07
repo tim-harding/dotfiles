@@ -1,1 +1,0 @@
-set fish_key_bindings my_keybind

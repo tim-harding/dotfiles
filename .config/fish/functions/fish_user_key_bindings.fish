@@ -1,4 +1,4 @@
-function my_keybind
+function fish_user_key_bindings
     fish_default_key_bindings
     bind \cl accept-autosuggestion or nextd-or-forward-word
     bind \ch prevd-or-backward-word
