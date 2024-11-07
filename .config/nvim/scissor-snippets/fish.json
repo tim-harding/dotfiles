@@ -1,4 +1,12 @@
 {
+  "begin": {
+    "body": [
+      "begin",
+      "    $1",
+      "end"
+    ],
+    "prefix": "begin"
+  },
   "elif": {
     "body": [
       "else if ${1:cond}",
@@ -52,6 +60,7 @@
   "while": {
     "body": [
       "while $1",
+      "    $2",
       "end"
     ],
     "prefix": "while"
