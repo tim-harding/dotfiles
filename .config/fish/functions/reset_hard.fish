@@ -1,4 +1,4 @@
-function reset-hard
+function reset_hard
     function inner
         git add .
         git reset --hard
