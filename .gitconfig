@@ -37,3 +37,5 @@
 
 [diff]
     colorMoved = default
+[advice]
+	skippedCherryPicks = false
