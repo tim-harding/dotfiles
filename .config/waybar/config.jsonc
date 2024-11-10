@@ -6,13 +6,13 @@
     "position": "left",
     "output": ["DP-2"],
     "modules-left": [
-        "sway/workspaces"
+        "hyprland/workspaces"
     ],
     "modules-center": [],
     "modules-right": [
         "clock"
     ],
-    "sway/workspaces": {
+    "hyprland/workspaces": {
         "format": "{name}",
         "disable-scroll": true,
         "disable-click": true
