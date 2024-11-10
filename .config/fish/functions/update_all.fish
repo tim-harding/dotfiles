@@ -35,5 +35,5 @@ function update_all
     gem update
 
     bob update --all
-    nvim '+Lazy update' +qa &>/dev/null
+    nvim '+Lazy sync' '+Lazy update' +qa &>/dev/null
 end
