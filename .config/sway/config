@@ -112,19 +112,7 @@ client.urgent           $mantle   $mantle   $text $mantle   $mantle
 client.placeholder      $mantle   $mantle   $text $mantle   $mantle
 
 bar {
-    position bottom
-    status_command while date +'%A %d %h %H:%M'; do sleep 1; done
-    status_padding 0
-    status_edge_padding 50
-    output DP-2
-
-    colors {
-        statusline $subtext0
-        background $mantle
-	active_workspace $overlay0 $surface0 $text
-	focused_workspace $overlay0 $surface0 $text
-        inactive_workspace #00000000 #00000000 $subtext0
-    }
+    swaybar_command waybar
 }
 
 input "type:keyboard" {
