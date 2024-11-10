@@ -48,8 +48,8 @@
   "switch + match": {
     "body": [
       "switch ${1:value}",
-      "case ${2:glob}",
-      "    $3",
+      "    case ${2:glob}",
+      "        $3",
       "end"
     ],
     "prefix": [
