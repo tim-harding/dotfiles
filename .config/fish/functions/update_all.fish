@@ -12,7 +12,7 @@ function update_all
                 return
         end
     end
-    stow . --no-folding
+    restow
     popd
 
     switch $platform
