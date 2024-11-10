@@ -12,8 +12,8 @@ window#waybar {
 #workspaces button {
   min-width: 0px;
   padding: 0px;
-  border: none;
   border-radius: 0px;
+  border: 1px solid transparent;
 }
 
 #workspaces button:hover {
