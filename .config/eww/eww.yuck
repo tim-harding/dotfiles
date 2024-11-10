@@ -9,9 +9,12 @@
         :anchor "left center"
         :width "24px"
         :height "100%")
-    (powermenu_layout))
+    (menu))
 
-(defwidget powermenu_layout []
+(defwidget menu []
+    (time))
+
+(defwidget time []
     (box :orientation "v" 
         (label :text {time.min})
         (label :text {time.hour})))
