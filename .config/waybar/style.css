@@ -1,0 +1,34 @@
+window#waybar {
+  background-color: #303446;
+  color: #c6d0f5;
+  font-family: "Cascadia Code PL";
+  font-weight: 800;
+}
+
+#clock {
+  margin-bottom: 4px;
+}
+
+#workspaces button {
+  min-width: 0px;
+  padding: 0px;
+  border: none;
+  border-radius: 0px;
+}
+
+#workspaces button:hover {
+  background: none;
+  border: none;
+  padding: 0px;
+  box-shadow: inherit;
+  text-shadow: inherit;
+}
+
+#workspaces button.urgent {
+  background: #e78284;
+}
+
+#workspaces button.visible {
+  background: #414559;
+  border: 1px solid #51576d;
+}
