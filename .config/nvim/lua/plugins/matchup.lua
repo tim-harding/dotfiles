@@ -4,8 +4,11 @@ return {
   init = function()
     -- ds% and cs%
     vim.g.matchup_surround_enabled = 1
+
     -- Disable highlighting
-    vim.g.matchup_matchparen_enabled = false
+    if false then
+      vim.g.matchup_matchparen_enabled = false
+    end
 
     vim.api.nvim_set_hl(0, 'MatchWord', { link = 'Visual', })
     vim.api.nvim_set_hl(0, 'MatchWordCur', {})

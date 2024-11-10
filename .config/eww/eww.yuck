@@ -4,6 +4,7 @@
     :exclusive true
     :focusable false
     :windowtype "dock"
+    :class "powermenu"
     :geometry (geometry
         :anchor "left center"
         :width "24px"
@@ -11,7 +12,9 @@
     (powermenu_layout))
 
 (defwidget powermenu_layout []
-    (label :text {time.min}))
+    (box :orientation "v" 
+        (label :text {time.min})
+        (label :text {time.hour})))
 
 (defpoll time :interval "5s"
     `date +'{"hour":"%H","min":"%M"}'`)
