@@ -1,10 +1,11 @@
-fish_add_path --global /usr/bin
-fish_add_path --global ~/.cargo/bin
-fish_add_path --global ~/.ghcup/bin
-fish_add_path --global ~/.local/bin
-fish_add_path --global ~/.dotnet/tools
-fish_add_path --global ~/.bun/bin
-fish_add_path --global ~/Documents/installs/glsl_analyzer/zig-out/bin
+fish_add_path -g /usr/bin
+fish_add_path -g ~/.cargo/bin
+fish_add_path -g ~/.ghcup/bin
+fish_add_path -g ~/.local/bin
+fish_add_path -g ~/.dotnet/tools
+fish_add_path -g ~/.bun/bin
+fish_add_path -g ~/Documents/installs/glsl_analyzer/zig-out/bin
+fish_add_path -g ~/.nix-profile/bin
 
 switch $platform
     case Darwin
