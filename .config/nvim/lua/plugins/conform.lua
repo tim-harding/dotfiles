@@ -83,6 +83,7 @@ return {
         ocaml = { 'ocamlformat' },
         python = { 'black' },
         swift = { 'swiftformat' },
+        lua = { lsp_format = 'prefer' },
       },
 
       format_on_save = function()
