@@ -27,6 +27,8 @@ function update_all
 
     nix profile upgrade --all
 
+    gup update
+
     rustup update stable
     cargo install-update --all
 
