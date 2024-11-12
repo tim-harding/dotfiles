@@ -6,6 +6,7 @@ fish_add_path -g ~/.dotnet/tools
 fish_add_path -g ~/.bun/bin
 fish_add_path -g ~/Documents/installs/glsl_analyzer/zig-out/bin
 fish_add_path -g ~/.nix-profile/bin
+fish_add_path -g (go env GOPATH)/bin
 
 switch $platform
     case Darwin
