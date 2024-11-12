@@ -71,19 +71,19 @@ return {
         html = { 'prettierd', 'prettier' },
         scss = { 'prettierd', 'prettier' },
         yaml = { 'prettierd', 'prettier' },
-        vue = { 'prettierd', 'prettier', lsp_format = 'first' },
+
+        vue = { 'prettierd', 'prettier', lsp_format = 'prefer' },
+        rust = { 'rustfmt', lsp_format = 'fallback' },
+        lua = { 'lua-format', lsp_format = "prefer" },
+
         fish = { 'fish_indent' },
         nix = { 'nixfmt' },
-
         cpp = { 'clang-format' },
         c = { 'clang-format' },
-
-        rust = { 'rustfmt', lsp_format = 'fallback' },
         haskell = { 'fourmolu' },
         ocaml = { 'ocamlformat' },
         python = { 'black' },
         swift = { 'swiftformat' },
-        lua = { lsp_format = 'prefer' },
       },
 
       format_on_save = function()
