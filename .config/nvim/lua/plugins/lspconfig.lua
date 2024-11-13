@@ -33,6 +33,7 @@ return {
         lspconfig.clangd,
         lspconfig.tinymist,
         lspconfig.nixd,
+        lspconfig.hyprls,
       }
 
       for _, server in ipairs(simple_servers) do
