@@ -57,7 +57,7 @@ end
 vim.lsp.handlers['textDocument/publishDiagnostics'] = on_publish_diagnostics
 
 local map = require('shared').map
-map('n', '<leader>d', toggle_diagnostics, 'open workspace diagnostics')
+map('n', '<leader>e', toggle_diagnostics, 'open workspace diagnostics')
 map('n', '<leader>q', toggle_quickfix, 'toggle quickfix list')
 map('n', ']q', ':cnext', 'next quickfix list item')
 map('n', '[q', ':cprev', 'prev quickfix list item')
