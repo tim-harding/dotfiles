@@ -6,9 +6,13 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-        window = {
+        windows = {
             autocomplete = {
                 selection = "auto_insert",
+            },
+            documentation = {
+                auto_show = true,
+                auto_show_delay_ms = 0,
             },
         },
         keymap = {
@@ -19,8 +23,18 @@ return {
                 enabled = true,
             },
         },
+        accept = {
+            auto_brackets = {
+                enabled = true,
+            },
+        },
         highlight = {
             use_nvim_cmp_as_default = true,
+        },
+        fuzzy = {
+            prebuilt_binaries = {
+                download = false,
+            },
         },
     },
 }
