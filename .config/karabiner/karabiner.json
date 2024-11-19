@@ -5,33 +5,18 @@
                 "parameters": { "basic.to_if_held_down_threshold_milliseconds": 120 },
                 "rules": [
                     {
-                        "description": "Change spacebar to left_shift. (Post spacebar if pressed alone)",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "spacebar",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "left_shift" }],
-                                "to_if_alone": [{ "key_code": "spacebar" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Home row mods",
                         "manipulators": [
                             {
-                                "from": { "key_code": "d" },
+                                "from": { "key_code": "c" },
                                 "to_delayed_action": {
-                                    "to_if_canceled": [{ "key_code": "d" }],
+                                    "to_if_canceled": [{ "key_code": "c" }],
                                     "to_if_invoked": [{ "key_code": "vk_none" }]
                                 },
                                 "to_if_alone": [
                                     {
                                         "halt": true,
-                                        "key_code": "d"
+                                        "key_code": "c"
                                     }
                                 ],
                                 "to_if_held_down": [
@@ -43,15 +28,15 @@
                                 "type": "basic"
                             },
                             {
-                                "from": { "key_code": "k" },
+                                "from": { "key_code": "comma" },
                                 "to_delayed_action": {
-                                    "to_if_canceled": [{ "key_code": "k" }],
+                                    "to_if_canceled": [{ "key_code": "comma" }],
                                     "to_if_invoked": [{ "key_code": "vk_none" }]
                                 },
                                 "to_if_alone": [
                                     {
                                         "halt": true,
-                                        "key_code": "k"
+                                        "key_code": "comma"
                                     }
                                 ],
                                 "to_if_held_down": [
