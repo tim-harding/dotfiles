@@ -2,17 +2,16 @@
     "profiles": [
         {
             "complex_modifications": {
-                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 120 },
+                "parameters": {
+                    "basic.simultaneous_threshold_milliseconds": 0,
+                    "basic.to_if_held_down_threshold_milliseconds": 60
+                },
                 "rules": [
                     {
                         "description": "Home row mods",
                         "manipulators": [
                             {
                                 "from": { "key_code": "c" },
-                                "to_delayed_action": {
-                                    "to_if_canceled": [{ "key_code": "c" }],
-                                    "to_if_invoked": [{ "key_code": "vk_none" }]
-                                },
                                 "to_if_alone": [
                                     {
                                         "halt": true,
@@ -29,10 +28,6 @@
                             },
                             {
                                 "from": { "key_code": "comma" },
-                                "to_delayed_action": {
-                                    "to_if_canceled": [{ "key_code": "comma" }],
-                                    "to_if_invoked": [{ "key_code": "vk_none" }]
-                                },
                                 "to_if_alone": [
                                     {
                                         "halt": true,
