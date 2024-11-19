@@ -4,18 +4,16 @@ return {
   {
     'neovim/nvim-lspconfig',
     event = 'VeryLazy',
+      dependencies = { 'saghen/blink.cmp' },
 
     config = function()
       local lspconfig = require 'lspconfig'
       local configs = require 'lspconfig.configs'
-      local cmp_nvim_lsp = require 'cmp_nvim_lsp'
       local shared = require 'shared'
 
-      local capabilities = vim.tbl_deep_extend(
-        'force',
-        vim.lsp.protocol.make_client_capabilities(),
-        cmp_nvim_lsp.default_capabilities()
-      )
+      lspconfig.util.on_setup = lspconfig.util.add_hook_before(lspconfig.util.on_setup, function(config)
+        config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+      end)
 
       local simple_servers = {
         lspconfig.dartls,
@@ -37,7 +35,7 @@ return {
       }
 
       for _, server in ipairs(simple_servers) do
-        server.setup({ capabilities = capabilities })
+        server.setup({})
       end
 
       -- Vue setup info:
@@ -100,13 +98,11 @@ return {
       -- conflicting with clandg for cpp files.
       if shared.is_darwin() then
         lspconfig.sourcekit.setup {
-          capabilities = capabilities,
           cmd = sourcekit_command(),
         }
       end
 
       lspconfig.lua_ls.setup {
-        capabilities = capabilities,
         settings = {
           Lua = {
             completion = {
@@ -120,7 +116,6 @@ return {
       }
 
       lspconfig.hls.setup {
-        capabilities = capabilities,
         filetypes = {
           'haskell',
           'lhaskell',
@@ -138,13 +133,14 @@ return {
 
       local omnisharp_extended = require 'omnisharp_extended'
       lspconfig.omnisharp.setup {
-        capabilities = vim.tbl_deep_extend('force', capabilities, {
-          workspace = {
-            didChangeWatchedFiles = {
-              dynamicRegistration = true,
-            },
-          },
-        }),
+        -- capabilities = vim.tbl_deep_extend('force', {}, -- todo: Should be the existing server capabilities 
+        -- {
+        --   workspace = {
+        --     didChangeWatchedFiles = {
+        --       dynamicRegistration = true,
+        --     },
+        --   },
+        -- }),
         handlers = {
           ['textDocument/definition'] = omnisharp_extended.definition_handler,
           ['textDocument/typeDefinition'] = omnisharp_extended.type_definition_handler,
