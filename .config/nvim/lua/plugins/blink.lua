@@ -8,7 +8,7 @@ return {
     opts = {
         windows = {
             autocomplete = {
-                selection = "auto_insert",
+                selection = "preselect",
             },
             documentation = {
                 auto_show = true,
@@ -20,11 +20,6 @@ return {
         },
         trigger = {
             signature_help = {
-                enabled = true,
-            },
-        },
-        accept = {
-            auto_brackets = {
                 enabled = true,
             },
         },
