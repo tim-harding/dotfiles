@@ -8,7 +8,7 @@ return {
     opts = {
         windows = {
             autocomplete = {
-                selection = "preselect",
+                selection = "manual",
             },
             documentation = {
                 auto_show = true,
