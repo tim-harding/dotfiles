@@ -2,6 +2,7 @@ return {
   'nvim-neotest/nvim-nio',
   'nvim-lua/plenary.nvim',
   'antoinemadec/FixCursorHold.nvim',
+  "marilari88/neotest-vitest",
 
   'lawrence-laz/neotest-zig',
   -- 'mrcjkb/neotest-haskell',
@@ -9,6 +10,7 @@ return {
   'nvim-neotest/neotest-plenary',
   'nvim-neotest/neotest-go',
   'nvim-neotest/neotest-jest',
+
   {
     'nvim-neotest/neotest',
     event = 'VeryLazy',
@@ -27,6 +29,7 @@ return {
           require 'neotest-plenary',
           require 'neotest-go',
           require 'neotest-jest',
+          require 'neotest-vitest'
         },
         log_level = vim.log.levels.INFO,
       }
