@@ -2,13 +2,14 @@ return {
     'saghen/blink.cmp',
     lazy = false,
     build = 'cargo build --release',
+    dependencies = 'chrisgrieser/nvim-scissors',
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
         windows = {
             autocomplete = {
-                selection = "manual",
+                selection = "preselect",
             },
             documentation = {
                 auto_show = true,
@@ -32,15 +33,28 @@ return {
             },
         },
         completion = {
-            enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
-        },
-        providers = {
-            lsp = {
-                fallback_for = { "lazydev" },
+            enabled_providers = {
+                "snippets",
+                "lazydev",
+                "lsp",
+                "path",
+                "buffer",
             },
-            lazydev = {
-                name = "LazyDev",
-                module = "lazydev.integrations.blink",
+        },
+        sources = {
+            providers = {
+                snippets = {
+                    opts = {
+                        search_paths = { require('shared').snippet_path },
+                    },
+                },
+                lsp = {
+                    fallback_for = { "lazydev" },
+                },
+                lazydev = {
+                    name = "LazyDev",
+                    module = "lazydev.integrations.blink",
+                },
             },
         },
     },
