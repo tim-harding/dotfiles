@@ -9,7 +9,7 @@ return {
     opts = {
         windows = {
             autocomplete = {
-                selection = "preselect",
+                selection = "auto_insert",
             },
             documentation = {
                 auto_show = true,

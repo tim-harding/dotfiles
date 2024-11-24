@@ -1,7 +1,7 @@
 {
   "component": {
     "body": [
-      "<script setup>$1</script>",
+      "<script setup lang=\"ts\">$1</script>",
       "",
       "<template>$2</template>",
       "",
