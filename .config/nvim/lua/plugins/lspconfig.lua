@@ -4,7 +4,7 @@ return {
   {
     'neovim/nvim-lspconfig',
     event = 'VeryLazy',
-      dependencies = { 'saghen/blink.cmp' },
+    dependencies = { 'saghen/blink.cmp' },
 
     config = function()
       local lspconfig = require 'lspconfig'
@@ -133,7 +133,7 @@ return {
 
       local omnisharp_extended = require 'omnisharp_extended'
       lspconfig.omnisharp.setup {
-        -- capabilities = vim.tbl_deep_extend('force', {}, -- todo: Should be the existing server capabilities 
+        -- capabilities = vim.tbl_deep_extend('force', {}, -- todo: Should be the existing server capabilities
         -- {
         --   workspace = {
         --     didChangeWatchedFiles = {
@@ -187,23 +187,6 @@ return {
       end
       shared.map('n', '<leader>i', toggle_inlay_hints, 'toggle inlay hints')
 
-      local function goto(dir)
-        vim.diagnostic.jump({
-          count = dir,
-          float = true,
-          wrap = true,
-          winid = vim.api.nvim_get_current_win(),
-        })
-      end
-
-      local function goto_next()
-        goto(1)
-      end
-
-      local function goto_prev()
-        goto(-1)
-      end
-
       local lsp_augroup = vim.api.nvim_create_augroup('UserLspConfig', {})
       vim.api.nvim_create_autocmd('LspAttach', {
         group = lsp_augroup,
@@ -247,8 +230,6 @@ return {
           map('n', '<leader>r', vim.lsp.buf.rename, 'rename')
           map('n', 'gD', vim.lsp.buf.declaration, 'declaration')
           map('n', 'gh', vim.lsp.buf.hover, 'hover')
-          map('n', '<cr>', goto_next, 'next diagnostic')
-          map('n', '<s-cr>', goto_prev, 'previous diagnostic')
           map({ 'n', 'x' }, '<leader><leader>', vim.lsp.buf.code_action, 'code action')
         end
       })

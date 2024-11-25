@@ -59,8 +59,27 @@ end
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = on_publish_diagnostics
 
+local function goto(dir)
+  vim.diagnostic.jump({
+    count = dir,
+    float = true,
+    wrap = true,
+    winid = vim.api.nvim_get_current_win(),
+  })
+end
+
+local function goto_next()
+  goto(1)
+end
+
+local function goto_prev()
+  goto(-1)
+end
+
 local map = require('shared').map
 map('n', '<leader>e', toggle_diagnostics, 'open workspace diagnostics')
 map('n', '<leader>q', toggle_quickfix, 'toggle quickfix list')
 map('n', ']q', ':cnext', 'next quickfix list item')
 map('n', '[q', ':cprev', 'prev quickfix list item')
+map('n', '<cr>', goto_next, 'next diagnostic')
+map('n', '<s-cr>', goto_prev, 'previous diagnostic')
