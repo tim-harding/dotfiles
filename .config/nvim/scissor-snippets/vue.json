@@ -16,5 +16,13 @@
       "}"
     ],
     "prefix": "function"
+  },
+  "interface": {
+    "body": [
+      "interface $1 {",
+      "  $2",
+      "}"
+    ],
+    "prefix": "interface"
   }
 }
