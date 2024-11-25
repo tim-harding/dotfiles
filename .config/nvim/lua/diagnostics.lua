@@ -61,10 +61,9 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = on_publish_diagnostics
 
 local function goto(dir)
   vim.diagnostic.jump({
-    count = dir,
-    float = true,
+    count = dir, -- Doesn't seem to do anything?
     wrap = true,
-    winid = vim.api.nvim_get_current_win(),
+    -- float = true, -- Errors at the moment
   })
 end
 
