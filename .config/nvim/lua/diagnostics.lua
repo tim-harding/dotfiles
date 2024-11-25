@@ -2,6 +2,14 @@ vim.diagnostic.config({
   virtual_text = false,
   underline = false,
   severity_sort = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '',
+      [vim.diagnostic.severity.WARN] = '',
+      [vim.diagnostic.severity.INFO] = '',
+      [vim.diagnostic.severity.HINT] = '󰌵',
+    },
+  },
 })
 
 local function show_diagnostics()
@@ -42,13 +50,8 @@ local function toggle_quickfix()
   end
 end
 
-local default_handler = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  {}
-)
-
-local function on_publish_diagnostics(err, method, result, client_id, bufnr, config)
-  default_handler(err, method, result, client_id, bufnr, config)
+local function on_publish_diagnostics(err, result, context)
+  vim.lsp.diagnostic.on_publish_diagnostics(err, result, context)
   if are_diagnostics_open then
     show_diagnostics()
   end

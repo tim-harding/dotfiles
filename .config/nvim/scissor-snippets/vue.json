@@ -8,5 +8,13 @@
       "<style module=\"s\">$3</style>"
     ],
     "prefix": "component"
+  },
+  "function": {
+    "body": [
+      "function $1($2)$3 {",
+      "  $4",
+      "}"
+    ],
+    "prefix": "function"
   }
 }

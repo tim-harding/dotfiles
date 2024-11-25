@@ -188,7 +188,12 @@ return {
       shared.map('n', '<leader>i', toggle_inlay_hints, 'toggle inlay hints')
 
       local function goto(dir)
-        vim.diagnostic.jump({ count = dir, float = true })
+        vim.diagnostic.jump({
+          count = dir,
+          float = true,
+          wrap = true,
+          winid = vim.api.nvim_get_current_win(),
+        })
       end
 
       local function goto_next()
@@ -213,7 +218,7 @@ return {
             vim.keymap.set(m, keys, func, { buffer = bufnr, desc = desc })
           end
 
-          if client.supports_method('textDocument/documentHighlight', { bufnr = bufnr }) then
+          if client:supports_method('textDocument/documentHighlight', bufnr) then
             local group = hl_augroup(bufnr)
 
             vim.api.nvim_create_autocmd({
