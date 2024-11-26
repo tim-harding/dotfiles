@@ -53,16 +53,26 @@ return {
         return vim.fn.resolve(vim.fs.joinpath(expanded, entries[#entries]))
       end
 
-      lspconfig.ts_ls.setup {
-        init_options = {
-          plugins = {
-            {
-              name = "@vue/typescript-plugin",
-              location = latest('~/.bun/install/cache/@vue/typescript-plugin'),
-              languages = { 'vue', 'markdown' },
-            },
-          },
-        },
+      local ts_languages = lspconfig.vtsls.config_def.default_config.filetypes
+      table.insert(ts_languages, 'vue')
+
+      local vue_plugin = latest('~/.bun/install/cache/@vue/typescript-plugin')
+
+      lspconfig.vtsls.setup {
+        filetypes = ts_languages,
+        settings = {
+          vtsls = {
+            tsserver = {
+              globalPlugins = { {
+                name = "@vue/typescript-plugin",
+                location = vue_plugin,
+                languages = { "vue" },
+                configNamespace = "typescript",
+                enableForWorkspaceTypeScriptVersions = true,
+              } }
+            }
+          }
+        }
       }
 
       local ts_dir = latest('~/.bun/install/cache/typescript')
@@ -78,7 +88,7 @@ return {
             tsdk = tsdk_dir,
           },
           vue = {
-            hybridMode = false,
+            hybridMode = true,
           }
         }
       }
