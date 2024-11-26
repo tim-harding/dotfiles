@@ -78,7 +78,8 @@ local function smart_enter()
   if
       (prev_char == '(' and next_char == ')') or
       (prev_char == '[' and next_char == ']') or
-      (prev_char == '{' and next_char == '}') then
+      (prev_char == '{' and next_char == '}') or
+      (prev_char == '>' and next_char == '<') then
     cr_braces()
   else
     cr()
