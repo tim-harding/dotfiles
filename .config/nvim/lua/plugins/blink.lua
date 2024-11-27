@@ -19,6 +19,11 @@ return {
         keymap = {
             preset = 'enter',
         },
+        accept = {
+            auto_brackets = {
+                enabled = true,
+            }
+        },
         trigger = {
             signature_help = {
                 enabled = true,
