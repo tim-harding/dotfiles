@@ -1,4 +1,8 @@
 {
+  "arrow": {
+    "body": "($1) => {$2}",
+    "prefix": "arrow"
+  },
   "component": {
     "body": [
       "<script setup lang=\"ts\">$1</script>",
