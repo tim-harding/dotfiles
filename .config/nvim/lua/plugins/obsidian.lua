@@ -3,22 +3,22 @@
 -- - <C-x>: new note from query
 -- - <C-l>: Insert a link to selected note
 
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('Obsidian', {}),
-  pattern = 'markdown',
-  callback = function()
-    vim.opt_local.conceallevel = 2
-  end,
-})
-
 return {
   "nvim-lua/plenary.nvim",
   {
     "epwalsh/obsidian.nvim",
     version = "*",
     event = 'VeryLazy',
+    enabled = false,
     init = function()
       vim.g.vim_markdown_frontmatter = 1
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('Obsidian', {}),
+        pattern = 'markdown',
+        callback = function()
+          vim.opt_local.conceallevel = 2
+        end,
+      })
     end,
 
     opts = {
