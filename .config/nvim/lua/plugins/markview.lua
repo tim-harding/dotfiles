@@ -3,6 +3,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   {
     "OXY2DEV/markview.nvim",
+    enabled = false,
     lazy = false,
     opts = {
       callbacks = {
