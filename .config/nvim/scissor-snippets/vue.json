@@ -13,6 +13,14 @@
     ],
     "prefix": "component"
   },
+  "for": {
+    "body": [
+      "for ($1) {",
+      "  $2",
+      "}"
+    ],
+    "prefix": "for"
+  },
   "function": {
     "body": [
       "function $1($2)$3 {",
