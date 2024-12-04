@@ -8,9 +8,6 @@ return {
     ---@type blink.cmp.Config
     opts = {
         windows = {
-            autocomplete = {
-                selection = "auto_insert",
-            },
             documentation = {
                 auto_show = true,
                 auto_show_delay_ms = 0,
@@ -38,6 +35,9 @@ return {
             },
         },
         completion = {
+            list = {
+                selection = "auto_insert",
+            },
             enabled_providers = {
                 "snippets",
                 "lazydev",
