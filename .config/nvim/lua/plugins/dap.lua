@@ -2,28 +2,6 @@ return {
   'nvim-lua/plenary.nvim',
 
   {
-    "microsoft/vscode-js-debug",
-    build = "npm ci --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
-  },
-
-  {
-    'mxsdev/nvim-dap-vscode-js',
-    event = 'VeryLazy',
-    config = function()
-      require("dap-vscode-js").setup({
-        adapters = {
-          'pwa-node',
-          'pwa-chrome',
-          'pwa-msedge',
-          'node-terminal',
-          'pwa-extensionHost',
-        },
-        debugger_path = vim.env.HOME .. '/.local/share/nvim/lazy/vscode-js-debug',
-      })
-    end
-  },
-
-  {
     'mfussenegger/nvim-dap-python',
     event = 'VeryLazy',
     config = function()
@@ -133,12 +111,21 @@ return {
         },
       }
 
-      -- Options: https://github.com/microsoft/vscode-js-debug/blob/main/OPTIONS.md
+      dap.adapters["pwa-node"] = {
+        type = "server",
+        host = "localhost",
+        port = "${port}",
+        executable = {
+          command = "node",
+          args = { vim.env.HOME .. "/Documents/installs/vscode-js-debug/dist/src/dapDebugServer.js", "${port}" },
+        }
+      }
+
       local configs_js = {
         {
           type = "pwa-node",
           request = "launch",
-          name = "Launch file",
+          name = "Node debug file",
           program = "${file}",
           cwd = "${workspaceFolder}",
           stopOnEntry = false,
@@ -146,7 +133,7 @@ return {
         {
           type = "pwa-node",
           request = "attach",
-          name = "Attach",
+          name = "Node attach",
           processId = require 'dap.utils'.pick_process,
           cwd = "${workspaceFolder}",
         },
