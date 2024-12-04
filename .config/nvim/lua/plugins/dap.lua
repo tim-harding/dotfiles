@@ -121,6 +121,12 @@ return {
         }
       }
 
+      dap.adapters["firefox"] = {
+        type = "executable",
+        command = "node",
+        args = { vim.env.HOME .. "/Documents/installs/vscode-firefox-debug/dist/adapter.bundle.js" },
+      }
+
       local configs_js = {
         {
           type = "pwa-node",
@@ -137,10 +143,20 @@ return {
           processId = require 'dap.utils'.pick_process,
           cwd = "${workspaceFolder}",
         },
+        {
+          type = "firefox",
+          request = "launch",
+          name = "Firefox launch",
+          reAttach = true,
+          url = 'http://localhost:5173',
+          firefoxExecutable = '/usr/bin/firefox',
+          webRoot = "${workspaceFolder}",
+        },
       }
 
       dap.configurations['javascript'] = configs_js
       dap.configurations['typescript'] = configs_js
+      dap.configurations['vue'] = configs_js
 
       local function set_condition_breakpoint()
         vim.ui.input(
