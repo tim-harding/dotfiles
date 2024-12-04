@@ -121,6 +121,8 @@ return {
         }
       }
 
+      dap.adapters['pwa-chrome'] = dap.adapters['pwa-node']
+
       dap.adapters["firefox"] = {
         type = "executable",
         command = "node",
@@ -129,24 +131,33 @@ return {
 
       local configs_js = {
         {
+          name = "Node debug file",
           type = "pwa-node",
           request = "launch",
-          name = "Node debug file",
           program = "${file}",
           cwd = "${workspaceFolder}",
           stopOnEntry = false,
         },
         {
+          name = "Node attach",
           type = "pwa-node",
           request = "attach",
-          name = "Node attach",
           processId = require 'dap.utils'.pick_process,
           cwd = "${workspaceFolder}",
         },
         {
+          name = "Chrome launch",
+          type = "pwa-chrome",
+          request = "launch",
+          runtimeExecutable = "/usr/bin/chromium",
+          cwd = "${workspaceFolder}",
+          url = 'http://localhost:5173',
+          webRoot = "${workspaceFolder}",
+        },
+        {
+          name = "Firefox launch",
           type = "firefox",
           request = "launch",
-          name = "Firefox launch",
           reAttach = true,
           url = 'http://localhost:5173',
           firefoxExecutable = '/usr/bin/firefox',
