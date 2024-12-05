@@ -106,3 +106,5 @@ local function load_recent()
 end
 
 map('n', '<leader>o', load_recent, 'load recent project')
+
+map('n', '<leader><s-l>', '<cmd>Lazy update<cr>', 'Update plugins')
