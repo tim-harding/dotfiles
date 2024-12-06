@@ -29,6 +29,14 @@
     ],
     "prefix": "function"
   },
+  "if": {
+    "body": [
+      "if ($1) {",
+      "  $2",
+      "}"
+    ],
+    "prefix": "if"
+  },
   "interface": {
     "body": [
       "interface $1 {",
