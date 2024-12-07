@@ -39,6 +39,8 @@ function update_all
     bob update --all
     nvim '+Lazy sync' '+Lazy update' +qa &>/dev/null
 
+    turso update
+
     # TODO: Figure out upgrading Luarocks. The command doesn't seem to have this
     # at the moment. Probably need something with `lua list --porcelain --outdated`
 end
