@@ -71,7 +71,7 @@ return {
         html = { 'prettierd', 'prettier' },
         scss = { 'prettierd', 'prettier' },
         yaml = { 'prettierd', 'prettier' },
-        sql = { 'sqlfluff' },
+        -- sql = { 'sqlfluff' },
 
         vue = { 'prettierd', 'prettier', lsp_format = 'prefer' },
         rust = { 'rustfmt', lsp_format = 'fallback' },
