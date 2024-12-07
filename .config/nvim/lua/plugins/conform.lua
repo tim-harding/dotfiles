@@ -71,6 +71,7 @@ return {
         html = { 'prettierd', 'prettier' },
         scss = { 'prettierd', 'prettier' },
         yaml = { 'prettierd', 'prettier' },
+        sql = { 'sqlfluff' },
 
         vue = { 'prettierd', 'prettier', lsp_format = 'prefer' },
         rust = { 'rustfmt', lsp_format = 'fallback' },
@@ -84,6 +85,14 @@ return {
         ocaml = { 'ocamlformat' },
         python = { 'black' },
         swift = { 'swiftformat' },
+      },
+
+      formatters = {
+        sqlfluff = {
+          command = 'sqlfluff',
+          args = { 'fix', '-' },
+          cwd = require('conform.util').root_file('.sqlfluff')
+        }
       },
 
       format_on_save = function()
