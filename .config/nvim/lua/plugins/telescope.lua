@@ -59,6 +59,9 @@ return {
               '!.git'
             },
           },
+          git_files = {
+            show_untracked = true,
+          },
           find_files = {
             find_command = {
               'fd',
@@ -83,6 +86,7 @@ return {
       telescope.load_extension('projects')
 
       map('n', '<leader>jj', tb.find_files, 'files')
+      map('n', '<leader>jg', tb.git_files, 'git files')
       map('n', '<leader>jh', tb.help_tags, 'help')
       map('n', '<leader>jr', tb.live_grep, 'ripgrep project')
       map('n', '<leader>jq', tb.quickfix, 'quickfix')
