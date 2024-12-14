@@ -7,27 +7,11 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-        windows = {
-            documentation = {
-                auto_show = true,
-                auto_show_delay_ms = 0,
-            },
-        },
         keymap = {
             preset = 'enter',
         },
-        accept = {
-            auto_brackets = {
-                enabled = true,
-            }
-        },
-        trigger = {
-            signature_help = {
-                enabled = true,
-            },
-        },
-        highlight = {
-            use_nvim_cmp_as_default = true,
+        signature = {
+            enabled = true,
         },
         fuzzy = {
             prebuilt_binaries = {
@@ -35,18 +19,28 @@ return {
             },
         },
         completion = {
+            documentation = {
+                auto_show = true,
+                auto_show_delay_ms = 0,
+                update_delay_ms = 0,
+            },
+            menu = {
+                draw = {
+                    treesitter = { 'lsp' },
+                }
+            },
             list = {
                 selection = "auto_insert",
             },
-            enabled_providers = {
+        },
+        sources = {
+            default = {
                 "snippets",
                 "lazydev",
                 "lsp",
                 "path",
                 "buffer",
             },
-        },
-        sources = {
             providers = {
                 snippets = {
                     opts = {
