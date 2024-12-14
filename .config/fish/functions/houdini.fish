@@ -30,6 +30,7 @@ function houdini
 
             fish_add_path /home/tim/Documents/installs/cycles/install
             set --export PXR_PLUGINPATH_NAME /home/tim/Documents/installs/cycles/install/houdini/dso/usd_plugins
-            /opt/hfs20.5/bin/hindie
+            set -l hfs_dir (last /opt/hfs*/)
+            $hfs_dir/bin/hindie
     end
 end
