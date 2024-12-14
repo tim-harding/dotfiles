@@ -54,7 +54,7 @@ return {
                     },
                 },
                 lsp = {
-                    fallback_for = { "lazydev" },
+                    fallbacks = { "lazydev" },
                 },
                 lazydev = {
                     name = "LazyDev",
