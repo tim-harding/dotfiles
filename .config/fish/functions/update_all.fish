@@ -25,7 +25,7 @@ function update_all
             brew upgrade
     end
 
-    # nix profile upgrade --all
+    nix profile upgrade --all
 
     gup update
 
