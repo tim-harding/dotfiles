@@ -8,6 +8,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'markdown',
     'typescript',
     'vue',
+    'nix',
   },
   callback = function()
     vim.bo.shiftwidth = 2
