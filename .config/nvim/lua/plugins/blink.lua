@@ -37,7 +37,7 @@ return {
                 "lazydev",
                 "lsp",
                 "path",
-                "buffer",
+                -- "buffer",
             },
             providers = {
                 snippets = {
