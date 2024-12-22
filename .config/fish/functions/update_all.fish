@@ -19,7 +19,7 @@ function update_all
         case Linux
             sudo pacman -Syu --noconfirm
             yay -Syu --noconfirm
-            hyprpm update -f
+            hyprpm update # Add -f to fix header issues
         case Darwin
             softwareupdate --install --all
             brew update
