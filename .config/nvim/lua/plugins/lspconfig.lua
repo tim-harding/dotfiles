@@ -32,7 +32,6 @@ return {
         lspconfig.tinymist,
         lspconfig.nixd,
         lspconfig.hyprls,
-        lspconfig.sqls,
       }
 
       for _, server in ipairs(simple_servers) do
