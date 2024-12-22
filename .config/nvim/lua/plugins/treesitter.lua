@@ -57,7 +57,7 @@ return {
             goto_next_start = {
               [']f'] = '@function.outer',
               [']b'] = '@block.inner',
-              [']k'] = '@attribute.inner',
+              [']k'] = '@attribute.outer',
               [']s'] = '@class.outer',
               [']a'] = '@parameter.inner',
               [']c'] = '@comment.inner',
@@ -67,7 +67,7 @@ return {
             goto_next_end = {
               [']F'] = '@function.outer',
               [']B'] = '@block.inner',
-              [']K'] = '@attribute.inner',
+              [']K'] = '@attribute.outer',
               [']S'] = '@class.outer',
               [']A'] = '@parameter.inner',
               [']C'] = '@comment.inner',
@@ -77,7 +77,7 @@ return {
             goto_previous_start = {
               ['[f'] = '@function.outer',
               ['[b'] = '@block.inner',
-              ['[k'] = '@attribute.inner',
+              ['[k'] = '@attribute.outer',
               ['[s'] = '@class.outer',
               ['[a'] = '@parameter.inner',
               ['[c'] = '@comment.inner',
@@ -87,7 +87,7 @@ return {
             goto_previous_end = {
               ['[F'] = '@function.outer',
               ['[B'] = '@block.inner',
-              ['[K'] = '@attribute.inner',
+              ['[K'] = '@attribute.outer',
               ['[S'] = '@class.outer',
               ['[A'] = '@parameter.inner',
               ['[C'] = '@comment.inner',
