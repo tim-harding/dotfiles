@@ -19,6 +19,7 @@ function update_all
         case Linux
             sudo pacman -Syu --noconfirm
             yay -Syu --noconfirm
+            hyprpm update -f
         case Darwin
             softwareupdate --install --all
             brew update
