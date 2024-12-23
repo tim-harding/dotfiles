@@ -2,7 +2,7 @@ return {
     'saghen/blink.cmp',
     lazy = false,
     build = 'cargo build --release',
-    dependencies = 'chrisgrieser/nvim-scissors',
+    version = '*',
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
