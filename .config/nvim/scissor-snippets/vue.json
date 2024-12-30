@@ -44,5 +44,9 @@
       "}"
     ],
     "prefix": "interface"
+  },
+  "modimport": {
+    "body": "import * as $1 from '@/logic/$1';",
+    "prefix": "modimport"
   }
 }
