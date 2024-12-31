@@ -24,3 +24,4 @@ macos-titlebar-style = transparent
 window-colorspace = display-p3
 resize-overlay = never
 quit-after-last-window-closed = true
+adjust-cursor-thickness = 2
