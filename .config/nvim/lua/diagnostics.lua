@@ -20,26 +20,22 @@ local function show_diagnostics()
   })
 end
 
-local are_diagnostics_open = false
-
-local function toggle_diagnostics()
-  are_diagnostics_open = not are_diagnostics_open
-  if are_diagnostics_open then
-    vim.cmd.copen()
-    show_diagnostics()
-  else
-    vim.cmd.cclose()
-  end
-end
-
 local function is_quickfix_open()
-  local is_open = false
   for _, info in ipairs(vim.fn.getwininfo()) do
     if info.quickfix == 1 then
-      is_open = true
+      return true
     end
   end
-  return is_open
+  return false
+end
+
+local function toggle_diagnostics()
+  if is_quickfix_open() then
+    vim.cmd.cclose()
+  else
+    vim.cmd.copen()
+    show_diagnostics()
+  end
 end
 
 local function toggle_quickfix()
@@ -52,7 +48,7 @@ end
 
 local function on_publish_diagnostics(err, result, context)
   vim.lsp.diagnostic.on_publish_diagnostics(err, result, context)
-  if are_diagnostics_open then
+  if is_quickfix_open() then
     show_diagnostics()
   end
 end
