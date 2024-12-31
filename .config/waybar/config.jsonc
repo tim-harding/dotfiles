@@ -1,4 +1,5 @@
 // https://github.com/Alexays/Waybar/wiki/Configuration
+// Reload: killall -SIGUSR2 waybar
 {
     "width": 24,
     "reload_style_on_change": true,
@@ -10,14 +11,20 @@
     ],
     "modules-center": [],
     "modules-right": [
-        "clock"
+        "custom/time"
     ],
     "hyprland/workspaces": {
         "format": "{name}",
         "disable-scroll": true,
         "disable-click": true
     },
-    "clock": {
-        "format": "{:%H\n%M}"
+    // NOTE:
+    // JSON return type is confusing. 
+    // It seems you can't have arbitrary keys to use in format. 
+    // It has to match the exact text, alt, tooltip, class, percentage
+    // keys as listed in the docs. 
+    "custom/time": {
+        "exec": "$HOME/.config/waybar/time.fish",
+        "interval": 60
     }
 }
