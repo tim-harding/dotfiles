@@ -10,7 +10,7 @@ fish_add_path -g (go env GOPATH)/bin
 
 switch $platform
     case Darwin
-        fish_add_path --global /opt/homebrew/opt/llvm/bin
-        fish_add_path --global /Applications/Sublime\ Merge.app/Contents/SharedSupport/bin
-        fish_add_path --global /Users/tim/.local/share/bob/nvim-bin
+        fish_add_path -g /opt/homebrew/opt/llvm/bin
+        fish_add_path -g /Applications/Sublime\ Merge.app/Contents/SharedSupport/bin
+        fish_add_path -g /Users/tim/.local/share/bob/nvim-bin
 end

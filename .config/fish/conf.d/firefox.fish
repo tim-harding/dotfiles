@@ -1,6 +1,6 @@
 switch $platform
     case Linux
-        set --export BROWSER firefox
-        set --export MOZ_ENABLE_WAYLAND 1
-        set --export MOZ_WEBRENDER 1
+        set -xg BROWSER firefox
+        set -xg MOZ_ENABLE_WAYLAND 1
+        set -xg MOZ_WEBRENDER 1
 end

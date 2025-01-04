@@ -1,2 +1,2 @@
 set FLYCTL_INSTALL ~/.fly
-fish_add_path --global $FLYCTL_INSTALL/bin
+fish_add_path -g $FLYCTL_INSTALL/bin

@@ -1,1 +1,1 @@
-set --export RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc
+set -xg RIPGREP_CONFIG_PATH ~/.config/ripgrep/.ripgreprc

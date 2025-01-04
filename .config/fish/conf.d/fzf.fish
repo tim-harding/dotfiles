@@ -1,5 +1,5 @@
 # Colors from https://github.com/catppuccin/fzf
-set --export FZF_DEFAULT_OPTS \
+set -xg FZF_DEFAULT_OPTS \
     --reverse \
     --inline-info \
     --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \

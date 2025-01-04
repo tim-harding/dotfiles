@@ -1,15 +1,13 @@
-set --erase PYTHONPATH
+set -xg PYTHONPATH
 switch $platform
     case Linux
-
-        last /usr/share/blender/*/scripts/modules/ | read PYTHONPATH_BLENDER
+        last /usr/share/blender/*/scripts/modules/ | read -l PYTHONPATH_BLENDER
         if not contains -- $PYTHONPATH_BLENDER $PYTHONPATH
-            set --export --global --append PYTHONPATH $PYTHONPATH_BLENDER
+            set --append PYTHONPATH $PYTHONPATH_BLENDER
         end
 
-        last /opt/hfs*/houdini/python*libs | read PYTHONPATH_HOUDINI
+        last /opt/hfs*/houdini/python*libs | read -l PYTHONPATH_HOUDINI
         if not contains -- $PYTHONPATH_HOUDINI $PYTHONPATH
-            set --export --global --append PYTHONPATH $PYTHONPATH_HOUDINI
+            set --append PYTHONPATH $PYTHONPATH_HOUDINI
         end
-
 end
