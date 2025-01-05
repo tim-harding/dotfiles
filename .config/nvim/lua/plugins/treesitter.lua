@@ -1,5 +1,4 @@
 return {
-  'andymass/vim-matchup',
   'nvim-treesitter/nvim-treesitter-textobjects',
   {
     'nvim-treesitter/nvim-treesitter',
@@ -111,10 +110,6 @@ return {
             border = 'none',
             floating_preview_opts = {},
           },
-        },
-
-        matchup = {
-          enable = true,
         },
       }
 
