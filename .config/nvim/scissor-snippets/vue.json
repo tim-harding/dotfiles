@@ -5,11 +5,17 @@
   },
   "component": {
     "body": [
-      "<script setup lang=\"ts\">$1</script>",
+      "<script setup lang=\"ts\">",
+      "$1",
+      "</script>",
       "",
-      "<template>$2</template>",
+      "<template>",
+      "$2",
+      "</template>",
       "",
-      "<style module=\"s\">$3</style>"
+      "<style module=\"s\">",
+      "$3",
+      "</style>"
     ],
     "prefix": "component"
   },
