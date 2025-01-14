@@ -43,6 +43,10 @@
     ],
     "prefix": "if"
   },
+  "import_component": {
+    "body": "import $1 from \"@/components/$1\";",
+    "prefix": "import_component"
+  },
   "interface": {
     "body": [
       "interface $1 {",
@@ -54,5 +58,13 @@
   "modimport": {
     "body": "import * as $1 from '@/logic/$1';",
     "prefix": "modimport"
+  },
+  "switch": {
+    "body": [
+      "switch ($1) {",
+      "    $2",
+      "}"
+    ],
+    "prefix": "switch"
   }
 }
