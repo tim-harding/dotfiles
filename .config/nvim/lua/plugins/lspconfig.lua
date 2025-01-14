@@ -38,9 +38,6 @@ return {
         server.setup({})
       end
 
-      -- Vue setup info:
-      -- https://github.com/vuejs/language-tools?tab=readme-ov-file#community-integration
-
       local function latest(path)
         local expanded = vim.fn.expand(path)
         local entries = {}
@@ -53,42 +50,24 @@ return {
         return vim.fn.resolve(vim.fs.joinpath(expanded, entries[#entries]))
       end
 
-      local ts_languages = lspconfig.vtsls.config_def.default_config.filetypes
-      table.insert(ts_languages, 'vue')
-
-      local vue_plugin = latest('~/.bun/install/cache/@vue/typescript-plugin')
-
-      lspconfig.vtsls.setup {
-        filetypes = ts_languages,
-        settings = {
-          vtsls = {
-            tsserver = {
-              globalPlugins = { {
-                name = "@vue/typescript-plugin",
-                location = vue_plugin,
-                languages = { "vue" },
-                configNamespace = "typescript",
-                enableForWorkspaceTypeScriptVersions = true,
-              } }
-            }
-          }
-        }
-      }
-
       local ts_dir = latest('~/.bun/install/cache/typescript')
       local tsdk_dir = vim.fs.joinpath(ts_dir, 'lib')
 
-      local volar_languages = lspconfig.volar.config_def.default_config.filetypes
-      table.insert(volar_languages, 'markdown')
-
       lspconfig.volar.setup {
-        filetypes = volar_languages,
+        filetypes = {
+          'vue',
+          'markdown',
+          'javascript',
+          'typescript',
+          'javascriptreact',
+          'typescriptreact',
+        },
         init_options = {
           typescript = {
             tsdk = tsdk_dir,
           },
           vue = {
-            hybridMode = true,
+            hybridMode = false,
           }
         }
       }
