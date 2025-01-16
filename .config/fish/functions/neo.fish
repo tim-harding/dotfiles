@@ -1,5 +1,5 @@
 function neo
-    set neophyte ~/Documents/personal/neophyte/target/release/neophyte
+    set neophyte ~/.rust-target/release/neophyte
     set logfile ~/Documents/temp/neophyte/log.txt
 
     set -l events_files ~/Documents/temp/neophyte/*.json
