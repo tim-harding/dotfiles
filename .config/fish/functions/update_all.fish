@@ -18,6 +18,7 @@ function update_all
     switch $platform
         case Linux
             sudo pacman -Syu --noconfirm
+            paccache -rk1
             yay -Syu --noconfirm
             hyprpm update # Add -f to fix header issues
         case Darwin
