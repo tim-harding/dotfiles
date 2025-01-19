@@ -32,6 +32,7 @@ return {
         lspconfig.tinymist,
         lspconfig.nixd,
         lspconfig.hyprls,
+        lspconfig.svelte,
       }
 
       for _, server in ipairs(simple_servers) do

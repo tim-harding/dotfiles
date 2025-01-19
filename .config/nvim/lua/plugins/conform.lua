@@ -72,6 +72,7 @@ return {
         scss = { 'prettierd', 'prettier' },
         yaml = { 'prettierd', 'prettier' },
         vue = { 'prettierd', 'prettier' },
+        svelte = { 'prettierd', 'prettier' },
 
         rust = { 'rustfmt', lsp_format = 'fallback' },
         lua = { 'lua-format', lsp_format = "prefer" },
