@@ -32,7 +32,6 @@ return {
         lspconfig.tinymist,
         lspconfig.nixd,
         lspconfig.hyprls,
-        lspconfig.svelte,
       }
 
       for _, server in ipairs(simple_servers) do
@@ -56,24 +55,47 @@ return {
 
       local ts_languages = lspconfig.vtsls.config_def.default_config.filetypes
       table.insert(ts_languages, 'vue')
+      table.insert(ts_languages, 'svelte')
 
-      local vue_plugin = latest('~/.bun/install/cache/@vue/typescript-plugin')
+      local plugin_vue = latest('~/.bun/install/cache/@vue/typescript-plugin')
+      local plugin_svelte = latest('~/.bun/install/cache/typescript-svelte-plugin')
+
+      lspconfig.svelte.setup {
+        settings = {
+          svelte = {
+            plugin = {
+              typescript = {
+                enable = false,
+              },
+            },
+          },
+        },
+      }
 
       lspconfig.vtsls.setup {
         filetypes = ts_languages,
         settings = {
           vtsls = {
             tsserver = {
-              globalPlugins = { {
-                name = "@vue/typescript-plugin",
-                location = vue_plugin,
-                languages = { "vue" },
-                configNamespace = "typescript",
-                enableForWorkspaceTypeScriptVersions = true,
-              } }
-            }
-          }
-        }
+              globalPlugins = {
+                {
+                  name = "@vue/typescript-plugin",
+                  location = plugin_vue,
+                  languages = { "vue" },
+                  configNamespace = "typescript",
+                  enableForWorkspaceTypeScriptVersions = true,
+                },
+                {
+                  name = "typescript-svelte-plugin",
+                  location = plugin_svelte,
+                  languages = { "svelte" },
+                  configNamespace = "typescript",
+                  enableForWorkspaceTypeScriptVersions = true,
+                },
+              },
+            },
+          },
+        },
       }
 
       local ts_dir = latest('~/.bun/install/cache/typescript')
@@ -90,8 +112,8 @@ return {
           },
           vue = {
             hybridMode = true,
-          }
-        }
+          },
+        },
       }
 
       local function sourcekit_command()
