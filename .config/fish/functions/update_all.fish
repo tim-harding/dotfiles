@@ -35,7 +35,7 @@ function update_all
     cargo install-update --all
 
     fisher update
-    bun update --global
+    bun update --global --latest
     gem update
 
     bob update --all
