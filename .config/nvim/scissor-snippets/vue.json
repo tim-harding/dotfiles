@@ -35,6 +35,10 @@
     ],
     "prefix": "function"
   },
+  "grid-area": {
+    "body": "grid-area: ${1:row-start} / ${2:col-start} / ${3:row-end} / ${4:col-end};",
+    "prefix": "grid-area-4"
+  },
   "if": {
     "body": [
       "if ($1) {",
@@ -58,6 +62,10 @@
   "modimport": {
     "body": "import * as $1 from '@/logic/$1';",
     "prefix": "modimport"
+  },
+  "shadow": {
+    "body": "${1:offset-x} ${2:offset-y} ${3:blur} ${4:spread} ${5:inset} ${6:color};",
+    "prefix": "shadow"
   },
   "switch": {
     "body": [
