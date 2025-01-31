@@ -1,5 +1,53 @@
 {
-  "fn": {
+  "/*": {
+    "body": [
+      "/*",
+      " * $1",
+      " */"
+    ],
+    "prefix": "doc"
+  },
+  "arrow": {
+    "body": "($1) => {$2}",
+    "prefix": "ar"
+  },
+  "arrow-1": {
+    "body": "($1) => {$2}",
+    "prefix": "arrow"
+  },
+  "async_function": {
+    "body": [
+      "async function $1($2)$3 {",
+      "  $4",
+      "}"
+    ],
+    "prefix": "async_function"
+  },
+  "elif": {
+    "body": [
+      "else if ($1) {",
+      "  $2",
+      "}"
+    ],
+    "prefix": "elif"
+  },
+  "else": {
+    "body": [
+      "else {",
+      "  $1",
+      "}"
+    ],
+    "prefix": "else"
+  },
+  "for": {
+    "body": [
+      "for ($1) {",
+      "  $2",
+      "}"
+    ],
+    "prefix": "for"
+  },
+  "function": {
     "body": [
       "function $1($2)$3 {",
       "  $4",
@@ -15,12 +63,34 @@
     ],
     "prefix": "if"
   },
-  "loop": {
+  "modimport": {
+    "body": "import * as $1 from \"./$1\";",
+    "prefix": "modimport"
+  },
+  "switch": {
     "body": [
-      "for ($1) {",
+      "switch ($1) {",
       "  $2",
       "}"
     ],
-    "prefix": "for"
+    "prefix": "switch"
+  },
+  "test": {
+    "body": "test('$1', () => {$2})",
+    "prefix": "test"
+  },
+  "test-imports": {
+    "body": "import { expect, test } from \"vitest\";",
+    "prefix": "test-imports"
+  },
+  "try": {
+    "body": [
+      "try {",
+      "  $1",
+      "} catch (e) {",
+      "  $2",
+      "}"
+    ],
+    "prefix": "try"
   }
 }
