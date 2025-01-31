@@ -25,3 +25,4 @@ window-colorspace = display-p3
 resize-overlay = never
 quit-after-last-window-closed = true
 adjust-cursor-thickness = 2
+alpha-blending = linear-corrected
