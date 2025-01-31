@@ -5,4 +5,5 @@ function update_mirrors
     set mirrorlist (string escape $mirrorlist)
     sudo fish -c "echo $mirrorlist >/etc/pacman.d/mirrorlist"
     sudo pacman -Syyuu
+    sudo yay -Syyuu --noconfirm
 end
