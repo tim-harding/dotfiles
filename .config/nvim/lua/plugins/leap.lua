@@ -13,7 +13,7 @@ return {
     leap.opts.labels = 'setnrigmfuplwycdhxaoq'
     leap.opts.safe_labels = ''
 
-    vim.keymap.set('n', 's', function()
+    vim.keymap.set('n', 'L', function()
       leap.leap({
         target_windows = { vim.fn.win_getid() },
       })

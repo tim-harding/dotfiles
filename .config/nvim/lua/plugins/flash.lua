@@ -23,6 +23,6 @@ return {
       },
     })
 
-    map('n', 'S', flash.treesitter, 'flash treesitter')
+    map('n', 'H', flash.treesitter, 'flash treesitter')
   end,
 }

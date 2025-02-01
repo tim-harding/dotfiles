@@ -108,3 +108,8 @@ end
 map('n', '<leader>o', load_recent, 'load recent project')
 
 map('n', '<leader><s-l>', '<cmd>Lazy update<cr>', 'Update plugins')
+
+map('n', 's', '/')
+map('n', 'S', '?')
+map('n', '<s-j>', paragraph_next, 'forward paragraph')
+map('n', '<s-k>', paragraph_prev, 'backward paragraph')
