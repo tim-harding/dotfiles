@@ -26,3 +26,4 @@ resize-overlay = never
 quit-after-last-window-closed = true
 adjust-cursor-thickness = 2
 alpha-blending = linear-corrected
+app-notifications = no-clipboard-copy
