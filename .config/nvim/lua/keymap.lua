@@ -94,20 +94,6 @@ end)
 
 map('n', '<m-t>', vim.cmd.terminal)
 map('n', '<m-c>', ':<cr>')
-
-local function load_recent()
-  if vim.fn.getcwd() == vim.env.HOME then
-    local recent = require('project_nvim').get_recent_projects()
-    local last = recent[#recent]
-    vim.print(last)
-    require('project_nvim.project').set_pwd(last, 'load_recent')
-  end
-  require('persistence').load()
-end
-
-map('n', '<leader>o', load_recent, 'load recent project')
-
 map('n', '<leader><s-l>', '<cmd>Lazy update<cr>', 'Update plugins')
-
 map('n', 'L', '/')
 map('n', 'H', '?')

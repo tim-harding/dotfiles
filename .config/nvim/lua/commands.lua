@@ -50,6 +50,7 @@ vim.api.nvim_create_user_command('GoFast', function()
   vim.opt.wrap = false
 end, {})
 
+--[[
 local buf_to_close = -1
 
 vim.api.nvim_create_autocmd('BufLeave', {
@@ -73,6 +74,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
     end
   end
 })
+--]]
 
 vim.api.nvim_create_autocmd('FocusGained', {
   group = augroup,

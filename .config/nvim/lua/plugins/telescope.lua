@@ -83,7 +83,6 @@ return {
       pcall(require('telescope').load_extension, 'fzf')
       telescope.load_extension('dap')
       telescope.load_extension('ui-select')
-      telescope.load_extension('projects')
 
       map('n', '<leader>jj', tb.find_files, 'files')
       map('n', '<leader>jg', tb.git_files, 'git files')
@@ -91,7 +90,6 @@ return {
       map('n', '<leader>jr', tb.live_grep, 'ripgrep project')
       map('n', '<leader>jq', tb.quickfix, 'quickfix')
       map('n', '<leader>js', tb.lsp_dynamic_workspace_symbols, 'find project symbol')
-      map('n', '<leader>jp', telescope.extensions.projects.projects, 'projects')
       map('n', '<leader>jd', function()
         tb.find_files({ cwd = '~/dotfiles' })
       end, 'Dotfiles')
