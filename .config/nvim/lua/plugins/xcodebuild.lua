@@ -6,7 +6,6 @@ return {
   {
     'wojciech-kulik/xcodebuild.nvim',
     event = 'VeryLazy',
-    enabled = false,
     config = function()
       require('xcodebuild').setup({
         integrations = {
