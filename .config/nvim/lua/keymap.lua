@@ -99,10 +99,9 @@ local function load_recent()
   if vim.fn.getcwd() == vim.env.HOME then
     local recent = require('project_nvim').get_recent_projects()
     local last = recent[#recent]
-    vim.print(last)
     require('project_nvim.project').set_pwd(last, 'load_recent')
   end
-  require('persistence').load()
+  vim.cmd('SessionManager', { args = 'load_current_dir_session', bang = true })
 end
 
 map('n', '<leader>o', load_recent, 'load recent project')
