@@ -1,9 +1,10 @@
 return {
   'folke/persistence.nvim',
   event = 'BufReadPre',
-  enabled = false,
   opts = {
     need = 0,
-    branch = false,
+    pre_save = function()
+      vim.api.nvim_exec_autocmds('User', { pattern = 'SessionSavePre' })
+    end,
   },
 }
