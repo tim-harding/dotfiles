@@ -27,10 +27,10 @@ map('n', 'j', down)
 map('n', 'k', up)
 
 -- Window movements
-map('n', '<C-Left>', function() vim.cmd.wincmd('h') end)
-map('n', '<C-Right>', function() vim.cmd.wincmd('l') end)
-map('n', '<C-Up>', function() vim.cmd.wincmd('k') end)
-map('n', '<C-Down>', function() vim.cmd.wincmd('j') end)
+map('n', '<M-Left>', function() vim.cmd.wincmd('h') end)
+map('n', '<M-Right>', function() vim.cmd.wincmd('l') end)
+map('n', '<M-Up>', function() vim.cmd.wincmd('k') end)
+map('n', '<M-Down>', function() vim.cmd.wincmd('j') end)
 
 map('n', '<leader>s', vim.cmd.write, 'save')
 
