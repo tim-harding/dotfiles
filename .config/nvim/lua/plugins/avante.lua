@@ -8,7 +8,7 @@ return {
     provider = "claude",
     auto_suggestions_provider = "claude",
     behaviour = {
-      auto_suggestions = true,
+      auto_suggestions = false,
     },
     windows = {
       position = 'bottom',
