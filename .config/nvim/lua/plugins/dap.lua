@@ -19,6 +19,14 @@ return {
     'mfussenegger/nvim-dap',
     event = 'VeryLazy',
 
+    dependencies = {
+      -- Recommended to install as dependency
+      {
+        "igorlfs/nvim-dap-view",
+        opts = {},
+      },
+    },
+
     init = function()
       vim.fn.sign_define('DapBreakpoint', {
         text = '●',
