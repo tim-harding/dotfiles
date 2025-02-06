@@ -14,6 +14,7 @@ return {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     event = 'VeryLazy',
+    enabled = false,
 
     config = function()
       local telescope = require('telescope')
