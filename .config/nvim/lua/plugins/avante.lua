@@ -13,5 +13,8 @@ return {
     windows = {
       position = 'bottom',
     },
+    hints = {
+      enabled = false,
+    },
   },
 }
