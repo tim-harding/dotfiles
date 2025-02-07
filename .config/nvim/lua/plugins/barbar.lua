@@ -41,7 +41,11 @@ return {
             button = '',
             filename = true,
           },
-        }
+        },
+        hide = {
+          extensions = true,
+          inactive = true,
+        },
       })
 
       map('n', '<c-c>', function() bbye.bdelete(false) end)

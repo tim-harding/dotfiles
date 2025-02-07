@@ -1,11 +1,15 @@
 return {
   'rmagatti/auto-session',
   lazy = false,
+  dependencies = {
+    -- Make sure barbar is already loaded
+    'romgrk/barbar.nvim',
+  },
 
   init = function()
-    table.insert(vim.opt.sessionoptions, 'globals')
-    table.insert(vim.opt.sessionoptions, 'options')
-    table.insert(vim.opt.sessionoptions, 'localoptions')
+    vim.opt.sessionoptions:append 'globals'
+    vim.opt.sessionoptions:append 'options'
+    vim.opt.sessionoptions:append 'localoptions'
   end,
 
   ---@module "auto-session"
@@ -18,6 +22,14 @@ return {
     },
     auto_restore = false,
     auto_restore_last_session = true,
+    pre_save_cmds = {
+      function()
+        -- For barbar
+        vim.api.nvim_exec_autocmds('User', {
+          pattern = 'SessionSavePre',
+        })
+      end
+    }
   },
   keys = {
     { '<leader>jp', '<cmd>SessionSearch<cr>', desc = "session search" },
