@@ -50,32 +50,6 @@ vim.api.nvim_create_user_command('GoFast', function()
   vim.opt.wrap = false
 end, {})
 
---[[
-local buf_to_close = -1
-
-vim.api.nvim_create_autocmd('BufLeave', {
-  group = augroup,
-  pattern = '*',
-  callback = function()
-    local buf = vim.api.nvim_get_current_buf()
-    buf_to_close = -1
-    if vim.api.nvim_buf_get_name(buf) == '' and vim.api.nvim_buf_line_count(buf) < 2 then
-      buf_to_close = buf
-    end
-  end
-})
-
-vim.api.nvim_create_autocmd('BufEnter', {
-  group = augroup,
-  pattern = '*',
-  callback = function()
-    if buf_to_close > 0 and vim.api.nvim_buf_is_valid(buf_to_close) then
-      vim.api.nvim_buf_delete(buf_to_close, {})
-    end
-  end
-})
---]]
-
 vim.api.nvim_create_autocmd('FocusGained', {
   group = augroup,
   pattern = '*',
