@@ -20,6 +20,12 @@ return {
         char = {
           enabled = false,
         },
+        treesitter = {
+          labels = labels_str,
+          label = {
+            style = 'overlay',
+          },
+        },
       },
     })
 
