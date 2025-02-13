@@ -44,7 +44,6 @@ return {
         },
         hide = {
           extensions = true,
-          inactive = true,
         },
       })
 
@@ -57,7 +56,7 @@ return {
       map('n', '<s-right>', function() api.goto_buffer_relative(1) end)
       map('n', '<s-up>', function() api.move_current_buffer(-1) end)
       map('n', '<s-down>', function() api.move_current_buffer(1) end)
-      map('n', '<leader>c', api.close_all_but_current, 'close all')
+      map('n', '<leader>c', api.close_all_but_current_or_pinned, 'close all')
       map('n', '<c-p>', api.toggle_pin)
     end
   }
