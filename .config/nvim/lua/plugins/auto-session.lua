@@ -20,8 +20,8 @@ return {
       '~/Downloads',
       '/',
     },
-    auto_restore = false,
-    auto_restore_last_session = true,
+    auto_restore = true,
+    auto_restore_last_session = vim.loop.cwd() == vim.loop.os_homedir(),
     pre_save_cmds = {
       function()
         -- For barbar
