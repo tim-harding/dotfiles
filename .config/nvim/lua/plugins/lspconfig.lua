@@ -255,6 +255,8 @@ return {
             })
           end
 
+          vim.opt_local.tagfunc = "v:lua.vim.lsp.tagfunc"
+
           local tb = require('telescope.builtin')
           map('n', 'gr', tb.lsp_references, 'goto reference')
           map('n', 'gd', tb.lsp_definitions, 'goto definition')
