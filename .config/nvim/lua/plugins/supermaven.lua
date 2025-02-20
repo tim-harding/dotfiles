@@ -7,11 +7,11 @@ return {
     supermaven.setup({
       keymaps = {
         accept_suggestion = "<c-a>",
-        clear_suggestion = "<m-a>",
         accept_word = "<c-s-a>",
+        clear_suggestion = "<m-s-a>",
       },
     })
     api.stop()
-    vim.keymap.set('n', '<leader>v', api.toggle, {})
+    vim.keymap.set({ 'n', 'i' }, '<m-a>', api.toggle, {})
   end,
 }
