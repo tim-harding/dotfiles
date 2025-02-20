@@ -77,6 +77,7 @@ return {
         rust = { 'rustfmt', lsp_format = 'fallback' },
         lua = { 'lua-format', lsp_format = "prefer" },
 
+        zig = { 'zigfmt', lsp_format = "fallback" },
         fish = { 'fish_indent' },
         nix = { 'nixfmt' },
         cpp = { 'clang-format' },
