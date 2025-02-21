@@ -19,6 +19,7 @@ return {
     'mfussenegger/nvim-dap',
     event = 'VeryLazy',
 
+    --[[ Going back to dap-ui for now
     dependencies = {
       -- Recommended to install as dependency
       {
@@ -26,6 +27,7 @@ return {
         opts = {},
       },
     },
+    --]]
 
     init = function()
       vim.fn.sign_define('DapBreakpoint', {

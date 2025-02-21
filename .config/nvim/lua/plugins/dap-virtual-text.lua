@@ -1,6 +1,7 @@
 return {
   'theHamsta/nvim-dap-virtual-text',
   event = 'VeryLazy',
+  enabled = false,
   opts = {
     highlight_new_as_changed = true,
     display_callback = function(variable, buf)
