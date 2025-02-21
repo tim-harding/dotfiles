@@ -27,6 +27,9 @@ return {
       pattern = { '*.rs' },
       callback = function(event)
         vim.bo[event.buf].textwidth = 80
+        vim.keymap.set('n', 'gH', function()
+          vim.cmd.RustLsp({ 'hover', 'actions' })
+        end, { silent = true, buffer = vim.api.nvim_get_current_buf() })
       end
     })
 
