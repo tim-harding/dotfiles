@@ -1,8 +1,7 @@
 return {
     'saghen/blink.cmp',
     lazy = false,
-    build = 'cargo build --release',
-    version = 'v0.11.0',
+    version = '*',
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -15,7 +14,7 @@ return {
         },
         fuzzy = {
             prebuilt_binaries = {
-                download = false,
+                download = true,
             },
         },
         completion = {
