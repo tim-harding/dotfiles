@@ -1,2 +1,4 @@
 # ctrl-g to start
-navi widget fish | source
+if command -q navi
+    navi widget fish | source
+end
