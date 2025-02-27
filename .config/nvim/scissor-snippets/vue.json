@@ -33,7 +33,7 @@
       "  $4",
       "}"
     ],
-    "prefix": "function"
+    "prefix": "fn"
   },
   "grid-area": {
     "body": "grid-area: ${1:row-start} / ${2:col-start} / ${3:row-end} / ${4:col-end};",
