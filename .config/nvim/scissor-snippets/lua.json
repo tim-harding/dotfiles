@@ -8,5 +8,13 @@
       "})"
     ],
     "prefix": "autocmd"
+  },
+  "fn": {
+    "body": [
+      "function $1()",
+      "  $2",
+      "end"
+    ],
+    "prefix": "fn"
   }
 }
