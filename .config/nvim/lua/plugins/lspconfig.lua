@@ -237,22 +237,25 @@ return {
           if client:supports_method('textDocument/documentHighlight', bufnr) then
             local group = hl_augroup(bufnr)
 
-            vim.api.nvim_create_autocmd({
-              'CursorHold',
-            }, {
-              callback = vim.lsp.buf.document_highlight,
-              buffer = bufnr,
-              group = group,
-            })
+            -- Disable until version 11
+            if false then
+              vim.api.nvim_create_autocmd({
+                'CursorHold',
+              }, {
+                callback = vim.lsp.buf.document_highlight,
+                buffer = bufnr,
+                group = group,
+              })
 
-            vim.api.nvim_create_autocmd({
-              'CursorMoved',
-              'InsertEnter',
-            }, {
-              callback = vim.lsp.buf.clear_references,
-              buffer = bufnr,
-              group = group,
-            })
+              vim.api.nvim_create_autocmd({
+                'CursorMoved',
+                'InsertEnter',
+              }, {
+                callback = vim.lsp.buf.clear_references,
+                buffer = bufnr,
+                group = group,
+              })
+            end
           end
 
           vim.opt_local.tagfunc = "v:lua.vim.lsp.tagfunc"
