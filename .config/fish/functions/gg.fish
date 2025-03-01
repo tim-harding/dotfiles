@@ -20,15 +20,21 @@ function gg --argument-names cmd
                 git commit --amend --no-edit
             end
             set --prepend argv inner
-            gg with_root $argv
+            gg with_root inner $argv
 
         case reset
             function inner
                 git add .
                 git reset --hard
             end
-            set --prepend argv inner
-            gg with_root $argv
+            gg with_root inner $argv
+
+        case stash
+            function inner
+                git add .
+                git stash
+            end
+            gg with_root inner $argv
 
         case '*'
             echo "Unknown command"
