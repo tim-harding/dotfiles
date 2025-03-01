@@ -76,6 +76,13 @@ map('n', '<leader>e', toggle_diagnostics, 'open workspace diagnostics')
 map('n', '<leader>q', toggle_quickfix, 'toggle quickfix list')
 map('n', ']q', ':cnext', 'next quickfix list item')
 map('n', '[q', ':cprev', 'prev quickfix list item')
-map('n', '<cr>', goto_next, 'next diagnostic')
-map('n', '<s-cr>', goto_prev, 'previous diagnostic')
 map('n', '<m-cr>', vim.diagnostic.open_float, 'previous diagnostic')
+
+-- Until 11.0
+if false then
+  map('n', '<cr>', goto_next, 'next diagnostic')
+  map('n', '<s-cr>', goto_prev, 'previous diagnostic')
+else
+  map('n', '<cr>', vim.diagnostic.goto_next, 'next diagnostic')
+  map('n', '<s-cr>', vim.diagnostic.goto_prev, 'previous diagnostic')
+end
