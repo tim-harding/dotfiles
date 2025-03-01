@@ -8,7 +8,7 @@ set tide_left_prompt_separator_same_color ' '
 # set tide_left_prompt_separator_diff_color 
 # set tide_left_prompt_separator_same_color 
 
-set tide_right_prompt_items status cmd_duration context jobs time
+set tide_right_prompt_items python status cmd_duration context jobs time
 set tide_right_prompt_separator_diff_color ' '
 set tide_right_prompt_separator_same_color ' '
 # set tide_right_prompt_separator_diff_color 
