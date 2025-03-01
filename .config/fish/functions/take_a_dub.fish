@@ -3,6 +3,5 @@ function take_a_dub
         git add .
         git commit -m $argv
     end
-    set --prepend argv inner
-    with_git_root $argv
+    gg with_root inner $argv
 end
