@@ -10,6 +10,5 @@ function ls
         --group-directories-first \
         --level=2 \
         --sort=modified \
-        --reverse \
         $argv
 end
