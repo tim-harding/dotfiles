@@ -16,7 +16,7 @@
   "main_if_main": {
     "body": [
       "def main():",
-      "    $1",
+      "    ${1:pass}",
       "",
       "",
       "if __name__ == \"__main__\":",
