@@ -13,6 +13,17 @@
     ],
     "prefix": "ifmain"
   },
+  "main_if_main": {
+    "body": [
+      "def main():",
+      "    $1",
+      "",
+      "",
+      "if __name__ == \"__main__\":",
+      "    main()"
+    ],
+    "prefix": "main_if_main"
+  },
   "testmod": {
     "body": [
       "import unittest",
