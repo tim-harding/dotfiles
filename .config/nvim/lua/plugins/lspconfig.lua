@@ -11,9 +11,12 @@ return {
       local configs = require 'lspconfig.configs'
       local shared = require 'shared'
 
-      lspconfig.util.on_setup = lspconfig.util.add_hook_before(lspconfig.util.on_setup, function(config)
-        config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
-      end)
+      lspconfig.util.on_setup = lspconfig.util.add_hook_before(
+        lspconfig.util.on_setup,
+        function(config)
+          config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+        end
+      )
 
       local simple_servers = {
         lspconfig.dartls,
