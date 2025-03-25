@@ -65,9 +65,6 @@ map('n', '<Esc>', vim.cmd.nohlsearch)
 map('n', '<leader>\'', '<cmd>s/"/\'/g<cr>')
 map('n', '<leader>"', '<cmd>%s/"/\'/g<cr>')
 
-map({ 'n', 'x' }, '<leader>p', '"+p', 'paste from clipboard')
-map({ 'n', 'x' }, '<leader>y', '"+y', 'yank from clipboard')
-
 local cr_braces = shared.input_unmapped('<cr><up><end><cr>')
 local cr = shared.input_unmapped('<cr>')
 local function smart_enter()
