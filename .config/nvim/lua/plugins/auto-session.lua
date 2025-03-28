@@ -1,3 +1,5 @@
+-- When updating nvim, may need to
+-- rm -rf ~/.local/share/nvim/auto_session/ ~/.local/share/nvim/sessions/
 return {
   'rmagatti/auto-session',
   lazy = false,
