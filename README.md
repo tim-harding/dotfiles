@@ -5,9 +5,16 @@ Personal dotfiles and configuration. Most of these are for my Arch Linux setup, 
 ## Setup
 
 ```sh
+# MacOS
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install git stow
+
 cd ~
-gh clone tim-harding/dotfiles
+git clone git@github.com:tim-harding/dotfiles.git
 stow . --no-folding --restow --adopt
+
+# MacOS
+brew bundle
 
 sudo sh -c "echo $(which fish) >> /etc/shells"
 chsh -s $(which fish)
