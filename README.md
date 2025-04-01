@@ -7,7 +7,10 @@ Personal dotfiles and configuration. Most of these are for my Arch Linux setup, 
 ```sh
 cd ~
 gh clone tim-harding/dotfiles
-stow . --no-folding
+stow . --no-folding --restow --adopt
+
+sudo sh -c "echo $(which fish) >> /etc/shells"
+chsh -s $(which fish)
 ```
 
 ## Manual steps
