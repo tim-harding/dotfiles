@@ -9,6 +9,7 @@ font-feature = ss20
 font-feature = calt
 font-size = 14
 theme = catppuccin-frappe
+cursor-text = #232634
 mouse-hide-while-typing = true
 keybind = ctrl+t=new_tab
 keybind = ctrl+n=new_window
