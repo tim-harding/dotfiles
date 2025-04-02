@@ -23,6 +23,7 @@ brew "tinymist"
 brew "typst"
 brew "oven-sh/bun/bun"
 brew "yarn"
+brew "bat"
 
 cask "claude"
 cask "ghostty"
