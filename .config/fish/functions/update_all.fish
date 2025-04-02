@@ -27,21 +27,52 @@ function update_all
             brew upgrade
     end
 
-    nix profile upgrade --all
+    if command -q nix
+        nix profile upgrade --all
+    end
 
-    gup update
+    if command -q gup
+        gup update
+    end
 
-    rustup update stable
-    cargo install-update --all
+    if command -q rustup
+        rustup update stable
+        cargo install-update --all
+    end
 
-    fisher update
-    bun update --global --latest
-    gem update
+    if not command -q fisher; and gum confirm "Fisher not found. Install?"
+        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source \
+            && fisher install jorgebucaran/fisher
+    end
+    if command -q fisher
+        fisher update
+    end
 
-    bob update --all
-    nvim '+Lazy sync' '+Lazy update' +qa &>/dev/null
+    if command -q bun
+        bun update --global --latest
+    end
 
-    turso update
+    switch $platform
+        case Linux
+            set -l is_gem (command -q gem)
+        case Darwin
+            set -l is_gem (string match '*brew*' (which gem))
+    end
+    if set -q is_gem
+        gem update
+    end
+
+    if command -q bob
+        bob update --all
+    end
+
+    if command -q nvim
+        nvim '+Lazy sync' '+Lazy update' +qa &>/dev/null
+    end
+
+    if command -q turso
+        turso update
+    end
 
     # TODO: Figure out upgrading Luarocks. The command doesn't seem to have this
     # at the moment. Probably need something with `lua list --porcelain --outdated`
