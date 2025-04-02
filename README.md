@@ -14,7 +14,7 @@ git clone git@github.com:tim-harding/dotfiles.git
 stow . --no-folding --restow --adopt
 
 # MacOS
-brew bundle
+brew bundle install --file ~/.config/brewfile/Brewfile
 
 sudo sh -c "echo $(which fish) >> /etc/shells"
 chsh -s $(which fish)
