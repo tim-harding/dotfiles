@@ -30,5 +30,6 @@ cask "claude"
 cask "ghostty"
 cask "karabiner-elements"
 cask "keepassxc"
+cask "font-cascadia-code"
 
 main ./Brewfile.$HOSTNAME
