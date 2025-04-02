@@ -1,5 +1,5 @@
 function ls
-    exa \
+    eza \
         --long \
         --all \
         --git \
