@@ -22,6 +22,8 @@ brew "syncthing"
 brew "tinymist"
 brew "typst"
 brew "oven-sh/bun/bun"
+brew "node"
+brew "yarn"
 
 cask "claude"
 cask "ghostty"
