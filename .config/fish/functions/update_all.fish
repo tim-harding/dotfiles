@@ -40,7 +40,7 @@ function update_all
         cargo install-update --all
     end
 
-    if not command -q fisher; and gum confirm "Fisher not found. Install?"
+    if not functions -q fisher; and gum confirm "Fisher not found. Install?"
         curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source \
             && fisher install jorgebucaran/fisher
     end
