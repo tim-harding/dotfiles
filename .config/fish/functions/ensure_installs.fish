@@ -15,10 +15,10 @@ function ensure_installs
             # brew bundle install --file ~/.config/brewfile/Brewfile.$HOSTNAME
     end
 
-    go install \
-        github.com/nao1215/gup@latest \
-        golang.org/x/tools/gopls@latest \
-        github.com/google/yamlfmt/cmd/yamlfmt@latest
+    # ls ~/go/bin
+    go install github.com/nao1215/gup@latest
+    go install golang.org/x/tools/gopls@latest
+    go install github.com/google/yamlfmt/cmd/yamlfmt@latest
 
     # bun pm ls -g
     bun install --global \
