@@ -70,7 +70,6 @@ return {
         json = { 'prettierd', 'prettier' },
         html = { 'prettierd', 'prettier' },
         scss = { 'prettierd', 'prettier' },
-        yaml = { 'prettierd', 'prettier' },
         vue = { 'prettierd', 'prettier' },
         svelte = { 'prettierd', 'prettier' },
 
@@ -86,6 +85,7 @@ return {
         ocaml = { 'ocamlformat' },
         python = { 'black' },
         swift = { 'swiftformat' },
+        yaml = { 'yamlfmt' },
       },
 
       formatters = {
