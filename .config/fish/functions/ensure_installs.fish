@@ -2,6 +2,10 @@ function ensure_installs
     # Todo: Also remove packages not listed
     # Todo: Include system packages
 
+    if not command -q cargo
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    end
+
     switch $platform
         case Linux
             set -l binstall_url https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh
@@ -13,7 +17,8 @@ function ensure_installs
 
     go install \
         github.com/nao1215/gup@latest \
-        golang.org/x/tools/gopls@latest
+        golang.org/x/tools/gopls@latest \
+        github.com/google/yamlfmt/cmd/yamlfmt@latest
 
     # bun pm ls -g
     bun install --global \
