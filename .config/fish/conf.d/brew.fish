@@ -1,3 +1,4 @@
-if command -q brew
-    brew shellenv | source
+switch $platform
+    case Darwin
+        /opt/homebrew/bin/brew shellenv | source
 end
