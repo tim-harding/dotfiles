@@ -24,6 +24,7 @@ brew "typst"
 brew "oven-sh/bun/bun"
 brew "yarn"
 brew "cargo-binstall"
+brew "coursier/formulas/coursier"
 
 cask "claude"
 cask "ghostty"
