@@ -35,7 +35,6 @@ return {
         lspconfig.tinymist,
         lspconfig.nixd,
         lspconfig.hyprls,
-        lspconfig.metals,
       }
 
       for _, server in ipairs(simple_servers) do
@@ -155,6 +154,16 @@ return {
           'cabal',
         },
       }
+
+      if shared.is_darwin() then
+        lspconfig.metals.setup {
+          cmd_end = {
+            JAVA_HOME = latest('/Library/Java/JavaVirtualMachines/zulu-24.jdk/'),
+          },
+        }
+      elseif shared.is_linux() then
+        lspconfig.metals.setup {}
+      end
 
       local function omnisharp_path()
         if shared.is_linux() then
