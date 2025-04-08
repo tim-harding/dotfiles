@@ -155,19 +155,21 @@ return {
         },
       }
 
-      if shared.is_darwin() then
-        lspconfig.metals.setup {
-          cmd_end = {
-            JAVA_HOME = '/Library/Java/JavaVirtualMachines/zulu-24.jdk/Contents/Home/',
-          },
-          settings = {
-            metals = {
-              javaHome = '/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/',
+      if false then
+        if shared.is_darwin() then
+          lspconfig.metals.setup {
+            cmd_end = {
+              JAVA_HOME = '/Library/Java/JavaVirtualMachines/zulu-24.jdk/Contents/Home/',
             },
-          },
-        }
-      elseif shared.is_linux() then
-        lspconfig.metals.setup {}
+            settings = {
+              metals = {
+                javaHome = '/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/',
+              },
+            },
+          }
+        elseif shared.is_linux() then
+          lspconfig.metals.setup {}
+        end
       end
 
       local function omnisharp_path()
