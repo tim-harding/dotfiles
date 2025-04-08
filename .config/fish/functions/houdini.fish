@@ -7,10 +7,12 @@ function houdini
             # issue because it crashes when I try switching to the Mesa drivers. 
             #
             # Maybe the Git mesa drivers have fixes?
+            #
+            # Launcher in /opt/sidefx/
 
             # Set up Vulkan. Based on vk_pro script.
             set ICD_DIR "/usr/share/vulkan/icd.d"
-            # radv/radeonsi/mesa (seems to crash)
+            # radv/radeonsi/mesa (Vulkan could not be initialized)
             # set --export VK_DRIVER_FILES "$ICD_DIR/radeon_icd.i686.json" "$ICD_DIR/radeon_icd.x86_64.json"
             # amdgpu-pro (Vulkan could not be initialized)
             # set --export VK_DRIVER_FILES "$ICD_DIR/amd_pro_icd32.json" "$ICD_DIR/amd_pro_icd64.json"
