@@ -15,6 +15,9 @@ function ensure_installs
             # brew bundle install --file ~/.config/brewfile/Brewfile.$HOSTNAME
     end
 
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    uv tool install ruff@latest
+
     # ls ~/go/bin
     go install github.com/nao1215/gup@latest
     go install golang.org/x/tools/gopls@latest

@@ -74,8 +74,9 @@ function update_all
         turso update
     end
 
-    if command -q pipx
-        pipx upgrade-all
+    if command -q uv
+        uv self update
+        uv tool upgrade --all
     end
 
     # TODO: Figure out upgrading Luarocks. The command doesn't seem to have this
