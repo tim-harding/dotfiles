@@ -74,6 +74,10 @@ function update_all
         turso update
     end
 
+    if command -q pipx
+        pipx upgrade-all
+    end
+
     # TODO: Figure out upgrading Luarocks. The command doesn't seem to have this
     # at the moment. Probably need something with `lua list --porcelain --outdated`
 end
