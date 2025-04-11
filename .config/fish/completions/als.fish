@@ -1,0 +1,1 @@
+als completion fish | source
