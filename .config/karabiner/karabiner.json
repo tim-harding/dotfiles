@@ -162,6 +162,16 @@
                     }
                 ]
             },
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 40349,
+                        "vendor_id": 36125
+                    },
+                    "ignore": true
+                }
+            ],
             "fn_function_keys": [
                 {
                     "from": { "key_code": "f6" },
@@ -169,6 +179,7 @@
                 }
             ],
             "name": "builtin",
+            "selected": true,
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         },
         {
@@ -219,7 +230,6 @@
                 }
             ],
             "name": "kyria",
-            "selected": true,
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         }
     ]
