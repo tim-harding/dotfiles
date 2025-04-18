@@ -86,6 +86,7 @@ return {
         python = { 'black' },
         swift = { 'swiftformat' },
         yaml = { 'yamlfmt' },
+        scala = { 'scalafmt' },
       },
 
       formatters = {
@@ -96,14 +97,14 @@ return {
         }
       },
 
-      format_on_save = function()
+      format_after_save = function()
         local is_format_enabled = is_format_enabled_global
         if vim.b.is_format_enabled ~= nil then
           is_format_enabled = vim.b.is_format_enabled
         end
 
         if is_format_enabled then
-          return { stop_after_first = true }
+          return {}
         end
       end,
     }
