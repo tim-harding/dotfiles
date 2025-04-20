@@ -61,17 +61,17 @@ return {
     ---@type conform.setupOpts
     return {
       formatters_by_ft = {
-        javascript = { 'prettierd', 'prettier' },
-        javascriptreact = { 'prettierd', 'prettier' },
-        typescript = { 'prettierd', 'prettier' },
-        typescriptreact = { 'prettierd', 'prettier' },
-        liquid = { 'prettierd', 'prettier' },
-        css = { 'prettierd', 'prettier' },
-        json = { 'prettierd', 'prettier' },
-        html = { 'prettierd', 'prettier' },
-        scss = { 'prettierd', 'prettier' },
-        vue = { 'prettierd', 'prettier' },
-        svelte = { 'prettierd', 'prettier' },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        liquid = { 'prettierd', 'prettier', stop_after_first = true },
+        css = { 'prettierd', 'prettier', stop_after_first = true },
+        json = { 'prettierd', 'prettier', stop_after_first = true },
+        html = { 'prettierd', 'prettier', stop_after_first = true },
+        scss = { 'prettierd', 'prettier', stop_after_first = true },
+        vue = { 'prettierd', 'prettier', stop_after_first = true },
+        svelte = { 'prettierd', 'prettier', stop_after_first = true },
 
         rust = { 'rustfmt', lsp_format = 'fallback' },
         lua = { 'lua-format', lsp_format = "prefer" },
