@@ -35,25 +35,8 @@ return {
         'sourcekit',
         'lua_ls',
         'hls',
+        'metals',
       }
-
-
-      if false then
-        if shared.is_darwin() then
-          vim.lsp.config('metals', {
-            cmd_end = {
-              JAVA_HOME = '/Library/Java/JavaVirtualMachines/zulu-24.jdk/Contents/Home/',
-            },
-            settings = {
-              metals = {
-                javaHome = '/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/',
-              },
-            },
-          })
-        elseif shared.is_linux() then
-          vim.lsp.config('metals', {})
-        end
-      end
 
       local function omnisharp_path()
         if shared.is_linux() then
