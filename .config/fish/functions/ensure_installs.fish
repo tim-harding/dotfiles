@@ -52,4 +52,17 @@ function ensure_installs
         sd \
         tealdeer \
         tokei
+
+    cs install ammonite \
+        bloop \
+        coursier \
+        cs \
+        metals \
+        sbt \
+        sbtn \
+        scala \
+        scala-cli \
+        scalac \
+        scalafix \
+        scalafmt
 end
