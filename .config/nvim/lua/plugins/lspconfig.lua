@@ -28,6 +28,7 @@ return {
         'tinymist',
         'nixd',
         'hyprls',
+        'svelte',
       }
 
       local function latest(path)
@@ -48,18 +49,6 @@ return {
 
       local plugin_vue = latest('~/.bun/install/cache/@vue/typescript-plugin')
       local plugin_svelte = latest('~/.bun/install/cache/typescript-svelte-plugin')
-
-      vim.lsp.config('svelte', {
-        settings = {
-          svelte = {
-            plugin = {
-              typescript = {
-                enable = false,
-              },
-            },
-          },
-        },
-      })
 
       vim.lsp.config('vtsls', {
         filetypes = ts_languages,
