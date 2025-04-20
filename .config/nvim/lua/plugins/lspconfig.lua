@@ -1,4 +1,4 @@
 return {
-    'Hoffs/omnisharp-extended-lsp.nvim', 'onsails/lspkind.nvim',
-    {'neovim/nvim-lspconfig', lazy = false}
+  'Hoffs/omnisharp-extended-lsp.nvim', 'onsails/lspkind.nvim',
+  { 'neovim/nvim-lspconfig', lazy = false }
 }

@@ -1,11 +1,11 @@
 return {
-    settings = {
-        svelte = {
-            plugin = {
-                typescript = {
-                    enable = false,
-                },
-            },
+  settings = {
+    svelte = {
+      plugin = {
+        typescript = {
+          enable = false,
         },
+      },
     },
+  },
 }

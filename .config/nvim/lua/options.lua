@@ -34,8 +34,7 @@ vim.opt.mouse = 'a'
 vim.opt.signcolumn = 'yes'
 vim.opt.completeopt = 'menuone,noselect'
 vim.opt.inccommand = 'split'
-vim.opt.guicursor =
-    "n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor"
+vim.opt.guicursor = "n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor"
 
 -- Fix 'Press enter' messages
 vim.opt.messagesopt = 'history:500,wait:0'
@@ -62,4 +61,10 @@ vim.opt.shortmess = 'aoOstTIFcC'
 -- b/l: Avoids auto-wrapping long lines
 vim.opt.formatoptions = 'qjrbl'
 
-vim.filetype.add {extension = {chpl = 'chapel', metal = 'cpp', wgsl = 'wgsl'}}
+vim.filetype.add {
+    extension = {
+        chpl = 'chapel',
+        metal = 'cpp',
+        wgsl = 'wgsl',
+    },
+}

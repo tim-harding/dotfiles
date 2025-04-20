@@ -1,7 +1,7 @@
 return {
-    filetypes = {
-        'haskell',
-        'lhaskell',
-        'cabal',
-    },
+  filetypes = {
+    'haskell',
+    'lhaskell',
+    'cabal',
+  },
 }
