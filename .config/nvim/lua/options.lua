@@ -23,6 +23,9 @@ vim.opt.softtabstop = 4
 vim.opt.scrolloff = 0
 vim.opt.textwidth = 80
 
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
 vim.g.mapleader = vim.keycode '<Space>'
 vim.g.maplocalleader = vim.keycode ','
 vim.opt.mouse = 'a'

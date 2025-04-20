@@ -246,8 +246,9 @@ return {
             return
           end
 
-          local function map(m, keys, func, desc)
-            vim.keymap.set(m, keys, func, { buffer = bufnr, desc = desc })
+          if client:supports_method('textDocument/foldingRange') then
+            local win = vim.api.nvim_get_current_win()
+            vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
           end
 
           if client:supports_method('textDocument/documentHighlight', bufnr) then
@@ -272,6 +273,10 @@ return {
           end
 
           vim.opt_local.tagfunc = "v:lua.vim.lsp.tagfunc"
+
+          local function map(m, keys, func, desc)
+            vim.keymap.set(m, keys, func, { buffer = bufnr, desc = desc })
+          end
 
           local tb = require('telescope.builtin')
           map('n', 'gr', tb.lsp_references, 'goto reference')
