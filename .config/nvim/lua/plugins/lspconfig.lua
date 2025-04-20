@@ -11,31 +11,24 @@ return {
       local configs = require 'lspconfig.configs'
       local shared = require 'shared'
 
-      local simple_servers = {
-        lspconfig.dartls,
-        lspconfig.zls,
-        lspconfig.ocamllsp,
-        lspconfig.pyright,
-        lspconfig.ruby_lsp,
-        lspconfig.gopls,
-        lspconfig.biome,
-        lspconfig.cssls,
-        lspconfig.jsonls,
-        lspconfig.html,
-        lspconfig.shopify_theme_ls,
-        lspconfig.glsl_analyzer,
-        lspconfig.clangd,
-        lspconfig.tinymist,
-        lspconfig.nixd,
-        lspconfig.hyprls,
+      vim.lsp.enable {
+        'dartls',
+        'zls',
+        'ocamllsp',
+        'pyright',
+        'ruby_lsp',
+        'gopls',
+        'biome',
+        'cssls',
+        'jsonls',
+        'html',
+        'shopify_theme_ls',
+        'glsl_analyzer',
+        'clangd',
+        'tinymist',
+        'nixd',
+        'hyprls',
       }
-
-      for _, server in ipairs(simple_servers) do
-        server.setup({})
-      end
-
-      -- Vue setup info:
-      -- https://github.com/vuejs/language-tools?tab=readme-ov-file#community-integration
 
       local function latest(path)
         local expanded = vim.fn.expand(path)
@@ -56,7 +49,7 @@ return {
       local plugin_vue = latest('~/.bun/install/cache/@vue/typescript-plugin')
       local plugin_svelte = latest('~/.bun/install/cache/typescript-svelte-plugin')
 
-      lspconfig.svelte.setup {
+      vim.lsp.config('svelte', {
         settings = {
           svelte = {
             plugin = {
@@ -66,9 +59,9 @@ return {
             },
           },
         },
-      }
+      })
 
-      lspconfig.vtsls.setup {
+      vim.lsp.config('vtsls', {
         filetypes = ts_languages,
         settings = {
           vtsls = {
@@ -92,12 +85,14 @@ return {
             },
           },
         },
-      }
+      })
 
       local ts_dir = latest('~/.bun/install/cache/typescript')
       local tsdk_dir = vim.fs.joinpath(ts_dir, 'lib')
 
-      lspconfig.volar.setup {
+      -- Vue setup info:
+      -- https://github.com/vuejs/language-tools?tab=readme-ov-file#community-integration
+      vim.lsp.config('volar', {
         init_options = {
           typescript = {
             tsdk = tsdk_dir,
@@ -106,7 +101,7 @@ return {
             hybridMode = true,
           },
         },
-      }
+      })
 
       local function sourcekit_command()
         if shared.is_linux() then
@@ -122,12 +117,12 @@ return {
       -- Disabling for now. I only want sourcekit for Swift but it is
       -- conflicting with clandg for cpp files.
       if shared.is_darwin() then
-        lspconfig.sourcekit.setup {
+        vim.lsp.config('sourcekit', {
           cmd = sourcekit_command(),
-        }
+        })
       end
 
-      lspconfig.lua_ls.setup {
+      vim.lsp.config('lua_ls', {
         settings = {
           Lua = {
             completion = {
@@ -147,19 +142,19 @@ return {
             },
           },
         },
-      }
+      })
 
-      lspconfig.hls.setup {
+      vim.lsp.config('hls', {
         filetypes = {
           'haskell',
           'lhaskell',
           'cabal',
         },
-      }
+      })
 
       if false then
         if shared.is_darwin() then
-          lspconfig.metals.setup {
+          vim.lsp.config('metals', {
             cmd_end = {
               JAVA_HOME = '/Library/Java/JavaVirtualMachines/zulu-24.jdk/Contents/Home/',
             },
@@ -168,9 +163,9 @@ return {
                 javaHome = '/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/',
               },
             },
-          }
+          })
         elseif shared.is_linux() then
-          lspconfig.metals.setup {}
+          vim.lsp.config('metals', {})
         end
       end
 
@@ -183,7 +178,7 @@ return {
       end
 
       local omnisharp_extended = require 'omnisharp_extended'
-      lspconfig.omnisharp.setup {
+      vim.lsp.config('omnisharp', {
         -- capabilities = vim.tbl_deep_extend('force', {}, -- todo: Should be the existing server capabilities
         -- {
         --   workspace = {
@@ -208,7 +203,7 @@ return {
           tostring(vim.fn.getpid()),
         },
         organize_imports_on_format = true,
-      }
+      })
 
       configs.cls = {
         default_config = {
@@ -221,7 +216,7 @@ return {
         },
       }
 
-      lspconfig.cls.setup {}
+      vim.lsp.config('cls', {})
 
       ---@param bufnr integer
       local function hl_augroup_name(bufnr)
