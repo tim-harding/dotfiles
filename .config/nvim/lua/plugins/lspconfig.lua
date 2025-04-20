@@ -33,29 +33,8 @@ return {
         'vtsls',
         'volar',
         'sourcekit',
+        'lua_ls',
       }
-
-      vim.lsp.config('lua_ls', {
-        settings = {
-          Lua = {
-            completion = {
-              callSnippet = 'Replace',
-              globals = { 'vim' },
-            },
-            diagnostics = {
-              disable = { 'missing-fields' },
-            },
-            runtime = {
-              version = 'LuaJIT'
-            },
-            workspace = {
-              library = {
-                vim.env.VIMRUNTIME,
-              },
-            },
-          },
-        },
-      })
 
       vim.lsp.config('hls', {
         filetypes = {
