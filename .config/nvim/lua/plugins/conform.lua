@@ -2,9 +2,7 @@ return {
   'stevearc/conform.nvim',
   event = 'VeryLazy',
   cmd = { 'ConformInfo' },
-  init = function()
-    vim.o.formatexpr = 'v:lua.require"conform".formatexpr()'
-  end,
+  init = function() vim.o.formatexpr = 'v:lua.require"conform".formatexpr()' end,
 
   opts = function()
     local is_format_enabled_global = true
@@ -13,7 +11,7 @@ return {
       local is_global = true
       local mode = 'toggle'
       for _, arg in ipairs(opts.fargs) do
-        if arg == "on" or arg == "off" or arg == "toggle" then
+        if arg == 'on' or arg == 'off' or arg == 'toggle' then
           mode = arg
         elseif arg == 'local' then
           is_global = false
@@ -33,11 +31,11 @@ return {
         end
       end
 
-      if mode == "on" then
+      if mode == 'on' then
         is_format_enabled = true
-      elseif mode == "off" then
+      elseif mode == 'off' then
         is_format_enabled = false
-      elseif mode == "toggle" then
+      elseif mode == 'toggle' then
         is_format_enabled = not is_format_enabled
         if is_format_enabled then
           vim.notify('Autoformat enabled')
@@ -54,8 +52,8 @@ return {
     end, {
       nargs = '*',
       complete = function(_, _, _)
-        return { "on", "off", "toggle", 'local', 'global' }
-      end
+        return { 'on', 'off', 'toggle', 'local', 'global' }
+      end,
     })
 
     ---@type conform.setupOpts
@@ -74,7 +72,6 @@ return {
         svelte = { 'prettierd', 'prettier', stop_after_first = true },
 
         rust = { 'rustfmt' },
-        lua = { 'lua-format' },
         zig = { 'zigfmt' },
         fish = { 'fish_indent' },
         nix = { 'nixfmt' },
@@ -92,8 +89,12 @@ return {
         sqlfluff = {
           command = 'sqlfluff',
           args = { 'fix', '-' },
-          cwd = require('conform.util').root_file('.sqlfluff')
-        }
+          cwd = require('conform.util').root_file('.sqlfluff'),
+        },
+      },
+
+      default_format_opts = {
+        lsp_format = "fallback",
       },
 
       format_after_save = function()
@@ -102,9 +103,7 @@ return {
           is_format_enabled = vim.b.is_format_enabled
         end
 
-        if is_format_enabled then
-          return {}
-        end
+        if is_format_enabled then return {} end
       end,
     }
   end,
