@@ -1,6 +1,7 @@
 vim.diagnostic.config({
   virtual_text = false,
-  underline = false,
+  float = { border = 'rounded', source = 'if_many' },
+  underline = { severity = vim.diagnostic.severity.ERROR },
   severity_sort = true,
   signs = {
     text = {
