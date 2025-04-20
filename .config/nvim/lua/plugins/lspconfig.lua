@@ -31,23 +31,8 @@ return {
         'hyprls',
         'svelte',
         'vtsls',
+        'volar',
       }
-
-      local ts_dir = latest('~/.bun/install/cache/typescript')
-      local tsdk_dir = vim.fs.joinpath(ts_dir, 'lib')
-
-      -- Vue setup info:
-      -- https://github.com/vuejs/language-tools?tab=readme-ov-file#community-integration
-      vim.lsp.config('volar', {
-        init_options = {
-          typescript = {
-            tsdk = tsdk_dir,
-          },
-          vue = {
-            hybridMode = true,
-          },
-        },
-      })
 
       local function sourcekit_command()
         if shared.is_linux() then
