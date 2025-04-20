@@ -34,15 +34,9 @@ return {
         'volar',
         'sourcekit',
         'lua_ls',
+        'hls',
       }
 
-      vim.lsp.config('hls', {
-        filetypes = {
-          'haskell',
-          'lhaskell',
-          'cabal',
-        },
-      })
 
       if false then
         if shared.is_darwin() then
