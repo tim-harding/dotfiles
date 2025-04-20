@@ -4,18 +4,17 @@ return {
     'milanglacier/minuet-ai.nvim',
     event = 'VeryLazy',
     opts = {
-      n_completions = 1,
-      virtualtext = {
-        keymap = {
-          accept = '<s-tab>',
-          next = '<c-tab>',
-          dismiss = '<m-tab>',
-        },
+      throttle = 0,
+      debounce = 0,
+      add_single_line_entry = false,
+      blink = {
+        enable_auto_complete = false,
       },
       provider = 'claude',
       provider_options = {
         claude = {
-          model = 'claude-3-5-sonnet-latest',
+          model = 'claude-3-7-sonnet-latest',
+          stream = true,
         },
       },
     },
