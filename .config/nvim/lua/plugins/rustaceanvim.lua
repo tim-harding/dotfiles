@@ -1,7 +1,7 @@
 return {
   'mrcjkb/rustaceanvim',
   lazy = false,
-  version = '^4',
+  version = '^6',
   dependencies = { 'nvim-lua/plenary.nvim' },
   init = function()
     local shared = require('shared')
