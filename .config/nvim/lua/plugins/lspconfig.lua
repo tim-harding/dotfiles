@@ -37,20 +37,8 @@ return {
         'hls',
         'metals',
         'omnisharp',
+        'cls',
       }
-
-      configs.cls = {
-        default_config = {
-          cmd = { 'chpl-language-server' },
-          filetypes = { 'chapel' },
-          autostart = true,
-          single_file_support = true,
-          root_dir = lspconfig.util.find_git_ancestor,
-          settings = {},
-        },
-      }
-
-      vim.lsp.config('cls', {})
 
       ---@param bufnr integer
       local function hl_augroup_name(bufnr)
