@@ -10,6 +10,7 @@ return {
       local lspconfig = require 'lspconfig'
       local configs = require 'lspconfig.configs'
       local shared = require 'shared'
+      local latest = shared.latest
 
       vim.lsp.enable {
         'dartls',
@@ -30,18 +31,6 @@ return {
         'hyprls',
         'svelte',
       }
-
-      local function latest(path)
-        local expanded = vim.fn.expand(path)
-        local entries = {}
-        for name, type in vim.fs.dir(expanded) do
-          if type == 'link' or type == 'directory' then
-            table.insert(entries, name)
-          end
-        end
-        table.sort(entries)
-        return vim.fn.resolve(vim.fs.joinpath(expanded, entries[#entries]))
-      end
 
       local ts_languages = lspconfig.vtsls.config_def.default_config.filetypes
       table.insert(ts_languages, 'vue')
