@@ -73,10 +73,9 @@ return {
         vue = { 'prettierd', 'prettier', stop_after_first = true },
         svelte = { 'prettierd', 'prettier', stop_after_first = true },
 
-        rust = { 'rustfmt', lsp_format = 'fallback' },
-        lua = { 'lua-format', lsp_format = "prefer" },
-
-        zig = { 'zigfmt', lsp_format = "fallback" },
+        rust = { 'rustfmt' },
+        lua = { 'lua-format' },
+        zig = { 'zigfmt' },
         fish = { 'fish_indent' },
         nix = { 'nixfmt' },
         cpp = { 'clang-format' },
