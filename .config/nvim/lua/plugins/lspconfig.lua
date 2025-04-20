@@ -223,7 +223,7 @@ return {
 
       ---@param bufnr integer
       local function hl_augroup_name(bufnr)
-        return 'LspDocumentHighlight-' .. bufnr
+        return 'lsp-document-highlight-' .. bufnr
       end
 
       ---@param bufnr integer
@@ -231,22 +231,19 @@ return {
         return vim.api.nvim_create_augroup(hl_augroup_name(bufnr), { clear = false })
       end
 
-      local function toggle_inlay_hints()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-      end
-      shared.map('n', '<leader>i', toggle_inlay_hints, 'toggle inlay hints')
-
-      local lsp_augroup = vim.api.nvim_create_augroup('UserLspConfig', {})
+      local lsp_augroup = vim.api.nvim_create_augroup('lsp-config', {})
       vim.api.nvim_create_autocmd('LspAttach', {
         group = lsp_augroup,
         callback = function(event)
+          vim.opt_local.tagfunc = "v:lua.vim.lsp.tagfunc"
+
           local bufnr = event.buf
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client == nil then
             return
           end
 
-          if client:supports_method('textDocument/foldingRange') then
+          if client:supports_method('textDocument/foldingRange', bufnr) then
             local win = vim.api.nvim_get_current_win()
             vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
           end
@@ -270,13 +267,24 @@ return {
               buffer = bufnr,
               group = group,
             })
-          end
 
-          vim.opt_local.tagfunc = "v:lua.vim.lsp.tagfunc"
+            vim.api.nvim_create_autocmd('LspDetach', {
+              group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
+              callback = function(detach_event)
+                vim.lsp.buf.clear_references()
+                vim.api.nvim_clear_autocmds { group = group, buffer = detach_event.buf }
+              end,
+            })
+          end
 
           local function map(m, keys, func, desc)
             vim.keymap.set(m, keys, func, { buffer = bufnr, desc = desc })
           end
+
+          local function toggle_inlay_hints()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+          end
+          map('n', '<leader>i', toggle_inlay_hints, 'toggle inlay hints')
 
           local tb = require('telescope.builtin')
           map('n', 'gr', tb.lsp_references, 'goto reference')
