@@ -23,7 +23,6 @@ vim.lsp.enable {
   'hls',
   'metals',
   'omnisharp',
-  'cls',
 }
 
 ---@param bufnr integer
@@ -73,8 +72,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     local function toggle_inlay_hints()
       vim.lsp.inlay_hint.enable(is_inlay_supported and not vim.lsp.inlay_hint.is_enabled(),
-      { bufnr = bufnr }
-    )
+        { bufnr = bufnr }
+      )
     end
     map('n', '<leader>i', toggle_inlay_hints, 'toggle inlay hints')
 
