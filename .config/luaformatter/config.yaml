@@ -1,0 +1,4 @@
+# https://github.com/Koihik/LuaFormatter?tab=readme-ov-file#default-configuration
+indent_width: 2
+tab_width: 2
+continuation_indent_width: 2
