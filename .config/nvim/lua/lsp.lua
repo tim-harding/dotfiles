@@ -34,9 +34,8 @@ local function hl_augroup(bufnr)
   return vim.api.nvim_create_augroup(hl_augroup_name(bufnr), { clear = false })
 end
 
-local lsp_augroup = vim.api.nvim_create_augroup('lsp-config', {})
 vim.api.nvim_create_autocmd('LspAttach', {
-  group = lsp_augroup,
+  group = vim.api.nvim_create_augroup('lsp-attach', {}),
   callback = function(event)
     vim.opt_local.tagfunc = "v:lua.vim.lsp.tagfunc"
 
@@ -69,14 +68,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set(m, keys, func, { buffer = bufnr, desc = desc })
     end
 
-    local is_inlay_supported = client:supports_method(
-      'textDocument/inlayHint')
+    local is_inlay_supported = client:supports_method('textDocument/inlayHint')
     vim.lsp.inlay_hint.enable(is_inlay_supported, { bufnr = bufnr })
 
     local function toggle_inlay_hints()
-      vim.lsp.inlay_hint.enable(is_inlay_supported and
-        not vim.lsp.inlay_hint.is_enabled(),
-        { bufnr = bufnr })
+      vim.lsp.inlay_hint.enable(is_inlay_supported and not vim.lsp.inlay_hint.is_enabled(),
+      { bufnr = bufnr }
+    )
     end
     map('n', '<leader>i', toggle_inlay_hints, 'toggle inlay hints')
 
