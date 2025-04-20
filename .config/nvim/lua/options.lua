@@ -12,6 +12,7 @@ vim.opt.number = true
 vim.opt.linebreak = true
 vim.opt.expandtab = true
 vim.opt.showmode = false
+vim.opt.confirm = true
 
 vim.opt.timeout = true
 vim.opt.updatetime = 0
