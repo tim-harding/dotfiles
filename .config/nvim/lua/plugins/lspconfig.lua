@@ -290,8 +290,14 @@ return {
             vim.keymap.set(m, keys, func, { buffer = bufnr, desc = desc })
           end
 
+          local is_inlay_supported = client:supports_method('textDocument/inlayHint')
+          vim.lsp.inlay_hint.enable(is_inlay_supported, {bufnr = bufnr})
+
           local function toggle_inlay_hints()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+            vim.lsp.inlay_hint.enable(
+              is_inlay_supported and not vim.lsp.inlay_hint.is_enabled(),
+              {bufnr=bufnr}
+            )
           end
           map('n', '<leader>i', toggle_inlay_hints, 'toggle inlay hints')
 
