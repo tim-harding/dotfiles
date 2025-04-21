@@ -12,7 +12,7 @@ function update_all
                 return
         end
     end
-    restow
+    restow --clean
     popd
 
     switch $platform
