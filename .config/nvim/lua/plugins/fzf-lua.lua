@@ -17,10 +17,8 @@ return {
           },
         },
       },
-      picker = {
-        grep = {
-          hidden = true,
-        },
+      grep = {
+        hidden = true,
       },
     })
 
