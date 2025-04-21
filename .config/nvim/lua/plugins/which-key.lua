@@ -8,7 +8,7 @@ return {
     local leaders = {
       g = 'Git',
       d = 'Dap',
-      j = 'Jump (Telescope)',
+      j = 'Jump',
       k = 'Scissors',
       l = 'Leetcode',
       x = 'Xbase',

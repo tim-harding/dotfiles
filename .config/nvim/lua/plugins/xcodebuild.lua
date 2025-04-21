@@ -1,5 +1,4 @@
 return {
-  'nvim-telescope/telescope.nvim',
   'MunifTanjim/nui.nvim',
   'stevearc/oil.nvim',
   'nvim-treesitter/nvim-treesitter',
