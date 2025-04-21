@@ -9,6 +9,19 @@ return {
         'fzf-native',
         'hide',
       },
+      winopts = {
+        fullscreen = true,
+        preview = {
+          winopts = {
+            number = false,
+          },
+        },
+      },
+      picker = {
+        grep = {
+          hidden = true,
+        },
+      },
     })
 
     fzf.register_ui_select()
