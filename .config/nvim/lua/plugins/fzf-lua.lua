@@ -17,6 +17,9 @@ return {
           },
         },
       },
+      files = {
+        fd_opts = '--type file --type directory --type symlink --hidden --exclude .git',
+      },
       grep = {
         rg_opts = '--column --line-number --no-heading --color=always --smart-case --hidden --glob !.git -e',
       },
