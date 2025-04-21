@@ -77,17 +77,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
     map('n', '<leader>i', toggle_inlay_hints, 'toggle inlay hints')
 
-    local tb = require('telescope.builtin')
-    map('n', 'gr', tb.lsp_references, 'goto reference')
-    map('n', 'gd', tb.lsp_definitions, 'goto definition')
-    map('n', 'gt', tb.lsp_type_definitions, 'goto type definition')
-    map('n', 'gi', tb.lsp_implementations, 'goto implementation')
+    -- local tb = require('telescope.builtin')
+    -- map('n', 'gr', tb.lsp_references, 'goto reference')
+    -- map('n', 'gd', tb.lsp_definitions, 'goto definition')
+    -- map('n', 'gt', tb.lsp_type_definitions, 'goto type definition')
+    -- map('n', 'gi', tb.lsp_implementations, 'goto implementation')
 
-    -- local fzf = require('fzf-lua')
-    -- map('n', 'gr', fzf.lsp_references, 'goto reference')
-    -- map('n', 'gd', fzf.lsp_definitions, 'goto definition')
-    -- map('n', 'gt', fzf.lsp_typedefs, 'goto type definition')
-    -- map('n', 'gi', fzf.lsp_implementations, 'goto implementation')
+    local fzf = require('fzf-lua')
+    map('n', 'gr', fzf.lsp_references, 'goto reference')
+    map('n', 'gd', fzf.lsp_definitions, 'goto definition')
+    map('n', 'gt', fzf.lsp_typedefs, 'goto type definition')
+    map('n', 'gi', fzf.lsp_implementations, 'goto implementation')
 
     map('n', '<leader>r', vim.lsp.buf.rename, 'rename')
     map('n', 'gD', vim.lsp.buf.declaration, 'declaration')
