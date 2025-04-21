@@ -17,12 +17,11 @@ return {
       local avante = require 'avante'
 
       avante.setup {
-        file_selector = { provider = 'telescope' },
         behaviour = {
           enable_claude_text_editor_tool_mode = true,
         },
         claude = {
-          model = "claude-3-7-sonnet-20250219",
+          model = "claude-3-7-sonnet-latest",
         },
       }
 
