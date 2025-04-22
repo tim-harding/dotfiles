@@ -26,6 +26,8 @@ brew "yarn"
 brew "cargo-binstall"
 brew "coursier/formulas/coursier"
 brew "pyenv"
+brew "bruno"
+brew "node"
 
 cask "claude"
 cask "ghostty"
