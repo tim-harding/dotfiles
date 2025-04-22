@@ -81,9 +81,10 @@ return {
         },
       })
 
-      pcall(require('telescope').load_extension, 'fzf')
+      telescope.load_extension('fzf')
       telescope.load_extension('dap')
       telescope.load_extension('ui-select')
+      telescope.load_extension('metals')
 
       map('n', '<leader>jj', tb.find_files, 'files')
       map('n', '<leader>jg', tb.git_files, 'git files')

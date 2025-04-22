@@ -179,6 +179,33 @@ return {
       dap.configurations['typescript'] = configs_js
       dap.configurations['vue'] = configs_js
 
+      dap.configurations.scala = {
+        {
+          type = "scala",
+          request = "launch",
+          name = "Run or Test Target",
+          metals = {
+            runType = "runOrTestFile",
+          },
+        },
+        {
+          type = "scala",
+          request = "launch",
+          name = "Test Target",
+          metals = {
+            runType = "testTarget",
+          },
+        },
+        {
+          type = "scala",
+          request = "attach",
+          name = "Attach to Localhost",
+          hostName = "localhost",
+          port = 5005,
+          buildTarget = "root",
+        }
+      }
+
       local function set_condition_breakpoint()
         vim.ui.input(
           { prompt = 'Breakpoint condition: ' },
