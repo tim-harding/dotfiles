@@ -1,6 +1,7 @@
 return {
   "ibhagwan/fzf-lua",
   event = 'VeryLazy',
+  enabled = false,
   config = function()
     local fzf = require 'fzf-lua'
     fzf.setup({
