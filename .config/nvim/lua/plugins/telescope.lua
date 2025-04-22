@@ -55,7 +55,9 @@ return {
             additional_args = {
               '--hidden',
               '--glob',
-              '!.git'
+              '!.git',
+              '--glob',
+              '!.metals',
             },
           },
           git_files = {
