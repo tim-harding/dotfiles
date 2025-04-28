@@ -13,6 +13,7 @@ vim.opt.linebreak = true
 vim.opt.expandtab = true
 vim.opt.showmode = false
 vim.opt.confirm = false
+vim.opt.cursorline = true
 vim.opt.cmdheight = 0
 
 vim.opt.timeout = true
