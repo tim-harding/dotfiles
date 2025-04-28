@@ -10,6 +10,7 @@ return {
   'nvim-neotest/neotest-plenary',
   'nvim-neotest/neotest-go',
   'nvim-neotest/neotest-jest',
+  'stevanmilic/neotest-scala',
 
   {
     'nvim-neotest/neotest',
@@ -29,7 +30,12 @@ return {
           require 'neotest-plenary',
           require 'neotest-go',
           require 'neotest-jest',
-          require 'neotest-vitest'
+          require 'neotest-vitest',
+          require('neotest-scala')({
+            args = {},
+            runner = "sbt",
+            framework = "scalatest",
+          }),
         },
         log_level = vim.log.levels.INFO,
       }
