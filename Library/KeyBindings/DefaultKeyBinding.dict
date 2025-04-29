@@ -1,0 +1,11 @@
+// From https://www.reddit.com/r/MacOS/comments/pz9vnu/behavior_of_the_home_and_end_keys/
+{
+    "\UF729"   = "moveToBeginningOfLine:";
+    "\UF72B"   = "moveToEndOfLine:";
+    "$\UF730"  = moveToBeginningOfLineAndModifySelection:;     // shift-home
+    "$\UF73B"  = moveToEndOfLineAndModifySelection:;           // shift-end
+    "^\UF730"  = moveToBeginningOfDocument:;                   // ctrl-home
+    "^\UF73B"  = moveToEndOfDocument:;                         // ctrl-end
+    "^$\UF730" = moveToBeginningOfDocumentAndModifySelection:; // ctrl-shift-home
+    "^$\UF73B" = moveToEndOfDocumentAndModifySelection:;       // ctrl-shift-end
+}
