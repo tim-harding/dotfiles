@@ -1,8 +1,8 @@
-vim.loader.enable()
+-- vim.loader.enable()
 
 P = function(...)
-    vim.print(...)
-    return ...
+  vim.print(...)
+  return ...
 end
 
 require('options')
@@ -13,7 +13,7 @@ require('indentation')
 require('lsp')
 
 if vim.g.shadowvim then
-    require('shadowvim_setup')
+  require('shadowvim_setup')
 else
-    require('lazy_setup')
+  require('lazy_setup')
 end
