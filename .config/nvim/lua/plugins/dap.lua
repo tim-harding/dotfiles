@@ -198,12 +198,20 @@ return {
         },
         {
           type = "scala",
-          request = "attach",
-          name = "Attach to Localhost",
-          hostName = "localhost",
-          port = 5005,
-          buildTarget = "root",
-        }
+          request = "launch",
+          name = "Test File",
+          metals = {
+            runType = "testFile",
+          },
+        },
+        {
+          type = "scala",
+          request = "launch",
+          name = "Run",
+          metals = {
+            runType = "run",
+          },
+        },
       }
 
       local function set_condition_breakpoint()
