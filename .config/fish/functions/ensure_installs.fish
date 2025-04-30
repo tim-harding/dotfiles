@@ -53,7 +53,8 @@ function ensure_installs
         tealdeer \
         tokei
 
-    cs install ammonite \
+    cs install \
+        ammonite \
         bloop \
         coursier \
         cs \
