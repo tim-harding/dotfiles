@@ -26,7 +26,12 @@ return {
           sorting_strategy = 'ascending',
           layout_strategy = 'vertical',
           layout_config = {
-            width = 0.8,
+            width = {
+              padding = 0,
+            },
+            height = {
+              padding = 0,
+            },
             mirror = true,
             prompt_position = 'top',
           },
