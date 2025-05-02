@@ -12,8 +12,11 @@ vim.opt.number = true
 vim.opt.linebreak = true
 vim.opt.expandtab = true
 vim.opt.showmode = false
-vim.opt.confirm = false
 vim.opt.cursorline = true
+
+-- Fix 'Press enter' messages
+vim.opt.messagesopt = 'history:500,wait:0'
+vim.opt.confirm = false
 vim.opt.cmdheight = 0
 
 vim.opt.timeout = true
@@ -37,9 +40,6 @@ vim.opt.signcolumn = 'yes'
 vim.opt.completeopt = 'menuone,noselect'
 vim.opt.inccommand = 'split'
 vim.opt.guicursor = "n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor"
-
--- Fix 'Press enter' messages
-vim.opt.messagesopt = 'history:500,wait:0'
 
 -- a: Abbreviations for commandline messages
 -- o/O: File read overwrites previous messages
