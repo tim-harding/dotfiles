@@ -7,10 +7,9 @@ return {
   end,
 
   opts = function()
-    local is_format_enabled_global = true
-
-    vim.api.nvim_create_user_command('Autoformat', function(opts)
-      local is_global = true
+    local is_format_enabled_global = vim.env.AUTOFORMAT_DEFAULT ~= "off"
+    local function format(opts)
+      local is_global
       local mode = 'toggle'
       for _, arg in ipairs(opts.fargs) do
         if arg == 'on' or arg == 'off' or arg == 'toggle' then
@@ -51,11 +50,14 @@ return {
       else
         vim.b.is_format_enabled = is_format_enabled
       end
-    end, {
+    end
+
+
+    vim.api.nvim_create_user_command('Autoformat', format, {
       nargs = '*',
       complete = function(_, _, _)
         return { 'on', 'off', 'toggle', 'local', 'global' }
-      end,
+      end
     })
 
     ---@type conform.setupOpts
