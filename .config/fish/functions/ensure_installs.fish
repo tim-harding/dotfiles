@@ -16,7 +16,7 @@ function ensure_installs
     end
 
     curl -LsSf https://astral.sh/uv/install.sh | sh
-    uv tool install ruff@latest
+    uv tool install ruff@latest pyright@latest
 
     # ls ~/go/bin
     go install github.com/nao1215/gup@latest
