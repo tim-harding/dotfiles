@@ -10,7 +10,6 @@ return {
       d = 'Dap',
       j = 'Jump (Telescope)',
       k = 'Scissors',
-      l = 'Leetcode',
       x = 'Xbase',
       t = 'Neotest',
       n = 'Obsidian',
