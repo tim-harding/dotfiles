@@ -17,6 +17,7 @@ return {
       local avante = require 'avante'
 
       avante.setup {
+        provider = vim.env.AI_PROVIDER,
         behaviour = {
           enable_claude_text_editor_tool_mode = true,
         },

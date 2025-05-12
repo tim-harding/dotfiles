@@ -10,7 +10,7 @@ return {
       blink = {
         enable_auto_complete = false,
       },
-      provider = 'claude',
+      provider = vim.env.AI_PROVIDER,
       provider_options = {
         claude = {
           model = 'claude-3-7-sonnet-latest',
