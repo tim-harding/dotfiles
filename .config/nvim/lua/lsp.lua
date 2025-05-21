@@ -17,7 +17,7 @@ vim.lsp.enable {
   'hyprls',
   'svelte',
   'vtsls',
-  'volar',
+  'vue_ls',
   'sourcekit',
   'lua_ls',
   'hls',
