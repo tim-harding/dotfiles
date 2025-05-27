@@ -42,6 +42,18 @@ function gg --argument-names cmd
             end
             gg with_root inner $argv
 
+        case worktree
+            function inner --argument-names branch
+                git pull
+                git worktree prune
+                if not string match --regex ".*$branch.*" (git branch --list) > /dev/null
+                    git branch $branch
+                end
+                git worktree add ../$branch $branch
+                cd ../$branch
+            end
+            gg with_root inner $argv
+
         case '*'
             echo "Unknown command"
     end
