@@ -83,7 +83,7 @@ return {
         c = { 'clang-format' },
         haskell = { 'fourmolu' },
         ocaml = { 'ocamlformat' },
-        python = { 'black' },
+        python = { 'ruff' },
         swift = { 'swiftformat' },
         yaml = { 'yamlfmt' },
         scala = { 'scalafmt' },
