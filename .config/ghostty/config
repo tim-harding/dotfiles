@@ -11,6 +11,7 @@ font-size = 14
 theme = catppuccin-frappe
 cursor-text = #232634
 mouse-hide-while-typing = true
+keybind = unconsumed:super+c=copy_to_clipboard
 window-padding-balance = true
 window-inherit-working-directory = true
 copy-on-select = clipboard

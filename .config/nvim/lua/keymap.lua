@@ -65,8 +65,7 @@ map('n', '<Esc>', vim.cmd.nohlsearch)
 map('n', '<leader>\'', '<cmd>s/"/\'/g<cr>')
 map('n', '<leader>"', '<cmd>%s/"/\'/g<cr>')
 
-map({ 'n', 'x' }, '<leader>p', '"+p', 'paste from clipboard')
-map({ 'n', 'x' }, '<leader>y', '"+y', 'yank from clipboard')
+map({ 'n', 'x' }, '<D-c>', '"+y', 'yank to clipboard')
 
 local cr_braces = shared.input_unmapped('<cr><up><end><cr>')
 local cr = shared.input_unmapped('<cr>')
