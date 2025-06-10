@@ -36,5 +36,6 @@ cask "keepassxc"
 cask "font-cascadia-code"
 cask "font-cascadia-code-pl"
 cask "docker"
+cask "hammerspoon"
 
 # main ./Brewfile.$HOSTNAME
