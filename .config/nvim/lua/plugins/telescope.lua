@@ -54,6 +54,11 @@ return {
           ['ui-select'] = {
             themes.get_dropdown(),
           },
+          glyph = {
+            action = function(glyph)
+              vim.api.nvim_put({ glyph.value }, 'c', false, true)
+            end,
+          },
         },
 
         pickers = {
