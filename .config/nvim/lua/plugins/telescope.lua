@@ -2,6 +2,7 @@ return {
   'nvim-lua/plenary.nvim',
   'nvim-telescope/telescope-dap.nvim',
   'nvim-telescope/telescope-ui-select.nvim',
+  'alduraibi/telescope-glyph.nvim',
   {
     'nvim-telescope/telescope-fzf-native.nvim',
     cond = function()
@@ -90,6 +91,7 @@ return {
       telescope.load_extension('dap')
       telescope.load_extension('ui-select')
       telescope.load_extension('metals')
+      telescope.load_extension('glyph')
 
       map('n', '<leader>jj', tb.find_files, 'files')
       map('n', '<leader>jg', tb.git_files, 'git files')
