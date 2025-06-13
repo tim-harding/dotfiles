@@ -37,5 +37,6 @@ cask "font-cascadia-code"
 cask "font-cascadia-code-pl"
 cask "docker"
 cask "hammerspoon"
+cask "chatgpt"
 
 # main ./Brewfile.$HOSTNAME
