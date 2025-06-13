@@ -51,7 +51,8 @@ function ensure_installs
         ripgrep \
         sd \
         tealdeer \
-        tokei
+        tokei \
+        protols
 
     cs install \
         ammonite \

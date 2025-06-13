@@ -23,7 +23,17 @@ vim.lsp.enable {
   'hls',
   'metals',
   'omnisharp',
+  'protols',
 }
+
+-- LSP folder configs overridden by lsp-config,
+-- so filetypes needs to go here to exclude .proto files
+vim.lsp.config('clangd', {
+  filetypes = {
+    'c',
+    'cpp',
+  }
+})
 
 ---@param bufnr integer
 local function hl_augroup_name(bufnr) return 'lsp-document-highlight-' .. bufnr end
