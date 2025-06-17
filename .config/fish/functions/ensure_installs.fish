@@ -52,7 +52,8 @@ function ensure_installs
         sd \
         tealdeer \
         tokei \
-        protols
+        protols \
+        jj-cli
 
     cs install \
         ammonite \
