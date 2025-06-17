@@ -1,5 +1,5 @@
 [user]
-    name = Tim Harding
+    name = Timothy Harding
     email = Tim@TimHarding.co
 
 [init]
@@ -40,5 +40,9 @@
 
 [diff]
     colorMoved = default
+
 [advice]
 	skippedCherryPicks = false
+
+[include]
+    path = ~/.gitconfig.local
