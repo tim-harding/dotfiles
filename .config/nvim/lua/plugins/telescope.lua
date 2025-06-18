@@ -40,8 +40,8 @@ return {
             i = {
               ['<C-j>'] = actions.move_selection_next,
               ['<C-k>'] = actions.move_selection_previous,
-              ['<Up>']  = actions.cycle_history_prev,
-              ['<Down>'] = actions.cycle_history_next,
+              ['<M-Up>']  = actions.cycle_history_prev,
+              ['<M-Down>'] = actions.cycle_history_next,
               ['<C-h>'] = 'which_key',
             }
           },
