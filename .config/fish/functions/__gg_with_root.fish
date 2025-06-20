@@ -1,4 +1,4 @@
-function __gg_with_root
+function __gg_with_root -d 'Run function from git root'
     set -l root (gg root)
     if [ $root = (pwd) ]
         $argv

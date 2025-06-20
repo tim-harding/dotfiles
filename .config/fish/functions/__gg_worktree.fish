@@ -1,4 +1,4 @@
-function __gg_worktree
+function __gg_worktree -d 'Create a new worktree'
     function inner --argument-names branch
         git pull
         git worktree prune
