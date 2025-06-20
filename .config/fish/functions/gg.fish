@@ -88,6 +88,10 @@ function gg --argument-names cmd
                     git branch -D $choice
             end
 
+        case switch
+            git branch --all --format '%(refname:short)' | fzf | read -l branch
+            and git switch $branch
+
         case '*'
             echo "Unknown command"
     end
