@@ -4,10 +4,10 @@ function _gg_reset -d 'Reset hard to last commit'
         set n $argv[1]
     end
 
-    function inner --inherit-variable n
-        git add .
-        git reset --hard HEAD~$n
-    end
+    gg with_root __gg_reset_inner $n
+end
 
-    gg with_root inner $argv
+function __gg_reset_inner --argument-names n
+    git add .
+    git reset --hard HEAD~$n
 end

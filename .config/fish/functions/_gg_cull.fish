@@ -1,6 +1,6 @@
 function _gg_cull -d 'Remove branches'
     set -l branches (git branch --format '%(refname:short)')
-    set -l options (__cull_format_branches $branches)
+    set -l options (__gg_cull_format_branches $branches)
     set -l choose \
         gum choose \
             --height 1000 \
@@ -33,13 +33,13 @@ function _gg_cull -d 'Remove branches'
     end
 end
 
-function __cull_format_branches
+function __gg_cull_format_branches
     for branch in $argv
-        __cull_format_branch $branch
+        __gg_cull_format_branch $branch
     end
 end
 
-function __cull_format_branch --argument-names branch
+function __gg_cull_format_branch --argument-names branch
     set -l head (path dirname  $branch)
     set -l tail (path basename $branch)
     switch $head

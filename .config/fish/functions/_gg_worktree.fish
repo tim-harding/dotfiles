@@ -1,12 +1,13 @@
 function _gg_worktree -d 'Create a new worktree'
-    function inner --argument-names branch
-        git pull
-        git worktree prune
-        if not string match --regex ".*$branch.*" (git branch --list) > /dev/null
-            git branch $branch
-        end
-        git worktree add ../$branch $branch
-        cd ../$branch
+    gg with_root __gg_worktree_inner $argv
+end
+
+function __gg_worktree_inner --argument-names branch
+    git pull
+    git worktree prune
+    if not string match --regex ".*$branch.*" (git branch --list) > /dev/null
+        git branch $branch
     end
-    gg with_root inner $argv
+    git worktree add ../$branch $branch
+    cd ../$branch
 end

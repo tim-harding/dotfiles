@@ -1,8 +1,8 @@
 function _gg_amend -d 'Amend last commit with all changes'
-    function inner
-        git add .
-        git commit --amend --no-edit
-    end
-    set --prepend argv inner
-    gg with_root inner $argv
+    gg with_root __gg_amend_inner $argv
+end
+
+function __gg_amend_inner
+    git add .
+    git commit --amend --no-edit
 end
