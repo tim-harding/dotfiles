@@ -1,4 +1,4 @@
-function __gg_clone -d 'Clone with a worktree folder'
+function _gg_clone -d 'Clone with a worktree folder'
     string match --regex --quiet '\/(?<name>[^\/]+)\.git' $argv
     git clone $argv
     mv $name trunk

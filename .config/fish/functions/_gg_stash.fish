@@ -1,4 +1,4 @@
-function __gg_stash -d 'Create a stash with all changes'
+function _gg_stash -d 'Create a stash with all changes'
     function inner
         git add .
         git stash

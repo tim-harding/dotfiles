@@ -1,4 +1,4 @@
-function __gg_cull -d 'Remove branches'
+function _gg_cull -d 'Remove branches'
     set -l branches (git branch --format '%(refname:short)')
     set -l options (__cull_format_branches $branches)
     set -l choose \

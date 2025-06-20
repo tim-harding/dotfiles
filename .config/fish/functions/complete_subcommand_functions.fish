@@ -5,12 +5,12 @@ function complete_subcommand_functions --argument-names command
         functions --names --all \
         | string split ', ' \
         | string match --regex --groups-only (
-            echo -s __ $command '_(.*)'
+            echo -s _ $command '_(.*)'
         )
     )
 
     for subcommand in $subcommands
-        functions --details --verbose (echo -s __ $command _ $subcommand) \
+        functions --details --verbose (echo -s _ $command _ $subcommand) \
         | read -l --line __ __ __ __ description
 
         complete -c $command \

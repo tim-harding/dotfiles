@@ -1,4 +1,4 @@
-function __gg_amend -d 'Amend last commit with all changes'
+function _gg_amend -d 'Amend last commit with all changes'
     function inner
         git add .
         git commit --amend --no-edit

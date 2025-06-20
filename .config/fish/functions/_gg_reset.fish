@@ -1,4 +1,4 @@
-function __gg_reset -d 'Reset hard to last commit'
+function _gg_reset -d 'Reset hard to last commit'
     set -l n 0
     if test (count $argv) -gt 0
         set n $argv[1]
