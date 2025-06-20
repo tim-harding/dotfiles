@@ -10,9 +10,55 @@ function ensure_installs
         case Linux
             set -l binstall_url https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh
             curl -L --proto '=https' --tlsv1.2 -sSf $binstall_url | bash
+
         case Darwin
-            brew bundle install --file ~/.config/brewfile/Brewfile
-            # brew bundle install --file ~/.config/brewfile/Brewfile.$HOSTNAME
+            init_local_profile
+
+            if set -q brew_extra_tap
+                brew tap $brew_extra_tap
+            end
+
+            brew install $brew_extra_formulae \
+                bottom \
+                cmake \
+                coreutils \
+                coursier \
+                fd \
+                fish \
+                fzf \
+                git-delta \
+                git-lfs \
+                go \
+                gum \
+                jq \
+                lazygit \
+                lua-language-server \
+                luarocks \
+                neovim \
+                pipx \
+                ruff-lsp \
+                sd \
+                stow \
+                syncthing \
+                tinymist \
+                typst \
+                oven-sh/bun/bun \
+                yarn \
+                cargo-binstall \
+                coursier/formulas/coursier \
+                pyenv \
+                bruno \
+                node
+
+            brew install --cask $brew_extra_cask \
+                ghostty \
+                karabiner-elements \
+                keepassxc \
+                font-cascadia-code \
+                font-cascadia-code-pl \
+                docker \
+                hammerspoon \
+                chatgpt
     end
 
     curl -LsSf https://astral.sh/uv/install.sh | sh
