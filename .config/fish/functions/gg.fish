@@ -92,8 +92,15 @@ function gg --argument-names cmd
             git branch --all --format '%(refname:short)' | fzf | read -l branch
             and git switch $branch
 
+        case clone
+            string match --regex --quiet '\/(?<name>[^\/]+)\.git' $argv
+            git clone $argv
+            mv $name trunk
+            mkdir $name
+            mv trunk $name
+
         case '*'
-            echo "Unknown command"
+            echo "Unknown command" >&2
     end
 end
 
