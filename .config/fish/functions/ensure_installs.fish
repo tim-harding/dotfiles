@@ -14,11 +14,11 @@ function ensure_installs
         case Darwin
             init_local_profile
 
-            if set -q brew_extra_tap
-                brew tap $brew_extra_tap
+            if set -q brew_extra_taps
+                brew tap $brew_extra_taps
             end
 
-            brew install $brew_extra_formulae \
+            brew install --formula $brew_extra_formulae \
                 bottom \
                 cmake \
                 coreutils \
@@ -50,7 +50,7 @@ function ensure_installs
                 bruno \
                 node
 
-            brew install --cask $brew_extra_cask \
+            brew install --cask $brew_extra_casks \
                 ghostty \
                 karabiner-elements \
                 keepassxc \

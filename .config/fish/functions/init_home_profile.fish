@@ -1,5 +1,5 @@
 function init_home_profile
-    set -g brew_extra_tap \
+    set -g brew_extra_taps \
         libsql/sqld \
         omnisharp/omnisharp-roslyn \
         osx-cross/arm \
@@ -30,6 +30,6 @@ function init_home_profile
         harfbuzz \
         gcc
 
-    set -g brew_extra_cask \
+    set -g brew_extra_casks \
         katrain
 end
