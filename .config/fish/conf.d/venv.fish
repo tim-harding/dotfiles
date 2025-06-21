@@ -19,11 +19,8 @@ function __auto_source_venv --on-variable PWD --description "Activate/Deactivate
         # While we are still inside the git directory, find the closest
         # virtualenv starting from the current directory.
         while string match "$gitdir*" "$cwd" &>/dev/null
-            if test -e "$cwd/.venv/bin/activate.fish"
-                source "$cwd/.venv/bin/activate.fish" &>/dev/null
-                return
-            else if test -e "$cwd/bin/activate.fish"
-                source "$cwd/bin/activate.fish" &>/dev/null
+            if test -e "$cwd/venv/bin/activate.fish"
+                source "$cwd/venv/bin/activate.fish" &>/dev/null
                 return
             else
                 set cwd (path dirname "$cwd")
