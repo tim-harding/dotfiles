@@ -3,15 +3,19 @@
 return {
   'rmagatti/auto-session',
   lazy = false,
+
   dependencies = {
     -- Make sure barbar is already loaded
     'romgrk/barbar.nvim',
   },
 
   init = function()
+    -- For barbar
     vim.opt.sessionoptions:append 'globals'
-    vim.opt.sessionoptions:append 'options'
-    vim.opt.sessionoptions:append 'localoptions'
+
+    -- These prevent changes in options.lua being picked up, which is confusing
+    -- vim.opt.sessionoptions:append 'options'
+    -- vim.opt.sessionoptions:append 'localoptions'
   end,
 
   ---@module "auto-session"

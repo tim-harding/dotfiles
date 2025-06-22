@@ -14,10 +14,10 @@ vim.opt.expandtab = true
 vim.opt.showmode = false
 vim.opt.cursorline = true
 
--- Fix 'Press enter' messages
-vim.opt.messagesopt = 'history:500,wait:0'
-vim.opt.confirm = false
-vim.opt.cmdheight = 0
+-- Fixes 'Press enter' messages, but messes up notifications and :messages
+-- vim.opt.messagesopt = 'history:500,wait:0'
+-- vim.opt.confirm = false
+-- vim.opt.cmdheight = 0
 
 vim.opt.timeout = true
 vim.opt.updatetime = 0
