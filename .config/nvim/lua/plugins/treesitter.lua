@@ -10,6 +10,10 @@ return {
       configs.setup {
         auto_install = true,
         highlight = { enable = true },
+        injection = {
+          enable = true,
+          additional_vim_regex_highlighting = false,
+        },
 
         -- Recco from Obsidian.nvim
         ensure_installed = { 'markdown', 'markdown_inline' },
