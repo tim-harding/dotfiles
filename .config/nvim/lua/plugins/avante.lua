@@ -21,8 +21,10 @@ return {
         behaviour = {
           enable_claude_text_editor_tool_mode = true,
         },
-        claude = {
-          model = "claude-3-7-sonnet-latest",
+        providers = {
+          claude = {
+            model = "claude-3-7-sonnet-latest",
+          },
         },
       }
 
