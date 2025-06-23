@@ -48,7 +48,8 @@ function ensure_installs
                 coursier/formulas/coursier \
                 pyenv \
                 bruno \
-                node
+                node \
+                scroll-reverser
 
             brew install --cask $brew_extra_casks \
                 ghostty \
