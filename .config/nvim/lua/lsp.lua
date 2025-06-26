@@ -24,6 +24,7 @@ vim.lsp.enable {
   'metals',
   'omnisharp',
   'protols',
+  'thriftls',
 }
 
 -- LSP folder configs overridden by lsp-config,
@@ -33,6 +34,10 @@ vim.lsp.config('clangd', {
     'c',
     'cpp',
   }
+})
+
+vim.lsp.config('thriftls', {
+  cmd = { 'thrift-ls' },
 })
 
 ---@param bufnr integer

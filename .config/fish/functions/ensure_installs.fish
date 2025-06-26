@@ -66,9 +66,13 @@ function ensure_installs
     uv tool install ruff@latest pyright@latest
 
     # ls ~/go/bin
-    go install github.com/nao1215/gup@latest
-    go install golang.org/x/tools/gopls@latest
-    go install github.com/google/yamlfmt/cmd/yamlfmt@latest
+    for pkg in \
+        github.com/nao1215/gup \
+        golang.org/x/tools/gopls \
+        github.com/google/yamlfmt/cmd/yamlfmt \
+        github.com/joyme123/thrift-ls
+        go install $pkg@latest
+    end
 
     # bun pm ls -g
     bun install --global \
