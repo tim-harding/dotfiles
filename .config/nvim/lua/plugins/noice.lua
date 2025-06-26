@@ -11,6 +11,7 @@ return {
       },
       messages = {
         view = 'mini',
+        view_search = false,
       },
       notify = {
         view = 'mini',
