@@ -3,7 +3,7 @@ return {
   "rcarriga/nvim-notify",
   {
     "folke/noice.nvim",
-    enabled = false,
+    enabled = true,
     event = "VeryLazy",
     opts = {
       cmdline = {
