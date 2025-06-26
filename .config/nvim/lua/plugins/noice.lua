@@ -8,7 +8,13 @@ return {
     opts = {
       cmdline = {
         view = 'cmdline',
-      }
+      },
+      messages = {
+        view = 'notify_send',
+      },
+      notify = {
+        view = 'notify_send',
+      },
     },
   }
 }
