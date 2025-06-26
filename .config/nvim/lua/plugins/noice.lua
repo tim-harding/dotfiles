@@ -6,8 +6,9 @@ return {
     enabled = true,
     event = "VeryLazy",
     opts = {
-      cmdline = {
-        view = 'cmdline',
+      presets = {
+        bottom_search = true,
+        command_palette = true,
       },
       messages = {
         view = 'mini',
