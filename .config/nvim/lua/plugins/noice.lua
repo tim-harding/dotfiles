@@ -11,6 +11,8 @@ return {
       },
       messages = {
         view = 'mini',
+        view_warn = 'mini',
+        view_error = 'mini',
         view_search = false,
       },
       notify = {
