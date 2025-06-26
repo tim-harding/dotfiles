@@ -10,10 +10,10 @@ return {
         view = 'cmdline',
       },
       messages = {
-        view = 'notify_send',
+        view = 'mini',
       },
       notify = {
-        view = 'notify_send',
+        view = 'mini',
       },
     },
   }
