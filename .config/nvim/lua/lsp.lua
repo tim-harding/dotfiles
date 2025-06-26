@@ -43,8 +43,10 @@ local function hl_augroup(bufnr)
   return vim.api.nvim_create_augroup(hl_augroup_name(bufnr), { clear = false })
 end
 
+local lsp_augroup = vim.api.nvim_create_augroup('lsp-attach', {})
+
 vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('lsp-attach', {}),
+  group = lsp_augroup,
   callback = function(event)
     vim.opt_local.tagfunc = "v:lua.vim.lsp.tagfunc"
 
@@ -87,23 +89,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
     map('n', '<leader>i', toggle_inlay_hints, 'toggle inlay hints')
 
-    local tb = require('telescope.builtin')
-    map('n', 'gr', tb.lsp_references, 'goto reference')
-    map('n', 'gd', tb.lsp_definitions, 'goto definition')
-    map('n', 'gt', tb.lsp_type_definitions, 'goto type definition')
-    map('n', 'gi', tb.lsp_implementations, 'goto implementation')
-
-    -- local fzf = require('fzf-lua')
-    -- map('n', 'gr', fzf.lsp_references, 'goto reference')
-    -- map('n', 'gd', fzf.lsp_definitions, 'goto definition')
-    -- map('n', 'gt', fzf.lsp_typedefs, 'goto type definition')
-    -- map('n', 'gi', fzf.lsp_implementations, 'goto implementation')
-
-    map('n', '<leader>r', vim.lsp.buf.rename, 'rename')
+    map('n', 'gr', vim.lsp.buf.references, 'goto reference')
+    map('n', 'gd', vim.lsp.buf.definition, 'goto definition')
+    map('n', 'gt', vim.lsp.buf.type_definition, 'goto type definition')
+    map('n', 'gi', vim.lsp.buf.implementation, 'goto implementation')
     map('n', 'gD', vim.lsp.buf.declaration, 'declaration')
     map('n', 'gh', vim.lsp.buf.hover, 'hover')
-    map({ 'n', 'x' }, '<leader><leader>', vim.lsp.buf.code_action,
-      'code action')
+    map('n', '<leader>r', vim.lsp.buf.rename, 'rename')
+    map({ 'n', 'x' }, '<leader><leader>', vim.lsp.buf.code_action, 'code action')
   end
 })
 
