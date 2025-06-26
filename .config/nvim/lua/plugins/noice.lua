@@ -8,7 +8,9 @@ return {
     opts = {
       presets = {
         bottom_search = true,
-        command_palette = true,
+      },
+      cmdline = {
+        view = 'cmdline',
       },
       messages = {
         view = 'mini',
