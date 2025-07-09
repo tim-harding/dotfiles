@@ -7,7 +7,7 @@ return {
   end,
 
   opts = function()
-    local is_format_enabled_global = vim.env.AUTOFORMAT_DEFAULT ~= "off"
+    local is_format_enabled_global = vim.env.AUTOFORMAT_DEFAULT == "1"
     local function format(opts)
       local is_global
       local mode = 'toggle'
