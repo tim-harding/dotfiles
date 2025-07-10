@@ -44,3 +44,6 @@ set tide_pwd_bg_color
 set tide_pwd_color_dirs cyan
 set tide_pwd_color_truncated_dirs $tide_pwd_color_dirs
 set tide_pwd_color_anchors $tide_pwd_color_dirs
+
+set tide_git_truncation_strategy l # truncate beginning, not end
+set tide_git_truncation_length 128
