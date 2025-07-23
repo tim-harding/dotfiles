@@ -4,4 +4,5 @@ function _gg_clone -d 'Clone with a worktree folder'
     mv $name trunk
     mkdir $name
     mv trunk $name
+    cd $name/trunk
 end
