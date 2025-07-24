@@ -44,5 +44,8 @@
 [advice]
 	skippedCherryPicks = false
 
+[rerere]
+    enabled = true
+
 [include]
     path = ~/.gitconfig.local
