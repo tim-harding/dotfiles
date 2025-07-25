@@ -93,10 +93,15 @@ end)
 
 map('n', '<m-t>', vim.cmd.terminal)
 map('n', '<m-c>', ':<cr>')
+
 map('n', '<leader><s-l>', '<cmd>Lazy update<cr>', 'Update plugins')
-map('n', 'L', '/')
-map('n', 'H', '?')
-map('n', '<m-o>', '<c-t>')
-map('n', '<m-i>', '<c-]>')
+
+map('n', '<m-o>', '<c-t>', 'LSP jump in')
+map('n', '<m-i>', '<c-]>', 'LSP jump out')
+
 map('n', ']t', '<cmd>tabnext<cr>', 'Next tab')
 map('n', '[t', '<cmd>tabprevious<cr>', 'Previous tab')
+
+-- Don't yank on change
+map({'n', 'v'}, 'c', '"_c')
+map({'n', 'v'}, 'C', '"_C')
