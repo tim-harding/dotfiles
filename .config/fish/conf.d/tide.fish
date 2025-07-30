@@ -8,28 +8,7 @@ set tide_left_prompt_separator_same_color ' '
 # set tide_left_prompt_separator_diff_color 
 # set tide_left_prompt_separator_same_color 
 
-# todo: add bun item when released in 6.2
 set tide_right_prompt_items \
-    aws \
-    crystal \
-    distrobox \
-    direnv \
-    docker \
-    elixir \
-    go \
-    java \
-    kubectl \
-    nix_shell \
-    node \
-    php \
-    pulumi \
-    python \
-    ruby \
-    rustc \
-    terraform \
-    toolbox \
-    zig \
-    python \
     status \
     cmd_duration \
     context \
