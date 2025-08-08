@@ -87,6 +87,7 @@ return {
         swift = { 'swiftformat' },
         yaml = { 'yamlfmt' },
         scala = { 'scalafmt' },
+        go = { 'gofmt' },
       },
 
       formatters = {
