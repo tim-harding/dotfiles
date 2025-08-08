@@ -70,7 +70,9 @@ function ensure_installs
         github.com/nao1215/gup \
         golang.org/x/tools/gopls \
         github.com/google/yamlfmt/cmd/yamlfmt \
-        github.com/joyme123/thrift-ls
+        github.com/joyme123/thrift-ls \
+        github.com/sqlc-dev/sqlc/cmd/sqlc
+
         go install $pkg@latest
     end
 
