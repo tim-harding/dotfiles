@@ -88,7 +88,8 @@ function ensure_installs
         prettier \
         typescript \
         typescript-language-server \
-        vscode-langservers-extracted
+        vscode-langservers-extracted \
+        @biomejs/biome
 
     # cargo install --list
     cargo binstall \
