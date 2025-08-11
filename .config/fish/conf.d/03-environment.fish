@@ -1,0 +1,1 @@
+set -x AUTOFORMAT_DEFAULT 1
