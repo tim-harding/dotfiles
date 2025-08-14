@@ -59,7 +59,8 @@ function ensure_installs
                 font-cascadia-code-pl \
                 docker \
                 hammerspoon \
-                chatgpt
+                chatgpt \
+                jdk-mission-control
     end
 
     curl -LsSf https://astral.sh/uv/install.sh | sh
