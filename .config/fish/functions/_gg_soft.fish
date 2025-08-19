@@ -10,4 +10,5 @@ end
 function __gg_soft_inner --argument-names n
     git add .
     git reset --soft HEAD~$n
+    git reset .
 end
