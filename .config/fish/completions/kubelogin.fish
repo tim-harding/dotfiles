@@ -1,0 +1,1 @@
+kubelogin completion fish | source
