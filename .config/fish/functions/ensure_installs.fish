@@ -12,13 +12,19 @@ function ensure_installs
             curl -L --proto '=https' --tlsv1.2 -sSf $binstall_url | bash
 
         case Darwin
-            init_local_profile
+            for tap in \
+                libsql/sqld \
+                omnisharp/omnisharp-roslyn \
+                osx-cross/arm \
+                osx-cross/avr \
+                oven-sh/bun \
+                qmk/qmk \
+                tursodatabase/tap
 
-            if set -q brew_extra_taps
-                brew tap $brew_extra_taps
+                brew tap $tap
             end
 
-            brew install --formula $brew_extra_formulae \
+            brew install --formula \
                 bottom \
                 cmake \
                 coreutils \
@@ -49,9 +55,30 @@ function ensure_installs
                 pyenv \
                 bruno \
                 node \
-                scroll-reverser
+                scroll-reverser \
+                claude \
+                boost \
+                qmk/qmk/qmk \
+                xcbeautify \
+                xcode-build-server \
+                xcodegen \
+                swiftformat \
+                swiftlint \
+                resvg \
+                postgresql@14, restart_service: :changed \
+                pkgconf \
+                imagemagick \
+                haskell-language-server \
+                fourmolu \
+                gh \
+                ghcup \
+                flyctl \
+                ffmpeg \
+                harfbuzz \
+                gcc \
+                Azure/kubelogin/kubelogin
 
-            brew install --cask $brew_extra_casks \
+            brew install --cask \
                 ghostty \
                 karabiner-elements \
                 keepassxc \
@@ -60,7 +87,8 @@ function ensure_installs
                 docker \
                 hammerspoon \
                 chatgpt \
-                jdk-mission-control
+                jdk-mission-control \
+                katrain
     end
 
     curl -LsSf https://astral.sh/uv/install.sh | sh
