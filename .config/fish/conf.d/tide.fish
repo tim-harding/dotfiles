@@ -10,7 +10,6 @@ set tide_left_prompt_separator_same_color ' '
 
 set tide_right_prompt_items \
     kubectl \
-    python \
     status \
     cmd_duration \
     context \
