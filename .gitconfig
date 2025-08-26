@@ -47,5 +47,8 @@
 [rerere]
     enabled = true
 
+[branch]
+    autoSetupMerge = simple
+
 [include]
     path = ~/.gitconfig.local
