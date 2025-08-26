@@ -100,7 +100,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', 'gi', vim.lsp.buf.implementation, 'goto implementation')
     map('n', 'gD', vim.lsp.buf.declaration, 'declaration')
     map('n', 'gh', vim.lsp.buf.hover, 'hover')
-    map('n', '<leader>r', vim.lsp.buf.rename, 'rename')
+    map('n', '<f2>', vim.lsp.buf.rename, 'rename')
     map({ 'n', 'x' }, '<leader><leader>', vim.lsp.buf.code_action, 'code action')
   end
 })
