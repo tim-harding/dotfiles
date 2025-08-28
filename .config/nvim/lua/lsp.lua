@@ -59,10 +59,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if client == nil then return end
 
+    -- Bug in 0.11.x
+    --[[
     if client:supports_method('textDocument/foldingRange', bufnr) then
       local win = vim.api.nvim_get_current_win()
       vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
     end
+    --]]
 
     if client:supports_method('textDocument/documentHighlight', bufnr) then
       local group = hl_augroup(bufnr)
