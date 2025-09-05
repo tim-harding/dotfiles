@@ -10,5 +10,6 @@ end
 
 function __gg_fixup_inner
     git add .
-    git commit --amend --fixup $argv
+    git commit --fixup $argv
+    git rebase (gg trunk) --autosquash
 end
