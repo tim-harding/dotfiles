@@ -1,6 +1,6 @@
 function sauce
-    source ~/.config/fish/config.fish
-    for f in ~/.config/fish/conf.d/*.fish
-        source $f
+    for f in ~/.config/fish/{conf.d,functions,completions}/*.fish
+        test -L $f # Is it a symlink?
+        and source $f
     end
 end

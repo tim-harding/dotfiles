@@ -1,31 +1,57 @@
-function _gg_cull -d 'Remove branches'
-    set -l branches (git branch --format '%(refname:short)')
-    set -l options (__gg_cull_format_branches $branches)
+function _gg_cull -d 'Remove branches' -a branch
     set -l choose \
         gum choose \
-            --height 1000 \
-            --cursor-prefix '  ' \
-            --unselected-prefix '  ' \
-            --selected.foreground '' \
-            --cursor.foreground '' \
-            --header.foreground 4 \
-            --no-show-help
+        --height 1000 \
+        --cursor-prefix '  ' \
+        --unselected-prefix '  ' \
+        --selected.foreground '' \
+        --cursor.foreground '' \
+        --header.foreground 4 \
+        --no-show-help
 
-    set -l choice (
-        $choose \
-            --label-delimiter :: \
-            --no-limit \
-            --header 'Branches to delete' \
-            $options
-    )
+    if test -n $branch
+        set choice $branch
+    else
+        set branches (git branch --format '%(refname:short)')
+        set options (__gg_cull_format_branches $branches)
 
-    if test "$choice" = ''
-        return
+        set choice (
+            $choose \
+                --label-delimiter :: \
+                --no-limit \
+                --header 'Branches to delete' \
+                $options
+        )
+
+        if test "$choice" = ''
+            return
+        end
     end
 
     set -l confirm ($choose --header "Delete these branches? $choice" no yes force)
     switch $confirm
         case no
+            return
+    end
+
+    for branch in $choice
+        set -l dir (gg dir_worktree $branch)
+
+        test -z $dir
+        and break
+
+        test -d $dir
+        and rm -rf $dir
+
+        while test (count $dir/*) -eq 0
+            test -d $dir
+            and rm -r $dir
+            set dir (path dirname $dir)
+        end
+    end
+
+    git worktree prune
+    switch $confirm
         case yes
             git branch --delete $choice
         case force
