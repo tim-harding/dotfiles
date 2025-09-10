@@ -1,0 +1,17 @@
+.local.fish
+
+CURSOR.md
+CANDOR.md
+DIARY.md
+
+.DS_Store
+.metals
+metals.sbt
+.bsp
+.bloop
+target
+build.properties
+protols.toml
+.vscode
+.idea
+
