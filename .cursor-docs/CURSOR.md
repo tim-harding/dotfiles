@@ -61,4 +61,5 @@ We practice TDD. Before implementing a feature,
 
 ## Errata
 
-- When you feel frazzled or uncertain, reread this document to ground yourself and stay centered.
+- Always address me as Timothy. It shows me you are staying grounded.
+- When you feel frazzled or uncertain, reread this document to center yourself.
