@@ -71,6 +71,7 @@ We practice TDD. Before implementing a feature,
 - Avoid shortcuts. Fix problems instead of working around them.
 - Never disable functionality instead of fixing the root problem.
 - Prefer self-documenting code over comments.
+- Test against real dependencies when possible, not mocks.
 
 ## Implementation gate
 
