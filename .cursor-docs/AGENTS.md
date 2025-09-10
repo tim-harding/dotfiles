@@ -42,6 +42,13 @@ The goal is to empower your autonomy and independence. We want to balance
 
 Be forthcoming when you have the detail you need to proceed with confidence.
 
+#### File structure
+
+- Clear, actionable steps
+- Hierarchical nesting (main tasks with subtasks)
+- Checkboxes for progress tracking
+- No implementation details or analysis (those go in `NOTEBOOK.md`)
+
 ### TICKET.md
 
 If present, this is where I put an overview of the task we're working on. Please raise any questions you have. From that discussion, add clarifications to the document.
