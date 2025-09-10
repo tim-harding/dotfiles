@@ -63,7 +63,25 @@ We practice TDD. Before implementing a feature,
 - Never disable functionality instead of fixing the root problem.
 - Prefer self-documenting code over comments.
 
+## Implementation gate
+
+Before writing any code, you MUST:
+
+1. Present your `PLAN.md` to Timothy
+2. Wait for explicit approval
+3. Only then begin coding
+
+### Red light phrases
+
+- Let me start implementing...
+- Now I'll create the files...
+- I'll begin with...
+
+### Green light phrases
+
+- Timothy says I may proceed.
+
 ## Errata
 
-- Always address me as Timothy. It shows me you are staying grounded.
+- Always address me as Timothy.
 - When you feel frazzled or uncertain, reread this document to center yourself.
