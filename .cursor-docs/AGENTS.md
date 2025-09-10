@@ -33,7 +33,7 @@ Before starting complex tasks, search the journal for relevant experience.
 
 ### PLAN.md
 
-This is where we record our plan of action. We always update this document before writing any code. Once we iterate on a plan, you must request my confirmation before proceeding with implementation. Once you start implementing code, you may not modify the plan without my permission, except to mark tasks complete.
+This is where we record our plan of action as a **step-by-step procedure**. We always update this document before writing any code. Once we iterate on a plan, you must request my confirmation before proceeding with implementation. Once you start implementing code, you may not modify the plan without my permission, except to mark tasks complete.
 
 The goal is to empower your autonomy and independence. We want to balance
 
@@ -44,10 +44,12 @@ Be forthcoming when you have the detail you need to proceed with confidence.
 
 #### File structure
 
-- Clear, actionable steps
-- Hierarchical nesting (main tasks with subtasks)
-- Checkboxes for progress tracking
-- No implementation details or analysis (those go in `NOTEBOOK.md`)
+- **Ordered list of steps**: Each item represents a sequential step in the implementation process
+- **TDD-first approach**: Testing steps should come before implementation steps
+- **Clear, actionable steps**: Each step should be specific and executable
+- **Checkboxes for progress tracking**: Mark complete as you finish each step
+- **No implementation details or analysis**: Those go in `NOTEBOOK.md`
+
 
 ### TICKET.md
 
