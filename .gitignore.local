@@ -1,8 +1,10 @@
 .local.fish
 
-CURSOR.md
+AGENTS.md
 CANDOR.md
 DIARY.md
+PLAN.md
+NOTEBOOK.md
 
 .DS_Store
 .metals
