@@ -101,7 +101,8 @@ function ensure_installs
         github.com/google/yamlfmt/cmd/yamlfmt \
         github.com/joyme123/thrift-ls \
         github.com/sqlc-dev/sqlc/cmd/sqlc \
-        github.com/golangci/golangci-lint
+        github.com/golangci/golangci-lint \
+        github.com/bufbuild/buf-language-server/cmd/bufls
 
         go install $pkg@latest
     end
