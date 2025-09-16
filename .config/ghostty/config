@@ -8,7 +8,7 @@ font-feature = ss19
 font-feature = ss20
 font-feature = calt
 font-size = 14
-theme = catppuccin-frappe
+theme = Catppuccin Frappe
 cursor-text = #232634
 mouse-hide-while-typing = true
 keybind = unconsumed:super+c=copy_to_clipboard
