@@ -21,6 +21,8 @@
 [core]
     pager = delta
     excludesFile = ~/.gitignore.local
+    fsmonitor = true
+    untrackedCache = true
 
 [interactive]
     diffFilter = delta --color-only
