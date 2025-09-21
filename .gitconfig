@@ -29,6 +29,7 @@
 
 [status]
     branch = true
+    submoduleSummary = true
 
 [maintenance]
     auto = true
@@ -94,6 +95,10 @@
     compactionHeuristic = true
     mnemonicPrefix = true
     renames = true
+    submodule = log
+
+[submodule]
+    recurse = true
 
 [advice]
     skippedCherryPicks = false
