@@ -4,10 +4,6 @@ function _gg_hard -d 'Hard reset to last commit'
         set n $argv[1]
     end
 
-    gg with_root __gg_hard_inner $n
-end
-
-function __gg_hard_inner --argument-names n
-    git add .
+    git add
     git reset --hard HEAD~$n
 end

@@ -5,11 +5,7 @@ function _gg_fixup -d 'Fix up previous commit'
         | read -l commit
     or return
 
-    gg with_root __gg_fixup_inner $commit
-end
-
-function __gg_fixup_inner
-    git add .
+    git add
     git commit --fixup $argv
     git rebase (gg trunk) --autosquash
 end

@@ -1,8 +1,5 @@
-function _gg_worktree -d 'Create a new worktree'
-    gg with_root __gg_worktree_inner $argv
-end
-
-function __gg_worktree_inner --argument-names branch
+function _gg_worktree --argument-names branch -d 'Create a new worktree'
+    cd (git root)
     git fetch --all --prune
     git worktree prune
 
