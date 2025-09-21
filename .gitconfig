@@ -51,6 +51,9 @@
     line-numbers-plus-style = green bold auto
     true-color = always
 
+[log]
+    date = iso
+
 [gpg]
     format = ssh
 
@@ -96,6 +99,8 @@
 
 [merge]
     conflictstyle = zdiff3
+    keepbackup = false
+    tool = meld
 
 [diff]
     colorMoved = plain
