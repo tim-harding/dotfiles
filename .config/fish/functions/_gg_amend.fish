@@ -1,5 +1,5 @@
 function _gg_amend -d 'Amend last commit with all changes'
-    git add
+    git all
     if git diff --cached --quiet
         git commit --amend
     else

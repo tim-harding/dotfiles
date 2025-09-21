@@ -4,7 +4,7 @@ function _gg_soft -d 'soft reset to last commit'
         set n $argv[1]
     end
 
-    git add
+    git all
     git reset --soft HEAD~$n
     git reset .
 end

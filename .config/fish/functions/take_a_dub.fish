@@ -1,5 +1,5 @@
 function take_a_dub
-    git add
+    git all
     if test (count $argv) -eq 0
         git commit
     else
