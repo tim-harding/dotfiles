@@ -76,6 +76,13 @@
     prune = true
     pruneTags = true
     all = true
+    fsckobjects = true
+
+[receive]
+    fsckobjects = true
+
+[transfer]
+    fsckobjects = true
 
 [rebase]
     autostash = true
