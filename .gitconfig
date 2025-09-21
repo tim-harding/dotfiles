@@ -37,6 +37,9 @@
     line-numbers-plus-style = green bold auto
     true-color = always
 
+[commit]
+    verbose = true
+
 [pull]
     rebase = true
     autostash = true
