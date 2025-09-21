@@ -26,6 +26,7 @@
     fsmonitor = true
     untrackedCache = true
     whitespace = trailing-space
+    autocrlf = false
 
 [status]
     branch = true
