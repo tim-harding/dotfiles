@@ -37,32 +37,52 @@
     line-numbers-plus-style = green bold auto
     true-color = always
 
+[grep]
+    patterntype = perl
+
+[feature]
+    experimental = true
+
+[column]
+    ui = auto
+
 [commit]
     verbose = true
+
+[tag]
+    sort = version:refname
 
 [pull]
     rebase = true
     autostash = true
 
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
 [rebase]
     autostash = true
     autosquash = true
+    updateRefs = true
 
 [push]
+    default = simple
     autoSetupRemote = true
+    followTags = true
 
 [merge]
     conflictstyle = zdiff3
 
 [diff]
-    colorMoved = default
+    colorMoved = plain
     algorithm = histogram
-    compactionHeuristic = true ; https://github.blog/open-source/git/git-2-9-has-been-released/#beautiful-diffs
-    mnemonicprefix = true ; replace a/b with (i)ndex/(c)ommit/(w)orking tree
-    renames = copies ; detect file copies as a type of rename
+    compactionHeuristic = true
+    mnemonicPrefix = true
+    renames = true
 
 [advice]
-	skippedCherryPicks = false
+    skippedCherryPicks = false
 
 [rerere]
     enabled = true
@@ -70,6 +90,10 @@
 
 [branch]
     autoSetupMerge = simple
+    sort = -committerdate
+
+[help]
+    autocorrect = prompt
 
 [include]
     path = ~/.gitconfig.local
