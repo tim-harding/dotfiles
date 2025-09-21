@@ -32,6 +32,11 @@
 
 [pull]
     rebase = true
+    autostash = true
+
+[rebase]
+    autostash = true
+    autosquash = true
 
 [push]
     autoSetupRemote = true
