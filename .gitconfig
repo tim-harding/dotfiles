@@ -23,6 +23,10 @@
     excludesFile = ~/.gitignore.local
     fsmonitor = true
     untrackedCache = true
+    whitespace = trailing-space
+
+[status]
+    branch = true
 
 [maintenance]
     auto = true
