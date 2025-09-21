@@ -35,6 +35,9 @@
     whitespace = trailing-space
     autocrlf = false
 
+[clean]
+    requireForce = false
+
 [status]
     branch = true
     submoduleSummary = true
