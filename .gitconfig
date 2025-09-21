@@ -57,6 +57,9 @@
 [diff]
     colorMoved = default
     algorithm = histogram
+    compactionHeuristic = true ; https://github.blog/open-source/git/git-2-9-has-been-released/#beautiful-diffs
+    mnemonicprefix = true ; replace a/b with (i)ndex/(c)ommit/(w)orking tree
+    renames = copies ; detect file copies as a type of rename
 
 [advice]
 	skippedCherryPicks = false
