@@ -5,6 +5,9 @@
 [init]
     defaultBranch = main
 
+[alias]
+    fp = push --force-with-lease --force-if-includes
+
 [filter "lfs"]
     required = true
     clean = git-lfs clean -- %f
