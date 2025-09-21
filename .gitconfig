@@ -1,6 +1,6 @@
 [user]
     name = Timothy Harding
-    email = Tim@TimHarding.co
+    email = timothy@harding.vip
     signingKey = ~/.ssh/id_ed25519.pub
 
 [init]
