@@ -12,6 +12,7 @@
     echo = rev-parse --abbrev-ref
     upstream = echo '@{upstream}'
     reword = commit --amend --only
+    amend = commit --amend --no-edit
     last = rev-list @^..@
     axe = log --source --all --color --patch --pickaxe-all --pickaxe-regex --regexp-ignore-case -G
     fp = push --force-with-lease --force-if-includes
