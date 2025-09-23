@@ -70,12 +70,12 @@
     blame-separator-format = ""
     true-color = always
     map-styles = bold purple => syntax magenta, bold cyan => syntax blue
-    # Customize further: https://dandavison.github.io/delta/hyperlinks.html
+    ; Customize further: https://dandavison.github.io/delta/hyperlinks.html
     hyperlinks = true
 
-# TODO: Delta features https://dandavison.github.io/delta/features-named-groups-of-settings.html
-# - Highlight lines with red/brightred/green/brightgreen background and no syntax highlight
-# - +/- instead of line numbers
+; TODO: Delta features https://dandavison.github.io/delta/features-named-groups-of-settings.html
+; - Highlight lines with red/brightred/green/brightgreen background and no syntax highlight
+; - +/- instead of line numbers
 
 [log]
     date = iso
