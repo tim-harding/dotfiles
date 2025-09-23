@@ -56,7 +56,6 @@
     hyperlinks = true
     max-line-length = 0
     true-color = always
-    map-styles = bold purple => syntax magenta, bold cyan => syntax blue
     syntax-theme = base16
     minus-style = syntax italic normal
     minus-emph-style = red italic reverse normal
@@ -74,12 +73,13 @@
     blame-separator-format = ""
     commit-decoration-style = black ul
     file-style = dim
-    file-decoration-style = black bold ul ol
+    file-decoration-style = black bold ul
+    hunk-header-style = syntax
     hunk-header-file-style = dim
     hunk-header-line-number-style = dim
-    hunk-header-decoration-style = black bold ul
-    merge-conflict-ours-diff-header-decoration-style = black bold ul ol
-    merge-conflict-theirs-diff-header-decoration-style = black bold ul ol
+    hunk-header-decoration-style = black bold
+    merge-conflict-ours-diff-header-decoration-style = black bold ul
+    merge-conflict-theirs-diff-header-decoration-style = black bold ul
 
 ; Note:
 ; For less fine-grained matching than the default try
@@ -89,7 +89,10 @@
 ; 🭭▼▽ 🭯▲△ options for merge-conflict-begin/end-symbol (middle is default)
 ;
 ; TODO: Delta features https://dandavison.github.io/delta/features-named-groups-of-settings.html
-; - Highlight lines with red/brightred/green/brightgreen background and no syntax highlight
+; - Highlight lines with
+;   - red/brightred/green/brightgreen background
+;   - no syntax highlight
+;   - map-styles = bold purple => syntax magenta, bold cyan => syntax blue (for moved lines)
 ; - +/- instead of line numbers
 ;
 ; TODO: Customize hyperlinks
