@@ -32,7 +32,7 @@ map('n', '<M-Right>', function() vim.cmd.wincmd('l') end)
 map('n', '<M-Up>', function() vim.cmd.wincmd('k') end)
 map('n', '<M-Down>', function() vim.cmd.wincmd('j') end)
 
-map('n', '<D-s>', vim.cmd.write, 'save')
+map({ 'n', 'i', 'x' }, '<D-s>', vim.cmd.write, 'save')
 
 map('n', '<leader>m', vim.cmd.messages, 'open messages')
 
