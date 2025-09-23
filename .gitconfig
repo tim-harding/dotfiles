@@ -60,6 +60,7 @@
     plus-emph-style = green bold reverse normal
     line-numbers-minus-style = red italic auto
     line-numbers-plus-style = green bold auto
+    line-numbers-zero-style = black auto
     true-color = always
     map-styles = bold purple => syntax magenta, bold cyan => syntax blue
     # Customize further: https://dandavison.github.io/delta/hyperlinks.html
