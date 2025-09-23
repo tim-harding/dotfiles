@@ -61,6 +61,7 @@
     line-numbers-minus-style = red italic auto
     line-numbers-plus-style = green bold auto
     true-color = always
+    map-styles = bold purple => syntax magenta, bold cyan => syntax blue
 
 [log]
     date = iso
@@ -107,7 +108,7 @@
     tool = meld
 
 [diff]
-    colorMoved = plain
+    colorMoved = default
     algorithm = histogram
     compactionHeuristic = true
     mnemonicPrefix = true
