@@ -62,6 +62,8 @@
     line-numbers-plus-style = green bold auto
     true-color = always
     map-styles = bold purple => syntax magenta, bold cyan => syntax blue
+    # Customize further: https://dandavison.github.io/delta/hyperlinks.html
+    hyperlinks = true
 
 [log]
     date = iso
