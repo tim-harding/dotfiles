@@ -66,6 +66,8 @@
     line-numbers-left-style = black
     line-numbers-right-style = black
     blame-palette = "#232634" "#292c3c" "#303446"
+    blame-format = {commit:<8} {author:<15.14}
+    blame-separator-format = ""
     true-color = always
     map-styles = bold purple => syntax magenta, bold cyan => syntax blue
     # Customize further: https://dandavison.github.io/delta/hyperlinks.html
