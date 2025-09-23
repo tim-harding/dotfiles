@@ -73,6 +73,8 @@
     ; Customize further: https://dandavison.github.io/delta/hyperlinks.html
     hyperlinks = true
 
+; 🭭▼▽ 🭯▲△ options for merge-conflict-begin/end-symbol (middle is default)
+
 ; TODO: Delta features https://dandavison.github.io/delta/features-named-groups-of-settings.html
 ; - Highlight lines with red/brightred/green/brightgreen background and no syntax highlight
 ; - +/- instead of line numbers

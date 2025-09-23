@@ -103,5 +103,5 @@ map('n', ']t', '<cmd>tabnext<cr>', 'Next tab')
 map('n', '[t', '<cmd>tabprevious<cr>', 'Previous tab')
 
 -- Don't yank on change
-map({'n', 'v'}, 'c', '"_c')
-map({'n', 'v'}, 'C', '"_C')
+map({ 'n', 'v' }, 'c', '"_c')
+map({ 'n', 'v' }, 'C', '"_C')
