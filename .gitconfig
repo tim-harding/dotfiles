@@ -61,6 +61,10 @@
     line-numbers-minus-style = red italic auto
     line-numbers-plus-style = green bold auto
     line-numbers-zero-style = black auto
+    line-numbers-left-format = "{nm:>4}┊"
+    line-numbers-right-format = "{np:>4}│"
+    line-numbers-left-style = black
+    line-numbers-right-style = black
     true-color = always
     map-styles = bold purple => syntax magenta, bold cyan => syntax blue
     # Customize further: https://dandavison.github.io/delta/hyperlinks.html
