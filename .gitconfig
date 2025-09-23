@@ -53,6 +53,7 @@
 [delta]
     navigate = true
     line-numbers = true
+    max-line-length = 0
     syntax-theme = base16
     minus-style = syntax italic normal
     minus-emph-style = red italic reverse normal
@@ -70,7 +71,6 @@
     blame-separator-format = ""
     true-color = always
     map-styles = bold purple => syntax magenta, bold cyan => syntax blue
-    ; Customize further: https://dandavison.github.io/delta/hyperlinks.html
     hyperlinks = true
 
 ; 🭭▼▽ 🭯▲△ options for merge-conflict-begin/end-symbol (middle is default)
@@ -78,6 +78,9 @@
 ; TODO: Delta features https://dandavison.github.io/delta/features-named-groups-of-settings.html
 ; - Highlight lines with red/brightred/green/brightgreen background and no syntax highlight
 ; - +/- instead of line numbers
+
+; TODO: Customize hyperlinks
+; https://dandavison.github.io/delta/hyperlinks.html
 
 [log]
     date = iso
