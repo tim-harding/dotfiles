@@ -65,6 +65,7 @@
     line-numbers-right-format = "{np:>4}│"
     line-numbers-left-style = black
     line-numbers-right-style = black
+    blame-palette = "#232634" "#292c3c" "#303446"
     true-color = always
     map-styles = bold purple => syntax magenta, bold cyan => syntax blue
     # Customize further: https://dandavison.github.io/delta/hyperlinks.html
