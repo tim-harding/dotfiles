@@ -1,6 +1,10 @@
 {
   "permissions": {
-    "allow": ["Shell(ls)", "Shell(git)", "Shell(git)"],
+    "allow": [
+      "Shell(ls)",
+      "Shell(git)",
+      "Shell(sbt)"
+    ],
     "deny": []
   },
   "version": 1,
@@ -18,6 +22,9 @@
   "privacyCache": {
     "ghostMode": true,
     "privacyMode": 2,
-    "updatedAt": 1757963982213
+    "updatedAt": 1758848783513
+  },
+  "network": {
+    "useHttp1ForAgent": false
   }
 }
