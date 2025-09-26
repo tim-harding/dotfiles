@@ -18,8 +18,8 @@ return {
       barbar.setup({
         auto_hide = true,
         animation = false,
-        -- focus_on_close = 'right',
-        -- insert_at_end = true,
+        focus_on_close = 'right',
+        insert_at_end = true,
         clickable = true,
         exclude_ft = { 'qf' },
         icons = {
