@@ -1,4 +1,12 @@
 function _mgmt_apply -a topic
+    switch $topic
+        case all
+            for topic in (mgmt topics)
+                _mgmt_apply $topic
+            end
+            return
+    end
+
     set -l plus (mgmt diff $topic --plus)
     for program in $plus
         read --prompt-str "Profile for $program: " -l profile
