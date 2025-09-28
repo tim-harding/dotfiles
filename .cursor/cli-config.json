@@ -1,13 +1,30 @@
 {
-  "version": 1,
-  "editor": {
-    "vimMode": false
-  },
-  "hasChangedDefaultModel": false,
   "permissions": {
     "allow": [
-      "Shell(ls)"
+      "Shell(ls)",
+      "Shell(git)",
+      "Shell(sbt)"
     ],
     "deny": []
+  },
+  "version": 1,
+  "editor": {
+    "vimMode": true
+  },
+  "model": {
+    "modelId": "gpt-5",
+    "displayModelId": "gpt-5",
+    "displayName": "GPT-5",
+    "displayNameShort": "GPT-5",
+    "aliases": []
+  },
+  "hasChangedDefaultModel": true,
+  "privacyCache": {
+    "ghostMode": true,
+    "privacyMode": 2,
+    "updatedAt": 1758924455796
+  },
+  "network": {
+    "useHttp1ForAgent": false
   }
 }
