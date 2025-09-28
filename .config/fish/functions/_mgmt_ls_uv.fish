@@ -1,4 +1,4 @@
-function _install_ls_uv -d 'List tools installed by uv'
+function _mgmt_ls_uv -d 'List tools installed by uv'
     if not command -q uv
         echo 'uv not found' >&2
         return 127
@@ -6,5 +6,7 @@ function _install_ls_uv -d 'List tools installed by uv'
 
     uv tool list
 end
+
+
 
 

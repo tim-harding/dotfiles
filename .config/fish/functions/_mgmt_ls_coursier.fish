@@ -1,4 +1,4 @@
-function _install_ls_coursier -d 'List apps installed by coursier'
+function _mgmt_ls_coursier -d 'List apps installed by coursier'
     if not command -q cs
         echo 'cs not found' >&2
         return 127
@@ -6,5 +6,7 @@ function _install_ls_coursier -d 'List apps installed by coursier'
 
     cs list
 end
+
+
 
 

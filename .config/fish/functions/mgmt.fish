@@ -1,8 +1,8 @@
-function install --argument-names cmd
+function mgmt --argument-names cmd
     set -l rest $argv
     set --erase rest[1]
 
-    set -l inner _install_$cmd
+    set -l inner _mgmt_$cmd
 
     if test (count $rest) -ge 1
         set -l provider $rest[1]
@@ -25,7 +25,9 @@ function install --argument-names cmd
 end
 
 if functions -q complete_subcommand_functions
-    complete_subcommand_functions install
+    complete_subcommand_functions mgmt
 end
+
+
 
 
