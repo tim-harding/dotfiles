@@ -20,11 +20,9 @@ function _mgmt_diff -a topic
         end
     )
 
-    set -l difference (
-        diff --unified \
-        (mgmt list $topic | psub) \
-        (mgmt meow $topic | psub) \
-        | string match --regex --invert '\-\-\-|\+\+\+|@@' \
-        | string match --regex --groups-only "^$char(.*)\$"
-    )
+    diff --unified \
+    (mgmt list $topic | psub) \
+    (mgmt meow $topic | psub) \
+    | string match --regex --invert '\-\-\-|\+\+\+|@@' \
+    | string match --regex --groups-only "^$char(.*)\$"
 end
