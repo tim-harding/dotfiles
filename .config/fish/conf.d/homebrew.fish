@@ -1,5 +1,5 @@
 switch $platform
-    case darwin
+    case Darwin
         brew shellenv | source
 end
 set -xg HOMEBREW_BAT
