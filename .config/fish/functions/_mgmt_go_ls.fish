@@ -1,4 +1,4 @@
-function _mgmt_ls_go -d 'List installed Go binaries in GOPATH/bin'
+function _mgmt_go_ls -d 'List installed Go binaries in GOPATH/bin'
     if not command -q go
         echo 'go not found' >&2
         return 127
@@ -17,7 +17,3 @@ function _mgmt_ls_go -d 'List installed Go binaries in GOPATH/bin'
         return 1
     end
 end
-
-
-
-

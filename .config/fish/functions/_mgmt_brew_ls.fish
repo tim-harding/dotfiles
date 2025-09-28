@@ -1,4 +1,4 @@
-function _mgmt_ls_brew -d 'List Homebrew items (formulae or casks)'
+function _mgmt_brew_ls -d 'List Homebrew items (formulae or casks)'
     if not command -q brew
         echo 'brew not found' >&2
         return 127
@@ -19,6 +19,3 @@ function _mgmt_ls_brew -d 'List Homebrew items (formulae or casks)'
             return 2
     end
 end
-
-
-
