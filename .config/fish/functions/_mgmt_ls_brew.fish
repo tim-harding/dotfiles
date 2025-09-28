@@ -1,4 +1,4 @@
-function _install_ls_brew -d 'List Homebrew items (formulae or casks)'
+function _mgmt_ls_brew -d 'List Homebrew items (formulae or casks)'
     if not command -q brew
         echo 'brew not found' >&2
         return 127
@@ -12,10 +12,13 @@ function _install_ls_brew -d 'List Homebrew items (formulae or casks)'
         case cask casks
             brew list --cask
         case ''
-            echo 'Usage: install ls brew (formula|cask)' >&2
+            echo 'Usage: mgmt ls brew (formula|cask)' >&2
             return 2
         case '*'
             echo "Unknown kind: $kind. Use 'formula' or 'cask'." >&2
             return 2
     end
 end
+
+
+

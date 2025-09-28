@@ -1,4 +1,4 @@
-function _install_ls_cargo -d 'List installed cargo binaries'
+function _mgmt_ls_cargo -d 'List installed cargo binaries'
     if not command -q cargo
         echo 'cargo not found' >&2
         return 127
@@ -6,5 +6,7 @@ function _install_ls_cargo -d 'List installed cargo binaries'
 
     cargo install --list | sed -n 's/^\([^ ]\+\) v.*/\1/p'
 end
+
+
 
 
