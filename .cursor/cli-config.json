@@ -5,6 +5,7 @@
       "Shell(git)",
       "Shell(go)",
       "Shell(rg)",
+      "Shell(cat)",
       "Shell(sbt)"
     ],
     "deny": []
