@@ -3,6 +3,8 @@
     "allow": [
       "Shell(ls)",
       "Shell(git)",
+      "Shell(go)",
+      "Shell(rg)",
       "Shell(sbt)"
     ],
     "deny": []
@@ -22,7 +24,7 @@
   "privacyCache": {
     "ghostMode": true,
     "privacyMode": 2,
-    "updatedAt": 1758848783513
+    "updatedAt": 1759163959403
   },
   "network": {
     "useHttp1ForAgent": false
