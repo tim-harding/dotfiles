@@ -6,6 +6,7 @@
       "Shell(go)",
       "Shell(rg)",
       "Shell(cat)",
+      "Shell(make)",
       "Shell(sbt)"
     ],
     "deny": []
