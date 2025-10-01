@@ -7,6 +7,7 @@
       "Shell(rg)",
       "Shell(cat)",
       "Shell(make)",
+      "Shell(chmod)",
       "Shell(sbt)"
     ],
     "deny": []
