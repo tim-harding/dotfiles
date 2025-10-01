@@ -12,6 +12,8 @@ function ensure_installs
             curl -L --proto '=https' --tlsv1.2 -sSf $binstall_url | bash
 
         case Darwin
+            softwareupdate --install-rosetta
+
             for tap in \
                 libsql/sqld \
                 omnisharp/omnisharp-roslyn \
