@@ -8,6 +8,8 @@
       "Shell(cat)",
       "Shell(make)",
       "Shell(chmod)",
+      "Shell(head)",
+      "Shell(find)",
       "Shell(sbt)"
     ],
     "deny": []
