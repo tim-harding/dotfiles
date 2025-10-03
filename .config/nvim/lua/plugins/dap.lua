@@ -1,6 +1,7 @@
 return {
   'nvim-lua/plenary.nvim',
 
+  --[[
   {
     'mfussenegger/nvim-dap-python',
     event = 'VeryLazy',
@@ -8,6 +9,7 @@ return {
       require('dap-python').setup('python3')
     end
   },
+  --]]
 
   {
     'leoluz/nvim-dap-go',
