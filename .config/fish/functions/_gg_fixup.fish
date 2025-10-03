@@ -6,6 +6,6 @@ function _gg_fixup -d 'Fix up previous commit'
     or return
 
     git all
-    git commit --fixup $argv
+    git commit --fixup $commit
     git rebase (gg trunk) --autosquash
 end
