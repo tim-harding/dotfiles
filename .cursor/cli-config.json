@@ -12,8 +12,7 @@
       "Shell(make)",
       "Shell(cd)",
       "Shell(find)",
-      "Shell(head)",
-      "Write(**)"
+      "Shell(head)"
     ],
     "deny": []
   },
@@ -26,13 +25,15 @@
     "displayModelId": "sonnet-4.5-thinking",
     "displayName": "Claude 4.5 Sonnet (Thinking)",
     "displayNameShort": "Sonnet 4.5 (Thinking)",
-    "aliases": ["sonnet-4.5-thinking"]
+    "aliases": [
+      "sonnet-4.5-thinking"
+    ]
   },
   "hasChangedDefaultModel": true,
   "privacyCache": {
     "ghostMode": true,
     "privacyMode": 2,
-    "updatedAt": 1759771964989
+    "updatedAt": 1759774351386
   },
   "network": {
     "useHttp1ForAgent": false
