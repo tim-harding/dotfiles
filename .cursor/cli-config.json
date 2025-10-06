@@ -3,14 +3,16 @@
     "allow": [
       "Shell(ls)",
       "Shell(git)",
+      "Shell(sbt)",
       "Shell(go)",
       "Shell(rg)",
-      "Shell(cat)",
+      "Shell(wc)",
+      "Shell(mkdir)",
+      "Shell(true)",
       "Shell(make)",
-      "Shell(chmod)",
-      "Shell(head)",
+      "Shell(cd)",
       "Shell(find)",
-      "Shell(sbt)"
+      "Shell(head)"
     ],
     "deny": []
   },
@@ -19,17 +21,19 @@
     "vimMode": true
   },
   "model": {
-    "modelId": "gpt-5",
-    "displayModelId": "gpt-5",
-    "displayName": "GPT-5",
-    "displayNameShort": "GPT-5",
-    "aliases": []
+    "modelId": "claude-4.5-sonnet-thinking",
+    "displayModelId": "sonnet-4.5-thinking",
+    "displayName": "Claude 4.5 Sonnet (Thinking)",
+    "displayNameShort": "Sonnet 4.5 (Thinking)",
+    "aliases": [
+      "sonnet-4.5-thinking"
+    ]
   },
   "hasChangedDefaultModel": true,
   "privacyCache": {
     "ghostMode": true,
     "privacyMode": 2,
-    "updatedAt": 1759163959403
+    "updatedAt": 1759771964989
   },
   "network": {
     "useHttp1ForAgent": false
