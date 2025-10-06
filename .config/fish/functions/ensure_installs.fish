@@ -37,7 +37,6 @@ function ensure_installs
                 git-delta \
                 git-lfs \
                 go \
-                gum \
                 jq \
                 lazygit \
                 lua-language-server \

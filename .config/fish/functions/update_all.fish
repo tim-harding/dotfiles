@@ -2,13 +2,17 @@ function update_all
     __update_all_heading Dotfiles
     pushd ~/dotfiles
     while not git pull
-        gum choose --header "Uncommited config changes" lazygit continue exit | read CHOICE
+        echo "Uncommitted config changes"
+        echo "1) lazygit"
+        echo "2) continue"
+        echo "3) exit"
+        read -P "Choice: " CHOICE
         switch $CHOICE
-            case lazygit
+            case 1 lazygit
                 lazygit
-            case continue
+            case 2 continue
                 break
-            case exit
+            case 3 exit
                 popd
                 return
         end
@@ -52,10 +56,13 @@ function update_all
         cargo install-update --all
     end
 
-    if not functions -q fisher; and gum confirm "Fisher not found. Install?"
-        set -l fisher_url https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish
-        curl -sL $fisher_url | source \
-            && fisher install jorgebucaran/fisher
+    if not functions -q fisher
+        read -P "Fisher not found. Install? [y/N] " -n 1 response
+        if string match -qi 'y' -- $response
+            set -l fisher_url https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish
+            curl -sL $fisher_url | source \
+                && fisher install jorgebucaran/fisher
+        end
     end
     if command -q fisher
         __update_all_heading Fish plugins
@@ -114,8 +121,8 @@ function update_all
 end
 
 function __update_all_heading
-    gum style \
-        --border rounded \
-        --padding "0 1" \
-        "$argv"
+    set_color --bold blue
+    echo
+    echo "╭─" $argv "─╮"
+    set_color normal
 end

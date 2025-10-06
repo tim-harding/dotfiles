@@ -1,14 +1,4 @@
 function _gg_cull -d 'Remove branches' -a branch
-    set -l choose \
-        gum choose \
-        --height 1000 \
-        --cursor-prefix '  ' \
-        --unselected-prefix '  ' \
-        --selected.foreground '' \
-        --cursor.foreground '' \
-        --header.foreground 4 \
-        --no-show-help
-
     if test -n $branch
         set choice $branch
     else
@@ -16,11 +6,13 @@ function _gg_cull -d 'Remove branches' -a branch
         set options (__gg_cull_format_branches $branches)
 
         set choice (
-            $choose \
-                --label-delimiter :: \
-                --no-limit \
-                --header 'Branches to delete' \
-                $options
+            printf '%s\n' $options \
+                | fzf --multi \
+                      --ansi \
+                      --header 'Branches to delete (TAB to select multiple)' \
+                      --delimiter :: \
+                      --with-nth 1 \
+                | string split -f 2 ::
         )
 
         if test "$choice" = ''
@@ -28,9 +20,21 @@ function _gg_cull -d 'Remove branches' -a branch
         end
     end
 
-    set -l confirm ($choose --header "Delete these branches? $choice" no yes force)
-    switch $confirm
-        case no
+    echo "Delete these branches? $choice"
+    echo "1) no"
+    echo "2) yes"
+    echo "3) force"
+    read -P "Choice [1]: " confirm_choice
+    set -q confirm_choice[1]; or set confirm_choice 1
+    
+    switch $confirm_choice
+        case 1 no
+            return
+        case 2 yes
+            set confirm yes
+        case 3 force
+            set confirm force
+        case '*'
             return
     end
 

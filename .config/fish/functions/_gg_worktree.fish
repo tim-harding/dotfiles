@@ -18,8 +18,11 @@ function _gg_worktree --argument-names branch -d 'Create a new worktree'
         string join \n $local $remote | dedup | fzf | read branch
         or return
     else if not string match $branch --quiet -- $local
-        gum confirm "Create branch $branch?"
+        read -P "Create branch $branch? [y/N] " -n 1 response
         or return
+        if not string match -qi 'y' -- $response
+            return
+        end
         git branch $branch
     end
 
