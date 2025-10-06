@@ -54,7 +54,7 @@ local function on_publish_diagnostics(err, result, context)
   end
 end
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] = on_publish_diagnostics
+-- vim.lsp.handlers['textDocument/publishDiagnostics'] = on_publish_diagnostics
 
 local function goto(dir)
   vim.diagnostic.jump({
