@@ -12,7 +12,10 @@
       "Shell(make)",
       "Shell(cd)",
       "Shell(find)",
-      "Shell(head)"
+      "Shell(head)",
+      "Shell(grep)",
+      "Shell(tail)",
+      "Shell(sort)"
     ],
     "deny": []
   },
@@ -33,7 +36,7 @@
   "privacyCache": {
     "ghostMode": true,
     "privacyMode": 2,
-    "updatedAt": 1759774351386
+    "updatedAt": 1759883634786
   },
   "network": {
     "useHttp1ForAgent": false
