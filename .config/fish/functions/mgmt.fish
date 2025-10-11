@@ -14,6 +14,4 @@ if functions -q complete_subcommand_functions
     complete_subcommand_functions mgmt
 end
 
-
-
-
+# Probably want a command to identify overlap between profiles
