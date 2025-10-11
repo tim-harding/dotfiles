@@ -3,5 +3,5 @@ function _mgmt_meow -a topic
     for candidate in $candidates
         test -f $candidate
         and cat $candidate | string match --regex '^[^#]+$'
-    end | sort
+    end | sort | uniq
 end

@@ -31,7 +31,7 @@ function _mgmt_diff -a topic
     )
 
     diff --unified \
-    (mgmt list $topic | psub) \
+    (mgmt list $topic | sort | psub) \
     (mgmt meow $topic | psub) \
     | string match --regex --invert '\-\-\-|\+\+\+|@@' \
     | string match --regex --groups-only "^$char(.*)\$"
