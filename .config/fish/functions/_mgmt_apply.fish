@@ -17,11 +17,14 @@ function _mgmt_apply -a topic
     end
     mgmt add $topic $plus
 
-    set -l minus (mgmt diff $topic --minus)
-    for program in $minus
-        for file in ~/.config/mgmt/$topic-$FISH_PROFILE.conf
-            cat $file | string match --invert $program > $file
-        end
-    end
-    mgmt sub $topic $minus
+    # set -l minus (mgmt diff $topic --minus)
+    # for program in $minus
+    #     read --prompt-str "Remove $program? [y/N] " -l response
+    #     if string match -qi 'y' -- $response
+    #         for file in ~/.config/mgmt/$topic-$FISH_PROFILE.conf
+    #             cat $file | string match --invert $program > $file
+    #         end
+    #     end
+    # end
+    # mgmt sub $topic $minus
 end
