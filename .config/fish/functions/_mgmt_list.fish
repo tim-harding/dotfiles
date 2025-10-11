@@ -3,9 +3,9 @@ function _mgmt_list -a topic
         case cargo
             cargo install --list | string match --regex --groups-only '^([^ ]+) .+:'
         case bun
-            bun pm ls --global | string match --regex --groups-only ' (.+)\@[^\@]+$'
+            bun pm ls --global | string match --regex --groups-only ' (.+)\@[^\@]+$' | ansi_remove
         case npm
-            npm list --global | string match --regex --groups-only ' (.+)\@[^\@]+$'
+            npm list --global | string match --regex --groups-only ' (.+)\@[^\@]+$' | ansi_remove
         case go
             gup list | string match --regex --groups-only ': ([^\@]+)'
         case cs
@@ -15,7 +15,7 @@ function _mgmt_list -a topic
         case brew-cask
             brew list --cask --full-name 
         case uv
-            uv tool list | string match --regex --invert '^\- ' | string match --regex --groups-only '^([^ ]+) '
+            uv tool list 2>/dev/null | string match --regex --invert '^\- ' | string match --regex --groups-only '^([^ ]+) '
         case nix
             nix profile list
         case *
