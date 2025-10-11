@@ -1,11 +1,21 @@
 function _mgmt_diff -a topic
+    set -e argv[1]
     argparse -x p,m 'p/plus' 'm/minus' -- $argv
     or return 1
+
+    switch $topic
+        case all
+            for topic in (mgmt topics)
+                heading $topic
+                _mgmt_diff $topic $_flag_plus $_flag_minus
+            end
+            return
+    end
 
     if test -z $topic
         echo 'Topic is required' >&2
         return 1
-    else if not mgmt topics --contains $topic
+    elif not mgmt topics --contains $topic
         echo 'Topic not found' >&2
         return 1
     end
@@ -16,7 +26,7 @@ function _mgmt_diff -a topic
         else if set -q _flag_minus
             echo -n '\\-'
         else
-            echo -n ' '
+            echo -n ' ' # Unchanged
         end
     )
 

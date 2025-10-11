@@ -11,9 +11,9 @@ function _mgmt_list -a topic
         case cs
             cs list
         case brew-formula
-            brew list --installed-on-request --full-name --formula
+            brew list --formula --full-name --installed-on-request
         case brew-cask
-            brew list --installed-on-request --full-name --cask
+            brew list --cask --full-name 
         case uv
             uv tool list | string match --regex --invert '^\- ' | string match --regex --groups-only '^([^ ]+) '
         case *
