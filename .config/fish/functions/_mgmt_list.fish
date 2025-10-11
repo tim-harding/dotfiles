@@ -16,6 +16,8 @@ function _mgmt_list -a topic
             brew list --cask --full-name 
         case uv
             uv tool list | string match --regex --invert '^\- ' | string match --regex --groups-only '^([^ ]+) '
+        case nix
+            nix profile list
         case *
             echo "Unknown topic: $topic" >&2
             return 1

@@ -17,6 +17,8 @@ function _mgmt_add -a topic
             brew install --cask $argv
         case uv
             uv tool install $argv
+        case nix
+            nix profile add $argv
         case *
             echo "Unknown topic: $topic" >&2
             return 1

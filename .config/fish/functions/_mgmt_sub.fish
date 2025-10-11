@@ -16,6 +16,8 @@ function _mgmt_sub -a topic
             brew uninstall --cask $argv
         case uv
             uv tool uninstall $argv
+        case nix
+            nix profile remove $argv
         case *
             echo "Unknown topic: $topic" >&2
             return 1
