@@ -43,6 +43,9 @@ function update_all
         nix profile upgrade --all
     end
 
+    if not command -q gup
+        go install github.com/nao1215/gup@latest
+    end
     if command -q gup
         heading Go programs
         gup update
