@@ -2,7 +2,9 @@ function _mgmt_add -a topic
     set -e argv[1]
     switch $topic
         case cargo
-            cargo install $argv
+            for crate in $argv
+                cargo install $crate
+            end
         case bun
             bun install --global $argv
         case npm
