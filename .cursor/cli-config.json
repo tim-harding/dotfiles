@@ -15,7 +15,10 @@
       "Shell(head)",
       "Shell(grep)",
       "Shell(tail)",
-      "Shell(sort)"
+      "Shell(sort)",
+      "Shell(conftest)",
+      "Shell(which)",
+      "Shell(polaris)"
     ],
     "deny": []
   },
@@ -36,7 +39,7 @@
   "privacyCache": {
     "ghostMode": true,
     "privacyMode": 2,
-    "updatedAt": 1759883634786
+    "updatedAt": 1760040268023
   },
   "network": {
     "useHttp1ForAgent": false
