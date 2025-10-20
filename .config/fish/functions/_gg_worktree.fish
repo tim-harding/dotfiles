@@ -20,13 +20,13 @@ function _gg_worktree --argument-names branch -d 'Create a new worktree'
     else if not string match $branch --quiet -- $local
         read -P "Create branch $branch? [y/N] " -n 1 response
         or return
-        if not string match -qi 'y' -- $response
+        if not string match -qi y -- $response
             return
         end
         git branch $branch
     end
 
-    set -l dir (path normalize (gg root_worktree)/../$branch)
+    set -l dir (path normalize (gg worktree_root)/../$branch)
 
     git worktree add $dir $branch
     cd $dir
