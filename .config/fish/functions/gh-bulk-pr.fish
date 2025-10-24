@@ -36,9 +36,9 @@ function gh-bulk-pr --description "Bulk PR review/approve via gh"
         case review
             for u in $urls
                 if set -q _flag_dry_run
-                    echo "env PAGER=cat gh pr diff --color=always $u"
+                    echo "gh pr diff --color=always $u"
                 else
-                    env PAGER=cat gh pr diff --color=always $u
+                    gh pr diff --color=always $u
                 end
             end
         case approve
