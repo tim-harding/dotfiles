@@ -36,6 +36,7 @@ function update_all
             heading Homebrew
             brew update
             brew upgrade
+            brew services restart --all
     end
 
     if command -q nix
@@ -61,7 +62,7 @@ function update_all
 
     if not functions -q fisher
         read -P "Fisher not found. Install? [y/N] " -n 1 response
-        if string match -qi 'y' -- $response
+        if string match -qi y -- $response
             set -l fisher_url https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish
             curl -sL $fisher_url | source \
                 && fisher install jorgebucaran/fisher
