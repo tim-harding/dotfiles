@@ -57,11 +57,11 @@
     hyperlinks = true
     max-line-length = 0
     true-color = always
-    syntax-theme = base16
-    minus-style = syntax italic normal
-    minus-emph-style = red italic reverse normal
-    plus-style = syntax bold normal
-    plus-emph-style = green bold reverse normal
+    syntax-theme = none
+    minus-style = red reverse normal
+    minus-emph-style = brightred reverse normal
+    plus-style = green reverse normal
+    plus-emph-style = brightgreen reverse normal
     line-numbers-minus-style = red italic auto
     line-numbers-plus-style = green bold auto
     line-numbers-zero-style = black auto
