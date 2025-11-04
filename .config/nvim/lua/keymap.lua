@@ -102,6 +102,8 @@ map('n', '<m-i>', '<c-]>', 'LSP jump out')
 map('n', ']t', '<cmd>tabnext<cr>', 'Next tab')
 map('n', '[t', '<cmd>tabprevious<cr>', 'Previous tab')
 
+map({ 'n', 'v' }, '<leader>gh', '<cmd>OpenInGitHub<cr>', 'Open in GitHub')
+
 -- Don't yank on change
 map({ 'n', 'v' }, 'c', '"_c')
 map({ 'n', 'v' }, 'C', '"_C')

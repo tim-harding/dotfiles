@@ -97,3 +97,64 @@ vim.api.nvim_create_autocmd('BufEnter', {
     vim.fn.winrestview(saved)
   end
 })
+
+-- Open current file/line in GitHub
+vim.api.nvim_create_user_command('OpenInGitHub', function(opts)
+  local filepath = vim.fn.expand('%:p')
+  if filepath == '' then
+    vim.notify('No file open', vim.log.levels.WARN)
+    return
+  end
+
+  -- Get git root directory
+  local git_root = vim.fn.systemlist('git -C ' .. vim.fn.shellescape(vim.fn.expand('%:p:h')) .. ' rev-parse --show-toplevel')[1]
+  if vim.v.shell_error ~= 0 then
+    vim.notify('Not in a git repository', vim.log.levels.ERROR)
+    return
+  end
+
+  -- Get relative path from git root
+  local relative_path = vim.fn.fnamemodify(filepath, ':p'):sub(#git_root + 2)
+
+  -- Get remote URL
+  local remote_url = vim.fn.systemlist('git -C ' .. vim.fn.shellescape(git_root) .. ' config --get remote.origin.url')[1]
+  if vim.v.shell_error ~= 0 then
+    vim.notify('No remote origin found', vim.log.levels.ERROR)
+    return
+  end
+
+  -- Convert SSH URL to HTTPS if needed
+  remote_url = remote_url:gsub('git@github.com:', 'https://github.com/')
+  remote_url = remote_url:gsub('%.git$', '')
+
+  -- Get current branch or commit hash
+  local branch = vim.fn.systemlist('git -C ' .. vim.fn.shellescape(git_root) .. ' rev-parse --abbrev-ref HEAD')[1]
+  if branch == 'HEAD' then
+    -- Detached HEAD, use commit hash
+    branch = vim.fn.systemlist('git -C ' .. vim.fn.shellescape(git_root) .. ' rev-parse HEAD')[1]
+  end
+
+  -- Get line numbers
+  local line_start, line_end
+  if opts.range == 2 then
+    -- Visual mode selection
+    line_start = opts.line1
+    line_end = opts.line2
+  else
+    -- Normal mode, current line
+    line_start = vim.fn.line('.')
+    line_end = line_start
+  end
+
+  -- Construct GitHub URL
+  local url
+  if line_start == line_end then
+    url = string.format('%s/blob/%s/%s#L%d', remote_url, branch, relative_path, line_start)
+  else
+    url = string.format('%s/blob/%s/%s#L%d-L%d', remote_url, branch, relative_path, line_start, line_end)
+  end
+
+  -- Open in browser
+  vim.fn.system('open ' .. vim.fn.shellescape(url))
+  vim.notify('Opened in GitHub: ' .. url, vim.log.levels.INFO)
+end, { range = true })
