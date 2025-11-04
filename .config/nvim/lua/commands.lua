@@ -123,8 +123,9 @@ vim.api.nvim_create_user_command('OpenInGitHub', function(opts)
     return
   end
 
-  -- Convert SSH URL to HTTPS if needed
-  remote_url = remote_url:gsub('git@github.com:', 'https://github.com/')
+  -- Convert SSH URL to HTTPS if needed (works for github.com and GitHub Enterprise)
+  -- Handles: git@DOMAIN:org/repo.git -> https://DOMAIN/org/repo
+  remote_url = remote_url:gsub('git@([^:]+):', 'https://%1/')
   remote_url = remote_url:gsub('%.git$', '')
 
   -- Get current branch or commit hash
