@@ -2,8 +2,12 @@ function repo
     set -l base ~/code
     set -l repo
     
+    # Parse arguments
+    argparse h/here -- $argv
+    or return
+    
     # Check for --here or -h flag
-    if contains -- --here $argv; or contains -- -h $argv
+    if set -q _flag_here
         # Use current repo
         set -l current_path (pwd)
         if string match -q "$base/*" $current_path
