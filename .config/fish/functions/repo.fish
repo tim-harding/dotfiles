@@ -1,12 +1,9 @@
 function repo
-    set -l base ~/code
-    set -l repo
-
-    # Parse arguments
     argparse h/here -- $argv
     or return
 
-    # Check for --here or -h flag
+    set -l base ~/code
+    set -l repo
     if set -q _flag_here
         # Use current repo
         set -l current_path (pwd)
@@ -17,15 +14,14 @@ function repo
             return 1
         end
     else
-        # Step 1: Choose repo
-        path basename $base/* | fzf --select-1 --query $argv | read -l repo
+        # Select repo
+        path basename $base/* | fzf --select-1 --query $argv | read repo
         or return
     end
 
-    # Step 2: Find the main git directory (check common names first, then use find)
+    # Step 2: Find the main git directory
     set -l repo_path $base/$repo
     set -l git_dir
-
     for dir in main master trunk
         if test -d $repo_path/$dir/.git
             set git_dir $repo_path/$dir
