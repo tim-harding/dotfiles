@@ -5,14 +5,19 @@ function repo
     path basename $base/* | fzf --select-1 --query $argv | read -l repo
     or return
     
-    # Step 2: Find any git directory (main repo has .git as directory, worktrees have .git as file)
+    # Step 2: Find the main git directory (check common names first, then use find)
     set -l repo_path $base/$repo
     set -l git_dir
-    for path in $repo_path/**/.git
-        if test -d $path
-            set git_dir (dirname $path)
+    
+    for dir in main master trunk
+        if test -d $repo_path/$dir/.git
+            set git_dir $repo_path/$dir
             break
         end
+    end
+    
+    if test -z "$git_dir"
+        set git_dir (find $repo_path -name .git -type d -print -quit | string replace '/.git' '')
     end
     
     if test -z "$git_dir"
@@ -20,16 +25,23 @@ function repo
         return 1
     end
     
-    # Step 3: Get worktrees from git, sort by commit date
+    # Step 3: Get all branch dates at once (fast), then match with worktrees
+    set -l branch_dates (git -C $git_dir for-each-ref --format='%(refname:short) %(committerdate:unix)' refs/heads/)
+    
     git -C $git_dir worktree list --porcelain | \
-        awk '
+        awk -v branch_dates="$branch_dates" '
+            BEGIN {
+                split(branch_dates, bd_array, "\n")
+                for (i in bd_array) {
+                    split(bd_array[i], parts, " ")
+                    dates[parts[1]] = parts[2]
+                }
+            }
             /^worktree / {path=$2} 
             /^branch / {
                 branch=$2
                 sub("refs/heads/", "", branch)
-                cmd = "git -C " path " log -1 --format=%ct " branch " 2>/dev/null || echo 0"
-                cmd | getline commit_date
-                close(cmd)
+                commit_date = dates[branch] ? dates[branch] : 0
                 print commit_date "\t" path "\t" branch
             }
         ' | \
