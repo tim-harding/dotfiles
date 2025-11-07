@@ -30,7 +30,7 @@ function repo
     end
 
     if test -z "$git_dir"
-        set git_dir (find $repo_path -name .git -type d -print -quit | string replace '/.git' '')
+        set git_dir (find "$repo_path" -name .git -type d | head -1 | string replace '/.git' '')
     end
 
     if test -z "$git_dir"
@@ -38,24 +38,17 @@ function repo
         return 1
     end
 
-    # Step 3: Get all branch dates at once (fast), then match with worktrees
-    set -l branch_dates (git -C $git_dir for-each-ref --format='%(refname:short) %(committerdate:unix)' refs/heads/)
-
-    git -C $git_dir worktree list --porcelain | awk -v branch_dates="$branch_dates" '
-            BEGIN {
-                split(branch_dates, bd_array, "\n")
-                for (i in bd_array) {
-                    split(bd_array[i], parts, " ")
-                    dates[parts[1]] = parts[2]
-                }
-            }
-            /^worktree / {path=$2}
-            /^branch / {
-                branch=$2
-                sub("refs/heads/", "", branch)
-                commit_date = dates[branch] ? dates[branch] : 0
-                print commit_date "\t" path "\t" branch
-            }
-        ' | sort -rn | cut -f2,3 | string replace "$repo_path/" '' | fzf --select-1 --with-nth=2 --delimiter='\t' | cut -f1 | read -l selected
+    # Step 3: Get worktrees and their commit dates, sort by recency
+    awk '
+        NR == FNR {dates[$1] = $2; next}
+        /^worktree / {path=$2}
+        /^branch / {
+            branch=$2
+            sub("refs/heads/", "", branch)
+            print (dates[branch] ? dates[branch] : 0) "\t" path "\t" branch
+        }
+    ' (git -C $git_dir for-each-ref --format='%(refname:short) %(committerdate:unix)' refs/heads/ | psub) \
+      (git -C $git_dir worktree list --porcelain | psub) | \
+    sort -rn | cut -f2,3 | string replace "$repo_path/" '' | fzf --select-1 --with-nth=2 --delimiter='\t' | cut -f1 | read selected
     and cd $repo_path/$selected
 end
