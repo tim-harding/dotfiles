@@ -58,10 +58,10 @@
     max-line-length = 0
     true-color = always
     syntax-theme = none
-    minus-style = red reverse normal
-    minus-emph-style = brightred reverse normal
-    plus-style = green reverse normal
-    plus-emph-style = brightgreen reverse normal
+    minus-style = brightred reverse normal
+    minus-emph-style = red reverse normal
+    plus-style = brightgreen reverse normal
+    plus-emph-style = green reverse normal
     line-numbers-minus-style = red italic auto
     line-numbers-plus-style = green bold auto
     line-numbers-zero-style = black auto
