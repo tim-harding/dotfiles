@@ -1,9 +1,22 @@
 function repo
     set -l base ~/code
+    set -l repo
     
-    # Step 1: Choose repo
-    path basename $base/* | fzf --select-1 --query $argv | read -l repo
-    or return
+    # Check for --here or -h flag
+    if contains -- --here $argv; or contains -- -h $argv
+        # Use current repo
+        set -l current_path (pwd)
+        if string match -q "$base/*" $current_path
+            set repo (string replace "$base/" '' $current_path | cut -d/ -f1)
+        else
+            echo "Not currently in a repo under $base"
+            return 1
+        end
+    else
+        # Step 1: Choose repo
+        path basename $base/* | fzf --select-1 --query $argv | read -l repo
+        or return
+    end
     
     # Step 2: Find the main git directory (check common names first, then use find)
     set -l repo_path $base/$repo
