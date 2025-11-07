@@ -1,7 +1,11 @@
 set tide_prompt_add_newline_before true
 set tide_prompt_color_separator_same_color black
 
-set tide_left_prompt_items pwd git newline character
+set tide_left_prompt_items \
+    pwd \
+    git \
+    newline \
+    character
 set tide_prompt_icon_connection ' '
 set tide_left_prompt_separator_diff_color ' '
 set tide_left_prompt_separator_same_color ' '
