@@ -108,7 +108,8 @@
     patterntype = perl
 
 [feature]
-    experimental = true
+    ; Setting due to https://github.com/folke/lazy.nvim/issues/2046
+    experimental = false
 
 [column]
     ui = auto
