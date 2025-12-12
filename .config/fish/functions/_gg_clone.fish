@@ -28,7 +28,6 @@ function _gg_clone -d 'Clone with a worktree folder'
     end
 
     set -l uri git@$domain:$user/$repo.git
-    set -l dir ~/code/$domain/$user/$repo
 
     git ls-remote --symref $uri HEAD \
         | string match --regex --quiet '^ref: refs/heads/(?<branch>\w+)'
@@ -37,6 +36,7 @@ function _gg_clone -d 'Clone with a worktree folder'
         return 1
     end
 
+    set -l dir ~/code/$domain/$user/$repo/$branch
     test -d $dir
     or git clone $uri $dir
 
