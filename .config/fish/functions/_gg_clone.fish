@@ -1,7 +1,9 @@
 function _gg_clone -d 'Clone with a worktree folder'
     switch (count $argv)
         case 1
-            string match --regex --quiet '^git@(?<domain>[^:]+):(?<user>[^/]+)/(?<repo>[^\.]+)\.git$' $argv
+            string match --regex --quiet \
+                '^(git@|https://)(?<domain>[^:]+)[:/](?<user>[^/]+)/(?<repo>[^\.]+)\.git$' \
+                -- $argv
             or begin
                 echo "Invalid SSH URI" >&2
                 return 1
