@@ -15,7 +15,11 @@ function restow
         popd
     end
 
-    pushd ~/dotfiles
+    set -l dir ~/code/github.com/tim-harding/dotfiles
+    test -d $dir
+    or set dir ~/dotfiles
+
+    pushd $dir
     stow . --no-folding --restow --adopt
     popd
 end
