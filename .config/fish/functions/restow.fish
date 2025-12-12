@@ -19,7 +19,5 @@ function restow
     test -d $dir
     or set dir ~/dotfiles
 
-    pushd $dir
-    stow . --no-folding --restow --adopt
-    popd
+    stow --dir $dir --target ~ --no-folding --restow --adopt
 end
