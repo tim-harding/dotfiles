@@ -10,17 +10,17 @@ function _gg_clone -d 'Clone with a worktree folder'
             end
 
         case 2
-            set -l domain github.com
+            set domain github.com
             set -q GG_CLONE_DOMAIN_DEFAULT
             and set domain $GG_CLONE_DOMAIN_DEFAULT
 
-            set -l user $argv[1]
-            set -l repo $argv[2]
+            set user $argv[1]
+            set repo $argv[2]
 
         case 3
-            set -l domain $argv[1]
-            set -l user $argv[2]
-            set -l repo $argv[3]
+            set domain $argv[1]
+            set argv[2]
+            set argv[3]
 
         case *
             echo "Expected 1, 2, or 3 arguments" >&2
