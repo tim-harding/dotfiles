@@ -37,7 +37,7 @@ return {
     map('n', '<leader>jq', fzf.quickfix, 'quickfix')
     map('n', '<leader>js', fzf.lsp_workspace_symbols, 'find project symbol')
     map('n', '<leader>jd', function()
-      fzf.files({ cwd = '~/dotfiles' })
+      fzf.files({ cwd = '~/code/github.com/tim-harding/dotfiles' })
     end, 'Dotfiles')
   end
 }

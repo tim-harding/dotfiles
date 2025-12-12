@@ -108,7 +108,7 @@ return {
       map('n', '<leader>jq', tb.quickfix, 'quickfix')
       map('n', '<leader>js', tb.lsp_dynamic_workspace_symbols, 'find project symbol')
       map('n', '<leader>jd', function()
-        tb.find_files({ cwd = '~/dotfiles' })
+        tb.find_files({ cwd = '~/code/github.com/tim-harding/dotfiles' })
       end, 'Dotfiles')
     end
   }

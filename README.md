@@ -10,8 +10,10 @@ Personal dotfiles and configuration. Most of these are for my Arch Linux setup, 
 brew install git stow
 
 cd ~
-git clone git@github.com:tim-harding/dotfiles.git
-stow . --no-folding --restow --adopt
+set -l dir ~/code/github.com/tim-harding/dotfiles
+mkdir -p $dir
+git clone git@github.com:tim-harding/dotfiles.git $dir
+stow --dir $dir --target ~ --no-folding --adopt --restow .
 
 # MacOS
 brew bundle install --file ~/.config/brewfile/Brewfile
