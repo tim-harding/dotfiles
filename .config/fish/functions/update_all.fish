@@ -1,6 +1,6 @@
 function update_all
     heading Dotfiles
-    pushd ~/code/github.com/tim-harding/dotfiles
+    pushd ~/code/github.com/tim-harding/dotfiles/main
     while not git pull
         echo "Uncommitted config changes"
         echo "1) lazygit"
