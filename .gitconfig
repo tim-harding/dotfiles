@@ -44,10 +44,6 @@
     branch = true
     submoduleSummary = true
 
-[maintenance]
-    auto = true
-    strategy = incremental
-
 [interactive]
     diffFilter = delta --color-only
 
