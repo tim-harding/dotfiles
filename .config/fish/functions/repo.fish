@@ -15,7 +15,11 @@ function repo
         end
     else
         # Select repo
-        path basename $base/* | fzf --select-1 --query $argv | read repo
+        begin
+            pushd $base
+            string join \n -- */*/*
+            popd
+        end | fzf --select-1 --query $argv | read repo
         or return
     end
 
@@ -48,7 +52,6 @@ function repo
             print (dates[branch] ? dates[branch] : 0) "\t" path "\t" branch
         }
     ' (git -C $git_dir for-each-ref --format='%(refname:short) %(committerdate:unix)' refs/heads/ | psub) \
-      (git -C $git_dir worktree list --porcelain | psub) | \
-    sort -rn | cut -f2,3 | string replace "$repo_path/" '' | fzf --select-1 --with-nth=2 --delimiter='\t' | cut -f1 | read selected
+        (git -C $git_dir worktree list --porcelain | psub) | sort -rn | cut -f2,3 | string replace "$repo_path/" '' | fzf --select-1 --with-nth=2 --delimiter='\t' | cut -f1 | read selected
     and cd $repo_path/$selected
 end
