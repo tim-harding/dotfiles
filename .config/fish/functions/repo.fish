@@ -19,7 +19,7 @@ function repo
             pushd $base
             string join \n -- */*/*
             popd
-        end | fzf --select-1 --query $argv | read repo
+        end | fzf --select-1 --query=$argv | read repo
         or return
     end
 
