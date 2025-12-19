@@ -21,6 +21,10 @@ function _mgmt_add -a topic
             uv tool install $argv
         case nix
             nix profile add $argv
+        case pacman
+            sudo pacman -S $argv
+        case aur
+            yay -S $argv
         case *
             echo "Unknown topic: $topic" >&2
             return 1

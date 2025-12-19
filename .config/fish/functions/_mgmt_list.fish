@@ -18,6 +18,10 @@ function _mgmt_list -a topic
             uv tool list 2>/dev/null | string match --regex --invert '^\- ' | string match --regex --groups-only '^([^ ]+) '
         case nix
             nix profile list
+        case pacman
+            pacman -Qqe --native
+        case aur
+            pacman -Qqm
         case *
             echo "Unknown topic: $topic" >&2
             return 1
