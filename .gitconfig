@@ -80,7 +80,7 @@
 
 [delta "no-syntax"]
     syntax-theme = none
-    minus-style = red reverse strike
+    minus-style = red reverse normal
     minus-emph-style = brightred reverse bold
     plus-style = green reverse normal
     plus-emph-style = brightgreen reverse bold
