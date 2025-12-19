@@ -107,3 +107,6 @@ map({ 'n', 'v' }, '<leader>gh', '<cmd>OpenInGitHub<cr>', 'Open in GitHub')
 -- Don't yank on change
 map({ 'n', 'v' }, 'c', '"_c')
 map({ 'n', 'v' }, 'C', '"_C')
+
+-- Don't yank when pasting over selection
+map('x', 'p', '"_dP')
