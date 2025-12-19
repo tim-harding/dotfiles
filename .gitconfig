@@ -48,6 +48,9 @@
     diffFilter = delta --color-only
 
 [delta]
+    features = hunk-by-hunk
+
+[delta "hunk-by-hunk"]
     navigate = true
     line-numbers = true
     hyperlinks = true
