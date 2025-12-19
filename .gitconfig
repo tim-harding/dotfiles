@@ -56,14 +56,9 @@
     # https://dandavison.github.io/delta/hyperlinks.html
     hyperlinks = true
     # https://dandavison.github.io/delta/features-named-groups-of-settings.html
-    features = line-numbers
+    features = line-numbers no-syntax
     max-line-length = 0
     true-color = always
-    syntax-theme = none
-    minus-style = red reverse normal
-    minus-emph-style = brightred reverse bold
-    plus-style = green reverse normal
-    plus-emph-style = brightgreen reverse bold
     blame-palette = "#232634" "#292c3c" "#303446" # frappe-crust, frappe-mantle, frappe-base
     blame-format = {author:<15.14} {commit:<8}
     blame-separator-format = ""
@@ -75,6 +70,20 @@
     hunk-header-decoration-style = black bold ul
     merge-conflict-ours-diff-header-decoration-style = black bold ul ol
     merge-conflict-theirs-diff-header-decoration-style = black bold ul ol
+
+[delta "syntax"]
+    syntax-theme = base16
+    minus-style = syntax strike
+    minus-emph-style = syntax strike italic
+    plus-style = syntax bold
+    plus-emph-style = syntax bold italic
+
+[delta "no-syntax"]
+    syntax-theme = none
+    minus-style = red reverse strike
+    minus-emph-style = brightred reverse bold
+    plus-style = green reverse normal
+    plus-emph-style = brightgreen reverse bold
 
 [delta "line-numbers"]
     line-numbers = true
