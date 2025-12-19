@@ -55,11 +55,11 @@
     true-color = always
     syntax-theme = none
     minus-style = red reverse normal
-    minus-emph-style = brightred reverse normal
+    minus-emph-style = brightred reverse bold
     plus-style = green reverse normal
-    plus-emph-style = brightgreen reverse normal
-    line-numbers-minus-style = red italic auto
-    line-numbers-plus-style = green bold auto
+    plus-emph-style = brightgreen reverse bold
+    line-numbers-minus-style = red auto
+    line-numbers-plus-style = green auto
     line-numbers-zero-style = black auto
     line-numbers-left-format = "{nm:>4}┊"
     line-numbers-right-format = "{np:>4}│"
