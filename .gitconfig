@@ -48,9 +48,6 @@
     diffFilter = delta --color-only
 
 [delta]
-    features = hunk-by-hunk
-
-[delta "hunk-by-hunk"]
     navigate = true
     line-numbers = true
     hyperlinks = true
@@ -68,7 +65,7 @@
     line-numbers-right-format = "{np:>4}│"
     line-numbers-left-style = black
     line-numbers-right-style = black
-    blame-palette = "#232634" "#292c3c" "#303446"
+    blame-palette = "#232634" "#292c3c" "#303446" # frappe-crust, frappe-mantle, frappe-base
     blame-format = {author:<15.14} {commit:<8}
     blame-separator-format = ""
     commit-decoration-style = black ul
@@ -79,6 +76,9 @@
     hunk-header-decoration-style = black bold ul
     merge-conflict-ours-diff-header-decoration-style = black bold ul ol
     merge-conflict-theirs-diff-header-decoration-style = black bold ul ol
+
+[delta "side-by-side"]
+    side-by-side = true
 
 ; Note:
 ; For less fine-grained matching than the default try
