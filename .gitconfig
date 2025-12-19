@@ -84,6 +84,7 @@
     minus-emph-style = brightred reverse bold
     plus-style = green reverse normal
     plus-emph-style = brightgreen reverse bold
+    map-styles = bold purple => magenta reverse, bold cyan => blue reverse
 
 [delta "line-numbers"]
     line-numbers = true
@@ -97,23 +98,6 @@
 
 [delta "side-by-side"]
     side-by-side = true
-
-; Note:
-; For less fine-grained matching than the default try
-; --word-diff-regex="\S+" --max-line-distance=1.0
-; (this is more similar to `git --word-diff`).
-;
-; 🭭▼▽ 🭯▲△ options for merge-conflict-begin/end-symbol (middle is default)
-;
-; TODO: Delta features https://dandavison.github.io/delta/features-named-groups-of-settings.html
-; - Highlight lines with
-;   - red/brightred/green/brightgreen background
-;   - no syntax highlight
-;   - map-styles = bold purple => syntax magenta, bold cyan => syntax blue (for moved lines)
-; - +/- instead of line numbers
-;
-; TODO: Customize hyperlinks
-; https://dandavison.github.io/delta/hyperlinks.html
 
 [log]
     date = iso
