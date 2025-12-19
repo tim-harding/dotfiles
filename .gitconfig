@@ -48,9 +48,15 @@
     diffFilter = delta --color-only
 
 [delta]
+    # Use n and N to navigate over files and commits
+    # https://dandavison.github.io/delta/navigation-keybindings-for-large-diffs.html
     navigate = true
-    line-numbers = true
+    # Turn line numbers, file paths, commit hashes into links
+    # TODO: Customize hyperlinks-file-link-format
+    # https://dandavison.github.io/delta/hyperlinks.html
     hyperlinks = true
+    # https://dandavison.github.io/delta/features-named-groups-of-settings.html
+    features = line-numbers
     max-line-length = 0
     true-color = always
     syntax-theme = none
@@ -58,13 +64,6 @@
     minus-emph-style = brightred reverse bold
     plus-style = green reverse normal
     plus-emph-style = brightgreen reverse bold
-    line-numbers-minus-style = red auto
-    line-numbers-plus-style = green auto
-    line-numbers-zero-style = black auto
-    line-numbers-left-format = "{nm:>4}┊"
-    line-numbers-right-format = "{np:>4}│"
-    line-numbers-left-style = black
-    line-numbers-right-style = black
     blame-palette = "#232634" "#292c3c" "#303446" # frappe-crust, frappe-mantle, frappe-base
     blame-format = {author:<15.14} {commit:<8}
     blame-separator-format = ""
@@ -76,6 +75,16 @@
     hunk-header-decoration-style = black bold ul
     merge-conflict-ours-diff-header-decoration-style = black bold ul ol
     merge-conflict-theirs-diff-header-decoration-style = black bold ul ol
+
+[delta "line-numbers"]
+    line-numbers = true
+    line-numbers-minus-style = red auto
+    line-numbers-plus-style = green auto
+    line-numbers-zero-style = black auto
+    line-numbers-left-format = "{nm:>4}┊"
+    line-numbers-right-format = "{np:>4}│"
+    line-numbers-left-style = black
+    line-numbers-right-style = black
 
 [delta "side-by-side"]
     side-by-side = true
