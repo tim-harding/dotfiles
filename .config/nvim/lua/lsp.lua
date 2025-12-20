@@ -88,7 +88,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     local is_inlay_supported = client:supports_method('textDocument/inlayHint')
-    vim.lsp.inlay_hint.enable(is_inlay_supported, { bufnr = bufnr })
 
     local function toggle_inlay_hints()
       vim.lsp.inlay_hint.enable(is_inlay_supported and not vim.lsp.inlay_hint.is_enabled(),
