@@ -48,6 +48,14 @@ vim.lsp.config('biome', {
   end,
 })
 
+vim.lsp.config('vtsls', {
+  root_dir = function(fname)
+    return vim.fs.root(fname, 'tsconfig.json')
+      or vim.fs.root(fname, 'jsconfig.json')
+      or vim.fs.root(fname, 'package.json')
+  end,
+})
+
 ---@param bufnr integer
 local function hl_augroup_name(bufnr) return 'lsp-document-highlight-' .. bufnr end
 
