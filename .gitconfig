@@ -1,11 +1,3 @@
-[user]
-    name = Timothy Harding
-    email = timothy@harding.vip
-    signingKey = ~/.ssh/id_ed25519.pub
-
-[init]
-    defaultBranch = main
-
 [alias]
     all = !git add .
     root = rev-parse --show-toplevel
@@ -19,16 +11,6 @@
     fp = push --force-with-lease --force-if-includes
     lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
 
-[url "git@github.com:"]
-    insteadOf = "gh:"
-    insteadOf = "https://github.com/"
-
-[filter "lfs"]
-    required = true
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-
 [core]
     excludesFile = ~/.gitignore.local
     fsmonitor = true
@@ -36,12 +18,68 @@
     whitespace = trailing-space
     autocrlf = false
 
-[clean]
-    requireForce = false
+[init]
+    defaultBranch = main
+
+[user]
+    name = Timothy Harding
+    email = timothy@harding.vip
+    signingKey = ~/.ssh/id_ed25519.pub
+
+[commit]
+    verbose = true
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
+[pull]
+    rebase = true
+    autostash = true
+
+[merge]
+    conflictstyle = zdiff3
+    keepbackup = false
+    tool = meld
+
+[rebase]
+    autostash = true
+    autosquash = true
+    updateRefs = true
+
+[rerere]
+    enabled = true
+    autoupdate = true
+
+[push]
+    autoSetupRemote = true
+    followTags = true
+
+[diff]
+    colorMoved = default
+    algorithm = histogram
+    compactionHeuristic = true
+    mnemonicPrefix = true
+    renames = true
+    submodule = log
+
+[branch]
+    autoSetupMerge = simple
+    sort = -committerdate
+
+[submodule]
+    recurse = true
+
+[tag]
+    sort = version:refname
 
 [status]
     branch = true
     submoduleSummary = true
+
+[clean]
+    requireForce = false
 
 [log]
     date = iso
@@ -52,6 +90,13 @@
 [grep]
     patterntype = perl
 
+[help]
+    autocorrect = prompt
+
+[advice]
+    skippedCherryPicks = false
+    detachedHead = false
+
 [feature]
     ; Setting due to https://github.com/folke/lazy.nvim/issues/2046
     experimental = false
@@ -59,60 +104,15 @@
 [column]
     ui = auto
 
-[commit]
-    verbose = true
+[url "git@github.com:"]
+    insteadOf = "gh:"
+    insteadOf = "https://github.com/"
 
-[tag]
-    sort = version:refname
-
-[pull]
-    rebase = true
-    autostash = true
-
-[fetch]
-    prune = true
-    pruneTags = true
-    all = true
-
-[rebase]
-    autostash = true
-    autosquash = true
-    updateRefs = true
-
-[push]
-    autoSetupRemote = true
-    followTags = true
-
-[merge]
-    conflictstyle = zdiff3
-    keepbackup = false
-    tool = meld
-
-[diff]
-    colorMoved = default
-    algorithm = histogram
-    compactionHeuristic = true
-    mnemonicPrefix = true
-    renames = true
-    submodule = log
-
-[submodule]
-    recurse = true
-
-[advice]
-    skippedCherryPicks = false
-    detachedHead = false
-
-[rerere]
-    enabled = true
-    autoupdate = true
-
-[branch]
-    autoSetupMerge = simple
-    sort = -committerdate
-
-[help]
-    autocorrect = prompt
+[filter "lfs"]
+    required = true
+    clean   = git-lfs clean -- %f
+    smudge  = git-lfs smudge -- %f
+    process = git-lfs filter-process
 
 [include]
     path = ~/.gitconfig.local
