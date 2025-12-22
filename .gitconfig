@@ -30,7 +30,6 @@
     process = git-lfs filter-process
 
 [core]
-    pager = delta
     excludesFile = ~/.gitignore.local
     fsmonitor = true
     untrackedCache = true
@@ -43,89 +42,6 @@
 [status]
     branch = true
     submoduleSummary = true
-
-[interactive]
-    diffFilter = delta --color-only
-
-[delta]
-    # Use n and N to navigate over files and commits
-    # https://dandavison.github.io/delta/navigation-keybindings-for-large-diffs.html
-    navigate = true
-    # Turn line numbers, file paths, commit hashes into links
-    # TODO: Customize hyperlinks-file-link-format
-    # https://dandavison.github.io/delta/hyperlinks.html
-    hyperlinks = true
-    # https://dandavison.github.io/delta/features-named-groups-of-settings.html
-    features = line-numbers no-syntax
-    max-line-length = 0
-    true-color = always
-
-    inline-hint-style = dim
-    zero-style = normal
-    whitespace-error-style = dim
-
-    blame-palette = "#232634" "#292c3c" "#303446" # frappe-crust, frappe-mantle, frappe-base
-    blame-format = {author:<15.14} {commit:<8}
-    blame-separator-format = ""
-    blame-code-style      = normal
-    blame-separator-style = normal
-
-    commit-decoration-style = black ul
-    commit-style = normal
-
-    file-style = dim
-    file-decoration-style = black bold ul ol
-
-    grep-output-type             = ripgrep
-    grep-file-style              = dim
-    grep-header-decoration-style = dim
-    grep-header-file-style       = dim
-    grep-match-line-style        = dim
-    grep-match-word-style        = dim
-    grep-context-line-style      = dim
-    grep-line-number-style       = dim
-
-    hunk-header-style             = dim
-    hunk-header-file-style        = dim
-    hunk-header-line-number-style = dim
-    hunk-header-decoration-style  = black bold ul
-
-    merge-conflict-ours-diff-header-style              = dim
-    merge-conflict-ours-diff-header-decoration-style   = black bold ul ol
-    merge-conflict-theirs-diff-header-style            = dim
-    merge-conflict-theirs-diff-header-decoration-style = black bold ul ol
-
-[delta "syntax"]
-    syntax-theme = base16
-
-    minus-style      = syntax strike
-    minus-emph-style = syntax strike italic
-    plus-style       = syntax bold
-    plus-emph-style  = syntax bold   italic
-
-[delta "no-syntax"]
-    syntax-theme = none
-    map-styles = bold purple => magenta reverse, bold cyan => blue reverse
-
-    plus-style       =       green reverse normal
-    plus-emph-style  = brightgreen reverse bold
-    minus-style      =       red   reverse normal
-    minus-emph-style = brightred   reverse bold
-
-[delta "line-numbers"]
-    line-numbers = true
-
-    line-numbers-left-format  = "{nm:>4}┊"
-    line-numbers-right-format = "{np:>4}│"
-
-    line-numbers-plus-style  = green auto
-    line-numbers-minus-style = red   auto
-    line-numbers-zero-style  = black auto
-    line-numbers-left-style  = black
-    line-numbers-right-style = black
-
-[delta "side-by-side"]
-    side-by-side = true
 
 [log]
     date = iso
@@ -168,7 +84,6 @@
     followTags = true
 
 [merge]
-    conflictstyle = zdiff3
     keepbackup = false
     tool = meld
 
@@ -200,3 +115,4 @@
 
 [include]
     path = ~/.gitconfig.local
+    path = ~/.gitconfig.delta
