@@ -1,11 +1,6 @@
 .local.fish
 
-AGENTS.md
-CANDOR.md
-DIARY.md
-PLAN.md
-NOTEBOOK.md
-TICKET.md
+.claude/
 
 .DS_Store
 .metals
