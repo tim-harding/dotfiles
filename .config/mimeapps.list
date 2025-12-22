@@ -3,3 +3,4 @@
 x-scheme-handler/http=firefox.desktop
 application/pdf=firefox.desktop
 x-scheme-handler/https=firefox.desktop
+x-scheme-handler/nvim=nvim-url-handler.desktop

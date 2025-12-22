@@ -12,9 +12,9 @@
     # https://dandavison.github.io/delta/navigation-keybindings-for-large-diffs.html
     navigate = true
     # Turn line numbers, file paths, commit hashes into links
-    # TODO: Customize hyperlinks-file-link-format
     # https://dandavison.github.io/delta/hyperlinks.html
     hyperlinks = true
+    hyperlinks-file-link-format = "nvim://{path}:{line}"
     # https://dandavison.github.io/delta/features-named-groups-of-settings.html
     features = line-numbers no-syntax
     max-line-length = 0

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Neovim URL Handler
+Exec=/home/tim/.local/bin/nvim-url-handler %u
+MimeType=x-scheme-handler/nvim;
+NoDisplay=true

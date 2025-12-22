@@ -1,0 +1,11 @@
+#!/bin/sh
+# Handler for nvim:// URLs
+# Parses nvim://path:line and opens in Neovim
+
+url="$1"
+path_line="${url#nvim://}"
+file="${path_line%%:*}"
+line="${path_line#*:}"
+
+# Open in a new terminal with nvim
+exec ghostty -e nvim "+${line}" "${file}"

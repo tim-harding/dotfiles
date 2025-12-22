@@ -64,4 +64,22 @@ config.keys = {
   },
 }
 
+-- Handle nvim:// hyperlinks from Delta
+wezterm.on('open-uri', function(window, pane, uri)
+  if uri:sub(1, 7) == 'nvim://' then
+    local path_and_line = uri:sub(8)
+    local file, line = path_and_line:match('([^:]+):(%d+)')
+    if file and line then
+      window:perform_action(
+        wezterm.action.SpawnCommandInNewWindow {
+          args = { 'nvim', '+' .. line, file },
+        },
+        pane
+      )
+      return false  -- Prevent default handling
+    end
+  end
+  return true  -- Allow default handling for other URIs
+end)
+
 return config
