@@ -40,6 +40,14 @@ vim.lsp.config('thriftls', {
   cmd = { 'thrift-ls' },
 })
 
+vim.lsp.config('biome', {
+  root_dir = function(fname)
+    return vim.fs.root(fname, 'biome.json')
+      or vim.fs.root(fname, 'biome.jsonc')
+      or vim.fs.root(fname, 'package.json')
+  end,
+})
+
 ---@param bufnr integer
 local function hl_augroup_name(bufnr) return 'lsp-document-highlight-' .. bufnr end
 
