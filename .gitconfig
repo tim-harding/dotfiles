@@ -59,15 +59,39 @@
     features = line-numbers no-syntax
     max-line-length = 0
     true-color = always
+
+    inline-hint-style = dim
+    zero-style = normal
+    whitespace-error-style = dim
+
     blame-palette = "#232634" "#292c3c" "#303446" # frappe-crust, frappe-mantle, frappe-base
     blame-format = {author:<15.14} {commit:<8}
     blame-separator-format = ""
+    blame-code-style = normal
+    blame-separator-style = normal
+
     commit-decoration-style = black ul
+    commit-style = normal
+
     file-style = dim
     file-decoration-style = black bold ul ol
+
+    grep-file-style = dim
+    grep-context-line-style = dim
+    grep-header-decoration-style = dim
+    grep-header-file-style = dim
+    grep-line-number-style = dim
+    grep-output-type = dim
+    grep-match-line-style = dim
+    grep-match-word-style = dim
+
+    hunk-header-style = dim
     hunk-header-file-style = dim
     hunk-header-line-number-style = dim
     hunk-header-decoration-style = black bold ul
+
+    merge-conflict-ours-diff-header-style = dim
+    merge-conflict-theirs-diff-header-style = dim
     merge-conflict-ours-diff-header-decoration-style = black bold ul ol
     merge-conflict-theirs-diff-header-decoration-style = black bold ul ol
 
