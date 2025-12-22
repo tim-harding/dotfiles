@@ -84,6 +84,7 @@
     followTags = true
 
 [merge]
+    conflictstyle = zdiff3
     keepbackup = false
     tool = meld
 
