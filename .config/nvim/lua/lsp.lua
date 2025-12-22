@@ -5,8 +5,7 @@ vim.lsp.enable {
   'pyright',
   'ruby_lsp',
   'gopls',
-  -- Biome LSP causing loading errors
-  -- 'biome',
+  'biome',
   'cssls',
   'jsonls',
   'html',
