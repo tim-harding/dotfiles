@@ -9,3 +9,4 @@ abbr pmu sudo pacman --noconfirm -Rs
 abbr yayi yay --noconfirm -Syu
 abbr yayu yay --noconfirm -Rs
 abbr py python3
+abbr ku kubectl
