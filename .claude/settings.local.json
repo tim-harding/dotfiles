@@ -1,0 +1,16 @@
+{
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true
+  },
+  "permissions": {
+    "allow": [
+      "Bash(chmod:*)",
+      "Bash(xdg-mime default:*)",
+      "Bash(xdg-mime query:*)",
+      "Bash(cat:*)",
+      "Bash(update-desktop-database:*)",
+      "Bash(npm config:*)"
+    ]
+  }
+}
