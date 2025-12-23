@@ -4,8 +4,8 @@ abbr mkdir mkdir -p
 abbr rgg rg --hidden --follow --glob "!.git"
 abbr fdd fd --hidden --no-ignore-vcs
 abbr pmq pacman -Qe
-abbr pmi sudo pacman --noconfirm -Syu
+abbr pmi sudo pacman --noconfirm -S
 abbr pmu sudo pacman --noconfirm -Rs
 abbr yayi yay --noconfirm -Syu
 abbr yayu yay --noconfirm -Rs
-abbr py python3 
+abbr py python3
