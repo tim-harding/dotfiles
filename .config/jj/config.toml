@@ -1,3 +1,6 @@
 [user]
 name = "Timothy Harding"
 email = "timothy@harding.vip"
+
+[ui]
+default-command = "log"
