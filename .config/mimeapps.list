@@ -1,6 +1,9 @@
 
 [Default Applications]
-x-scheme-handler/http=firefox.desktop
+x-scheme-handler/http=google-chrome.desktop
 application/pdf=firefox.desktop
-x-scheme-handler/https=firefox.desktop
+x-scheme-handler/https=google-chrome.desktop
 x-scheme-handler/nvim=nvim-url-handler.desktop
+text/html=google-chrome.desktop
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop
