@@ -16,7 +16,11 @@ function _gg_rename --argument-names new_name -d 'Rename branch and move worktre
     end
 
     set -l old_dir (pwd)
-    set -l new_dir (path normalize (dirname $old_dir)/$new_name)
+
+    # Find worktree root by getting the main worktree's parent directory
+    set -l main_worktree (git worktree list --porcelain | grep '^worktree ' | head -1 | cut -d' ' -f2-)
+    set -l worktree_root (path dirname $main_worktree)
+    set -l new_dir (path normalize $worktree_root/$new_name)
 
     if test -d "$new_dir"
         echo "Directory $new_dir already exists" >&2
