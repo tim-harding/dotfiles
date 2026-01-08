@@ -1,15 +1,15 @@
 {
-  "sandbox": {
-    "enabled": true
-  },
+  "env": {},
   "attribution": {
     "commit": "",
     "pr": ""
   },
   "permissions": {
-    "defaultMode": "acceptEdits",
-    "allow": []
+    "allow": [],
+    "defaultMode": "acceptEdits"
   },
-  "env": {},
-  "hooks": {}
+  "hooks": {},
+  "sandbox": {
+    "enabled": true
+  }
 }
