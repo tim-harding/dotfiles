@@ -10,5 +10,6 @@
     "defaultMode": "acceptEdits",
     "allow": []
   },
-  "env": {}
+  "env": {},
+  "hooks": {}
 }
