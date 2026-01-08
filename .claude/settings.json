@@ -2,6 +2,10 @@
   "sandbox": {
     "enabled": true,
     "defaultMode": "acceptEdits",
+    "attribution": {
+      "commit": "",
+      "pr": ""
+    },
     "permissions": {
       "allow": []
     }
