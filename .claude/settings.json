@@ -9,5 +9,6 @@
   "permissions": {
     "defaultMode": "acceptEdits",
     "allow": []
-  }
+  },
+  "env": {}
 }
