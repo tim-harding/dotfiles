@@ -1,0 +1,3 @@
+- Be concise. Omit needless code.
+- Prefer self-documenting code over comments.
+- Avoid adding markdown documentation.
