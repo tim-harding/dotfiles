@@ -1,6 +1,9 @@
 {
   "sandbox": {
     "enabled": true,
-    "defaultMode": "acceptEdits"
+    "defaultMode": "acceptEdits",
+    "permissions": {
+      "allow": []
+    }
   }
 }
