@@ -9,8 +9,8 @@ return {
     ---@module 'avante'
     ---@type avante.Config
     opts = {
-      provider = "claude",
-      auto_suggestions_provider = "claude",
+      provider = "bedrock",
+      auto_suggestions_provider = "bedrock",
       behaviour = {
         auto_suggestions = false,
       },
@@ -19,6 +19,13 @@ return {
       },
       hints = {
         enabled = false,
+      },
+      providers = {
+        bedrock = {
+          model = "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          aws_profile = os.getenv("AWS_PROFILE"),
+          aws_region = os.getenv("AWS_REGION"),
+        },
       },
     },
   }
