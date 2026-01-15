@@ -2,8 +2,8 @@ return {
   'stevearc/dressing.nvim',
   {
     "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = false,
+    lazy = true,
+    cmd = { "AvanteAsk", "AvanteChat", "AvanteToggle" },
     version = false, -- Pull latest
     build = "make",
     ---@module 'avante'
