@@ -10,7 +10,9 @@
       "Bash(xdg-mime query:*)",
       "Bash(cat:*)",
       "Bash(update-desktop-database:*)",
-      "Bash(npm config:*)"
+      "Bash(npm config:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }
