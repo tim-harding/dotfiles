@@ -10,10 +10,10 @@
   },
   "model": "sonnet",
   "hooks": {},
-  "sandbox": {
-    "enabled": true
-  },
   "enabledPlugins": {
     "lua-lsp@claude-plugins-official": true
+  },
+  "sandbox": {
+    "enabled": true
   }
 }
