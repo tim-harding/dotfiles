@@ -8,7 +8,8 @@
       "Bash(update-desktop-database:*)",
       "Bash(npm config:*)",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:portal.sso.us-east-2.amazonaws.com)"
     ]
   },
   "sandbox": {
