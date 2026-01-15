@@ -14,6 +14,7 @@ end
 switch $platform
     case Darwin
         fish_add_path -g /opt/homebrew/bin
+        fish_add_path -g /opt/homebrew/opt/curl/bin
         fish_add_path -g /opt/homebrew/opt/llvm/bin
         fish_add_path -g /Applications/Sublime\ Merge.app/Contents/SharedSupport/bin
         fish_add_path -g /Users/tim/.local/share/bob/nvim-bin
