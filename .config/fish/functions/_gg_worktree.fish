@@ -1,4 +1,9 @@
-function _gg_worktree --argument-names branch -d 'Create a new worktree'
+function _gg_worktree -d 'Create a new worktree'
+    argparse 'y/yes' -- $argv
+    or return
+
+    set -l branch $argv[1]
+
     cd (git root)
     git fetch --all --prune
     git worktree prune
@@ -26,10 +31,12 @@ function _gg_worktree --argument-names branch -d 'Create a new worktree'
             echo "Branch $branch exists on origin, using remote branch"
         else
             # Branch doesn't exist locally or remotely, ask to create
-            read -P "Create branch $branch? [y/N] " -n 1 response
-            or return
-            if not string match -qi y -- $response
-                return
+            if not set -q _flag_yes
+                read -P "Create branch $branch? [y/N] " -n 1 response
+                or return
+                if not string match -qi y -- $response
+                    return
+                end
             end
             git branch $branch
         end
