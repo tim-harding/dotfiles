@@ -17,7 +17,7 @@
     ],
     "defaultMode": "acceptEdits"
   },
-  "model": "opus",
+  "model": "sonnet",
   "hooks": {},
   "enabledPlugins": {
     "lua-lsp@claude-plugins-official": true,
