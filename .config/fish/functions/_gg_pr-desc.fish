@@ -1,4 +1,4 @@
-function _gg_pr-description -d 'Generate JIRA ticket link from branch name'
+function _gg_pr-desc -d 'Generate JIRA ticket link from branch name'
     set -l branch (git rev-parse --abbrev-ref HEAD 2>/dev/null)
     if test $status -ne 0
         echo "Not in a git repository" >&2
@@ -19,8 +19,8 @@ function _gg_pr-description -d 'Generate JIRA ticket link from branch name'
     end
 
     # Output link for JIRA tickets, plain text for no-jira
-    if test "$ticket" = "no-jira"
-        echo "no-jira"
+    if test "$ticket" = no-jira
+        echo no-jira
     else
         echo "[**[$ticket]**](https://taserintl.atlassian.net/browse/$ticket)"
     end
