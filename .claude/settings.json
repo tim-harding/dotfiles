@@ -24,6 +24,6 @@
     "pyright-lsp@claude-plugins-official": true
   },
   "sandbox": {
-    "enabled": true
+    "enabled": false
   }
 }
