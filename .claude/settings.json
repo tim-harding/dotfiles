@@ -5,13 +5,23 @@
     "pr": ""
   },
   "permissions": {
-    "allow": [],
+    "allow": [
+      "Bash(sbt:*)",
+      "Bash(tee:*)",
+      "Bash(cat:*)",
+      "Bash(__NEW_LINE_4e383f6192a4784d__ python3 classify_warnings.py)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(__NEW_LINE_0d231b1cbcf9e172__ python3 categorize_test_warnings.py)",
+      "Bash(grep:*)"
+    ],
     "defaultMode": "acceptEdits"
   },
-  "model": "sonnet",
+  "model": "opus",
   "hooks": {},
   "enabledPlugins": {
-    "lua-lsp@claude-plugins-official": true
+    "lua-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true
   },
   "sandbox": {
     "enabled": true
