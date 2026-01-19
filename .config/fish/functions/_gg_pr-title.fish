@@ -1,4 +1,4 @@
-function _gg_title -d 'Generate PR title prefix from branch name' --argument-names type
+function _gg_pr-title -d 'Generate PR title prefix from branch name' --argument-names type
     set -l branch (git rev-parse --abbrev-ref HEAD 2>/dev/null)
     if test $status -ne 0
         echo "Not in a git repository" >&2
