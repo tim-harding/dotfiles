@@ -8,10 +8,20 @@ function _gg_pr-description -d 'Generate JIRA ticket link from branch name'
     # Extract ticket from branch name (e.g., tharding/report-1284/evidence-domain/v1 -> report-1284)
     set -l ticket (echo $branch | string match --regex '[a-zA-Z]+-[0-9]+' | string upper)
 
+    # Check for no-jira as a special case
+    if test -z "$ticket"
+        set ticket (echo $branch | string match --regex 'no-jira')
+    end
+
     if test -z "$ticket"
         echo "Could not extract ticket number from branch: $branch" >&2
         return 1
     end
 
-    echo "[**[$ticket]**](https://taserintl.atlassian.net/browse/$ticket)"
+    # Output link for JIRA tickets, plain text for no-jira
+    if test "$ticket" = "no-jira"
+        echo "no-jira"
+    else
+        echo "[**[$ticket]**](https://taserintl.atlassian.net/browse/$ticket)"
+    end
 end

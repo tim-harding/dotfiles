@@ -8,6 +8,11 @@ function _gg_title -d 'Generate PR title prefix from branch name' --argument-nam
     # Extract ticket from branch name (e.g., tharding/report-1269/v1 -> report-1269)
     set -l ticket (echo $branch | string match --regex '[a-zA-Z]+-[0-9]+' | string upper)
 
+    # Check for no-jira as a special case
+    if test -z "$ticket"
+        set ticket (echo $branch | string match --regex 'no-jira')
+    end
+
     if test -z "$ticket"
         echo "Could not extract ticket number from branch: $branch" >&2
         return 1
