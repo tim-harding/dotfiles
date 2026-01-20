@@ -42,7 +42,7 @@ function _gg_worktree -d 'Create a new worktree'
         end
     end
 
-    set -l dir (path normalize (gg worktree_root)/../$branch)
+    set -l dir (path normalize (gg worktree root)/../$branch)
 
     git worktree add $dir $branch
     cd $dir
