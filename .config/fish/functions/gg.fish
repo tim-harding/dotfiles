@@ -4,6 +4,8 @@ function gg --argument-names cmd
     switch $cmd
         case amend
             _gg_amend $argv
+        case back
+            _gg_back $argv
         case backup
             _gg_backup $argv
         case clone
