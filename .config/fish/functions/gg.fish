@@ -12,6 +12,8 @@ function gg --argument-names cmd
             _gg_continue $argv
         case cull
             _gg_cull $argv
+        case edit
+            _gg_edit $argv
         case fixup
             _gg_fixup $argv
         case hard
