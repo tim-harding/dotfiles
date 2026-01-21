@@ -120,6 +120,10 @@ function update_all
         cs update
     end
 
+    if command -q claude
+        claude update
+    end
+
     # TODO: Figure out upgrading Luarocks. The command doesn't seem to have this
     # at the moment. Probably need something with `lua list --porcelain --outdated`
 end
