@@ -38,6 +38,8 @@
     all = true
 
 [pull]
+    # Sometimes large `git pull` fails with the combination of these two settings.
+    # In that case, use `git fetch origin master && git rebase origin/master`
     rebase = true
     autostash = true
 
