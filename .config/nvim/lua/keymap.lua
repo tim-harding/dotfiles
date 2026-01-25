@@ -54,6 +54,7 @@ map('n', '{', paragraph_prev)
 map('n', ']q', vim.cmd.cnext, 'next quickfix list item')
 map('n', '[q', vim.cmd.cprevious, 'prev quickfix list item')
 
+-- Navigate search results while keeping the cursor centered
 map('n', '<M-n>', 'nzz')
 map('n', '<MS-n>', 'Nzz')
 
