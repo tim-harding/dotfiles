@@ -1,5 +1,5 @@
 return {
-  'ggandor/leap.nvim',
+  url = 'https://codeberg.org/andyg/leap.nvim',
   -- Needs to be a dependency because it isn't Lua
   dependencies = { 'tpope/vim-repeat' },
   -- According to the author, lazy loading...
