@@ -5,14 +5,23 @@ function repo
     set -l base ~/code
     set -l repo
     if set -q _flag_here
-        # Use current repo
-        set -l current_path (pwd)
-        if string match -q "$base/*" $current_path
-            set repo (string replace "$base/" '' $current_path | cut -d/ -f1)
-        else
+        # Use current repo - find the main git dir via git-common-dir
+        set -l git_common_dir (git rev-parse --path-format=absolute --git-common-dir 2>/dev/null)
+        if test -z "$git_common_dir"
+            echo "Not in a git repository"
+            return 1
+        end
+
+        # Get repo root (parent of the main worktree)
+        set -l repo_path (dirname (dirname $git_common_dir))
+
+        if not string match -q "$base/*" $repo_path
             echo "Not currently in a repo under $base"
             return 1
         end
+
+        # Get relative path from base
+        set repo (string replace "$base/" '' $repo_path)
     else
         # Select repo
         begin
