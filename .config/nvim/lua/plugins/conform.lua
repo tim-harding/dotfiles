@@ -85,7 +85,7 @@ return {
         ocaml = { 'ocamlformat' },
         python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
         swift = { 'swiftformat' },
-        yaml = { 'yamlfmt' },
+        -- yaml = { 'yamlfmt' },
         scala = { 'scalafmt' },
         go = { 'gofmt' },
       },
